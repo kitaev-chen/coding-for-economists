@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -258,6 +260,23 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -464,8 +483,17 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rich-for-beautiful-debugging">
+     2.2.3.
+     <strong>
+      rich
+     </strong>
+     for beautiful debugging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#debugging-with-the-ide">
-     2.2.3. Debugging with the IDE
+     2.2.4. Debugging with the IDE
     </a>
    </li>
   </ul>
@@ -746,8 +774,51 @@
 </div>
 <p>All in all, if you find yourself using <code class="docutils literal notranslate"><span class="pre">print</span></code> to debug, you might find a one-time import of <strong>icecream</strong> followed by use of <code class="docutils literal notranslate"><span class="pre">ic</span></code> instead both more convenient and more effective.</p>
 </div>
+<div class="section" id="rich-for-beautiful-debugging">
+<h3><span class="section-number">2.2.3. </span><strong>rich</strong> for beautiful debugging<a class="headerlink" href="#rich-for-beautiful-debugging" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/willmcgugan/rich"><strong>rich</strong></a> is much more than just a tool for debugging, it’s a way to create beautiful renderings of all objects both in the terminal and in interactive Python windows. You can use it to build fantastic looking command line interfaces. Here, we’ll see how it can help us debug what value a variable takes <em>and</em> what methods can be used on a variable via its <code class="docutils literal notranslate"><span class="pre">inspect</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="n">inspect</span>
+
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]</span>
+<span class="n">inspect</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────────────────────────────────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">class</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'list'</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ──────────────────────────────────────╮</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008080; text-decoration-color: #008080">Built-in mutable sequence.</span>                                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>                                                                                           <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">╭───────────────────────────────────────────────────────────────────────────────────────╮</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">│</span> <span style="font-weight: bold">[</span><span style="color: #008000; text-decoration-color: #008000">'foo'</span>, <span style="color: #008000; text-decoration-color: #008000">'bar'</span><span style="font-weight: bold">]</span>                                                                        <span style="color: #008000; text-decoration-color: #008000">│</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">╰───────────────────────────────────────────────────────────────────────────────────────╯</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>                                                                                           <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>  <span style="color: #808000; text-decoration-color: #808000; font-style: italic">append</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">append</span><span style="font-weight: bold">(</span>object, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Append object to the end of the list.</span>                    <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>   <span style="color: #808000; text-decoration-color: #808000; font-style: italic">clear</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">clear</span><span style="font-weight: bold">()</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Remove all items from list.</span>                                        <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">copy</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">copy</span><span style="font-weight: bold">()</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Return a shallow copy of the list.</span>                                  <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>   <span style="color: #808000; text-decoration-color: #808000; font-style: italic">count</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">count</span><span style="font-weight: bold">(</span>value, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Return number of occurrences of value.</span>                     <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>  <span style="color: #808000; text-decoration-color: #808000; font-style: italic">extend</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">extend</span><span style="font-weight: bold">(</span>iterable, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Extend list by appending elements from the iterable.</span>   <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>   <span style="color: #808000; text-decoration-color: #808000; font-style: italic">index</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">index</span><span style="font-weight: bold">(</span>value, <span style="color: #808000; text-decoration-color: #808000">start</span>=<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>, <span style="color: #808000; text-decoration-color: #808000">stop</span>=<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9223372036854775807</span>, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Return first index of </span>  <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">value.</span>                                                                          <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>  <span style="color: #808000; text-decoration-color: #808000; font-style: italic">insert</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">insert</span><span style="font-weight: bold">(</span>index, object, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Insert object before index.</span>                       <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>     <span style="color: #808000; text-decoration-color: #808000; font-style: italic">pop</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">pop</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">index</span>=<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1</span>, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Remove and return item at index </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-weight: bold">(</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">default last</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-weight: bold">)</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">.</span>           <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>  <span style="color: #808000; text-decoration-color: #808000; font-style: italic">remove</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">remove</span><span style="font-weight: bold">(</span>value, <span style="color: #800080; text-decoration-color: #800080">/</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Remove first occurrence of value.</span>                         <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #808000; text-decoration-color: #808000; font-style: italic">reverse</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">reverse</span><span style="font-weight: bold">()</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Reverse *IN PLACE*.</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">sort</span> = <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">sort</span><span style="font-weight: bold">(</span>*, <span style="color: #808000; text-decoration-color: #808000">key</span>=<span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>, <span style="color: #808000; text-decoration-color: #808000">reverse</span>=<span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span><span style="font-weight: bold">)</span>: <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">Sort the list in ascending order and </span>     <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">return </span><span style="color: #bf7fbf; text-decoration-color: #bf7fbf; font-style: italic">None</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">.</span>                                                                    <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">╰───────────────────────────────────────────────────────────────────────────────────────────╯</span>
+</pre>
+</div></div>
+</div>
+<p>Check out all of the many options for <code class="docutils literal notranslate"><span class="pre">inspect</span></code> using <code class="docutils literal notranslate"><span class="pre">help(inspect)</span></code>. We ran it here with <code class="docutils literal notranslate"><span class="pre">methods=True</span></code>, but there are plenty of other options.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a dictionary (it doesn’t matter what’s in it, but you could map the integer 1 to the letter “a”). Then use <code class="docutils literal notranslate"><span class="pre">inspect</span></code> with <code class="docutils literal notranslate"><span class="pre">methods=True</span></code> to find out about all the methods you can call on an object of type dict.</p>
+</div>
+</div>
 <div class="section" id="debugging-with-the-ide">
-<h3><span class="section-number">2.2.3. </span>Debugging with the IDE<a class="headerlink" href="#debugging-with-the-ide" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.4. </span>Debugging with the IDE<a class="headerlink" href="#debugging-with-the-ide" title="Permalink to this headline">¶</a></h3>
 <p>In this section, we’ll learn about how your Integrated Development Environment, or IDE, can aid you with debugging. While we’ll talk through the use of Visual Studio Code, which is free, directly supports Python, R, and other languages, and is especially rich, many of the features will be present in other IDEs too and the ideas are somewhat general.</p>
 <p>To begin debugging using Visual Studio Code, get a script ready, for example <code class="docutils literal notranslate"><span class="pre">script.py</span></code>, that you’d like to debug. If your script has an error in, a debug run will automatically run into it and stop on the error; alternatively you can click to the left of the line number in your script to create a <em>breakpoint</em> that your code will stop at anyway when in debug mode.</p>
 <p>To begin a debug session, click on the play button partially covered by a bug that’s on the left hand ribbon of the VS Code window. It will bring up a menu. Click ‘Run and debug’ and select ‘Python file’. The debugger will now start running the script you had open. When it reaches and error or a breakpoint it will stop.</p>
@@ -771,7 +842,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-06-16 23:32:18.807 | DEBUG    | __main__:&lt;module&gt;:3 - Simple logging!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-07-03 19:15:15.470 | DEBUG    | __main__:&lt;module&gt;:3 - Simple logging!
 </pre></div>
 </div>
 </div>

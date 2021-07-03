@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -253,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -473,6 +492,11 @@
    6.2. Data repositories for sharing data
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github-flat-data">
+   6.3. Github Flat Data
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -586,6 +610,16 @@
 </ul>
 <p>So the canonical use case for a data repository is static data that’s associated with a paper and which you don’t think many people will want to access a lot, or in different ways, but which needs to exist as a matter of record.</p>
 <p>If you’re interested in exploring some data repositories, there are lists <a class="reference external" href="https://authorservices.taylorandfrancis.com/data-sharing-policies/repositories/">here</a> and <a class="reference external" href="https://www.springernature.com/gp/authors/research-data-policy/repositories/12327124">here</a>. If you’d like to see how one works, <a class="reference external" href="https://zenodo.org/">check out Zenodo</a> which, at the time of writing, accepts up to 50GB per dataset and may accept larger files following discussion. Zenodo accepts both code and data, and gives each repo a DOI. Zenodo is run and hosted by CERN, the European Organization for Nuclear Research.</p>
+</div>
+<div class="section" id="github-flat-data">
+<h2><span class="section-number">6.3. </span>Github Flat Data<a class="headerlink" href="#github-flat-data" title="Permalink to this headline">¶</a></h2>
+<p>Github recently launched its <a class="reference external" href="https://octo.github.com/projects/flat-data">Flat Data tool</a>. In the launch document they explain that <em>they</em> were inspired by Simon Willison, the creator of the <strong>Datasette</strong> package featured above. Flat Data actually comprises three different tools: <a class="reference external" href="https://github.com/marketplace/actions/flat-data">‘flat action’</a>, which fetches and transforms data using Github Actions (don’t worry if you don’t know what that is), <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=GitHubOCTO.flat">‘flat editor’</a> which is a Visual Studio Code-based graphical interface for creating workflows with flat actions, and ‘flat viewer’ which allows anyone to browse, filter, and access data from flat files stored in a Github repo.</p>
+<p>The genius of Flat Data viewer is that any Github repository that has a file in the compatible format can be viewed using the tool by using the prefix “<a class="reference external" href="http://flatgithub.com">flatgithub.com</a>” instead of the usual path to the file. To take a specific example using the particulate matter that we’ve already seen in this chapter,</p>
+<p><a class="reference external" href="https://github.com/aeturrell/datasette_particulate_matter/blob/main/uk_particulate_matter.csv">https://github.com/aeturrell/datasette_particulate_matter/blob/main/uk_particulate_matter.csv</a></p>
+<p>becomes</p>
+<p><a class="reference external" href="https://flatgithub.com/aeturrell/datasette_particulate_matter?filename=uk_particulate_matter.csv">https://flatgithub.com/aeturrell/datasette_particulate_matter?filename=uk_particulate_matter.csv</a></p>
+<p>Not only that but, just as with datasette, you can easily download the data in a format that suits you, and perform rudimentary data filtering.</p>
+<p>Some useful features of <strong>flat data viewer</strong> are that it integrates with your existing Github workflow and that it is free. However, the maximum size of dataset that you can lodge in a Github repo is limited to 100 Mb.</p>
 </div>
 </div>
 

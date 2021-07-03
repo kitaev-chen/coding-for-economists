@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -253,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -615,6 +634,11 @@
      2.13.4. Plydata
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dfplyr">
+     2.13.5. dfplyr
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -668,9 +692,11 @@
 <span class="c1"># Set seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="c1"># Plot settings</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
+<span class="p">)</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -803,15 +829,17 @@ memory usage: 18.9+ KB
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From a list:</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">19.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1"># From a dictionary</span>
-<span class="n">population_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="mi">38332521</span><span class="p">,</span>
-                   <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="mi">26448193</span><span class="p">,</span>
-                   <span class="s1">&#39;New York&#39;</span><span class="p">:</span> <span class="mi">19651127</span><span class="p">,</span>
-                   <span class="s1">&#39;Florida&#39;</span><span class="p">:</span> <span class="mi">19552860</span><span class="p">,</span>
-                   <span class="s1">&#39;Illinois&#39;</span><span class="p">:</span> <span class="mi">12882135</span><span class="p">}</span>
+<span class="n">population_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;California&quot;</span><span class="p">:</span> <span class="mi">38332521</span><span class="p">,</span>
+    <span class="s2">&quot;Texas&quot;</span><span class="p">:</span> <span class="mi">26448193</span><span class="p">,</span>
+    <span class="s2">&quot;New York&quot;</span><span class="p">:</span> <span class="mi">19651127</span><span class="p">,</span>
+    <span class="s2">&quot;Florida&quot;</span><span class="p">:</span> <span class="mi">19552860</span><span class="p">,</span>
+    <span class="s2">&quot;Illinois&quot;</span><span class="p">:</span> <span class="mi">12882135</span><span class="p">,</span>
+<span class="p">}</span>
 <span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">population_dict</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
 </pre></div>
@@ -853,11 +881,15 @@ dtype: int64
 <p>Now let’s try creating our own dataframe with more than one column of data using a <em>dictionary</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
-                   <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">),</span>
-                   <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
-                   <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">]),</span>
-                   <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -929,10 +961,12 @@ dtype: int64
 <p>Another way to create dataframes is to pass a bunch of series (note that <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>, and <code class="docutils literal notranslate"><span class="pre">dtype</span></code> are optional–you can just specify the data):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">],</span>
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)],</span>
-                  <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;col&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)],</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1030,9 +1064,16 @@ dtype: int64
 <p>Here’s an example to show this. Let’s first create a simple dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;col0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;col1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;col2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                        <span class="s1">&#39;col3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;col4&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">]},</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;row&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;col0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;row&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span>
+<span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1103,7 +1144,7 @@ dtype: int64
 <p>If we add one to the integer columns in the dataframe, this is what we get (note we’re not saving the result):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;col0&#39;</span><span class="p">,</span> <span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;col0&quot;</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -1163,8 +1204,8 @@ dtype: int64
 <p>Now let’s use <code class="docutils literal notranslate"><span class="pre">col0</span></code> as our index instead of the original labels we created and add one to the remaining numeric columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;col0&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;col0&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1239,7 +1280,7 @@ dtype: int64
 <p>Whenever you use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> (and some other operations), the columns you use to perform the operation are set as the index of the returned dataframe (you can have multiple index columns). To get back those back to being columns, use the <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> method like so:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="s1">&#39;col4&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;col3&quot;</span><span class="p">,</span> <span class="s2">&quot;col4&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1297,7 +1338,7 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="s1">&#39;col4&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;col3&quot;</span><span class="p">,</span> <span class="s2">&quot;col4&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1360,14 +1401,22 @@ dtype: int64
 <p>Typically, you’ll read in a dataset where the dataypes of the columns are a mess. One of the first things you’ll want to do is sort these out. Here’s an example dataset showing how to set the datatypes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;string1&#39;</span><span class="p">,</span> <span class="s1">&#39;string2&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;type_a&#39;</span><span class="p">,</span> <span class="s1">&#39;type_b&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;01-01-1999&#39;</span><span class="p">,</span> <span class="s1">&#39;01-01-2000&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;double_col&#39;</span><span class="p">,</span> <span class="s1">&#39;category_col&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;datetime_col&#39;</span><span class="p">,</span> <span class="s1">&#39;integer_col&#39;</span><span class="p">,</span> <span class="s1">&#39;bool_col&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;string1&quot;</span><span class="p">,</span> <span class="s2">&quot;string2&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;type_a&quot;</span><span class="p">,</span> <span class="s2">&quot;type_b&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;01-01-1999&quot;</span><span class="p">,</span> <span class="s2">&quot;01-01-2000&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;string_col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;double_col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;category_col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;datetime_col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;integer_col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bool_col&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -1395,12 +1444,14 @@ memory usage: 224.0+ bytes
 <p>Note that the data type for all of these columns is the generic ‘Object’ (you can see this from the <code class="docutils literal notranslate"><span class="pre">Dtype</span></code> column that is printed when you use <code class="docutils literal notranslate"><span class="pre">df.info()</span></code>). Let’s fix that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">string_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;string_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-               <span class="n">double_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;double_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">),</span>
-               <span class="n">category_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">),</span>
-               <span class="n">datetime_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">),</span>
-               <span class="n">integer_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;integer_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">),</span>
-               <span class="n">bool_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bool_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">string_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;string_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">),</span>
+    <span class="n">double_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;double_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">),</span>
+    <span class="n">category_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">),</span>
+    <span class="n">datetime_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;datetime_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">),</span>
+    <span class="n">integer_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;integer_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">),</span>
+    <span class="n">bool_col</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;bool_col&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">),</span>
+<span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1426,10 +1477,10 @@ memory usage: 320.0 bytes
 <p>If you’re creating a series or dataframe from scratch, here’s how to start off with these datatypes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">str_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;string1&#39;</span><span class="p">,</span> <span class="s1">&#39;string2&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">str_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;string1&quot;</span><span class="p">,</span> <span class="s2">&quot;string2&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 <span class="n">float_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">cat_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;type_a&#39;</span><span class="p">,</span> <span class="s1">&#39;type_b&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
-<span class="n">date_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;01-01-1999&#39;</span><span class="p">,</span> <span class="s1">&#39;01-01-2000&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">)</span>
+<span class="n">cat_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;type_a&quot;</span><span class="p">,</span> <span class="s2">&quot;type_b&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">date_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;01-01-1999&quot;</span><span class="p">,</span> <span class="s2">&quot;01-01-2000&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">)</span>
 <span class="n">int_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">bool_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
@@ -1461,9 +1512,7 @@ memory usage: 320.0 bytes
 <p>Categorical variables can be especially useful and there are a couple of convenience functions that allow you to create them from other types of columns. Cut splits input data into a given number of (evenly spaced) bins that you can optionally give names to via the <code class="docutils literal notranslate"><span class="pre">labels=</span></code> keyword. The default behaviour is for the order of the labels to matter so that, in the below example, the bins will be evenly spaced from the smallest value to the largest, with the smallest receiving the label <code class="docutils literal notranslate"><span class="pre">bad</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-       <span class="mi">3</span><span class="p">,</span>
-       <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bad&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bad&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1477,8 +1526,7 @@ Categories (3, object): [&#39;bad&#39; &lt; &#39;medium&#39; &lt; &#39;good&#39;
 <p>We can also pass the bins directly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-       <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1511,11 +1559,13 @@ Categories (4, interval[float64]): [(0.999, 3.0] &lt; (3.0, 5.0] &lt; (5.0, 7.0]
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/03_subset_columns.svg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">],</span>
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)],</span>
-                  <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;col&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)],</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;col1&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1535,7 +1585,7 @@ Name: col1, dtype: float64
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/03_subset_rows.svg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1594,7 +1644,7 @@ Name: col1, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using .loc</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;col1&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">])</span>
 <span class="c1"># Using .iloc</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
@@ -1634,7 +1684,7 @@ Name: col1, dtype: float64
 <p>The syntax for slicing is similar to what we’ve seen already: there are two methods <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to access items by name, and <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> to access them by position. The syntax for the former is <code class="docutils literal notranslate"><span class="pre">df.loc[start:stop:step,</span> <span class="pre">start:stop:step]</span></code>, where the first position is index name and the second is column name (and the same applies for numbers and <code class="docutils literal notranslate"><span class="pre">df.iloc</span></code>). Let’s see an example using the storms dataset, and do some cuts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;col1&#39;</span><span class="p">:</span><span class="s1">&#39;col3&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="s2">&quot;f&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">:</span><span class="s2">&quot;col3&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1767,8 +1817,8 @@ Name: col1, dtype: float64
 <p>It’s not just strings and positions that can be sliced though, here’s an example using <em>dates</em> (pandas support for dates is truly excellent):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCDE&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">))</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1903,7 +1953,7 @@ Name: col1, dtype: float64
 <p>Now let’s do some slicing!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">:</span><span class="s1">&#39;2002-01-01&#39;</span><span class="p">,</span> <span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">:</span><span class="s2">&quot;2002-01-01&quot;</span><span class="p">,</span> <span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -2011,7 +2061,7 @@ Name: col1, dtype: float64
 <p>The results of these manipulations can just be saved as a new series, eg, <code class="docutils literal notranslate"><span class="pre">new_series</span> <span class="pre">=</span> <span class="pre">df['A']</span> <span class="pre">+</span> <span class="pre">df['B']</span></code> or created as a new column of the dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_col&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -2159,12 +2209,14 @@ Name: col1, dtype: float64
 <p>Boolean variables and strings have group operations (eg concatenation is via <code class="docutils literal notranslate"><span class="pre">+</span></code> with strings), and so work well with column operations too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> a and c:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> b or d:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">|</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> a and c:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> b or d:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2194,12 +2246,12 @@ dtype: bool
 <p>More complex operations on whole dataframes are supported, but if you’re doing very heavy lifting you might want to just switch to using numpy arrays (<strong>numpy</strong> is basically Matlab in Python). As examples though, you can transpose and exponentiate easily:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCDE&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Dataframe:&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Dataframe:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Exponentiation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Exponentiation:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Transpose:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Transpose:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2295,8 +2347,8 @@ dtype: int64
 <p>Let’s first see a really simple example of splitting a dataset into groups and finding the mean across those groups using the <em>penguins</em> dataset. We’ll group the data by island and look at the means.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;island&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;island&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2362,7 +2414,7 @@ dtype: int64
 <p>You can also pass other functions via the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method (short for aggregation). Here we pass two numpy functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;species&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2458,7 +2510,7 @@ dtype: int64
 <p>Multiple aggregations can also be performed at once on the entire dataframe by using a dictionary to map columns into functions. You can also group by as many variables as you like by passing the groupby method a list of variables. Here’s an example that combines both of these features:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;island&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_length_mm&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;island&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;bill_length_mm&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -2528,9 +2580,11 @@ dtype: int64
 <p>Sometimes, inheriting the column names becomes problematic. There’s a slightly fussy syntax to help with that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;island&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">count_bill</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
-                                      <span class="n">mean_bill</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>
-                                      <span class="n">std_flipper</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;island&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">count_bill</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
+    <span class="n">mean_bill</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span>
+    <span class="n">std_flipper</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">),</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2608,9 +2662,10 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g_to_kg</span><span class="p">(</span><span class="n">mass_in_g</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">mass_in_g</span><span class="o">/</span><span class="mf">1e3</span>
+    <span class="k">return</span> <span class="n">mass_in_g</span> <span class="o">/</span> <span class="mf">1e3</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;mass_in_kg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">g_to_kg</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;mass_in_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">g_to_kg</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2710,13 +2765,14 @@ dtype: int64
 <div class="section" id="filter">
 <h3><span class="section-number">2.8.1. </span>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
 <p>Filtering does exactly what it sounds like, but it can make use of group-by commands. In the example below, all but one species is filtered out.</p>
-<p>In the example below, <code class="docutils literal notranslate"><span class="pre">filter</span></code> passes a grouped version of the dataframe into the <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> we’ve defined (imagine that a dataframe is passed for each group). Because the passed variable is a dataframe, and variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is defined in the function, the <code class="docutils literal notranslate"><span class="pre">x</span></code> within <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> body behaves like our dataframe-including having the same columns.</p>
+<p>In the example below, <code class="docutils literal notranslate"><span class="pre">filter</span></code> passes a grouped version of the dataframe into the <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> we’ve defined (imagine that a dataframe is passed for each group). Because the passed variable is a dataframe, and variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is defined in the function, the <code class="docutils literal notranslate"><span class="pre">x</span></code> within <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> body behaves like our dataframe–including having the same columns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filter_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">48</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;bill_length_mm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">48</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;species&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filter_func</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filter_func</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2815,10 +2871,10 @@ dtype: int64
 <p>Transforms return a transformed version of the data that has the same shape as the input. This is useful when creating new columns that depend on some grouped data, for instance creating group-wise means. Here’s an example using the datetime group to subtract a yearly mean. First let’s create some synthetic data with some data, a datetime index, and some groups:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;values1&#39;</span><span class="p">,</span> <span class="s1">&#39;values2&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;group&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;values1&quot;</span><span class="p">,</span> <span class="s2">&quot;values2&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;group&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -2915,8 +2971,9 @@ dtype: int64
 <p>Now we take the yearly means by type. <code class="docutils literal notranslate"><span class="pre">pd.Grouper(freq='A')</span></code> is an instruction to take the <code class="docutils literal notranslate"><span class="pre">A</span></code>nnual mean using the given datetime index. You can group on as many coloumns and/or index properties as you like: this example groups by a property of the datetime index and on the <code class="docutils literal notranslate"><span class="pre">type</span></code> column, but performs the computation on the <code class="docutils literal notranslate"><span class="pre">values1</span></code> column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;v1_demean_yr_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">),</span> <span class="s1">&#39;type&#39;</span><span class="p">])[</span><span class="s1">&#39;values1&#39;</span><span class="p">]</span>
-                             <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;v1_demean_yr_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="s2">&quot;type&quot;</span><span class="p">])[</span>
+    <span class="s2">&quot;values1&quot;</span>
+<span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -3024,7 +3081,7 @@ dtype: int64
 <p>You’ll have seen there’s a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword here. Lambda (or anonymous) functions have a rich history in mathematics, and were used by scientists such as Church and Turing to create proofs about what is computable <em>before electronic computers existed</em>. They can be used to define compact functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiply_plus_one</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiply_plus_one</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">multiply_plus_one</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3041,7 +3098,7 @@ dtype: int64
 <p>Both regular functions and lambda functions can be used with the more general apply method, which takes a function and applies it to a given axis (<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> for index, <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> for columns):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;val1_times_val2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;values1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;values2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;val1_times_val2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;values1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;values2&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -3164,9 +3221,14 @@ dtype: int64
 <p>Assign is a method that allows you to return a new object with all the original columns in addition to new ones. Existing columns that are re-assigned will be overwritten. This is <em>really</em> useful when you want to perform a bunch of operations together in a concise way and keep the original columns. For instance, to demean the ‘values1’ column by year-type and to recompute the ‘val1_times_val2’ column using the newly demeaned ‘values1’ column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">values1</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">),</span> <span class="s1">&#39;type&#39;</span><span class="p">])[</span><span class="s1">&#39;values1&#39;</span><span class="p">]</span>
-                     <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())),</span>
-          <span class="n">val1_times_val2</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;values1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;values2&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">values1</span><span class="o">=</span><span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="s2">&quot;type&quot;</span><span class="p">])[</span><span class="s2">&quot;values1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">val1_times_val2</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;values1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;values2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3290,16 +3352,16 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recursive_ts</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
     <span class="n">shock</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">beta</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">shock</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">shock</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">beta</span><span class="o">*</span><span class="n">recursive_ts</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">shock</span>
+        <span class="k">return</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">recursive_ts</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">shock</span>
 
 
 <span class="n">t_series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">recursive_ts</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)])</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_series</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2000-08-31&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_series</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2000-08-31&quot;</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -3383,11 +3445,11 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change freq to next month start</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="n">pd</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;diff_values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;lag_diff_values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;diff_values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;diff_values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;lag_diff_values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;diff_values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -3418,73 +3480,73 @@ dtype: int64
   </thead>
   <tbody>
     <tr>
-      <th>2000-01-31</th>
+      <th>2000-02-01</th>
       <td>0.418852</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2000-02-29</th>
+      <th>2000-03-01</th>
       <td>1.694447</td>
       <td>1.275595</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2000-03-31</th>
+      <th>2000-04-01</th>
       <td>1.920990</td>
       <td>0.226543</td>
       <td>1.275595</td>
     </tr>
     <tr>
-      <th>2000-04-30</th>
+      <th>2000-05-01</th>
       <td>3.752046</td>
       <td>1.831056</td>
       <td>0.226543</td>
     </tr>
     <tr>
-      <th>2000-05-31</th>
+      <th>2000-06-01</th>
       <td>3.467453</td>
       <td>-0.284593</td>
       <td>1.831056</td>
     </tr>
     <tr>
-      <th>2000-06-30</th>
+      <th>2000-07-01</th>
       <td>3.167989</td>
       <td>-0.299464</td>
       <td>-0.284593</td>
     </tr>
     <tr>
-      <th>2000-07-31</th>
+      <th>2000-08-01</th>
       <td>3.959431</td>
       <td>0.791442</td>
       <td>-0.299464</td>
     </tr>
     <tr>
-      <th>2000-08-31</th>
+      <th>2000-09-01</th>
       <td>4.429701</td>
       <td>0.470269</td>
       <td>0.791442</td>
     </tr>
     <tr>
-      <th>2000-09-30</th>
+      <th>2000-10-01</th>
       <td>4.884800</td>
       <td>0.455099</td>
       <td>0.470269</td>
     </tr>
     <tr>
-      <th>2000-10-31</th>
+      <th>2000-11-01</th>
       <td>4.374416</td>
       <td>-0.510384</td>
       <td>0.455099</td>
     </tr>
     <tr>
-      <th>2000-11-30</th>
+      <th>2000-12-01</th>
       <td>4.864873</td>
       <td>0.490456</td>
       <td>-0.510384</td>
     </tr>
     <tr>
-      <th>2000-12-31</th>
+      <th>2001-01-01</th>
       <td>4.708971</td>
       <td>-0.155902</td>
       <td>0.490456</td>
@@ -3497,24 +3559,24 @@ dtype: int64
 <p>Rolling is for taking rolling aggregations, as you’d expect; for example, the 3-month rolling mean of our first difference time series:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;diff_values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;diff_values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-01-31         NaN
-2000-02-29         NaN
-2000-03-31         NaN
-2000-04-30    1.111065
-2000-05-31    0.591002
-2000-06-30    0.415666
-2000-07-31    0.069128
-2000-08-31    0.320749
-2000-09-30    0.572270
-2000-10-31    0.138328
-2000-11-30    0.145057
-2000-12-31   -0.058610
-Freq: M, Name: diff_values, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01         NaN
+2000-03-01         NaN
+2000-04-01         NaN
+2000-05-01    1.111065
+2000-06-01    0.591002
+2000-07-01    0.415666
+2000-08-01    0.069128
+2000-09-01    0.320749
+2000-10-01    0.572270
+2000-11-01    0.138328
+2000-12-01    0.145057
+2001-01-01   -0.058610
+Name: diff_values, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -3538,7 +3600,10 @@ Freq: M, Name: diff_values, dtype: float64
 <p>Let’s see a method chain in action on a real dataset so you get a feel for it. We’ll use 1,000 rows of flight data from BTS (a popular online dataset for demos of data cleaning!). TODO use github path. (For further info on method chaining in Python, <a class="reference external" href="https://calmcode.io/method-chains/introduction.html">see these videos</a>–but be aware they assume advanced knowledge of the language.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://github.com/aeturrell/coding-for-economists/raw/main/data/flights1kBTS.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/flights1kBTS.csv&quot;</span><span class="p">,</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3671,57 +3736,69 @@ Freq: M, Name: diff_values, dtype: float64
 <p>We’ll try and do a number of operations in one go: putting column titles in lower case, discarding useless columns, creating precise depature and arrival times, turning some of the variables into categoricals, creating a demeaned delay time, and creating a new categorical column for distances according to quantiles that will be called ‘near’, ‘less near’, ‘far’, and ‘furthest’. Some of these operations require a separate function, so we first define those. When we do the cleaning, we’ll pipe our dataframe to those functions (optionally passing any arguments).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">extract_city_name</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_city_name</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Chicago, IL -&gt; Chicago for origin_city_name and dest_city_name</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;origin_city_name&#39;</span><span class="p">,</span> <span class="s1">&#39;dest_city_name&#39;</span><span class="p">]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;origin_city_name&quot;</span><span class="p">,</span> <span class="s2">&quot;dest_city_name&quot;</span><span class="p">]</span>
     <span class="n">city</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(.*), \w</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;origin_city_name&#39;</span><span class="p">,</span> <span class="s1">&#39;dest_city_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">city</span>
+    <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;origin_city_name&quot;</span><span class="p">,</span> <span class="s2">&quot;dest_city_name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">city</span>
     <span class="k">return</span> <span class="n">df</span>
 
+
 <span class="k">def</span> <span class="nf">time_to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Combine all time items into datetimes.</span>
 
 <span class="sd">    2014-01-01,0914 -&gt; 2014-01-01 09:14:00</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
     <span class="k">def</span> <span class="nf">converter</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
-        <span class="n">timepart</span> <span class="o">=</span> <span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-                       <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;\.0$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># NaNs force float dtype</span>
-                       <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;fl_date&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span>
-                               <span class="n">timepart</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span>
-                               <span class="n">timepart</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-                               <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+        <span class="n">timepart</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">col</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;\.0$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># NaNs force float dtype</span>
+            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;fl_date&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+            <span class="o">+</span> <span class="n">timepart</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot;:&quot;</span>
+            <span class="o">+</span> <span class="n">timepart</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
     <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">converter</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
- 
- <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-       <span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;Unnamed&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">extract_city_name</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">time_to_datetime</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dep_time&#39;</span><span class="p">,</span> <span class="s1">&#39;arr_time&#39;</span><span class="p">])</span>
-       <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">fl_date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;fl_date&#39;</span><span class="p">]),</span>
-               <span class="n">dest</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;dest&#39;</span><span class="p">]),</span>
-               <span class="n">origin</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]),</span>
-               <span class="n">tail_num</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;tail_num&#39;</span><span class="p">]),</span>
-               <span class="n">arr_delay</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]),</span>
-               <span class="n">op_unique_carrier</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;op_unique_carrier&#39;</span><span class="p">]),</span>
-               <span class="n">arr_delay_demean</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;arr_delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
-               <span class="n">distance_group</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">],</span>
-                                                 <span class="mi">4</span><span class="p">,</span>
-                                                 <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;near&quot;</span><span class="p">,</span> <span class="s2">&quot;less near&quot;</span><span class="p">,</span> <span class="s2">&quot;far&quot;</span><span class="p">,</span> <span class="s2">&quot;furthest&quot;</span><span class="p">])))</span>
-        <span class="p">)</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s2">&quot;Unnamed&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">extract_city_name</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">time_to_datetime</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;dep_time&quot;</span><span class="p">,</span> <span class="s2">&quot;arr_time&quot;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">fl_date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;fl_date&quot;</span><span class="p">]),</span>
+        <span class="n">dest</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;dest&quot;</span><span class="p">]),</span>
+        <span class="n">origin</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]),</span>
+        <span class="n">tail_num</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;tail_num&quot;</span><span class="p">]),</span>
+        <span class="n">arr_delay</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;arr_delay&quot;</span><span class="p">]),</span>
+        <span class="n">op_unique_carrier</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;op_unique_carrier&quot;</span><span class="p">]),</span>
+        <span class="n">arr_delay_demean</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;arr_delay&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;arr_delay&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">distance_group</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;near&quot;</span><span class="p">,</span> <span class="s2">&quot;less near&quot;</span><span class="p">,</span> <span class="s2">&quot;far&quot;</span><span class="p">,</span> <span class="s2">&quot;furthest&quot;</span><span class="p">])</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-45-5266f9440ca5&gt;:19: FutureWarning: The default value of regex will change from True to False in a future version.
-  timepart = (col.astype(str)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-45-eae7ecd0a915&gt;:22: FutureWarning: The default value of regex will change from True to False in a future version.
+  col.astype(str)
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -3856,7 +3933,7 @@ Freq: M, Name: diff_values, dtype: float64
 </div>
 <div class="section" id="pyjanitor-and-more-extensive-method-chaining">
 <h3><span class="section-number">2.10.1. </span>Pyjanitor and more extensive method chaining<a class="headerlink" href="#pyjanitor-and-more-extensive-method-chaining" title="Permalink to this headline">¶</a></h3>
-<p>Although there’s enough support for functional style method chaining to get by, you might find that doing this or that operation isn’t always as efficient or as concise as you’d like. Let’s look at two examples where this bites and what a wonderful little extension to <strong>pandas</strong> called <a class="reference external" href="https://ericmjl.github.io/pyjanitor/index.html"><strong>Pyjanitor</strong></a> does about it.</p>
+<p>Although there’s enough support for functional style method chaining to get by, you might find that doing this or that operation isn’t always as efficient or as concise as you’d like. Let’s look at two examples where this bites and what a wonderful little extension to <strong>pandas</strong> called <a class="reference external" href="https://pyjanitor.readthedocs.io"><strong>Pyjanitor</strong></a> does about it.</p>
 <p>First, you’ll have seen that the syntax for assigning a new column as part of a method chain is relatively fussy, using as it does the <code class="docutils literal notranslate"><span class="pre">new_column=lambda</span> <span class="pre">x:</span> <span class="pre">func(x['old_column])</span></code> syntax. If you already have a dataframe named <code class="docutils literal notranslate"><span class="pre">df</span></code>, <strong>pyjanitor</strong> gives you the option to create new columns like so (using an example from the documentation):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
@@ -3881,11 +3958,15 @@ Freq: M, Name: diff_values, dtype: float64
 <p>This can be especially useful for time series data, where operations like <code class="docutils literal notranslate"><span class="pre">shift</span></code> or <code class="docutils literal notranslate"><span class="pre">diff</span></code> are typically applied assuming that an entry in one row follows (in time) from the one above. Here’s an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
-        <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span>
-        <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">))</span> <span class="o">+</span>
-                 <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)))}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">))</span>
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">))</span>
+    <span class="p">),</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3952,7 +4033,7 @@ Freq: M, Name: diff_values, dtype: float64
 <p>If we just run <code class="docutils literal notranslate"><span class="pre">shift</span></code> on this, it’s going to shift variable B’s and A’s together. So we pivot to a wider format (and then we can shift safely).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4047,14 +4128,18 @@ Freq: M, Name: diff_values, dtype: float64
 <p>Here’s an example of it in action:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Mary&#39;</span><span class="p">],</span>
-                        <span class="s1">&#39;last&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;Bo&#39;</span><span class="p">],</span>
-                        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
-                        <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">]})</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Unmelted: &#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Mary&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;last&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Bo&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Unmelted: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Melted: &#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;last&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Melted: &quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;last&quot;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4127,13 +4212,16 @@ Freq: M, Name: diff_values, dtype: float64
 <p>If you don’t wan the headscratching of melt, there’s also <code class="docutils literal notranslate"><span class="pre">wide_to_long</span></code>, which is really useful for typical data cleaning cases where you have data like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A1970&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;c&quot;</span><span class="p">},</span>
-                   <span class="s2">&quot;A1980&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">},</span>
-                   <span class="s2">&quot;B1970&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="o">.</span><span class="mi">7</span><span class="p">},</span>
-                   <span class="s2">&quot;B1980&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="o">.</span><span class="mi">1</span><span class="p">},</span>
-                   <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">))),</span>
-                   <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))),</span>
-                  <span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;A1970&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;c&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;A1980&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;B1970&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">},</span>
+        <span class="s2">&quot;B1980&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+        <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">))),</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -4200,7 +4288,7 @@ Freq: M, Name: diff_values, dtype: float64
 <p>i.e. data where there are different variables and time periods across the columns. Wide to long is going to let us give info on what the stubnames are (‘A’, ‘B’), the name of the variable that’s always across columns (here, a year), any values (X here), and an id column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4293,12 +4381,16 @@ Freq: M, Name: diff_values, dtype: float64
 <p>Let’s define a multi-index dataframe to demonstrate this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">],</span>
-                     <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]]))</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">tuples</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="nb">zip</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;qux&quot;</span><span class="p">,</span> <span class="s2">&quot;qux&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">tuples</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -4498,12 +4590,12 @@ dtype: float64
 <p>Here’s an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;group_var&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;group1&#39;</span><span class="p">,</span> <span class="s1">&#39;group2&#39;</span><span class="p">,</span> <span class="s1">&#39;group3&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;group_var&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="s2">&quot;group2&quot;</span><span class="p">,</span> <span class="s2">&quot;group3&quot;</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_var&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;group_var&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -4582,9 +4674,9 @@ dtype: float64
 <p>Here’s an example using data on two different states’ populations that also makes uses of the <code class="docutils literal notranslate"><span class="pre">keys</span></code> option:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://www.stata-press.com/data/r14/&#39;</span>
-<span class="n">state_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ca&#39;</span><span class="p">,</span> <span class="s1">&#39;il&#39;</span><span class="p">]</span>
-<span class="n">end_url</span> <span class="o">=</span> <span class="s1">&#39;pop.dta&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.stata-press.com/data/r14/&quot;</span>
+<span class="n">state_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ca&quot;</span><span class="p">,</span> <span class="s2">&quot;il&quot;</span><span class="p">]</span>
+<span class="n">end_url</span> <span class="o">=</span> <span class="s2">&quot;pop.dta&quot;</span>
 
 <span class="c1"># This grabs the two dataframes, one for each state</span>
 <span class="n">list_of_state_dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="n">end_url</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">state_codes</span><span class="p">]</span>
@@ -4671,16 +4763,24 @@ dtype: float64
 <p>Let’s see examples of some of these:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K1&#39;</span><span class="p">,</span> <span class="s1">&#39;K2&#39;</span><span class="p">],</span>
-                     <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K1&#39;</span><span class="p">,</span> <span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K1&#39;</span><span class="p">],</span>
-                     <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">,</span> <span class="s1">&#39;A1&#39;</span><span class="p">,</span> <span class="s1">&#39;A2&#39;</span><span class="p">,</span> <span class="s1">&#39;A3&#39;</span><span class="p">],</span>
-                     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B0&#39;</span><span class="p">,</span> <span class="s1">&#39;B1&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">]})</span>
-<span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K1&#39;</span><span class="p">,</span> <span class="s1">&#39;K1&#39;</span><span class="p">,</span> <span class="s1">&#39;K2&#39;</span><span class="p">],</span>
-                      <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K0&#39;</span><span class="p">,</span> <span class="s1">&#39;K0&#39;</span><span class="p">],</span>
-                      <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">],</span>
-                      <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D0&#39;</span><span class="p">,</span> <span class="s1">&#39;D1&#39;</span><span class="p">,</span> <span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">,</span> <span class="s2">&quot;K2&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">,</span> <span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A2&quot;</span><span class="p">,</span> <span class="s2">&quot;A3&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B0&quot;</span><span class="p">,</span> <span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">,</span> <span class="s2">&quot;K2&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K0&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D0&quot;</span><span class="p">,</span> <span class="s2">&quot;D1&quot;</span><span class="p">,</span> <span class="s2">&quot;D2&quot;</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 <span class="c1"># Right merge</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4756,7 +4856,7 @@ dtype: float64
 <p>What about an inner merge?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4823,7 +4923,7 @@ dtype: float64
 <p>Finally, let’s take a look at an outer merge that comes with some extra info via the <code class="docutils literal notranslate"><span class="pre">indicator</span></code> keyword:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4927,7 +5027,7 @@ dtype: float64
 <div class="section" id="advanced-alternatives-to-pandas">
 <h2><span class="section-number">2.13. </span>(Advanced) alternatives to <strong>pandas</strong><a class="headerlink" href="#advanced-alternatives-to-pandas" title="Permalink to this headline">¶</a></h2>
 <p>Feel free to skip this section if you’re just interested in getting going as quickly as possible.</p>
-<p><strong>pandas</strong> isn’t the only game in town, not by a long way–though it’s by far the best supported and the most fully featured. But it’s always good to have options-or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer or provide a speed-up (perhaps in certain situations, for example when working with very large datasets).</p>
+<p><strong>pandas</strong> isn’t the only game in town, not by a long way–though it’s by far the best supported and the most fully featured. But it’s always good to have options–or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer or provide a speed-up (perhaps in certain situations, for example when working with very large datasets).</p>
 <p>If you’re specifically interested in how different dataframe options perform on increasingly large datasets, take a look at the benchmarks <a class="reference external" href="https://h2oai.github.io/db-benchmark/">here</a>.</p>
 <p>Here’s a quick run-through of some alternatives to <strong>pandas</strong>:</p>
 <div class="section" id="datatable">
@@ -4946,7 +5046,8 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">dt</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">join</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">ifelse</span>
-<span class="n">DT</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="s1">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv&#39;</span><span class="p">)</span>
+
+<span class="n">DT</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="s2">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv&quot;</span><span class="p">)</span>
 
 <span class="n">DT</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -4995,7 +5096,7 @@ dtype: float64
 <p>The square brackets accept expressions, i.e. functions. This is achieved through a special import, simply denoted <code class="docutils literal notranslate"><span class="pre">f</span></code>, that says do this thing to the current datatable. For example, to filter by a certain value in the ‘status’ column (to avoid overloading with data, I’ll just use head to show the first few rows):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">status</span><span class="o">==</span><span class="s1">&#39;tropical storm&#39;</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;tropical storm&quot;</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5022,7 +5123,7 @@ dtype: float64
 <p>Let’s get rid of some columns we’re not using right now</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">DT</span><span class="p">[:,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="s1">&#39;long&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">DT</span><span class="p">[:,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;long&quot;</span><span class="p">]</span>
 <span class="n">DT</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -5077,7 +5178,7 @@ dtype: float64
 <p>Or to select only those columns that contain ‘diameter’</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">DT</span><span class="o">.</span><span class="n">names</span> <span class="k">if</span> <span class="s1">&#39;diameter&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">DT</span><span class="o">.</span><span class="n">names</span> <span class="k">if</span> <span class="s2">&quot;diameter&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5104,7 +5205,7 @@ dtype: float64
 <p>To create a new column based on an existing one and just look at the last few columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="n">update</span><span class="p">(</span><span class="n">atmospheres</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">pressure</span><span class="o">/</span><span class="mf">1013.</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="n">update</span><span class="p">(</span><span class="n">atmospheres</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">pressure</span> <span class="o">/</span> <span class="mf">1013.0</span><span class="p">)]</span>
 <span class="n">DT</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -5132,7 +5233,7 @@ dtype: float64
 <p>To sort all values by multiple columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">sort</span><span class="p">(</span><span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">sort</span><span class="p">(</span><span class="s2">&quot;wind&quot;</span><span class="p">,</span> <span class="s2">&quot;pressure&quot;</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5227,7 +5328,11 @@ dtype: float64
 </div>
 <div class="section" id="plydata">
 <h3><span class="section-number">2.13.4. </span>Plydata<a class="headerlink" href="#plydata" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://plydata.readthedocs.io/en/stable/index.html">Plydata</a> follows, more or less, the syntax of the <strong>dplyr</strong> package in the R statistical language (the package is a really important part of the data ecosystem in R). It’s built around method chaining and everything being in a tidy format, which has pros and cons. Largely, the benefits are in readability and a smaller number of commands to cover the ground that you need to. The downsides are that it plays best with tidy data and when chained methods go wrong it can be more difficult to find out what the issue is. This package is quite new but it’s one to watch for the future.</p>
+<p><a class="reference external" href="https://plydata.readthedocs.io/en/stable/index.html">Plydata</a> uses the syntax of the <strong>dplyr</strong> package in the R statistical language (the package is a really important part of the data ecosystem in R). It’s built around method chaining and everything being in a tidy format, which has pros and cons. Largely, the benefits are in readability and a smaller number of commands to cover the ground that you need to. The downsides are that it plays best with tidy data and when chained methods go wrong it can be more difficult to find out what the issue is.</p>
+</div>
+<div class="section" id="dfplyr">
+<h3><span class="section-number">2.13.5. </span>dfplyr<a class="headerlink" href="#dfplyr" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/kieferk/dfply">dfplyr</a> also follows the syntax of the <strong>dplyr</strong> package in R. <em>Note</em> that it does not appear to be under active development.</p>
 </div>
 </div>
 <div class="section" id="review">

@@ -1,0 +1,1097 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Time Series &#8212; Coding for Economists</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/time-series.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Intro to Geo-Spatial Analysis" href="geo-intro.html" />
+    <link rel="prev" title="1. Introduction to Time" href="time-intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/time-series.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Time Series" />
+<meta property="og:description" content="Time Series  In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on pandas, the Data Quickstart and Working with Data chap" />
+<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Coding
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-preliminaries.html">
+   1. Preliminaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-basics.html">
+   2. Basics of Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-advanced.html">
+   3. Advanced Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-where.html">
+   4. Options for Writing Code
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-best-practice.html">
+   1. Tips for Better Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+   2. Tools for Better Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   3. The Command Line
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-analysis-quickstart.html">
+   1. Data Analysis Quickstart
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-intro.html">
+   2. Working with Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-exploratory-analysis.html">
+   3. Exploratory Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-read-and-write.html">
+   4. Reading and Writing Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-extraction.html">
+   5. Extracting Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-sharing.html">
+   6. Sharing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-advanced.html">
+   7. Advanced Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Visualisation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-intro.html">
+   1. Intro to Data Visualisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-common-plots.html">
+   2. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-animation.html">
+   3. Animation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-probability-random.html">
+   1. Probability and Random Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-statistics.html">
+   2. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-regression.html">
+   3. Regression
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="text-intro.html">
+   1. Introduction to Text
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text-nlp.html">
+   2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Time Series
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geo-intro.html">
+   1. Intro to Geo-Spatial Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geo-vis.html">
+   2. Geo-Spatial Visualisation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Mathematics with Code
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="maths-maths-coding.html">
+   1. Intro to Mathematics with Code
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Automation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="auto-research-outputs.html">
+   1. Automating Research Outputs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Coming from ...
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-stata.html">
+   Coming from Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-matlab.html">
+   Coming from Matlab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-r.html">
+   Coming from R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-excel.html">
+   Coming from Excel
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Elsewhere
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/time-series.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/aeturrell/coding-for-economists"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/aeturrell/coding-for-economists/issues/new?title=Issue%20on%20page%20%2Ftime-series.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/aeturrell/coding-for-economists/main?urlpath=tree/time-series.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/aeturrell/coding-for-economists/blob/main/time-series.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-with-pandas">
+   2.1. Time Series with
+   <strong>
+    pandas
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-time-series">
+     2.1.1. Creating Time Series
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offsets">
+     2.1.2. Offsets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-datetime-index-and-setting-the-frequency">
+     2.1.3. Creating a datetime index and setting the frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-quick-time-series-plots">
+     2.1.4. Making Quick Time Series Plots
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="time-series">
+<span id="id1"></span><h1><span class="section-number">2. </span>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on <strong>pandas</strong>, the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> chapters, it might be worth taking a quick spin through them first. You may also find it useful to be familiar with a few of the concepts from the previous <a class="reference internal" href="time-intro.html#time-intro"><span class="std std-ref">chapter on time</span></a>.</p>
+<p>While we’ll cover the basics here, the full set of time series functionality of <strong>pandas</strong> can be <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">found here</a>.</p>
+<p>This chapter has benefitted from the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas, and Tom Augspurger’s <a class="reference external" href="https://github.com/TomAugspurger/effective-pandas">Effective Pandas</a>.</p>
+<p>Let’s imports a few of the packages we’ll need first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="n">inspect</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plot settings</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="time-series-with-pandas">
+<h2><span class="section-number">2.1. </span>Time Series with <strong>pandas</strong><a class="headerlink" href="#time-series-with-pandas" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pandas.pydata.org/"><strong>pandas</strong></a> is the workhorse of time series analysis in Python. The basic object is a <em>timestamp</em>. The <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> function creates timestamps from strings that could reasonably represent datetimes. Let’s see an example of using <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to create a timestamp and then inspect all of the methods and attributes of the created timestamp using <strong>rich</strong>’s <code class="docutils literal notranslate"><span class="pre">inspect</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;16th of February, 2020&quot;</span><span class="p">)</span>
+<span class="n">inspect</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">class</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'pandas._libs.tslibs.timestamps.Timestamp'</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ─────────╮</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008080; text-decoration-color: #008080">Pandas replacement for python datetime.datetime object.</span>              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>                                                                      <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">╭──────────────────────────────────────────────────────────────────╮</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">│</span> <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'2020-02-16 00:00:00'</span><span style="font-weight: bold">)</span>                                 <span style="color: #008000; text-decoration-color: #008000">│</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008000; text-decoration-color: #008000">╰──────────────────────────────────────────────────────────────────╯</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>                                                                      <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">asm8</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">numpy.datetime64</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'2020-02-16T00:00:00.000000000'</span><span style="font-weight: bold">)</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day_of_week</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day_of_year</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>        <span style="color: #808000; text-decoration-color: #808000; font-style: italic">dayofweek</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>        <span style="color: #808000; text-decoration-color: #808000; font-style: italic">dayofyear</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">days_in_month</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">daysinmonth</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">fold</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">freq</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>          <span style="color: #808000; text-decoration-color: #808000; font-style: italic">freqstr</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">hour</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>     <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_leap_year</span> = <span style="color: #00ff00; text-decoration-color: #00ff00; font-style: italic">True</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>     <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_month_end</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>   <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_month_start</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>   <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_quarter_end</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_quarter_start</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_year_end</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_year_start</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">max</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'2262-04-11 23:47:16.854775807'</span><span style="font-weight: bold">)</span>        <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">microsecond</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">min</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'1677-09-21 00:12:43.145225'</span><span style="font-weight: bold">)</span>           <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">minute</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>            <span style="color: #808000; text-decoration-color: #808000; font-style: italic">month</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">nanosecond</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>          <span style="color: #808000; text-decoration-color: #808000; font-style: italic">quarter</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">resolution</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timedelta</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'0 days 00:00:00.000000001'</span><span style="font-weight: bold">)</span>            <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">second</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>               <span style="color: #808000; text-decoration-color: #808000; font-style: italic">tz</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">tzinfo</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>            <span style="color: #808000; text-decoration-color: #808000; font-style: italic">value</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1581811200000000000</span>                               <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">week</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">weekofyear</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">year</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">╰──────────────────────────────────────────────────────────────────────╯</span>
+</pre>
+</div></div>
+</div>
+<p>This is of type <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> and you can see that it has many of the same properties as the built-in Python <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> class from the previous chapter. As with that, the default setting for <code class="docutils literal notranslate"><span class="pre">tz</span></code> (timezone) and <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>. There are some extra properties, though, such as <code class="docutils literal notranslate"><span class="pre">freq</span></code> for frequency, which will be very useful when it comes to manipulating time <em>series</em> as opposed to just one or two datetimes.</p>
+<div class="section" id="creating-time-series">
+<h3><span class="section-number">2.1.1. </span>Creating Time Series<a class="headerlink" href="#creating-time-series" title="Permalink to this headline">¶</a></h3>
+<p>There are two main scenarios in which you might be creating time series using <strong>pandas</strong>: i) creating one from scratch or ii) reading in data from a file. Let’s look at a few ways to do i) first.</p>
+<p>You can create a time series with <strong>pandas</strong> by taking a date as created above and extending it using <strong>pandas</strong> timedelta function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2020-02-16&#39;, &#39;2020-02-17&#39;, &#39;2020-02-18&#39;, &#39;2020-02-19&#39;,
+               &#39;2020-02-20&#39;, &#39;2020-02-21&#39;, &#39;2020-02-22&#39;, &#39;2020-02-23&#39;,
+               &#39;2020-02-24&#39;, &#39;2020-02-25&#39;, &#39;2020-02-26&#39;, &#39;2020-02-27&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This has created a datetime index of type <code class="docutils literal notranslate"><span class="pre">datetime65[ns]</span></code> (remember, an index is a special type of <strong>pandas</strong> column), where “ns” stands for nano-second resolution.</p>
+<p>Another method is to create a range of dates (pass a frequency using the <code class="docutils literal notranslate"><span class="pre">freq=</span></code> keyword argument):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2018/1/1&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2018/1/8&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2018-01-01&#39;, &#39;2018-01-02&#39;, &#39;2018-01-03&#39;, &#39;2018-01-04&#39;,
+               &#39;2018-01-05&#39;, &#39;2018-01-06&#39;, &#39;2018-01-07&#39;, &#39;2018-01-08&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another way to create ranges is to specify the number of periods and the frequency:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2018-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2018-01-01 00:00:00&#39;, &#39;2018-01-01 01:00:00&#39;,
+               &#39;2018-01-01 02:00:00&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=&#39;H&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Following the discussion of the previous chapter on timezones, you can also localise timezones directly in <strong>pandas</strong> dataframes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2018-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+<span class="n">dti</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s2">&quot;US/Pacific&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2017-12-31 16:00:00-08:00&#39;, &#39;2017-12-31 17:00:00-08:00&#39;,
+               &#39;2017-12-31 18:00:00-08:00&#39;],
+              dtype=&#39;datetime64[ns, US/Pacific]&#39;, freq=&#39;H&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s see how to turn data that has been read in with a non-datetime type into a vector of datetimes. This happens <em>all the time</em> in practice. We’ll read in some data on job vacancies for information and communication jobs, ONS code UNEM-JP9P, and then try to wrangle the given “date” column into a <strong>pandas</strong> datetime column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.ons.gov.uk/timeseries/JP9P/dataset/UNEM/data&quot;</span>
+
+<span class="c1"># Get the data from the ONS API:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;months&quot;</span><span class="p">]))</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Vacancies (Information &amp; Communication)&quot;</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>Vacancies (Information &amp; Communication)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2001 MAY</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2001 JUN</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2001 JUL</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2001 AUG</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2001 SEP</td>
+      <td>44</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We have the data in. Let’s look at the column types that arrived.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 240 entries, 0 to 239
+Data columns (total 2 columns):
+ #   Column                                   Non-Null Count  Dtype 
+---  ------                                   --------------  ----- 
+ 0   date                                     240 non-null    object
+ 1   Vacancies (Information &amp; Communication)  240 non-null    int64 
+dtypes: int64(1), object(1)
+memory usage: 3.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is the default ‘object’ type, but we want the date column to have <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code>, which is a datetime type. Again, we use <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   2001-05-01
+1   2001-06-01
+2   2001-07-01
+3   2001-08-01
+4   2001-09-01
+Name: date, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, the conversion from the format of data that was put in of “2001 MAY” to datetime worked out-of-the-box. <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> will always take an educated guess as to the format, but it won’t always work out.</p>
+<p>What happens if we have a more tricky-to-read-in datetime column? This frequently occurs in practice so it’s well worth exploring an example. Let’s create some random data with dates in an unusual format with month first, then year, then day, eg “1, ‘19, 29” and so on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1, &#39;19, 22&quot;</span><span class="p">,</span> <span class="s2">&quot;1, &#39;19, 23&quot;</span><span class="p">],</span> <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">]})</span>
+<span class="n">small_df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1, &#39;19, 22
+1    1, &#39;19, 23
+Name: date, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, if we were to run this via <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> with no further input, it would misinterpret, for example, the first date as <code class="docutils literal notranslate"><span class="pre">2022-01-19</span></code>. So we must pass a bit more info to <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to help it out. We can pass a <code class="docutils literal notranslate"><span class="pre">format=</span></code> keyword argument with the format that the datetime takes. Here, we’ll use <code class="docutils literal notranslate"><span class="pre">%m</span></code> for month in number format, <code class="docutils literal notranslate"><span class="pre">%y</span></code> for year in 2-digit format, and <code class="docutils literal notranslate"><span class="pre">%d</span></code> for 2-digit day. We can also add in the other characters such as <code class="docutils literal notranslate"><span class="pre">'</span></code> and <code class="docutils literal notranslate"><span class="pre">,</span></code>. You can find a list of datetime format identifiers in the previous chapter or over at <a class="reference external" href="https://strftime.org/">https://strftime.org/</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">small_df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%m, &#39;%y, </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   2019-01-22
+1   2019-01-23
+Name: date, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="offsets">
+<h3><span class="section-number">2.1.2. </span>Offsets<a class="headerlink" href="#offsets" title="Permalink to this headline">¶</a></h3>
+<p>Our data, currently held in <code class="docutils literal notranslate"><span class="pre">df</span></code>, were read in as if they were from the <em>start</em> of the month but these data refer to the month that has passed and so should be for the <em>end</em> of the month. Fortunately, we can change this using a time offset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>Vacancies (Information &amp; Communication)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2001-05-31</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2001-06-30</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2001-07-31</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2001-08-31</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2001-09-30</td>
+      <td>44</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>While we used the <code class="docutils literal notranslate"><span class="pre">MonthEnd</span></code> offset here, there are many different offsets available. You can find a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects">full table of date offsets here</a>.</p>
+</div>
+<div class="section" id="creating-a-datetime-index-and-setting-the-frequency">
+<h3><span class="section-number">2.1.3. </span>Creating a datetime index and setting the frequency<a class="headerlink" href="#creating-a-datetime-index-and-setting-the-frequency" title="Permalink to this headline">¶</a></h3>
+<p>For the subsequent parts, we’ll set the datetime column to be the index of the dataframe. <em>This is the standard setup you will likely want to use when dealing with time series.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Vacancies (Information &amp; Communication)</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2001-05-31</th>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2001-07-31</th>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>2001-08-31</th>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>2001-09-30</th>
+      <td>44</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, if we look at the first few entries of the index of dataframe (a datetime index) using <code class="docutils literal notranslate"><span class="pre">head</span></code> as above, we’ll see that the <code class="docutils literal notranslate"><span class="pre">freq=</span></code> parameter is set as <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2001-05-31&#39;, &#39;2001-06-30&#39;, &#39;2001-07-31&#39;, &#39;2001-08-31&#39;,
+               &#39;2001-09-30&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can be set for the whole dataframe using the <code class="docutils literal notranslate"><span class="pre">asfreq</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2001-05-31&#39;, &#39;2001-06-30&#39;, &#39;2001-07-31&#39;, &#39;2001-08-31&#39;,
+               &#39;2001-09-30&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, freq=&#39;M&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although most of the time it doesn’t matter about the fact that <code class="docutils literal notranslate"><span class="pre">freq=None</span></code>, some aggregation operations need to know the frequency of the time series in order to work and it’s good practice to set it if your data <em>are</em> regular.</p>
+<p>Note that trying to set the frequency when your datetime index doesn’t match up to a particular frequency will cause errors or problems.</p>
+<p>A few useful frequencies to know about are in the table below; all of these can be used with <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> too.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Represents</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D</p></td>
+<td><p>Calendar day</p></td>
+</tr>
+<tr class="row-odd"><td><p>W</p></td>
+<td><p>Weekly</p></td>
+</tr>
+<tr class="row-even"><td><p>M</p></td>
+<td><p>Month end</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q</p></td>
+<td><p>Quarter end</p></td>
+</tr>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>Year end</p></td>
+</tr>
+<tr class="row-odd"><td><p>H</p></td>
+<td><p>Hours</p></td>
+</tr>
+<tr class="row-even"><td><p>T</p></td>
+<td><p>Minutes</p></td>
+</tr>
+<tr class="row-odd"><td><p>S</p></td>
+<td><p>Seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>B</p></td>
+<td><p>Business day</p></td>
+</tr>
+<tr class="row-odd"><td><p>BM</p></td>
+<td><p>Business month end</p></td>
+</tr>
+<tr class="row-even"><td><p>BQ</p></td>
+<td><p>Business quarter end</p></td>
+</tr>
+<tr class="row-odd"><td><p>BA</p></td>
+<td><p>Business year end</p></td>
+</tr>
+<tr class="row-even"><td><p>BH</p></td>
+<td><p>Business hours</p></td>
+</tr>
+<tr class="row-odd"><td><p>MS</p></td>
+<td><p>Month start</p></td>
+</tr>
+<tr class="row-even"><td><p>QS</p></td>
+<td><p>Quarter start</p></td>
+</tr>
+<tr class="row-odd"><td><p>W-SUN</p></td>
+<td><p>Weeks beginning with Sunday (similar for other days)</p></td>
+</tr>
+<tr class="row-even"><td><p>2M</p></td>
+<td><p>Every 2 months (works with other combinations of numbers and codes)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="making-quick-time-series-plots">
+<h3><span class="section-number">2.1.4. </span>Making Quick Time Series Plots<a class="headerlink" href="#making-quick-time-series-plots" title="Permalink to this headline">¶</a></h3>
+<p>Having managed to put your time series into a dataframe, perhaps converting a column of type string into a colume of type datetime in the process, you often just want to see the thing! We can achieve this using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command, as long as we have a datetime index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_34_0.png" src="_images/time-series_34_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="time-intro.html" title="previous page"><span class="section-number">1. </span>Introduction to Time</a>
+    <a class='right-next' id="next-link" href="geo-intro.html" title="next page"><span class="section-number">1. </span>Intro to Geo-Spatial Analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Arthur Turrell<br/>
+        
+            &copy; Copyright 2020.<br/>
+          <div class="extra_footer">
+            This book is available under an MIT license.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-189705534-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

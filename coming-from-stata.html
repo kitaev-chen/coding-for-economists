@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -253,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -559,58 +578,55 @@
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">collapse</span> <span class="pre">(sd)</span> <span class="pre">var</span> <span class="pre">(median)</span> <span class="pre">var</span> <span class="pre">(max)</span> <span class="pre">var</span> <span class="pre">(min)</span> <span class="pre">&lt;var&gt;,</span> <span class="pre">by(groupvars)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">df.groupby(groupvars)['var'].agg(['std',</span> <span class="pre">'median',</span> <span class="pre">'min',</span> <span class="pre">'max',</span> <span class="pre">'sum'])</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">collapse</span> <span class="pre">(sd)</span> <span class="pre">var</span> <span class="pre">(median)</span> <span class="pre">var</span> <span class="pre">(max)</span> <span class="pre">var</span> <span class="pre">(min)</span> <span class="pre">&lt;var&gt;,</span> <span class="pre">by(groupvars)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">df.groupby(groupvars)['var'].agg(['std',</span> <span class="pre">'median',</span> <span class="pre">'min',</span> <span class="pre">'max',</span> <span class="pre">'sum'])</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">append</span> <span class="pre">using</span> <span class="pre">filename</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">append</span> <span class="pre">using</span> <span class="pre">filename</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df1.append(df2)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">merge</span> <span class="pre">1:1</span> <span class="pre">vars</span> <span class="pre">using</span> <span class="pre">filename</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">merge</span> <span class="pre">1:1</span> <span class="pre">vars</span> <span class="pre">using</span> <span class="pre">filename</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.merge(df1,</span> <span class="pre">df2,</span> <span class="pre">on=vars)</span></code> but there are very rich options for merging dataframes (Python is similar to SQL in this respect) and you should check the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html">full documentation</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reshape</span> <span class="pre">&lt;wide/long&gt;</span> <span class="pre">&lt;stubs&gt;,</span> <span class="pre">i(&lt;vars&gt;)</span> <span class="pre">j(&lt;var&gt;)</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reshape</span> <span class="pre">&lt;wide/long&gt;</span> <span class="pre">&lt;stubs&gt;,</span> <span class="pre">i(&lt;vars&gt;)</span> <span class="pre">j(&lt;var&gt;)</span></code></p></td>
 <td><p><strong>pandas</strong> has several reshaping functions, including <code class="docutils literal notranslate"><span class="pre">df.unstack('level')</span></code> for going to wide, <code class="docutils literal notranslate"><span class="pre">df.stack('column_level')</span></code> for going to long, <code class="docutils literal notranslate"><span class="pre">pd.melt</span></code>, and <code class="docutils literal notranslate"><span class="pre">df.pivot</span></code>. It’s best to check the excellent <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">reshaping</a> documentation to find what best suits your needs.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xi:</span> <span class="pre">i.var</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xi:</span> <span class="pre">i.var</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pd.get_dummies(df['var'])</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">yvar</span> <span class="pre">xvar</span> <span class="pre">if</span> <span class="pre">condition,</span> <span class="pre">r</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">yvar</span> <span class="pre">xvar</span> <span class="pre">if</span> <span class="pre">condition,</span> <span class="pre">r</span></code></p></td>
 <td><p><code>import econtools.metrics as mt<br> results = mt.reg(df[condition], ‘yvar’, ‘xvar’, robust=True) </code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">yvar</span> <span class="pre">xvar</span> <span class="pre">if</span> <span class="pre">condition,</span> <span class="pre">vce(cluster</span> <span class="pre">clustervar)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">=</span> <span class="pre">mt.reg(df[condition],</span> <span class="pre">'yvar',</span> <span class="pre">'xvar',</span> <span class="pre">cluster='clustervar')</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">yvar</span> <span class="pre">xvar</span> <span class="pre">if</span> <span class="pre">condition,</span> <span class="pre">vce(cluster</span> <span class="pre">clustervar)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">=</span> <span class="pre">mt.reg(df[condition],</span> <span class="pre">'yvar',</span> <span class="pre">'xvar',</span> <span class="pre">cluster='clustervar')</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">areg</span> <span class="pre">yvar</span> <span class="pre">xvar,</span> <span class="pre">absorb(fe_var)</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">yvar</span> <span class="pre">xvar</span> <span class="pre">if</span> <span class="pre">condition,</span> <span class="pre">vce(cluster</span> <span class="pre">clustervar)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">=</span> <span class="pre">mt.reg(df[condition],</span> <span class="pre">'yvar',</span> <span class="pre">'xvar',</span> <span class="pre">cluster='clustervar')</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">areg</span> <span class="pre">yvar</span> <span class="pre">xvar,</span> <span class="pre">absorb(fe_var)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">=</span> <span class="pre">mt.reg(df,</span> <span class="pre">'yvar',</span> <span class="pre">'xvar',</span> <span class="pre">a_name=fe_var)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span> <span class="pre">newvar,</span> <span class="pre">resid</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span> <span class="pre">newvar,</span> <span class="pre">resid</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">newvar</span> <span class="pre">=</span> <span class="pre">results.resid</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span> <span class="pre">newvar,</span> <span class="pre">xb</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span> <span class="pre">newvar,</span> <span class="pre">xb</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">newvar</span> <span class="pre">=</span> <span class="pre">results.yhat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_b[var],</span> <span class="pre">_se[var]</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_b[var],</span> <span class="pre">_se[var]</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">results.beta['var'],</span> <span class="pre">results.se['var']</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">varlist</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">varlist</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">results.Ftest(varlist)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">varlist,</span> <span class="pre">equal</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">varlist,</span> <span class="pre">equal</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">results.Ftest(varlist,</span> <span class="pre">equal=True)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ivreg2</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ivreg2</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mt.ivreg</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">outreg2</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">outreg2</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">econtools.outreg</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">binscatter</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">binscatter</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">econtools.binscatter</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">twoway</span> <span class="pre">scatter</span> <span class="pre">var1</span> <span class="pre">var2</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">twoway</span> <span class="pre">scatter</span> <span class="pre">var1</span> <span class="pre">var2</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">df.scatter(var2,</span> <span class="pre">var1)</span></code></p></td>
 </tr>
 </tbody>

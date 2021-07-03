@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,8 +56,6 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/data-extraction.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -255,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -552,9 +569,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set max rows displayed for readability</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="c1"># Plot settings</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -566,7 +585,9 @@
 <p>As you will have seen in some of the examples in this book, it’s easy to read data from the internet once you have the url and file type. Here, for instance, is an example that reads in the ‘storms’ dataset (we’ll only grab the first 10 rows):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv&quot;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -746,19 +767,23 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.ons.gov.uk/timeseries/JP9Z/dataset/UNEM/data&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.ons.gov.uk/timeseries/JP9Z/dataset/UNEM/data&quot;</span>
 
 <span class="c1"># Get the data from the ONS API:</span>
 <span class="n">json_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 <span class="c1"># Prep the data for a quick plot</span>
-<span class="n">title</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;months&#39;</span><span class="p">]))</span>
-        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]),</span>
-                <span class="n">value</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]))</span>
-        <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">))</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;months&quot;</span><span class="p">]))</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]),</span>
+        <span class="n">value</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mf">1.2</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mf">3.</span><span class="p">);</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mf">3.0</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -784,12 +809,9 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
 
-<span class="n">df_u</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;LRHUTTTTGBM156S&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">)</span>
+<span class="n">df_u</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s2">&quot;LRHUTTTTGBM156S&quot;</span><span class="p">,</span> <span class="s2">&quot;fred&quot;</span><span class="p">)</span>
 
-<span class="n">df_u</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;UK unemployment (percent)&#39;</span><span class="p">,</span>
-          <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-          <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-          <span class="n">lw</span><span class="o">=</span><span class="mf">3.</span><span class="p">);</span>
+<span class="n">df_u</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;UK unemployment (percent)&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mf">3.0</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -828,7 +850,7 @@
 <p>Let’s now parse this into something humans can read (or can read more easily) using beautifulsoup:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">prettify</span><span class="p">()[</span><span class="mi">500</span><span class="p">:</span><span class="mi">1000</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -853,7 +875,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all paragraphs</span>
-<span class="n">all_paras</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">all_paras</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
 <span class="c1"># Just show one of the paras</span>
 <span class="n">all_paras</span><span class="p">[</span><span class="mi">52</span><span class="p">]</span>
 </pre></div>
@@ -881,7 +903,7 @@
 <p>Now let’s say we didn’t care about most of the page, we <em>only</em> wanted to get hold of the names of projects. For this we need to identify the tag type of the element we’re interested in, in this case ‘div’, and it’s class type, in this case “project-name”. We do it like this (and show nice text in the process):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projects</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;project-name&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projects</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;project-name&quot;</span><span class="p">)</span>
 <span class="n">projects</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">]</span>
 <span class="n">projects</span>
 </pre></div>
@@ -919,7 +941,9 @@
 <p>The example below shows how this works; looking at the website, we can see that the table we’re interested in (of past world cup results), has a ‘fourth place’ column while other tables on the page do not. Therefore we run:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;https://simple.wikipedia.org/wiki/FIFA_World_Cup&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;Fourth Place&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span>
+    <span class="s2">&quot;https://simple.wikipedia.org/wiki/FIFA_World_Cup&quot;</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Fourth Place&quot;</span>
+<span class="p">)</span>
 <span class="c1"># Retrieve first and only entry from list of dataframes</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1032,7 +1056,7 @@
 <span class="c1"># Download the pdf_with_table.pdf file from</span>
 <span class="c1"># https://github.com/aeturrell/coding-for-economists/blob/main/data/pdf_with_table.pdf</span>
 <span class="c1"># and put it in a subfolder called data before running the next line</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">extract_text</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/pdf_with_table.pdf&#39;</span><span class="p">))</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">extract_text</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/pdf_with_table.pdf&quot;</span><span class="p">))</span>
 
 <span class="c1"># Show only first 200 characters of text:</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>

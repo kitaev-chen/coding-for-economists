@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,8 +56,6 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/coming-from-r.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -255,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -501,9 +518,8 @@
 <h2>Tools similar to those found in an R workflow<a class="headerlink" href="#tools-similar-to-those-found-in-an-r-workflow" title="Permalink to this headline">¶</a></h2>
 <p>If you are coming from R, you’re likely familiar with <strong>dplyr</strong> for data analysis and <strong>ggplot2</strong> for plotting. There are Python equivalents that have very similar syntax to these that you can use to help you to become productive quickly in Python–though these libraries are not so popular in Python. Here are the Python equivalents to those R libraries:</p>
 <ul class="simple">
-<li><p><strong>dplyr</strong>: the most similar Python version of this library is <a class="reference external" href="https://plydata.readthedocs.io/en/stable/index.html"><strong>plydata</strong></a>, while the most popular Python library that performs similar functions is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html"><strong>pandas</strong></a>. I tend to recommend people learn <strong>pandas</strong> for data analysis in Python because it is comprehensive and ubiquitious. It also has unrivaled documentation.</p></li>
-<li><p>More <strong>dplyr</strong>: <a class="reference external" href="https://ericmjl.github.io/pyjanitor/index.html"><strong>pyjanitor</strong></a> builds a range of extra features on top of <strong>pandas</strong>. Two of the things it adds are likely to make anyone coming from <strong>dplyr</strong> feel a bit more at home: better support for method chaining and some functions with the same names as the ones in <strong>dplyr</strong> and which do the same things.</p></li>
-<li><p>Even more <strong>dplyr</strong>: <a class="reference external" href="https://siuba.readthedocs.io/en/latest/"><strong>siuba</strong></a> is a port of dplyr, tidyr, and other R libraries for data analysis.</p></li>
+<li><p><strong>dplyr</strong>: the most similar Python version of this library is <a class="reference external" href="https://plydata.readthedocs.io/en/stable/index.html"><strong>plydata</strong></a> (which has almost identical syntax to <strong>dplyr</strong>), while the most popular Python library that performs similar functions is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html"><strong>pandas</strong></a>. I tend to recommend people learn <strong>pandas</strong> for data analysis in Python because it is comprehensive and ubiquitous. It also has unrivaled documentation.</p></li>
+<li><p>More <strong>dplyr</strong>: <a class="reference external" href="https://github.com/kieferk/dfply"><strong>dfplyr</strong></a> is another attempt to replicate the syntax of <strong>dplyr</strong>. <a class="reference external" href="https://siuba.readthedocs.io/en/latest/"><strong>siuba</strong></a> is a port of dplyr, tidyr, and other R libraries for data analysis. <a class="reference external" href="https://ericmjl.github.io/pyjanitor/index.html"><strong>pyjanitor</strong></a> builds a range of extra features on top of <strong>pandas</strong>. Two of the things it adds are likely to make anyone coming from <strong>dplyr</strong> feel a bit more at home: better support for method chaining and some functions with the same names as the ones in <strong>dplyr</strong> and which do the same things.</p></li>
 <li><p><strong>ggplot2</strong>: the most similar Python version of this library is <a class="reference external" href="https://plotnine.readthedocs.io/en/stable/index.html"><strong>plotnine</strong></a>, while the most popular Python library that performs similar functions is a combination of <a class="reference external" href="https://matplotlib.org/"><strong>matplolib</strong></a> and <a class="reference external" href="https://seaborn.pydata.org/"><strong>seaborn</strong></a>, which builds on <strong>matplotlib</strong>. I think either those two together or <strong>plotnine</strong> are good choices, though <strong>plotnine</strong>’s documentation is not (yet) as good and it’s certainly not as widely used. (It’s gaining popularity though.)</p></li>
 <li><p><strong>data.table</strong>: if you use this library instead of <strong>dplyr</strong>, have no fear as there’s an almost identical library in Python called <a class="reference external" href="https://datatable.readthedocs.io/en/latest/"><strong>datatable</strong></a>. It’s not nearly as popular in Python as <strong>data.table</strong> is in R, but it’s a very high quality library.</p></li>
 </ul>

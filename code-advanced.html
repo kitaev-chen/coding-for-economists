@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,8 +56,6 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/code-advanced.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -255,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -593,7 +610,7 @@
 <p>These aren’t very interesting though! Here’s a set with some values in:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people_set</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Robinson&#39;</span><span class="p">,</span> <span class="s1">&#39;Fawcett&#39;</span><span class="p">,</span> <span class="s1">&#39;Ostrom&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people_set</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Robinson&quot;</span><span class="p">,</span> <span class="s2">&quot;Fawcett&quot;</span><span class="p">,</span> <span class="s2">&quot;Ostrom&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -601,7 +618,7 @@
 <p>What can we do with it? We can check its length using <code class="docutils literal notranslate"><span class="pre">len(people_set)</span></code> and we can ask whether a particular entry is contained within it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Ostrom&#39;</span> <span class="ow">in</span> <span class="n">people_set</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Ostrom&quot;</span> <span class="ow">in</span> <span class="n">people_set</span>
 </pre></div>
 </div>
 </div>
@@ -614,7 +631,7 @@
 <p>We can add multiple items or another set using <code class="docutils literal notranslate"><span class="pre">.update</span></code> or <code class="docutils literal notranslate"><span class="pre">.union</span></code>, or a single item using:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Martineau&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Martineau&quot;</span><span class="p">)</span>
 <span class="n">people_set</span>
 </pre></div>
 </div>
@@ -633,7 +650,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Ostrom&#39;, &#39;Martineau&#39;, &#39;Robinson&#39;, &#39;Fawcett&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Fawcett&#39;, &#39;Martineau&#39;, &#39;Robinson&#39;, &#39;Ostrom&#39;]
 </pre></div>
 </div>
 </div>
@@ -641,8 +658,8 @@
 <p>The real benefits of sets are that they support set operations, though. The most important are <code class="docutils literal notranslate"><span class="pre">intersection</span></code>,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">,</span> <span class="s1">&#39;item4&#39;</span><span class="p">}</span>
-<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item3&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">,</span> <span class="s2">&quot;item4&quot;</span><span class="p">}</span>
+<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item3&quot;</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">}</span>
 <span class="n">st1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">st2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -656,8 +673,8 @@
 <p><code class="docutils literal notranslate"><span class="pre">difference</span></code>,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">,</span> <span class="s1">&#39;item4&#39;</span><span class="p">}</span>
-<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">,</span> <span class="s2">&quot;item4&quot;</span><span class="p">}</span>
+<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">}</span>
 <span class="n">st1</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">st2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -671,8 +688,8 @@
 <p>and symmetric difference,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">,</span> <span class="s1">&#39;item4&#39;</span><span class="p">}</span>
-<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">,</span> <span class="s2">&quot;item4&quot;</span><span class="p">}</span>
+<span class="n">st2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">}</span>
 <span class="n">st2</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">st1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -691,16 +708,16 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">join_a_string</span><span class="p">(</span><span class="n">str_list</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">higher_order_function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Lowers case of result&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Lowers case of result&quot;&quot;&quot;</span>
     <span class="n">out_string</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="n">join_a_string</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World!&#39;</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="n">join_a_string</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;World!&quot;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -717,19 +734,21 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
 
+
 <span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
 
 
-<span class="k">def</span> <span class="nf">higher_order_function</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="c1"># a higher order function returning a function</span>
-    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;square&#39;</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">higher_order_function</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>  <span class="c1"># a higher order function returning a function</span>
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;square&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">square</span>
-    <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;cube&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;cube&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">cube</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="s2">&quot;square&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using higher_order_function(&#39;square&#39;), result(3) yields </span><span class="si">{</span><span class="n">result</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="s1">&#39;cube&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">higher_order_function</span><span class="p">(</span><span class="s2">&quot;cube&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using higher_order_function(&#39;cube&#39;), result(3) yields </span><span class="si">{</span><span class="n">result</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -750,7 +769,7 @@ Using higher_order_function(&#39;cube&#39;), result(3) yields 27
 <span class="k">def</span> <span class="nf">print_time_now</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">get_curr_time</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M&quot;</span><span class="p">)</span>
-    
+
     <span class="n">now</span> <span class="o">=</span> <span class="n">get_curr_time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
 
@@ -760,7 +779,7 @@ Using higher_order_function(&#39;cube&#39;), result(3) yields 27
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23:31
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19:13
 </pre></div>
 </div>
 </div>
@@ -769,13 +788,13 @@ Using higher_order_function(&#39;cube&#39;), result(3) yields 27
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square_root</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
 
 <span class="n">functions_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">square_root</span><span class="p">,</span> <span class="n">square</span><span class="p">,</span> <span class="n">cube</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">functions_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> applied to 4 is </span><span class="si">{</span><span class="n">func</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> applied to 4 is </span><span class="si">{</span><span class="n">func</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -796,7 +815,7 @@ cube applied to 4 is 64
 <p><code class="docutils literal notranslate"><span class="pre">map</span></code> takes a function and an iterable as arguments, ie the syntax is <code class="docutils literal notranslate"><span class="pre">map(function,</span> <span class="pre">iterable)</span></code>. An iterable is a type that is composed of elements that can be iterated over. The map essentially applies the function to each entry in the iterable. Here’s an example where a list of strings is cast to integers via <code class="docutils literal notranslate"><span class="pre">map</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers_str</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">]</span>
 <span class="n">mapped_result</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">numbers_str</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">mapped_result</span><span class="p">)</span>
 </pre></div>
@@ -811,7 +830,7 @@ cube applied to 4 is 64
 <p>Here’s an example with a lambda function. The benefit of using a lambda in this map operation is that otherwise we would have to write a whole function that simply returned the input with <code class="docutils literal notranslate"><span class="pre">.title()</span></code> at the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;robinson&#39;</span><span class="p">,</span> <span class="s1">&#39;fawcett&#39;</span><span class="p">,</span> <span class="s1">&#39;ostrom&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;robinson&quot;</span><span class="p">,</span> <span class="s2">&quot;fawcett&quot;</span><span class="p">,</span> <span class="s2">&quot;ostrom&quot;</span><span class="p">]</span>
 <span class="n">names_titled</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">names</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">names_titled</span><span class="p">)</span>
 </pre></div>
@@ -851,7 +870,7 @@ cube applied to 4 is 64
 
 <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 
-<span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -872,9 +891,10 @@ cube applied to 4 is 64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bool_check_var</span><span class="p">(</span><span class="n">input_variable</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">input_variable</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Falsy&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Falsy&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Truthy&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Truthy&quot;</span><span class="p">)</span>
+
 
 <span class="n">listy</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">other_listy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -1054,6 +1074,7 @@ cube applied to 4 is 64
         <span class="k">yield</span> <span class="n">num</span>
         <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
 
+
 <span class="n">sum_of_first_n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">first_n_generator</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
 <span class="n">sum_of_first_n</span>
 </pre></div>
@@ -1079,7 +1100,7 @@ cube applied to 4 is 64
 <p>It’s easier to see the difference in the below example which clearly shows the analogy between <em>list comprehensions</em> and <em>generator comprehensions</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_nums_lc</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_nums_lc</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
 <span class="n">sq_nums_lc</span>
 </pre></div>
 </div>
@@ -1092,13 +1113,13 @@ cube applied to 4 is 64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_nums_gc</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_nums_gc</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">sq_nums_gc</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7f87f86ee7b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7f97becbbe40&gt;
 </pre></div>
 </div>
 </div>
@@ -1124,7 +1145,7 @@ cube applied to 4 is 64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">num_one</span><span class="o">*</span><span class="n">num_two</span>
+    <span class="k">return</span> <span class="n">num_one</span> <span class="o">*</span> <span class="n">num_two</span>
 
 
 <span class="k">def</span> <span class="nf">add_ten</span><span class="p">(</span><span class="n">in_num</span><span class="p">):</span>
@@ -1148,12 +1169,13 @@ cube applied to 4 is 64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ten</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+
     <span class="k">return</span> <span class="n">inner</span>
 
 
 <span class="nd">@add_ten</span>
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">num_one</span><span class="o">*</span><span class="n">num_two</span>
+    <span class="k">return</span> <span class="n">num_one</span> <span class="o">*</span> <span class="n">num_two</span>
 
 
 <span class="n">multiply</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -1171,7 +1193,7 @@ cube applied to 4 is 64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@add_ten</span>
 <span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">num_one</span><span class="o">/</span><span class="n">num_two</span>
+    <span class="k">return</span> <span class="n">num_one</span> <span class="o">/</span> <span class="n">num_two</span>
 
 
 <span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -1189,19 +1211,21 @@ cube applied to 4 is 64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ten</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Function has been decorated!&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Adding ten...&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function has been decorated!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adding ten...&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+
     <span class="k">return</span> <span class="n">inner</span>
 
 
 <span class="nd">@add_ten</span>
 <span class="k">def</span> <span class="nf">combine_three_nums</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">c</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span>
+
 
 <span class="nd">@add_ten</span>
 <span class="k">def</span> <span class="nf">combine_four_nums</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">c</span><span class="o">-</span><span class="n">d</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
 
 
 <span class="n">combine_three_nums</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -1240,16 +1264,17 @@ Adding ten...
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dividing_line</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;-&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">30</span><span class="p">))</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">out</span>
+
     <span class="k">return</span> <span class="n">inner</span>
 
 
 <span class="nd">@dividing_line</span>
 <span class="nd">@add_ten</span>
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">num_one</span><span class="o">*</span><span class="n">num_two</span>
+    <span class="k">return</span> <span class="n">num_one</span> <span class="o">*</span> <span class="n">num_two</span>
 
 
 <span class="n">multiply</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -1294,10 +1319,10 @@ Adding ten...
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">denom</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">denom</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cannot divide by </span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot divide by </span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1315,10 +1340,10 @@ Cannot divide by 0
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">denom</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">denom</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1"> has no reciprocal; error is: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2"> has no reciprocal; error is: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1337,12 +1362,12 @@ Cannot divide by 0
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">denom</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">denom</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1/</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> out of range; error is </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> out of range; error is </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s1"> has no reciprocal; error is: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2"> has no reciprocal; error is: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1363,10 +1388,10 @@ index 3 out of range; error is list index out of range
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;no negatives: </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no negatives: </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;exception: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exception: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1385,14 +1410,15 @@ exception: no negatives: -1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_reciprocals</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">v</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">v</span>
     <span class="k">return</span> <span class="n">result</span>
+
 
 <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">one_over</span> <span class="o">=</span> <span class="n">sum_reciprocals</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">ArithmeticError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error trying to sum reciprocals: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error trying to sum reciprocals: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1408,7 +1434,7 @@ exception: no negatives: -1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="n">b_year</span> <span class="o">=</span> <span class="mi">1852</span>
-<span class="n">name_input</span> <span class="o">=</span> <span class="s1">&#39;Ada&#39;</span>
+<span class="n">name_input</span> <span class="o">=</span> <span class="s2">&quot;Ada&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">process_input</span><span class="p">(</span><span class="n">name_input</span><span class="p">,</span> <span class="n">b_year</span><span class="p">):</span>
@@ -1416,17 +1442,17 @@ exception: no negatives: -1
         <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name_input</span><span class="p">)</span>
         <span class="n">year_born</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b_year</span><span class="p">)</span>
         <span class="n">age</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">year_born</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You are </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">. And your age is </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You are </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">. And your age is </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Type error occur&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type error occur&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value error occur&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value error occur&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;zero division error occur&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;zero division error occur&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I usually run with the try block&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I usually run with the try block&quot;</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I alway run.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I alway run.&quot;</span><span class="p">)</span>
 
 
 <span class="n">process_input</span><span class="p">(</span><span class="n">name_input</span><span class="p">,</span> <span class="n">b_year</span><span class="p">)</span>
@@ -1457,12 +1483,14 @@ I alway run.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a class called Person</span>
 
+
 <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
 
 <span class="c1"># Create an instance of the class</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Adam&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1496,7 +1524,7 @@ I alway run.
 <p>Okay but what’s the point of all this? Well we can now create as many objects as we like of class ‘Person’ and they will have the same structure, but not the same state, as other objects of class ‘Person’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Ada&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Ada&quot;</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 </div>
@@ -1511,15 +1539,16 @@ I alway run.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
 
-      <span class="k">def</span> <span class="nf">increment_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">increment_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>
+
 
 <span class="c1"># Create an instance of the class</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="mi">231</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span> <span class="mi">231</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
 <span class="c1"># Call the method increment_age</span>
@@ -1539,18 +1568,19 @@ I alway run.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
 
-      <span class="k">def</span> <span class="nf">increment_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">increment_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>
 
-      <span class="k">def</span> <span class="nf">change_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_age</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">new_age</span>
+    <span class="k">def</span> <span class="nf">change_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">new_age</span>
+
 
 <span class="c1"># Create an instance of the class</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="mi">231</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span> <span class="mi">231</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
 <span class="c1"># Call the method increment_age</span>
@@ -1570,9 +1600,9 @@ I alway run.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;default_name&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;default_name&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
 
 
 <span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
@@ -1602,16 +1632,16 @@ I alway run.
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
 
     <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
 
 
-<span class="n">circle1</span> <span class="o">=</span> <span class="n">Circle1</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">circle1</span> <span class="o">=</span> <span class="n">Circle1</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">circle1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Circle1 at 0x7f8818bc6d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Circle1 at 0x7f97becb8c40&gt;
 </pre></div>
 </div>
 </div>
@@ -1634,16 +1664,17 @@ I alway run.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
+
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Circle2</span><span class="p">:</span>
     <span class="n">colour</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span>
 
     <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
 
 
-<span class="n">circle2</span> <span class="o">=</span> <span class="n">Circle2</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">circle2</span> <span class="o">=</span> <span class="n">Circle2</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">circle2</span>
 </pre></div>
 </div>
@@ -1755,8 +1786,9 @@ FAILED test.py::test_answer - assert <span class="nv">4</span> <span class="o">=
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
 
+
 <span class="k">def</span> <span class="nf">complicated_func</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot; A really complicated func &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;A really complicated func&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">0.998</span>
 
 
@@ -1893,9 +1925,11 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">timeit</span>
 
+
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">nsec</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function sleeps for nsec seconds.&quot;&quot;&quot;</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nsec</span><span class="p">)</span>
+
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
 <span class="n">f</span><span class="p">()</span>
@@ -1905,7 +1939,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.001715015
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0020851259999999
 </pre></div>
 </div>
 </div>
@@ -1916,9 +1950,11 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_time</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">timeit</span>
+
         <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
         <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">func</span>
 
 
@@ -1933,7 +1969,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0001628870000001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0003613640000002
 </pre></div>
 </div>
 </div>
@@ -1946,7 +1982,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.1 ms ± 90.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.6 ms ± 218 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -1966,9 +2002,11 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_time</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">timeit</span>
+
         <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
         <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">func</span>
 
 
@@ -1983,7 +2021,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0050523919999996
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0007319710000004
 </pre></div>
 </div>
 </div>
@@ -1994,24 +2032,26 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">cProfile</span>
 
+
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
 
-<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;foo()&#39;</span><span class="p">)</span>
+
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         6 function calls in 3.510 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         6 function calls in 3.507 seconds
 
    Ordered by: standard name
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    0.000    0.000    3.510    3.510 &lt;ipython-input-63-9498e9d50d7f&gt;:4(foo)
-        1    0.000    0.000    3.510    3.510 &lt;string&gt;:1(&lt;module&gt;)
-        1    0.000    0.000    3.510    3.510 {built-in method builtins.exec}
-        2    3.510    1.755    3.510    1.755 {built-in method time.sleep}
+        1    0.000    0.000    3.507    3.507 &lt;ipython-input-63-f51148211faf&gt;:5(foo)
+        1    0.000    0.000    3.507    3.507 &lt;string&gt;:1(&lt;module&gt;)
+        1    0.000    0.000    3.507    3.507 {built-in method builtins.exec}
+        2    3.507    1.754    3.507    1.754 {built-in method time.sleep}
         1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
 </pre></div>
 </div>
@@ -2028,6 +2068,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 <span class="n">profiler</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
 <span class="n">profiler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
+
 <span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;n must be a positive integer&quot;</span><span class="p">)</span>
@@ -2037,6 +2078,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+
 
 <span class="n">fibonacci</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 
@@ -2048,30 +2090,32 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  _     ._   __/__   _ _  _  _ _/_   Recorded: 23:31:57  Samples:  3
- /_//_/// /_\ / //_// / //_&#39;/ //     Duration: 0.003     CPU time: 0.003
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  _     ._   __/__   _ _  _  _ _/_   Recorded: 19:13:54  Samples:  4
+ /_//_/// /_\ / //_// / //_&#39;/ //     Duration: 0.005     CPU time: 0.005
 /   _/                      v3.4.1
 
-Program: /Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/ipykernel_launcher.py -f /private/var/folders/jv/1ydhmpn53q10752dykrrn2nm0000gq/T/tmpqfsfc1q_.json
+Program: /Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/ipykernel_launcher.py -f /private/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/tmpb6ehfk9v.json
 
-<span class=" -Color -Color-Red">0.003</span> run_code  <span class=" -Color -Color-Faint">IPython/core/interactiveshell.py:3281</span>
-└─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">&lt;module&gt;</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:17</span>
-   └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-      └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-         └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-            └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-               └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                  └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                     └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                        └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                           └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                              └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                                 └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                                    └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                                       └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                                          ├─ <span class=" -Color -Color-Red">0.002</span> [self]  
-                                          └─ <span class=" -Color -Color-Yellow">0.001</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
-                                             └─ <span class=" -Color -Color-Yellow">0.001</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-aedea2f618c0&gt;:7</span>
+<span class=" -Color -Color-Red">0.004</span> run_code  <span class=" -Color -Color-Faint">IPython/core/interactiveshell.py:3377</span>
+└─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">&lt;module&gt;</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:19</span>
+   └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+      └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+         └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+            └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+               └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                  └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                     └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                        └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                           └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                              └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                 └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                    └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                       └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                          ├─ <span class=" -Color -Color-Yellow">0.002</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                          │  └─ <span class=" -Color -Color-Yellow">0.002</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                          │     ├─ <span class=" -Color -Color-Yellow">0.001</span> [self]  
+                                          │     └─ <span class=" -Color -Color-Yellow">0.001</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
+                                          └─ <span class=" -Color -Color-Yellow">0.002</span> [self]  
 </pre></div>
 </div>
 </div>
@@ -2089,8 +2133,8 @@ Program: /Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-
 <p>Take this (trivial) example which involves evaluating an expression, <code class="docutils literal notranslate"><span class="pre">len(a)</span> <span class="pre">&gt;</span> <span class="pre">4</span></code>, that returns a boolean and then assigning that <em>same</em> expression to a variable <code class="docutils literal notranslate"><span class="pre">n</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> 
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List is too long (</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> elements, expected &lt;= 3)&quot;</span><span class="p">)</span>
 </pre></div>
@@ -2105,8 +2149,8 @@ Program: /Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-
 <p>The Walrus operator allows us to skip the clumsy use of <code class="docutils literal notranslate"><span class="pre">len(a)</span></code> twice and do both steps in one go. As noted, that’s trivial here, but if evaluation were very computationally expensive, then this might save us some trouble. Here’s the version with the Walrus operator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> 
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List is too long (</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> elements, expected &lt;= 3)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2128,11 +2172,14 @@ Program: /Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-
 
 
 <span class="nd">@typedispatch</span>
-<span class="k">def</span> <span class="nf">func_example</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">float</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+<span class="k">def</span> <span class="nf">func_example</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+
 <span class="nd">@typedispatch</span>
-<span class="k">def</span> <span class="nf">func_example</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span>
+<span class="k">def</span> <span class="nf">func_example</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
 
 <span class="c1"># Int and float</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">func_example</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>

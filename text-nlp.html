@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,12 +56,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/text-nlp.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Intro to Geo-Spatial Analysis" href="geo-intro.html" />
+    <link rel="next" title="1. Introduction to Time" href="time-intro.html" />
     <link rel="prev" title="1. Introduction to Text" href="text-intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -255,6 +255,23 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -1117,7 +1134,9 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/smith_won.txt&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/smith_won.txt&quot;</span>
+<span class="p">)</span>
 <span class="n">raw_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
 <span class="n">raw_text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
 </pre></div>
@@ -1190,10 +1209,12 @@
 <p>Now we just need to apply all of the cleaning procudures we did before——that is lowering the case, removing punctuation, and removing any excess whitespace.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sent</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_sent</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
-                   <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-                   <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>
-                   <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;\s+?\W+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sent</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_sent</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;\s+?\W+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="n">df_sent</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1468,8 +1489,14 @@ Sentence 1:
 <p>Let’s see an example, with some test texts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;poverty is a trap and rearing children in it is hard and perilous&quot;</span><span class="p">,</span>
-                                 <span class="s2">&quot;people in different trades can meet and develop a conspiracy which ultimately hurts consumers by raising prices&quot;</span><span class="p">]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;poverty is a trap and rearing children in it is hard and perilous&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;people in different trades can meet and develop a conspiracy which ultimately hurts consumers by raising prices&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1487,7 +1514,7 @@ Sentence 1:
 <span class="c1"># iii)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
 <span class="c1"># iv)</span>
-<span class="n">max_index_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">max_index_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X</span> <span class="o">*</span> <span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">max_index_pos</span>
 </pre></div>
 </div>
@@ -1502,7 +1529,7 @@ Sentence 1:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">x_pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">max_index_pos</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sentence number </span><span class="si">{</span><span class="n">y_pos</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentence number </span><span class="si">{</span><span class="n">y_pos</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;        test: </span><span class="si">{</span><span class="n">df_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_pos</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;         WoN: </span><span class="si">{</span><span class="n">df_sent</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x_pos</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1527,12 +1554,7 @@ Sentence number 1:
 <p>Let’s see an example of expressing the Wealth of Nations in a particularly vocab. First, we must define our vocab:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;work&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;wage&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;labour&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;real price&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;money price&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;productivity&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;work&quot;</span><span class="p">,</span> <span class="s2">&quot;wage&quot;</span><span class="p">,</span> <span class="s2">&quot;labour&quot;</span><span class="p">,</span> <span class="s2">&quot;real price&quot;</span><span class="p">,</span> <span class="s2">&quot;money price&quot;</span><span class="p">,</span> <span class="s2">&quot;productivity&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1558,7 +1580,7 @@ Sentence number 1:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">x_pos</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">counts_df</span><span class="p">[:</span><span class="n">num_to_plot</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_to_plot</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Count of terms in corpus&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Count of terms in corpus&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Counts of vocab words in the Wealth of Nations&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1652,8 +1674,11 @@ be said to have a real and a nominal price . Its real price may be said to cons
 
 <span class="n">cleaner_text</span> <span class="o">=</span> <span class="n">raw_text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
-<span class="n">stem_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lancaster</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaner_text</span><span class="p">)</span>
-               <span class="k">if</span> <span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+<span class="n">stem_tokens</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">lancaster</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaner_text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span>
+<span class="p">]</span>
 <span class="n">stem_tokens</span><span class="p">[</span><span class="mi">120</span><span class="p">:</span><span class="mi">135</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1710,8 +1735,11 @@ be said to have a real and a nominal price . Its real price may be said to cons
 <span class="c1"># create an object of class LancasterStemmer</span>
 <span class="n">wnet_lemma</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
 
-<span class="n">lemma_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">wnet_lemma</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaner_text</span><span class="p">)</span>
-               <span class="k">if</span> <span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+<span class="n">lemma_tokens</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">wnet_lemma</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaner_text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span>
+<span class="p">]</span>
 <span class="n">freq</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">lemma_tokens</span><span class="p">)</span>
 <span class="n">freq</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -1749,7 +1777,7 @@ be said to have a real and a nominal price . Its real price may be said to cons
 
 <span class="n">pos_tagged_words</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">example_sent</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">pos_tagged_words</span><span class="p">:</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The word &quot;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">&quot; is a </span><span class="si">{</span><span class="n">pos</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1786,8 +1814,10 @@ The word &quot;band&quot; is a NN
 
 <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">example_sent</span><span class="p">)</span>
 
-<span class="n">pos_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">lemma_</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">tag_</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">],</span>
-                      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;lemma&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span><span class="p">])</span>
+<span class="n">pos_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">lemma_</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">tag_</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;lemma&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 <span class="n">pos_df</span>
 </pre></div>
 </div>
@@ -1953,7 +1983,7 @@ The word &quot;band&quot; is a NN
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" id="3caa59db08ab46beababbbd28a20a8a8-0" class="displacy" width="1800" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
+<div class="output text_html"><span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" id="95300cb8460e41ce90499ebe6e61926f-0" class="displacy" width="1800" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
 <text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
     <tspan class="displacy-word" fill="currentColor" x="50">When</tspan>
     <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">ADV</tspan>
@@ -2005,73 +2035,73 @@ The word &quot;band&quot; is a NN
 </text>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-0" stroke-width="2px" d="M70,264.5 C70,89.5 395.0,89.5 395.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-0" stroke-width="2px" d="M70,264.5 C70,89.5 395.0,89.5 395.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-0" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advmod</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-0" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advmod</textPath>
     </text>
     <path class="displacy-arrowhead" d="M70,266.5 L62,254.5 78,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-1" stroke-width="2px" d="M245,264.5 C245,177.0 390.0,177.0 390.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-1" stroke-width="2px" d="M245,264.5 C245,177.0 390.0,177.0 390.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-1" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-1" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj</textPath>
     </text>
     <path class="displacy-arrowhead" d="M245,266.5 L237,254.5 253,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-2" stroke-width="2px" d="M420,264.5 C420,2.0 1275.0,2.0 1275.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-2" stroke-width="2px" d="M420,264.5 C420,2.0 1275.0,2.0 1275.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-2" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advcl</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-2" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advcl</textPath>
     </text>
     <path class="displacy-arrowhead" d="M420,266.5 L412,254.5 428,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-3" stroke-width="2px" d="M595,264.5 C595,177.0 740.0,177.0 740.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-3" stroke-width="2px" d="M595,264.5 C595,177.0 740.0,177.0 740.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-3" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">det</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-3" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">det</textPath>
     </text>
     <path class="displacy-arrowhead" d="M595,266.5 L587,254.5 603,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-4" stroke-width="2px" d="M420,264.5 C420,89.5 745.0,89.5 745.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-4" stroke-width="2px" d="M420,264.5 C420,89.5 745.0,89.5 745.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-4" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">dobj</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-4" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">dobj</textPath>
     </text>
     <path class="displacy-arrowhead" d="M745.0,266.5 L753.0,254.5 737.0,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-5" stroke-width="2px" d="M945,264.5 C945,89.5 1270.0,89.5 1270.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-5" stroke-width="2px" d="M945,264.5 C945,89.5 1270.0,89.5 1270.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-5" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-5" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj</textPath>
     </text>
     <path class="displacy-arrowhead" d="M945,266.5 L937,254.5 953,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-6" stroke-width="2px" d="M1120,264.5 C1120,177.0 1265.0,177.0 1265.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-6" stroke-width="2px" d="M1120,264.5 C1120,177.0 1265.0,177.0 1265.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-6" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advmod</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-6" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">advmod</textPath>
     </text>
     <path class="displacy-arrowhead" d="M1120,266.5 L1112,254.5 1128,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-7" stroke-width="2px" d="M1470,264.5 C1470,177.0 1615.0,177.0 1615.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-7" stroke-width="2px" d="M1470,264.5 C1470,177.0 1615.0,177.0 1615.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-7" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">det</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-7" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">det</textPath>
     </text>
     <path class="displacy-arrowhead" d="M1470,266.5 L1462,254.5 1478,254.5" fill="currentColor"/>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-3caa59db08ab46beababbbd28a20a8a8-0-8" stroke-width="2px" d="M1295,264.5 C1295,89.5 1620.0,89.5 1620.0,264.5" fill="none" stroke="currentColor"/>
+    <path class="displacy-arc" id="arrow-95300cb8460e41ce90499ebe6e61926f-0-8" stroke-width="2px" d="M1295,264.5 C1295,89.5 1620.0,89.5 1620.0,264.5" fill="none" stroke="currentColor"/>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textPath xlink:href="#arrow-3caa59db08ab46beababbbd28a20a8a8-0-8" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">dobj</textPath>
+        <textPath xlink:href="#arrow-95300cb8460e41ce90499ebe6e61926f-0-8" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">dobj</textPath>
     </text>
     <path class="displacy-arrowhead" d="M1620.0,266.5 L1628.0,254.5 1612.0,254.5" fill="currentColor"/>
 </g>
@@ -2128,8 +2158,10 @@ The word &quot;band&quot; is a NN
 <p>Pretty impressive stuff, but a health warning that there are plenty of texts that are not quite as clean as this one! As with the PoS tagger, you can extract the named entities in a tabular format for onward use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">start_char</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">end_char</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span> <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">],</span>
-             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;start_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;end_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">start_char</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">end_char</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span> <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;start_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;end_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2263,16 +2295,19 @@ The word &quot;band&quot; is a NN
     <span class="s2">&quot;to release built up tension.&quot;</span>
 <span class="p">)</span>
 
-<span class="n">stat_func_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">textstat</span><span class="o">.</span><span class="n">flesch_reading_ease</span><span class="p">,</span>
-                   <span class="n">textstat</span><span class="o">.</span><span class="n">flesch_kincaid_grade</span><span class="p">,</span>
-                   <span class="n">textstat</span><span class="o">.</span><span class="n">automated_readability_index</span><span class="p">,</span>
-                   <span class="n">textstat</span><span class="o">.</span><span class="n">dale_chall_readability_score</span><span class="p">,</span>
-                   <span class="n">textstat</span><span class="o">.</span><span class="n">difficult_words</span><span class="p">,</span>
-                  <span class="p">]</span>
+<span class="n">stat_func_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">textstat</span><span class="o">.</span><span class="n">flesch_reading_ease</span><span class="p">,</span>
+    <span class="n">textstat</span><span class="o">.</span><span class="n">flesch_kincaid_grade</span><span class="p">,</span>
+    <span class="n">textstat</span><span class="o">.</span><span class="n">automated_readability_index</span><span class="p">,</span>
+    <span class="n">textstat</span><span class="o">.</span><span class="n">dale_chall_readability_score</span><span class="p">,</span>
+    <span class="n">textstat</span><span class="o">.</span><span class="n">difficult_words</span><span class="p">,</span>
+<span class="p">]</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">fn</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">stat_func_names</span><span class="p">]],</span>
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">stat_func_names</span><span class="p">],</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[[</span><span class="n">fn</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">stat_func_names</span><span class="p">]],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">stat_func_names</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -2373,7 +2408,7 @@ The word &quot;band&quot; is a NN
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="text-intro.html" title="previous page"><span class="section-number">1. </span>Introduction to Text</a>
-    <a class='right-next' id="next-link" href="geo-intro.html" title="next page"><span class="section-number">1. </span>Intro to Geo-Spatial Analysis</a>
+    <a class='right-next' id="next-link" href="time-intro.html" title="next page"><span class="section-number">1. </span>Introduction to Time</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

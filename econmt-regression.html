@@ -45,6 +45,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,8 +56,6 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/econmt-regression.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -255,6 +255,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
   </a>
  </li>
 </ul>
@@ -691,9 +708,11 @@ y = x'\cdot \hat{\beta} + \epsilon
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set max rows displayed for readability</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="c1"># Plot settings</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -706,7 +725,10 @@ y = x'\cdot \hat{\beta} + \epsilon
 <p>We’ll use the starwars dataset to run a regression of mass on height for star wars characters. This example borrows very heavily from notes by <a class="reference external" href="https://grantmcdermott.com/">Grant McDermott</a>. First, let’s bring the dataset in:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/starwars.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/starwars.csv&quot;</span><span class="p">,</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="c1"># Look at first few rows</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -804,7 +826,7 @@ y = x'\cdot \hat{\beta} + \epsilon
 <p>Okay, now let’s do a regression using OLS and a formula that says our y-variable is mass and our regressor is height:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -822,8 +844,8 @@ y = x'\cdot \hat{\beta} + \epsilon
 Dep. Variable:                   mass   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.001
 Method:                 Least Squares   F-statistic:                     1.040
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):              0.312
-Time:                        23:28:51   Log-Likelihood:                -385.50
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):              0.312
+Time:                        19:16:18   Log-Likelihood:                -385.50
 No. Observations:                  59   AIC:                             775.0
 Df Residuals:                      57   BIC:                             779.2
 Df Model:                           1                                         
@@ -871,18 +893,20 @@ Notes:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mass&quot;</span><span class="p">,</span>
-                <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Jabba the Hutt&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()][[</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">]],</span>
-            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
-            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;fancy&quot;</span><span class="p">,</span>
-                            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
-                            <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.3&quot;</span><span class="p">,</span>
-                            <span class="p">)</span>
-            <span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+    <span class="s2">&quot;Jabba the Hutt&quot;</span><span class="p">,</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;mass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()][[</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;mass&quot;</span><span class="p">]],</span>
+    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;fancy&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.3&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Always plot the data&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Always plot the data&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -894,7 +918,9 @@ Notes:
 <p>Oh dear, Jabba’s been on the paddy frogs again, and he’s a bit of different case. When we’re estimating statistical relationships, we have all kinds of choices and should be wary about arbitrary decisions of what to include or exclude in case we fool ourselves about the generality of the relationship we are capturing. Let’s say we knew that we weren’t interested in Hutts though, but only in other species: in that case, it’s fair enough to filter out Jabba and run the regression without this obvious outlier. We’ll exclude any entry that contains the string ‘Jabba’ in the <code class="docutils literal notranslate"><span class="pre">name</span></code> column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_outlier_free</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Jabba&#39;</span><span class="p">)])</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_outlier_free</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span>
+    <span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Jabba&quot;</span><span class="p">)]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_outlier_free</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -905,8 +931,8 @@ Notes:
 Dep. Variable:                   mass   R-squared:                       0.580
 Model:                            OLS   Adj. R-squared:                  0.572
 Method:                 Least Squares   F-statistic:                     77.18
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           4.02e-12
-Time:                        23:28:52   Log-Likelihood:                -252.48
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           4.02e-12
+Time:                        19:16:18   Log-Likelihood:                -252.48
 No. Observations:                  58   AIC:                             509.0
 Df Residuals:                      56   BIC:                             513.1
 Df Model:                           1                                         
@@ -935,7 +961,9 @@ Notes:
 <p>Filtering out data is one way to deal with outliers, but it’s not the only one; an alternative is to use a regression technique that is robust to such outliers. <strong>statsmodels</strong> has a variety of robust linear models that you can read more about <a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/robust_models_0.html">here</a>. To demonstrate the general idea, we will run the regression again but using a robust method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_robust</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">rlm</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">robust</span><span class="o">.</span><span class="n">norms</span><span class="o">.</span><span class="n">TrimmedMean</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_robust</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">rlm</span><span class="p">(</span>
+    <span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">robust</span><span class="o">.</span><span class="n">norms</span><span class="o">.</span><span class="n">TrimmedMean</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_robust</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -949,8 +977,8 @@ Method:                          IRLS   Df Model:                            1
 Norm:                     TrimmedMean                                         
 Scale Est.:                       mad                                         
 Cov Type:                          H1                                         
-Date:                Wed, 16 Jun 2021                                         
-Time:                        23:28:52                                         
+Date:                Sat, 03 Jul 2021                                         
+Time:                        19:16:18                                         
 No. Iterations:                     7                                         
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
@@ -968,12 +996,14 @@ If the model instance has been used for another fit with different fit parameter
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">])</span>
-<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">abline_plot</span><span class="p">(</span><span class="n">model_results</span><span class="o">=</span><span class="n">results_robust</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Robust&#39;</span><span class="p">)</span>
-<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">abline_plot</span><span class="p">(</span><span class="n">model_results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;OLS&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mass&quot;</span><span class="p">])</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">abline_plot</span><span class="p">(</span><span class="n">model_results</span><span class="o">=</span><span class="n">results_robust</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Robust&quot;</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">abline_plot</span><span class="p">(</span>
+    <span class="n">model_results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;OLS&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+<span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Mass&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mass&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -989,10 +1019,7 @@ If the model instance has been used for another fit with different fit parameter
 <p>You’ll have seen that there’s a column for the standard error of the estimates in the regression table and a message saying that the covariance type of these is ‘nonrobust’. Let’s say that, instead, we want to use Eicker-Huber-White robust standard errors, aka “HC2” standard errors. We can specify to use these up front standard errors up front in the fit method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;HC2&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s2">&quot;HC2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1012,7 +1039,7 @@ If the model instance has been used for another fit with different fit parameter
 <p>Or, alternatively, we can go back to our existing results and recompute the results from those:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">get_robustcov_results</span><span class="p">(</span><span class="s1">&#39;HC2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">get_robustcov_results</span><span class="p">(</span><span class="s2">&quot;HC2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1022,8 +1049,8 @@ If the model instance has been used for another fit with different fit parameter
 Dep. Variable:                   mass   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.001
 Method:                 Least Squares   F-statistic:                     52.75
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           1.16e-09
-Time:                        23:28:52   Log-Likelihood:                -385.50
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           1.16e-09
+Time:                        19:16:19   Log-Likelihood:                -385.50
 No. Observations:                  59   AIC:                             775.0
 Df Residuals:                      57   BIC:                             779.2
 Df Model:                           1                                         
@@ -1064,9 +1091,10 @@ errors in panel data, again with keyword arguments; and</p></li>
 <p>Note that in the below example, we grab a subset of the data for which a set of variables we’re interested in are defined, otherwise the below example would execute with an error because of missing cluster-group values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;homeworld&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">])</span>
-<span class="n">results_clus</span> <span class="o">=</span> <span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">xf</span><span class="p">)</span>
-                   <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span> <span class="n">cov_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;groups&#39;</span><span class="p">:</span> <span class="n">xf</span><span class="p">[</span><span class="s1">&#39;homeworld&#39;</span><span class="p">]}))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;homeworld&quot;</span><span class="p">,</span> <span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
+<span class="n">results_clus</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">xf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">cov_type</span><span class="o">=</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="n">cov_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="n">xf</span><span class="p">[</span><span class="s2">&quot;homeworld&quot;</span><span class="p">]}</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_clus</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1077,8 +1105,8 @@ errors in panel data, again with keyword arguments; and</p></li>
 Dep. Variable:                   mass   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                     39.44
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           2.63e-07
-Time:                        23:28:52   Log-Likelihood:                -361.23
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           2.63e-07
+Time:                        19:16:19   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1104,11 +1132,11 @@ Notes:
 <p>We can add two-way clustering of standard errors using the following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;homeworld&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">])</span>
-<span class="n">two_way_clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[[</span><span class="s1">&#39;homeworld&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">results_clus</span> <span class="o">=</span> <span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mass ~ height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">xf</span><span class="p">)</span>
-                   <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span>
-                        <span class="n">cov_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;groups&#39;</span><span class="p">:</span> <span class="n">two_way_clusters</span><span class="p">}))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;homeworld&quot;</span><span class="p">,</span> <span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
+<span class="n">two_way_clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[[</span><span class="s2">&quot;homeworld&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">results_clus</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mass ~ height&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">xf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">cov_type</span><span class="o">=</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="n">cov_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="n">two_way_clusters</span><span class="p">}</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_clus</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1119,8 +1147,8 @@ Notes:
 Dep. Variable:                   mass   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                     35.10
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           1.96e-06
-Time:                        23:28:52   Log-Likelihood:                -361.23
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           1.96e-06
+Time:                        19:16:19   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1153,8 +1181,10 @@ Notes:
 <p>Let’s use the ‘mtcars’ dataset to demonstrate this. We’ll read it in and set the datatypes of some of the columns at the same time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv&#39;</span><span class="p">,</span>
-                   <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;hp&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;cyl&#39;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">}))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;mpg&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;hp&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;disp&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;cyl&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">},</span>
+<span class="p">)</span>
 <span class="n">mpg</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1277,8 +1307,7 @@ Notes:
 <p>Here’s a regression which does that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ hp + C(cyl)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
-                 <span class="o">.</span><span class="n">fit</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_fe</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ hp + C(cyl)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_fe</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1289,8 +1318,8 @@ Notes:
 Dep. Variable:                    mpg   R-squared:                       0.754
 Model:                            OLS   Adj. R-squared:                  0.727
 Method:                 Least Squares   F-statistic:                     28.59
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           1.14e-08
-Time:                        23:28:53   Log-Likelihood:                -79.948
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           1.14e-08
+Time:                        19:16:19   Log-Likelihood:                -79.948
 No. Observations:                  32   AIC:                             167.9
 Df Residuals:                      28   BIC:                             173.8
 Df Model:                           3                                         
@@ -1318,7 +1347,7 @@ Notes:
 <p>We can see here that two of the three possible values of <code class="docutils literal notranslate"><span class="pre">cyl</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;cyl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;cyl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1332,10 +1361,7 @@ Categories (3, object): [&#39;6&#39;, &#39;4&#39;, &#39;8&#39;]
 <p>have been added as fixed effects regressors. The way that <code class="docutils literal notranslate"><span class="pre">+C(cyl)</span></code> has been added makes it so that the coefficients given are relative to the coefficient for the intercept. We can turn the intercept off to get a coefficient per unique <code class="docutils literal notranslate"><span class="pre">cyl</span></code> value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ hp + C(cyl) -1&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
-         <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ hp + C(cyl) -1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1373,21 +1399,31 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
 <span class="n">nobs</span> <span class="o">=</span> <span class="mi">1_000_000</span>  <span class="c1"># No. observations</span>
 <span class="n">state_id</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nobs</span><span class="p">)</span>  <span class="c1"># State identifier</span>
 <span class="n">firm_id</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="n">nobs</span> <span class="o">//</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nobs</span><span class="p">)</span>  <span class="c1"># Firm identifier (mean of 5 workers/firm)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">nobs</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># Exogenous variables </span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">nobs</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># Exogenous variables</span>
 <span class="n">sim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="p">{</span><span class="s2">&quot;state_id&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">state_id</span><span class="p">),</span> <span class="s2">&quot;firm_id&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">firm_id</span><span class="p">),</span>
-     <span class="s2">&quot;exog_0&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;exog_1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]}</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;state_id&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">state_id</span><span class="p">),</span>
+        <span class="s2">&quot;firm_id&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">firm_id</span><span class="p">),</span>
+        <span class="s2">&quot;exog_0&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;exog_1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">}</span>
 <span class="p">)</span>
 
 <span class="c1"># Create synthetic relationship</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># coefficients of interest</span>
 <span class="n">state_effects</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">state_id</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">state_effects</span> <span class="o">=</span> <span class="n">state_effects</span><span class="p">[</span><span class="n">state_id</span><span class="p">]</span>  <span class="c1"># Generate state fixed effects </span>
+<span class="n">state_effects</span> <span class="o">=</span> <span class="n">state_effects</span><span class="p">[</span><span class="n">state_id</span><span class="p">]</span>  <span class="c1"># Generate state fixed effects</span>
 <span class="n">firm_effects</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">firm_id</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">firm_effects</span> <span class="o">=</span> <span class="n">firm_effects</span><span class="p">[</span><span class="n">firm_id</span><span class="p">]</span>  <span class="c1"># Generate firm fixed effects </span>
+<span class="n">firm_effects</span> <span class="o">=</span> <span class="n">firm_effects</span><span class="p">[</span><span class="n">firm_id</span><span class="p">]</span>  <span class="c1"># Generate firm fixed effects</span>
 <span class="n">eps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">nobs</span><span class="p">)</span>  <span class="c1"># Generate errors</span>
 <span class="c1"># Generate endogeneous outcome variable</span>
-<span class="n">sim</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="p">[</span><span class="s1">&#39;exog_0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="p">[</span><span class="s1">&#39;exog_1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">firm_effects</span> <span class="o">+</span> <span class="n">state_effects</span> <span class="o">+</span> <span class="n">eps</span>
+<span class="n">sim</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;exog_0&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="o">+</span> <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;exog_1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="o">+</span> <span class="n">firm_effects</span>
+    <span class="o">+</span> <span class="n">state_effects</span>
+    <span class="o">+</span> <span class="n">eps</span>
+<span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1421,43 +1457,43 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
   <tbody>
     <tr>
       <th>0</th>
-      <td>32</td>
-      <td>110001</td>
-      <td>-0.752949</td>
-      <td>0.796792</td>
-      <td>3.003043</td>
+      <td>29</td>
+      <td>58576</td>
+      <td>0.814687</td>
+      <td>-0.271171</td>
+      <td>2.439182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>5</td>
-      <td>55794</td>
-      <td>1.128804</td>
-      <td>1.561284</td>
-      <td>5.110467</td>
+      <td>37</td>
+      <td>119895</td>
+      <td>-0.533530</td>
+      <td>0.114115</td>
+      <td>-0.113442</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>14</td>
-      <td>81751</td>
-      <td>-0.335394</td>
-      <td>-0.214429</td>
-      <td>-2.725549</td>
+      <td>2</td>
+      <td>93189</td>
+      <td>-0.047870</td>
+      <td>-1.079083</td>
+      <td>-3.889434</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>25</td>
-      <td>76359</td>
-      <td>2.711008</td>
-      <td>-2.652886</td>
-      <td>-5.563002</td>
+      <td>20</td>
+      <td>145034</td>
+      <td>0.258632</td>
+      <td>1.460896</td>
+      <td>3.593185</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>47</td>
-      <td>137311</td>
-      <td>-0.005551</td>
-      <td>-0.146735</td>
-      <td>-0.106354</td>
+      <td>34</td>
+      <td>50329</td>
+      <td>0.022262</td>
+      <td>-0.557186</td>
+      <td>0.291076</td>
     </tr>
   </tbody>
 </table>
@@ -1468,7 +1504,9 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.iv.absorbing</span> <span class="kn">import</span> <span class="n">AbsorbingLS</span>
 
-<span class="n">mod</span> <span class="o">=</span> <span class="n">AbsorbingLS</span><span class="p">(</span><span class="n">sim</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">sim</span><span class="p">[[</span><span class="s1">&#39;exog_0&#39;</span><span class="p">,</span> <span class="s1">&#39;exog_1&#39;</span><span class="p">]],</span> <span class="n">absorb</span><span class="o">=</span><span class="n">sim</span><span class="p">[[</span><span class="s1">&#39;state_id&#39;</span><span class="p">,</span> <span class="s1">&#39;firm_id&#39;</span><span class="p">]])</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">AbsorbingLS</span><span class="p">(</span>
+    <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">sim</span><span class="p">[[</span><span class="s2">&quot;exog_0&quot;</span><span class="p">,</span> <span class="s2">&quot;exog_1&quot;</span><span class="p">]],</span> <span class="n">absorb</span><span class="o">=</span><span class="n">sim</span><span class="p">[[</span><span class="s2">&quot;state_id&quot;</span><span class="p">,</span> <span class="s2">&quot;firm_id&quot;</span><span class="p">]]</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1476,19 +1514,19 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         Absorbing LS Estimation Summary                          
 ==================================================================================
-Dep. Variable:                      y   R-squared:                          0.9376
-Estimator:               Absorbing LS   Adj. R-squared:                     0.9222
-No. Observations:             1000000   F-statistic:                     9.846e+06
-Date:                Wed, Jun 16 2021   P-value (F-stat):                   0.0000
-Time:                        23:28:58   Distribution:                      chi2(2)
+Dep. Variable:                      y   R-squared:                          0.9387
+Estimator:               Absorbing LS   Adj. R-squared:                     0.9235
+No. Observations:             1000000   F-statistic:                     9.816e+06
+Date:                Sat, Jul 03 2021   P-value (F-stat):                   0.0000
+Time:                        19:16:24   Distribution:                      chi2(2)
 Cov. Estimator:                robust   R-squared (No Effects):             0.9091
                                         Varaibles Absorbed:              1.987e+05
                              Parameter Estimates                              
 ==============================================================================
             Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
 ------------------------------------------------------------------------------
-exog_0         0.9986     0.0010     992.27     0.0000      0.9966      1.0006
-exog_1         3.0004     0.0010     2979.3     0.0000      2.9985      3.0024
+exog_0         1.0000     0.0010     990.74     0.0000      0.9981      1.0020
+exog_1         2.9995     0.0010     2971.9     0.0000      2.9976      3.0015
 ==============================================================================
 </pre></div>
 </div>
@@ -1505,11 +1543,8 @@ exog_1         3.0004     0.0010     2979.3     0.0000      2.9985      3.0024
 <p>You have two options for adding in logs: do them before, or do them in the formula. Doing them before just makes use of standard dataframe operations to declare a new column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;lnhp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;hp&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ lnhp&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
-         <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;lnhp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;hp&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ lnhp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1527,7 +1562,7 @@ lnhp         -10.7642      1.224     -8.792      0.000     -13.265      -8.264
 <p>Alternatively, you can specify the log directly in the formula:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_ln</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ np.log(hp)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_ln</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ np.log(hp)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_ln</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1546,10 +1581,7 @@ np.log(hp)   -10.7642      1.224     -8.792      0.000     -13.265      -8.264
 <p>Clearly, the first method will work for <code class="docutils literal notranslate"><span class="pre">arcsinh(x)</span></code> and <code class="docutils literal notranslate"><span class="pre">log(x+1)</span></code>, but you can also pass both of these into the formula directly too. (For more on the pros and cons of arcsinh, see <span id="id2">[<a class="reference internal" href="zreferences.html#id6"><span>7</span></a>]</span>.) Here it is with arcsinh:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ np.arcsinh(hp)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
-         <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-         <span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ np.arcsinh(hp)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1582,7 +1614,7 @@ y = \beta_0 + \beta_1 x_1^2
 <p>Alright, with all of that preamble out of the way, let’s see how we actual do some of this! Let’s try including a linear and squared term in the regression of <code class="docutils literal notranslate"><span class="pre">mpg</span></code> on <code class="docutils literal notranslate"><span class="pre">hp</span></code> making use of the numpy power function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_poly</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ hp + np.power(hp, 2)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_poly</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ hp + np.power(hp, 2)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res_poly</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1602,7 +1634,7 @@ np.power(hp, 2)     0.0004   9.84e-05      4.275      0.000       0.000       0.
 <p>Now let’s include the original term in hp, a term in disp, and the interaction between them, which is represented by hp:disp in the table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_inter</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ hp * disp&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_inter</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ hp * disp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res_inter</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1623,7 +1655,7 @@ hp:disp        0.0003   8.69e-05      3.336      0.002       0.000       0.000
 <p>In the unusual case that you want <em>only</em> the interaction term, you write it as it appears in the table above:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;mpg ~ hp : disp&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;mpg ~ hp : disp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1718,8 +1750,8 @@ hp:disp       -0.0001   1.91e-05     -7.409      0.000      -0.000      -0.000
 <p>We will first need to take the data out of the <strong>pandas</strong> dataframe and put it into a couple of arrays. When we’re not using the formula API, the default is to treat the array X as the design matrix for the regression-so, if it doesn’t have a column of constants in, there will be no intercept in the regression. Therefore, we need to add a constant vector to the matrix <code class="docutils literal notranslate"><span class="pre">X</span></code> if we <em>do</em> want an intercept. Use <code class="docutils literal notranslate"><span class="pre">sm.add_constant(X)</span></code> for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xf</span><span class="p">[</span><span class="s2">&quot;mass&quot;</span><span class="p">])</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
@@ -1732,8 +1764,8 @@ hp:disp       -0.0001   1.91e-05     -7.409      0.000      -0.000      -0.000
 Dep. Variable:                      y   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                    0.7446
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):              0.392
-Time:                        23:28:58   Log-Likelihood:                -361.23
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):              0.392
+Time:                        19:16:25   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1771,12 +1803,12 @@ Notes:
 
 <span class="n">no_obs</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">no_obs</span><span class="p">))</span>
-<span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">prng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">no_obs</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">prng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">no_obs</span><span class="p">)</span>
 <span class="c1"># Get this a numpy array</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
 <span class="c1"># Create the y data, adding in a bit of noise</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">prng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">no_obs</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">el_y</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="k">if</span> <span class="n">el_x</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span> <span class="k">else</span> <span class="n">el_y</span> <span class="o">+</span> <span class="mf">3.4</span> <span class="k">for</span> <span class="n">el_y</span><span class="p">,</span> <span class="n">el_x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">prng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">no_obs</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">el_y</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="k">if</span> <span class="n">el_x</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span> <span class="k">else</span> <span class="n">el_y</span> <span class="o">+</span> <span class="mf">3.4</span> <span class="k">for</span> <span class="n">el_y</span><span class="p">,</span> <span class="n">el_x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]</span>
 <span class="n">X</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
 </pre></div>
 </div>
@@ -1895,8 +1927,8 @@ Notes:
 Dep. Variable:                      y   R-squared:                       0.998
 Model:                            OLS   Adj. R-squared:                  0.998
 Method:                 Least Squares   F-statistic:                 4.302e+04
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):          6.90e-261
-Time:                        23:28:58   Log-Likelihood:                 165.45
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):          6.90e-261
+Time:                        19:16:25   Log-Likelihood:                 165.45
 No. Observations:                 200   AIC:                            -324.9
 Df Residuals:                     197   BIC:                            -315.0
 Df Model:                           2                                         
@@ -1942,11 +1974,13 @@ x_{2i} &amp; = z_{1i}\hat{\delta} + z_{2i}\hat{\gamma} + \nu_i\end{split}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv&#39;</span><span class="p">,</span>
-                   <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">})</span>
-        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">rprice</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;cpi&#39;</span><span class="p">],</span>
-                <span class="n">rincome</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;cpi&#39;</span><span class="p">])</span>
-     <span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">},</span>
+<span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">rprice</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;cpi&quot;</span><span class="p">],</span>
+    <span class="n">rincome</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;cpi&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2078,9 +2112,10 @@ x_{2i} &amp; = z_{1i}\hat{\delta} + z_{2i}\hat{\gamma} + \nu_i\end{split}
 <p>in the second stage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_iv2sls</span> <span class="o">=</span> <span class="p">(</span><span class="n">IV2SLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;np.log(packs) ~ 1 + np.log(rincome) + C(year) + C(state) + [np.log(rprice) ~ taxs]&#39;</span><span class="p">,</span>
-                                      <span class="n">df</span><span class="p">)</span>
-                        <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_iv2sls</span> <span class="o">=</span> <span class="n">IV2SLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+    <span class="s2">&quot;np.log(packs) ~ 1 + np.log(rincome) + C(year) + C(state) + [np.log(rprice) ~ taxs]&quot;</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s2">&quot;clustered&quot;</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_iv2sls</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2090,9 +2125,9 @@ x_{2i} &amp; = z_{1i}\hat{\delta} + z_{2i}\hat{\gamma} + \nu_i\end{split}
 ==============================================================================
 Dep. Variable:          np.log(packs)   R-squared:                      0.9659
 Estimator:                    IV-2SLS   Adj. R-squared:                 0.9279
-No. Observations:                  96   F-statistic:                  2.66e+16
-Date:                Wed, Jun 16 2021   P-value (F-stat)                0.0000
-Time:                        23:28:58   Distribution:                 chi2(50)
+No. Observations:                  96   F-statistic:                -1.776e+16
+Date:                Sat, Jul 03 2021   P-value (F-stat)                1.0000
+Time:                        19:16:25   Distribution:                 chi2(50)
 Cov. Estimator:             clustered                                         
                                                                               
                                 Parameter Estimates                                
@@ -2100,7 +2135,7 @@ Cov. Estimator:             clustered
                  Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
 -----------------------------------------------------------------------------------
 Intercept           9.4924     0.0263     360.24     0.0000      9.4407      9.5440
-C(year)[T.1995]    -0.0328                                                         
+C(year)[T.1995]    -0.0328  5.401e-09 -6.075e+06     0.0000     -0.0328     -0.0328
 C(state)[T.AR]      0.1770     0.0531     3.3338     0.0009      0.0729      0.2810
 C(state)[T.AZ]     -0.0899     0.0132    -6.8132     0.0000     -0.1158     -0.0640
 C(state)[T.CA]     -0.2781     0.0214    -12.996     0.0000     -0.3200     -0.2361
@@ -2148,8 +2183,8 @@ C(state)[T.WA]      0.0064     0.0011     6.0151     0.0000      0.0043      0.0
 C(state)[T.WI]      0.0741     0.0590     1.2569     0.2088     -0.0415      0.1897
 C(state)[T.WV]      0.1576     0.0582     2.7097     0.0067      0.0436      0.2716
 C(state)[T.WY]     -0.0169     0.0590    -0.2858     0.7750     -0.1325      0.0988
-np.log(rincome)     0.4434  6.274e-08  7.068e+06     0.0000      0.4434      0.4434
-np.log(rprice)     -1.2793  8.704e-09  -1.47e+08     0.0000     -1.2793     -1.2793
+np.log(rincome)     0.4434   6.69e-08  6.628e+06     0.0000      0.4434      0.4434
+np.log(rprice)     -1.2793                                                         
 ===================================================================================
 
 Endogenous: np.log(rprice)
@@ -2159,7 +2194,7 @@ Debiased: False
 Num Clusters: 2
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/linearmodels/iv/results.py:189: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/linearmodels/iv/results.py:189: RuntimeWarning: invalid value encountered in sqrt
   std_errors = sqrt(diag(self.cov))
 </pre></div>
 </div>
@@ -2181,14 +2216,14 @@ Num Clusters: 2
 R-squared                          0.9760
 Partial R-squared                  0.7070
 Shea&#39;s R-squared                   0.7070
-Partial F-statistic             4.104e+28
+Partial F-statistic             1.432e+28
 P-value (Partial F-stat)           0.0000
 Partial F-stat Distn              chi2(1)
-==========================   ============
+========================== ==============
 Intercept                          4.4375
                                  (410.34)
 C(year)[T.1995]                    0.0822
-                               (        )
+                              (6.064e+07)
 C(state)[T.AR]                    -0.0190
                                 (-3.5717)
 C(state)[T.AZ]                     0.0552
@@ -2284,9 +2319,9 @@ C(state)[T.WV]                     0.0205
 C(state)[T.WY]                    -0.0005
                                 (-0.0220)
 np.log(rincome)                   -0.0296
-                               (        )
+                             (-2.503e+06)
 taxs                               0.0051
-                               (2.94e+08)
+                               (        )
 -----------------------------------------
 
 T-stats reported in parentheses
@@ -2305,10 +2340,10 @@ T-stats use same covariance type as original model
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wooldridge&#39;s regression test of exogeneity
 H0: Endogenous variables are exogenous
-Statistic: 14000039221717696.0000
-P-value: 0.0000
+Statistic: -141329958331265456.0000
+P-value: 1.0000
 Distributed: chi2(1)
-WaldTestStatistic, id: 0x7fa8c8eb1d30
+WaldTestStatistic, id: 0x7fea8555f250
 </pre></div>
 </div>
 </div>
@@ -2316,9 +2351,9 @@ WaldTestStatistic, id: 0x7fa8c8eb1d30
 <p>We can compare the IV results against (naive) OLS. First, run the OLS equivalent:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_cig_ols</span> <span class="o">=</span> <span class="p">(</span><span class="n">IV2SLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;np.log(packs) ~ 1 + np.log(rincome) + C(year) + C(state) + np.log(rprice)&#39;</span><span class="p">,</span>
-                                      <span class="n">df</span><span class="p">)</span>
-                        <span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_cig_ols</span> <span class="o">=</span> <span class="n">IV2SLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+    <span class="s2">&quot;np.log(packs) ~ 1 + np.log(rincome) + C(year) + C(state) + np.log(rprice)&quot;</span><span class="p">,</span> <span class="n">df</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s2">&quot;clustered&quot;</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2330,8 +2365,8 @@ WaldTestStatistic, id: 0x7fa8c8eb1d30
 <span class="kn">from</span> <span class="nn">linearmodels.iv.results</span> <span class="kn">import</span> <span class="n">compare</span>
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-<span class="n">res</span><span class="p">[</span><span class="s1">&#39;OLS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_cig_ols</span>
-<span class="n">res</span><span class="p">[</span><span class="s1">&#39;2SLS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_iv2sls</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;OLS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_cig_ols</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;2SLS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_iv2sls</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">compare</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
 </pre></div>
@@ -2348,13 +2383,13 @@ No. Observations                    96                96
 Cov. Est.                    clustered         clustered
 R-squared                       0.9675            0.9659
 Adj. R-squared                  0.9313            0.9279
-F-statistic                 -3.086e+17          2.66e+16
-P-value (F-stat)                1.0000            0.0000
+F-statistic                 -4.865e+16        -1.776e+16
+P-value (F-stat)                1.0000            1.0000
 ==================     ===============   ===============
 Intercept                       8.3597            9.4924
                               (484.80)          (360.24)
 C(year)[T.1995]                -0.0885           -0.0328
-                                                        
+                          (-2.224e+07)      (-6.075e+06)
 C(state)[T.AR]                  0.1686            0.1770
                               (3.7460)          (3.3338)
 C(state)[T.AZ]                 -0.1280           -0.0899
@@ -2450,18 +2485,14 @@ C(state)[T.WV]                  0.1490            0.1576
 C(state)[T.WY]                 -0.0150           -0.0169
                              (-0.2771)         (-0.2858)
 np.log(rincome)                 0.4974            0.4434
-                                             (7.068e+06)
+                           (1.084e+07)       (6.628e+06)
 np.log(rprice)                 -1.0560           -1.2793
-                                             (-1.47e+08)
+                          (-8.873e+07)                  
 ==================== ================= =================
 Instruments                                         taxs
 --------------------------------------------------------
 
 T-stats reported in parentheses
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/arthurturrell/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/linearmodels/iv/results.py:189: RuntimeWarning: invalid value encountered in sqrt
-  std_errors = sqrt(diag(self.cov))
 </pre></div>
 </div>
 </div>
@@ -2510,7 +2541,7 @@ T-stats reported in parentheses
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_logit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;GRADE ~ GPA + TUCE + PSI&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_logit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s2">&quot;GRADE ~ GPA + TUCE + PSI&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res_logit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -2524,8 +2555,8 @@ T-stats reported in parentheses
 Dep. Variable:                  GRADE   No. Observations:                   32
 Model:                          Logit   Df Residuals:                       28
 Method:                           MLE   Df Model:                            3
-Date:                Wed, 16 Jun 2021   Pseudo R-squ.:                  0.3740
-Time:                        23:28:58   Log-Likelihood:                -12.890
+Date:                Sat, 03 Jul 2021   Pseudo R-squ.:                  0.3740
+Time:                        19:16:25   Log-Likelihood:                -12.890
 converged:                       True   LL-Null:                       -20.592
 Covariance Type:            nonrobust   LLR p-value:                  0.001502
 ==============================================================================
@@ -2543,7 +2574,7 @@ PSI            2.3787      1.065      2.234      0.025       0.292       4.465
 <p>So, did participation (<code class="docutils literal notranslate"><span class="pre">PSI</span></code>) help increase a grade? Yes. But we need to check the marginal effect to say exactly how much. We’ll use <code class="docutils literal notranslate"><span class="pre">get_margeff</span></code> to do this, we’d like the <span class="math notranslate nohighlight">\(dy/dx\)</span> effect, and we’ll take it at the mean of each regressor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marg_effect</span> <span class="o">=</span> <span class="n">res_logit</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;dydx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marg_effect</span> <span class="o">=</span> <span class="n">res_logit</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dydx&quot;</span><span class="p">)</span>
 <span class="n">marg_effect</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2595,7 +2626,7 @@ PSI            2.3787      1.065      2.234      0.025       0.292       4.465
 <p>We can re-use our previous example of predicting a target <code class="docutils literal notranslate"><span class="pre">GRADE</span></code>, representing whether a grade improved or not, based on some regressors including participation (PSI) in a programme.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_probit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">probit</span><span class="p">(</span><span class="s1">&#39;GRADE ~ GPA + TUCE + PSI&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_probit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">probit</span><span class="p">(</span><span class="s2">&quot;GRADE ~ GPA + TUCE + PSI&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res_probit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -2609,8 +2640,8 @@ PSI            2.3787      1.065      2.234      0.025       0.292       4.465
 Dep. Variable:                  GRADE   No. Observations:                   32
 Model:                         Probit   Df Residuals:                       28
 Method:                           MLE   Df Model:                            3
-Date:                Wed, 16 Jun 2021   Pseudo R-squ.:                  0.3775
-Time:                        23:28:58   Log-Likelihood:                -12.819
+Date:                Sat, 03 Jul 2021   Pseudo R-squ.:                  0.3775
+Time:                        19:16:25   Log-Likelihood:                -12.819
 converged:                       True   LL-Null:                       -20.592
 Covariance Type:            nonrobust   LLR p-value:                  0.001405
 ==============================================================================
@@ -2623,14 +2654,11 @@ PSI            1.4263      0.595      2.397      0.017       0.260       2.593
 ==============================================================================
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_marg_effect</span> <span class="o">=</span> <span class="n">res_probit</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;dydx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_marg_effect</span> <span class="o">=</span> <span class="n">res_probit</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dydx&quot;</span><span class="p">)</span>
 <span class="n">p_marg_effect</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2670,8 +2698,8 @@ PSI            1.4263      0.595      2.397      0.017       0.260       2.593
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">support</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">support</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">logistic</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">support</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logistic&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">support</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">support</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Probit&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">support</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">logistic</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">support</span><span class="p">),</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Logistic&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">support</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">support</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Probit&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -2787,8 +2815,8 @@ y = x' \cdot \beta
 <p>What we have here are two sets of related data. Let’s perform several quantile regressions from 0.1 to 0.9 in steps of 0.1</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">quantreg</span><span class="p">(</span><span class="s1">&#39;foodexp ~ income&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-<span class="n">quantiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">quantreg</span><span class="p">(</span><span class="s2">&quot;foodexp ~ income&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">quantiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">q_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">quantiles</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -2807,8 +2835,8 @@ y = x' \cdot \beta
 Dep. Variable:                foodexp   Pseudo R-squared:               0.6206
 Model:                       QuantReg   Bandwidth:                       64.51
 Method:                 Least Squares   Sparsity:                        209.3
-Date:                Wed, 16 Jun 2021   No. Observations:                  235
-Time:                        23:28:59   Df Residuals:                      233
+Date:                Sat, 03 Jul 2021   No. Observations:                  235
+Time:                        19:16:26   Df Residuals:                      233
                                         Df Model:                            1
 ==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
@@ -2826,22 +2854,24 @@ strong multicollinearity or other numerical problems.
 <p>Let’s take a look at the results for all of the regressions <em>and</em> let’s add in OLS for comparison:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ols_res</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;foodexp ~ income&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ols_res</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;foodexp ~ income&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
 <span class="n">get_y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">50</span><span class="p">)</span>
 <span class="c1"># Just to make the plot clearer</span>
 <span class="n">x_max</span> <span class="o">=</span> <span class="mi">3000</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">x_max</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">x_max</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;foodexp&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;foodexp&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">q_results</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">get_y</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">],</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$q=</span><span class="si">{</span><span class="n">quantiles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">1.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">get_y</span><span class="p">(</span><span class="n">ols_res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">],</span> <span class="n">ols_res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;OLS&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">get_y</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">],</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$q=</span><span class="si">{</span><span class="n">quantiles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">1.1f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">get_y</span><span class="p">(</span><span class="n">ols_res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">],</span> <span class="n">ols_res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;OLS&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -2864,10 +2894,9 @@ strong multicollinearity or other numerical problems.
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
 
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
-                       <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;feature0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;feature1&#39;</span><span class="p">})</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;feature0&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;feature1&quot;</span><span class="p">})</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2934,7 +2963,9 @@ strong multicollinearity or other numerical problems.
 <p>Now let’s fit the model using a formula and a <code class="docutils literal notranslate"><span class="pre">window</span></code> of 25 steps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roll_reg</span> <span class="o">=</span> <span class="n">RollingOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;target ~ feature0 + feature1 -1&#39;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roll_reg</span> <span class="o">=</span> <span class="n">RollingOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+    <span class="s2">&quot;target ~ feature0 + feature1 -1&quot;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span>
+<span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">roll_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3014,9 +3045,9 @@ strong multicollinearity or other numerical problems.
 <p>Note that there aren’t parameters for entries between 0 and 23 because our window is 25 steps wide. We can easily look at how any of the coefficients are changing over time. Here’s an example for ‘feature0’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature0&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time step&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Coefficient value&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;feature0&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time step&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient value&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3028,8 +3059,7 @@ strong multicollinearity or other numerical problems.
 <p>A rolling regression with an <em>expanding</em> rather than <em>moving</em> window is effectively a recursive least squares model. We can do this instead using the <code class="docutils literal notranslate"><span class="pre">RecursiveLS</span></code> function from <strong>statsmodels</strong>. Let’s fit this to the whole dataset:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg_rls</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">RecursiveLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
-    <span class="s1">&#39;target ~ feature0 + feature1 -1&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg_rls</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">RecursiveLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;target ~ feature0 + feature1 -1&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 <span class="n">model_rls</span> <span class="o">=</span> <span class="n">reg_rls</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model_rls</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
@@ -3040,8 +3070,8 @@ strong multicollinearity or other numerical problems.
 ==============================================================================
 Dep. Variable:                 target   No. Observations:                  200
 Model:                    RecursiveLS   Log Likelihood                -570.923
-Date:                Wed, 16 Jun 2021   R-squared:                       0.988
-Time:                        23:28:59   AIC                           1145.847
+Date:                Sat, 03 Jul 2021   R-squared:                       0.988
+Time:                        19:16:26   AIC                           1145.847
 Sample:                             0   BIC                           1152.444
                                 - 200   HQIC                          1148.516
 Covariance Type:            nonrobust   Scale                           17.413
@@ -3066,12 +3096,14 @@ Warnings:
 <p>But now we can look back at how the values of the coefficients changed over time too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model_rls</span><span class="o">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">reg_rls</span><span class="o">.</span><span class="n">k_exog</span><span class="p">),</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model_rls</span><span class="o">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="n">reg_rls</span><span class="o">.</span><span class="n">k_exog</span><span class="p">),</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span>
+<span class="p">)</span>
 <span class="n">ax_list</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span>
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">ax_list</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">ax_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time step&#39;</span><span class="p">)</span>
-<span class="n">ax_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Coefficient value&#39;</span><span class="p">);</span>
+<span class="n">ax_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time step&quot;</span><span class="p">)</span>
+<span class="n">ax_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Coefficient value&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -3135,7 +3167,7 @@ Warnings:
 <p>First, let’s look at a Q-Q plot to get a sense of how the variables are distributed. This uses <strong>scipy</strong>’s stats module. The default distribution is normal but you can use any that <strong>scipy</strong> supports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;murder&#39;</span><span class="p">],</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;murder&quot;</span><span class="p">],</span> <span class="n">dist</span><span class="o">=</span><span class="s2">&quot;norm&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -3150,16 +3182,16 @@ Warnings:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="p">(</span>
-    <span class="n">ggplot</span><span class="p">(</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;murder&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;hs_grad&#39;</span><span class="p">))</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;murder&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;hs_grad&quot;</span><span class="p">))</span>
     <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
-    <span class="o">+</span> <span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;lm&#39;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;lm&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/econmt-regression_130_0.png" src="_images/econmt-regression_130_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8772715980782)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790306332266)&gt;
 </pre></div>
 </div>
 </div>
@@ -3167,10 +3199,14 @@ Warnings:
 <p>We can take into account those other factors by using a partial regression plot that asks what does <span class="math notranslate nohighlight">\(\mathbb{E}(y|X)\)</span> look like as a function of <span class="math notranslate nohighlight">\(\mathbb{E}(x_i|X)\)</span>? (Use <code class="docutils literal notranslate"><span class="pre">obs_labels=False</span></code> to remove data point labels.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}):</span>
-    <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="s1">&#39;murder&#39;</span><span class="p">,</span> <span class="n">exog_i</span><span class="o">=</span><span class="s1">&#39;hs_grad&#39;</span><span class="p">,</span>
-                                <span class="n">exog_others</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;urban&#39;</span><span class="p">,</span> <span class="s1">&#39;poverty&#39;</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span><span class="p">],</span>
-                                <span class="n">data</span><span class="o">=</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">obs_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}):</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress</span><span class="p">(</span>
+        <span class="n">endog</span><span class="o">=</span><span class="s2">&quot;murder&quot;</span><span class="p">,</span>
+        <span class="n">exog_i</span><span class="o">=</span><span class="s2">&quot;hs_grad&quot;</span><span class="p">,</span>
+        <span class="n">exog_others</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">,</span> <span class="s2">&quot;poverty&quot;</span><span class="p">,</span> <span class="s2">&quot;single&quot;</span><span class="p">],</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">obs_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3182,8 +3218,9 @@ Warnings:
 <p>At this point, the results of the regression are useful context.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_crime</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;murder ~ hs_grad + urban + poverty + single&#39;</span><span class="p">,</span>
-                  <span class="n">data</span><span class="o">=</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_crime</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span>
+    <span class="s2">&quot;murder ~ hs_grad + urban + poverty + single&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">crime_data</span><span class="o">.</span><span class="n">data</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_crime</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -3194,8 +3231,8 @@ Warnings:
 Dep. Variable:                 murder   R-squared:                       0.813
 Model:                            OLS   Adj. R-squared:                  0.797
 Method:                 Least Squares   F-statistic:                     50.08
-Date:                Wed, 16 Jun 2021   Prob (F-statistic):           3.42e-16
-Time:                        23:29:01   Log-Likelihood:                -95.050
+Date:                Sat, 03 Jul 2021   Prob (F-statistic):           3.42e-16
+Time:                        19:16:29   Log-Likelihood:                -95.050
 No. Observations:                  51   AIC:                             200.1
 Df Residuals:                      46   BIC:                             209.8
 Df Model:                           4                                         
@@ -3229,7 +3266,7 @@ strong multicollinearity or other numerical problems.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 
-<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_regress_exog</span><span class="p">(</span><span class="n">results_crime</span><span class="p">,</span> <span class="s1">&#39;hs_grad&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_regress_exog</span><span class="p">(</span><span class="n">results_crime</span><span class="p">,</span> <span class="s2">&quot;hs_grad&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -3242,7 +3279,7 @@ strong multicollinearity or other numerical problems.
 <p><strong>statsmodels</strong> can also produce influence plots of the ‘externally studentised’ residuals vs. the leverage of each observation as measured by the so-called hat matrix <span class="math notranslate nohighlight">\(X(X^{\;\prime}X)^{-1}X^{\;\prime}\)</span> (because it puts the ‘hat’ on <span class="math notranslate nohighlight">\(y\)</span>). Externally studentised residuals are residuals that are scaled by their standard deviation. High leverage points could exert an undue influence over the regression line, but only if the predicted <span class="math notranslate nohighlight">\(y\)</span> values of a regression that was fit with them excluded was quite different. In the example below, DC is having a big influence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}):</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">influence_plot</span><span class="p">(</span><span class="n">results_crime</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3255,21 +3292,23 @@ strong multicollinearity or other numerical problems.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put the results into a dataframe with Name, Coefficient, Error</span>
-<span class="n">res_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_crime</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">results_crime</span><span class="o">.</span><span class="n">bse</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-            <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Coefficient&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">}))</span>
+<span class="n">res_df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_crime</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">results_crime</span><span class="o">.</span><span class="n">bse</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Error&quot;</span><span class="p">})</span>
+<span class="p">)</span>
 <span class="c1"># Plot the coefficient values and their errors</span>
 <span class="p">(</span>
-    <span class="n">ggplot</span><span class="p">(</span><span class="n">res_df</span><span class="p">)</span> <span class="o">+</span>
-    <span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">))</span> <span class="o">+</span>
-    <span class="n">geom_errorbar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="s2">&quot;Coefficient-Error&quot;</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="s2">&quot;Coefficient+Error&quot;</span><span class="p">))</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">res_df</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">geom_errorbar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="s2">&quot;Coefficient-Error&quot;</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="s2">&quot;Coefficient+Error&quot;</span><span class="p">))</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/econmt-regression_142_0.png" src="_images/econmt-regression_142_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8772665490192)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790308940770)&gt;
 </pre></div>
 </div>
 </div>
@@ -3293,7 +3332,7 @@ strong multicollinearity or other numerical problems.
 <p>We’ll use the <a class="reference external" href="https://specification-curve.readthedocs.io/en/latest/readme.html"><strong>specification curve analysis</strong></a> package to do the first two, which you can install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">specification_curve</span></code> (full disclosure: I wrote this package). To demonstrate the full functionality, we’ll create a second, alternative ‘hp’ that is a transformed version of the original.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;hp_boxcox&#39;</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;hp&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;hp_boxcox&quot;</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;hp&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3303,12 +3342,14 @@ strong multicollinearity or other numerical problems.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">specification_curve</span> <span class="kn">import</span> <span class="n">specification_curve</span> <span class="k">as</span> <span class="n">specy</span>
 
-<span class="n">sc</span> <span class="o">=</span> <span class="n">specy</span><span class="o">.</span><span class="n">SpecificationCurve</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span>
-                              <span class="n">y_endog</span><span class="o">=</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span>
-                              <span class="n">x_exog</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lnhp&#39;</span><span class="p">,</span> <span class="s1">&#39;hp_boxcox&#39;</span><span class="p">],</span>
-                              <span class="n">controls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;drat&#39;</span><span class="p">,</span> <span class="s1">&#39;qsec&#39;</span><span class="p">,</span> <span class="s1">&#39;cyl&#39;</span><span class="p">,</span> <span class="s1">&#39;gear&#39;</span><span class="p">],</span>
-                              <span class="n">always_include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;gear&#39;</span><span class="p">],</span>
-                              <span class="n">cat_expand</span><span class="o">=</span><span class="s1">&#39;cyl&#39;</span><span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">specy</span><span class="o">.</span><span class="n">SpecificationCurve</span><span class="p">(</span>
+    <span class="n">mpg</span><span class="p">,</span>
+    <span class="n">y_endog</span><span class="o">=</span><span class="s2">&quot;mpg&quot;</span><span class="p">,</span>
+    <span class="n">x_exog</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lnhp&quot;</span><span class="p">,</span> <span class="s2">&quot;hp_boxcox&quot;</span><span class="p">],</span>
+    <span class="n">controls</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;drat&quot;</span><span class="p">,</span> <span class="s2">&quot;qsec&quot;</span><span class="p">,</span> <span class="s2">&quot;cyl&quot;</span><span class="p">,</span> <span class="s2">&quot;gear&quot;</span><span class="p">],</span>
+    <span class="n">always_include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;gear&quot;</span><span class="p">],</span>
+    <span class="n">cat_expand</span><span class="o">=</span><span class="s2">&quot;cyl&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
