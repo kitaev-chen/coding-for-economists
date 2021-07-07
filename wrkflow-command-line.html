@@ -551,7 +551,7 @@
 <div class="section" id="using-the-command-line">
 <h2><span class="section-number">3.3. </span>Using the command line<a class="headerlink" href="#using-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Bash is often the default command line shell on UNIX but zsh has gained popularity and is now the default for Mac. If you’re wondering what to use then I recommend zsh (Z Shell) from <a class="reference external" href="https://ohmyz.sh/">oh-my-zsh</a>.</p>
-<p>To open up the command line within Visual Studio Code, you can use the <kbd>⌃</kbd> + <kbd>`</kbd> keyboard shortcut ( onMac) or <kbd>ctrl</kbd> + <kbd>`</kbd> (Windows/Linux), or click “View &gt; Terminal”.</p>
+<p>To open up the command line within Visual Studio Code, you can use the <kbd>⌃</kbd> + <kbd>`</kbd> keyboard shortcut (on Mac) or <kbd>ctrl</kbd> + <kbd>`</kbd> (Windows/Linux), or click “View &gt; Terminal”.</p>
 <p>You should now see something like this</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>username@hostname:~$
 </pre></div>
@@ -573,13 +573,13 @@
 <p>Once you’ve run a few commands, you’ll notice that you can’t navigate around the command line like you can a text file or Python script. Here are some tips for navigating the command line:</p>
 <ul class="simple">
 <li><p>use tab to complete commands you’ve only partially written out. Try it by typing <code class="docutils literal notranslate"><span class="pre">dat</span></code> then hitting tab.</p></li>
-<li><p>use the ↑ (and ↓) keys to scroll through previous commands.</p></li>
-<li><p>to skip whole words, use ⌥+→ (and ⌥+←) on Mac, Ctrl+→ (and Ctrl+←) on Windows and Linux.</p></li>
-<li><p>Ctrl+a to move the cursor to the beginning of the line.</p></li>
-<li><p>Ctrl+e moves the cursor to the end of the line.</p></li>
-<li><p>Ctrl+k to delete everything to the right of the cursor.</p></li>
-<li><p>Ctrl+u to delete everything to the left of the cursor.</p></li>
-<li><p>Ctrl + r to search through previously used commands
+<li><p>use the <kbd>↑</kbd> and <kbd>↓</kbd> keys to scroll through previous commands.</p></li>
+<li><p>to skip whole words, use <kbd>⌥</kbd> + <kbd>→</kbd> and <kbd>⌥</kbd> + <kbd>←</kbd> on Mac, or <kbd>ctrl</kbd> + <kbd>→</kbd> and <kbd>ctrl</kbd> + <kbd>←</kbd> on Windows and Linux.</p></li>
+<li><p><kbd>ctrl</kbd> + <kbd>a</kbd> to move the cursor to the beginning of the line.</p></li>
+<li><p><kbd>ctrl</kbd> + <kbd>e</kbd> moves the cursor to the end of the line.</p></li>
+<li><p><kbd>ctrl</kbd> + <kbd>k</kbd> to delete everything to the right of the cursor.</p></li>
+<li><p><kbd>ctrl</kbd> + <kbd>u</kbd> to delete everything to the left of the cursor.</p></li>
+<li><p><kbd>ctrl</kbd> + <kbd>r</kbd> to search through previously used commands
 clear to clear your terminal.</p></li>
 </ul>
 <div class="section" id="navigating-directories">
@@ -788,8 +788,8 @@ zsh hello_world.sh
 </pre></div>
 </div>
 <p>which produces</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">program</span> <span class="n">at</span> <span class="n">Thu</span> <span class="mi">25</span> <span class="n">Mar</span> <span class="mi">2021</span> <span class="mi">21</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">22</span> <span class="n">GMT</span>
-<span class="n">Running</span> <span class="n">program</span> <span class="n">hello_world</span><span class="o">.</span><span class="n">sh</span> <span class="k">with</span> <span class="mi">0</span> <span class="n">arguments</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting program at Thu <span class="m">25</span> Mar <span class="m">2021</span> <span class="m">21</span>:23:22 GMT
+Running program hello_world.sh with <span class="m">0</span> arguments
 </pre></div>
 </div>
 <p>Notice that using <code class="docutils literal notranslate"><span class="pre">&quot;$(command)&quot;</span></code> inserted the output of the command into the text string. To assign variables in bash and zsh scripts, use the syntax <code class="docutils literal notranslate"><span class="pre">foo=bar</span></code> (no spaces) and access the value of the variable with <code class="docutils literal notranslate"><span class="pre">$foo</span></code>.</p>

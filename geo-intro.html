@@ -827,7 +827,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_8_0.svg" src="_images/geo-intro_8_0.svg" /></div>
+<img alt="_images/geo-intro_8_0.png" src="_images/geo-intro_8_0.png" />
+</div>
 </div>
 <p>I think it’s glorious just how easy this is to use.</p>
 <p>Because <strong>geopandas</strong> builds on <strong>pandas</strong>, we can do all of the usual pandas-like operations such as filtering based on values. Here’s how to filter to an individual country (one with a recognisable shape!):</p>
@@ -838,7 +839,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_11_0.svg" src="_images/geo-intro_11_0.svg" /></div>
+<img alt="_images/geo-intro_11_0.png" src="_images/geo-intro_11_0.png" />
+</div>
 </div>
 <p>Note that it is the last column in the dataframe, the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> column, that makes this sorcery possible.</p>
 </div>
@@ -889,7 +891,8 @@ Datum: World Geodetic System 1984
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_16_0.svg" src="_images/geo-intro_16_0.svg" /></div>
+<img alt="_images/geo-intro_16_0.png" src="_images/geo-intro_16_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -931,7 +934,8 @@ Name: geometry, dtype: geometry
   df[&quot;centroid&quot;] = df.centroid
 </pre></div>
 </div>
-<img alt="_images/geo-intro_21_1.svg" src="_images/geo-intro_21_1.svg" /></div>
+<img alt="_images/geo-intro_21_1.png" src="_images/geo-intro_21_1.png" />
+</div>
 </div>
 <p>Let’s explore those basic building blocks a bit more. A point at position (1, 2) is defined as follows (<strong>shapely</strong> is used by <strong>geopandas</strong>):</p>
 <div class="cell docutils container">
@@ -1014,7 +1018,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_32_0.svg" src="_images/geo-intro_32_0.svg" /></div>
+<img alt="_images/geo-intro_32_0.png" src="_images/geo-intro_32_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="buffers">
@@ -1042,7 +1047,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_35_0.svg" src="_images/geo-intro_35_0.svg" /></div>
+<img alt="_images/geo-intro_35_0.png" src="_images/geo-intro_35_0.png" />
+</div>
 </div>
 <p>Next we bring in data on major rivers and pass it through the same projection as our map of England is using:</p>
 <div class="cell docutils container">
@@ -1057,7 +1063,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_37_0.svg" src="_images/geo-intro_37_0.svg" /></div>
+<img alt="_images/geo-intro_37_0.png" src="_images/geo-intro_37_0.png" />
+</div>
 </div>
 <p>We can now combine these for a view on how these rivers goes through the UK. We will use <code class="docutils literal notranslate"><span class="pre">buffer</span></code> to modify how easy it is to visualise the river by asking for everything within 1.5 km from the river.</p>
 <div class="cell docutils container">
@@ -1072,7 +1079,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_39_0.svg" src="_images/geo-intro_39_0.svg" /></div>
+<img alt="_images/geo-intro_39_0.png" src="_images/geo-intro_39_0.png" />
+</div>
 </div>
 <p>Let’s turn our focus to one river: the Trent. We will ask which of the regions are intersected by that river and plot only those parts. We’ll also add some annotations for the names of the regions.</p>
 <div class="cell docutils container">
@@ -1125,7 +1133,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_41_0.svg" src="_images/geo-intro_41_0.svg" /></div>
+<img alt="_images/geo-intro_41_0.png" src="_images/geo-intro_41_0.png" />
+</div>
 </div>
 <p>Note that the way we set this up to use <code class="docutils literal notranslate"><span class="pre">river_name</span></code> as an input variable means we could oh so easily wrap everything up in a function that did this for other rivers. Oh go on then, let’s see how that works <em>because</em> it shows how scalable operations are once you do them in <em>code</em>:</p>
 <div class="cell docutils container">
@@ -1178,7 +1187,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_45_0.svg" src="_images/geo-intro_45_0.svg" /></div>
+<img alt="_images/geo-intro_45_0.png" src="_images/geo-intro_45_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="computing-distances">
@@ -1234,7 +1244,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_47_0.svg" src="_images/geo-intro_47_0.svg" /></div>
+<img alt="_images/geo-intro_47_0.png" src="_images/geo-intro_47_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="neighbours">
@@ -1423,7 +1434,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_53_0.svg" src="_images/geo-intro_53_0.svg" /></div>
+<img alt="_images/geo-intro_53_0.png" src="_images/geo-intro_53_0.png" />
+</div>
 </div>
 <p>Hooray! It looks like it worked. And notice how the only variable we need to change to get a different map is <code class="docutils literal notranslate"><span class="pre">name_of_region</span></code>, so this could easily be wrapped up in a function to re-use again.</p>
 <p>For an exercise, why don’t you see if you can figure out what’s so special about Powys and the Isle of Wight.</p>
@@ -1509,7 +1521,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_57_0.svg" src="_images/geo-intro_57_0.svg" /></div>
+<img alt="_images/geo-intro_57_0.png" src="_images/geo-intro_57_0.png" />
+</div>
 </div>
 <p>The default way that columns other than the geometry are combined is by taking the first row of each kind, but dissolve accepts and <code class="docutils literal notranslate"><span class="pre">agg_func=</span></code> argument that you can also pass last, min, max, sum, mean, and median.</p>
 </div>
@@ -1995,7 +2008,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_79_0.svg" src="_images/geo-intro_79_0.svg" /></div>
+<img alt="_images/geo-intro_79_0.png" src="_images/geo-intro_79_0.png" />
+</div>
 </div>
 <p>The channel with few streets is the river Thames.</p>
 <p>We can also use <strong>osmnx</strong> to work out the shortest path between nodes. Let’s see a practical example: going from Bank, north of the river Thames, to Borough Market (great for lunch), south of the river. First, we need the lat and long of Borough Market.</p>
@@ -2038,7 +2052,8 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geo-intro_84_0.svg" src="_images/geo-intro_84_0.svg" /></div>
+<img alt="_images/geo-intro_84_0.png" src="_images/geo-intro_84_0.png" />
+</div>
 </div>
 <p>Okay, you’re in Borough Market but you need to decide where exactly to get your lunch from. OpenStreetMap includes information on many kinds of nearby amenities, including <code class="docutils literal notranslate"><span class="pre">bar</span></code>, <code class="docutils literal notranslate"><span class="pre">cafe</span></code>, and <code class="docutils literal notranslate"><span class="pre">pub</span></code>. We can retrieve this information and put it straight into a <strong>geopandas</strong> dataframe using the <code class="docutils literal notranslate"><span class="pre">geometries_from_place</span></code> function.</p>
 <div class="cell docutils container">
@@ -2089,7 +2104,8 @@ Name: geometry, dtype: geometry
   and should_run_async(code)
 </pre></div>
 </div>
-<img alt="_images/geo-intro_87_1.svg" src="_images/geo-intro_87_1.svg" /></div>
+<img alt="_images/geo-intro_87_1.png" src="_images/geo-intro_87_1.png" />
+</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">amenity</span></code> is just one type of geometry that can be retrieved too: others are <code class="docutils literal notranslate"><span class="pre">building</span></code>, <code class="docutils literal notranslate"><span class="pre">landuse</span></code>, and <code class="docutils literal notranslate"><span class="pre">leisure</span></code>. You can find a list of them <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Map_features">here</a>. For example, here are the (many) churches within around 1km of the Bank of England:</p>
 <div class="cell docutils container">
@@ -2119,7 +2135,8 @@ Name: geometry, dtype: geometry
   and should_run_async(code)
 </pre></div>
 </div>
-<img alt="_images/geo-intro_90_1.svg" src="_images/geo-intro_90_1.svg" /></div>
+<img alt="_images/geo-intro_90_1.png" src="_images/geo-intro_90_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="review">
