@@ -1,0 +1,1959 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Forecasting Exercises &#8212; Coding for Economists</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/time-fcasts-env.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Intro to Geo-Spatial Analysis" href="geo-intro.html" />
+    <link rel="prev" title="2. Time Series" href="time-series.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/time-fcasts-env.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Forecasting Exercises" />
+<meta property="og:description" content="Forecasting Exercises  In this chapter, we’re going to do a tour of forecasting exercises: that is, the set of operations, like slicing up time, that you might " />
+<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Coding
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-preliminaries.html">
+   1. Preliminaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-basics.html">
+   2. Basics of Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-advanced.html">
+   3. Advanced Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-where.html">
+   4. Options for Writing Code
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-best-practice.html">
+   1. Tips for Better Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+   2. Tools for Better Coding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   3. The Command Line
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-analysis-quickstart.html">
+   1. Data Analysis Quickstart
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-intro.html">
+   2. Working with Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-exploratory-analysis.html">
+   3. Exploratory Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-read-and-write.html">
+   4. Reading and Writing Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-extraction.html">
+   5. Extracting Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-sharing.html">
+   6. Sharing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-advanced.html">
+   7. Advanced Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data Visualisation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-intro.html">
+   1. Intro to Data Visualisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-common-plots.html">
+   2. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-animation.html">
+   3. Animation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-probability-random.html">
+   1. Probability and Random Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-statistics.html">
+   2. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-regression.html">
+   3. Regression
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="text-intro.html">
+   1. Introduction to Text
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text-nlp.html">
+   2. Natural Language Processing
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Time
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-intro.html">
+   1. Introduction to Time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-series.html">
+   2. Time Series
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Forecasting Exercises
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geo-intro.html">
+   1. Intro to Geo-Spatial Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geo-vis.html">
+   2. Geo-Spatial Visualisation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Mathematics with Code
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="maths-maths-coding.html">
+   1. Intro to Mathematics with Code
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Automation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="auto-research-outputs.html">
+   1. Automating Research Outputs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Coming from ...
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-stata.html">
+   Coming from Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-matlab.html">
+   Coming from Matlab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-r.html">
+   Coming from R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coming-from-excel.html">
+   Coming from Excel
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Elsewhere
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/time-fcasts-env.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/aeturrell/coding-for-economists"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/aeturrell/coding-for-economists/issues/new?title=Issue%20on%20page%20%2Ftime-fcasts-env.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/aeturrell/coding-for-economists/main?urlpath=tree/time-fcasts-env.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/aeturrell/coding-for-economists/blob/main/time-fcasts-env.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-period-forecast">
+   3.1. Two Period Forecast
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-example-two-period-forecast">
+     3.1.1. An Example Two Period Forecast
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-lag">
+     3.1.2. Adding a Lag
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expanding-window">
+   3.2. Expanding Window
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-likely-best-possible-expanding-window-forecast">
+     3.2.1. The Likely Best Possible Expanding Window Forecast
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rolling-window">
+   3.3. Rolling Window
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-likely-best-possible-rolling-window-forecast">
+     3.3.1. The Likely Best Possible Rolling Window Forecast
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transforms-of-series-in-forecasting-exercises">
+   3.4. Transforms of Series in Forecasting Exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-vintage-and-the-real-time-information-flow">
+   3.5. Data Vintage and the Real-Time Information Flow
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="forecasting-exercises">
+<h1><span class="section-number">3. </span>Forecasting Exercises<a class="headerlink" href="#forecasting-exercises" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter, we’re going to do a tour of forecasting exercises: that is, the set of operations, like slicing up time, that you might need to do when performing a forecast. Although there will be some code in this chapter, we’re mostly laying the theoretical groundwork.</p>
+<p>Let’s start with some definitions. Features, or regressors, are labelled by <span class="math notranslate nohighlight">\(k = 0, \dots, K-1\)</span> and time by <span class="math notranslate nohighlight">\(t = 0, \dots, T-1\)</span>. Note that this means there are <span class="math notranslate nohighlight">\(T\)</span> time periods and <span class="math notranslate nohighlight">\(K\)</span> features. We’ll label different slices of time (or equivalently models trained on different data) by an index <span class="math notranslate nohighlight">\(\mu\)</span> beginning from <span class="math notranslate nohighlight">\(\mu=1\)</span>, and we’ll give these slices of time different labels: IS for in-sample and OS for out-of-sample. <span class="math notranslate nohighlight">\(f_\mu\)</span> is the model trained on the <span class="math notranslate nohighlight">\(\mu\)</span>th set of in-sample data. The target variable (the number we are trying to forecast) is <span class="math notranslate nohighlight">\(\left\{y_{t+h}\right\}_{t=0}^{t=T-1}\)</span>, where <span class="math notranslate nohighlight">\(h\)</span> is the number of time steps ahead we wish to forecast. Let <span class="math notranslate nohighlight">\(\left\{x_{tk}\right\}_{t=0}^{t=T-1}\)</span> represent feature (or regressor) <span class="math notranslate nohighlight">\(k\)</span>. In general, a forecast implies <span class="math notranslate nohighlight">\(h&gt;0\)</span> (otherwise we’re doing a nowcast).</p>
+<p>Let’s first do some setup for the rest of the chapter. We’ll be using the <strong>numpy</strong>, <strong>pandas</strong>, <strong>matplotlib</strong>, and <strong>plotnine</strong> packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">options</span><span class="p">,</span>
+    <span class="n">geom_tile</span><span class="p">,</span>
+    <span class="n">scale_size</span><span class="p">,</span>
+    <span class="n">scale_x_continuous</span><span class="p">,</span>
+    <span class="n">scale_y_continuous</span><span class="p">,</span>
+    <span class="n">ggplot</span><span class="p">,</span>
+    <span class="n">geom_point</span><span class="p">,</span>
+    <span class="n">aes</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">plotnine.scales</span> <span class="kn">import</span> <span class="n">scale_fill_brewer</span>
+
+<span class="c1"># Plot settings</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
+    <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
+<span class="p">)</span>
+<span class="n">options</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;figure_size&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+<span class="n">options</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;dpi&quot;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Set pandas max rows displayed for readability</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="two-period-forecast">
+<h2><span class="section-number">3.1. </span>Two Period Forecast<a class="headerlink" href="#two-period-forecast" title="Permalink to this headline">¶</a></h2>
+<p>The most simple forecast you can imagine is if we have two periods (each of which may be made up of more than one value of <span class="math notranslate nohighlight">\(t\)</span>). The important thing is that the <span class="math notranslate nohighlight">\(t\)</span> in the first, “in-sample” period do not overlap with the <span class="math notranslate nohighlight">\(t\)</span> in the second, “out-of-sample” period. That’s because we <em>only want to use information in the in-sample period to forecast the out-of-sample period</em>. There are some cases where you may want to “forecast” the in-sample period, but if you’re interested in the real-world performance of your forecast, this is the setup you need.</p>
+<p>In this world of a single in-sample period and a single out-of-sample period, <span class="math notranslate nohighlight">\(\mu=1\)</span>, and we could get drop that notation and just use IS and OS. But we’ll leave it in to make the contrast with what’s to come clearer.</p>
+<p>The exercise is to use a model, <span class="math notranslate nohighlight">\(f = f_{\mu=1}\)</span>, that is trained to predict <span class="math notranslate nohighlight">\(\{y_{t+h}, t:\mu_{\text{IS}}=1\}\)</span> using <span class="math notranslate nohighlight">\(\{x_{tk}, t:\mu_{\text{IS}}=1\}\)</span> so that it can do an out-of-sample forecast of <span class="math notranslate nohighlight">\(\{y_{t+h}, t:\mu_\text{OS}=1\}\)</span> using <span class="math notranslate nohighlight">\(\{x_{tk}, t:\mu_{\text{OS}}=1\}\)</span>. It’s actually easier to see it with a picture:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_3_0.png" src="_images/time-fcasts-env_3_0.png" />
+</div>
+</div>
+<p>In this case, the in-sample period runs from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=4\)</span>, while the out-of-sample period runs from <span class="math notranslate nohighlight">\(t=5\)</span> to <span class="math notranslate nohighlight">\(t=9\)</span>. <span class="math notranslate nohighlight">\(T=10\)</span>.</p>
+<p>Let’s see how it works with some fake data, and we’ll assume <span class="math notranslate nohighlight">\(h=3\)</span> in this case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">horizon</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">horizon</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">),</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)[:</span><span class="n">num</span><span class="p">],</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)[</span><span class="n">num</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">num</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">horizon</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>y</th>
+      <th>x</th>
+      <th>$y_{t+h}$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>a</td>
+      <td>n</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>b</td>
+      <td>o</td>
+      <td>e</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>c</td>
+      <td>p</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>d</td>
+      <td>q</td>
+      <td>g</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>e</td>
+      <td>r</td>
+      <td>h</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>f</td>
+      <td>s</td>
+      <td>i</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>g</td>
+      <td>t</td>
+      <td>j</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>h</td>
+      <td>u</td>
+      <td>k</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>i</td>
+      <td>v</td>
+      <td>l</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>j</td>
+      <td>w</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>k</td>
+      <td>x</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>l</td>
+      <td>y</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>m</td>
+      <td>z</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What we have here is a dataset with a time index and y and x values. <span class="math notranslate nohighlight">\(y_{t+h}\)</span> has been added as a feature by shifting the <span class="math notranslate nohighlight">\(y\)</span> variable back by <span class="math notranslate nohighlight">\(h=3\)</span> steps. We’re not going to be able to predict those NaN values, so the first thing to do is to drop those variables. Second, we’ll want to add in which parts are in-sample and which are out-of-sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;IS&quot;</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="k">else</span> <span class="s2">&quot;OS&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y</th>
+      <th>x</th>
+      <th>$y_{t+h}$</th>
+      <th>sample</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>a</td>
+      <td>n</td>
+      <td>d</td>
+      <td>IS</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b</td>
+      <td>o</td>
+      <td>e</td>
+      <td>IS</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>c</td>
+      <td>p</td>
+      <td>f</td>
+      <td>IS</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>d</td>
+      <td>q</td>
+      <td>g</td>
+      <td>IS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>e</td>
+      <td>r</td>
+      <td>h</td>
+      <td>IS</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>f</td>
+      <td>s</td>
+      <td>i</td>
+      <td>OS</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>g</td>
+      <td>t</td>
+      <td>j</td>
+      <td>OS</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>h</td>
+      <td>u</td>
+      <td>k</td>
+      <td>OS</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>i</td>
+      <td>v</td>
+      <td>l</td>
+      <td>OS</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>j</td>
+      <td>w</td>
+      <td>m</td>
+      <td>OS</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note how the sample can either be IS or OS-but not both.</p>
+<p>Now, if we were doing a forecast, we’d select the IS part to do our initial model building by running something like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;IS&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;IS&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This would then be used to predict the out of sample values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_t_plus_h_os</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;OS&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>To know how good the estimate was, we’d then compare it with the true value. Typically, a value like the root mean square error is used for this, given by</p>
+<div class="math notranslate nohighlight">
+\[
+{\displaystyle \operatorname {RMSE} ={\sqrt {\frac {\sum _{t=0}^{T-1}({\hat {y}}_{t+h}-y_{t+h})^{2}}{T}}}.}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{y}_{t+h}\)</span> is the predicted value, equivalent to the object <code class="docutils literal notranslate"><span class="pre">y_t_plus_h_os</span></code> above.</p>
+<div class="section" id="an-example-two-period-forecast">
+<h3><span class="section-number">3.1.1. </span>An Example Two Period Forecast<a class="headerlink" href="#an-example-two-period-forecast" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see an example of this with some numerical data. Our dataframe needs to have our features, <span class="math notranslate nohighlight">\(x\)</span>, and target, <span class="math notranslate nohighlight">\(y_{t+h}\)</span>, in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">horizon</span> <span class="o">=</span> <span class="mi">3</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="o">+</span> <span class="n">horizon</span><span class="p">),</span>
+        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">horizon</span>
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">window_size</span><span class="p">))</span>
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1"># Bring y_{t+h} in line with feature x so that models always take data from the same row.</span>
+<span class="c1"># Note that for a variable to be at t+h today, with h the horizon, we need to bring it *back* by h steps</span>
+<span class="n">df</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">horizon</span><span class="p">)</span>
+<span class="c1"># drop y so that we don&#39;t accidentally put it into model as a feature by mistake</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>$y_{t+h}$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As ever, it’s good to look at your data so let’s do a quick chart. Note that time and <span class="math notranslate nohighlight">\(x\)</span> have the same values here, so this is also the time series of <span class="math notranslate nohighlight">\(y_{t+h}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_11_0.png" src="_images/time-fcasts-env_11_0.png" />
+</div>
+</div>
+<p>Okay, what could possibly go wrong! Let’s now do our forecasting exercise. First, we train or fit the model. Note that <em>pandas</em> indexing is <em>inclusive</em>, so we run to <code class="docutils literal notranslate"><span class="pre">window_size-1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">window_size</span></code> to pick up our 5 in-sample points</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">]]</span>
+<span class="p">)</span>
+<span class="c1"># Make in-sample prediction. Note that the predictions of the model come out in</span>
+<span class="c1"># an array of form [[a], [b], ...] so we flatten this to [a, b, ...]. Also, we pad</span>
+<span class="c1"># the results we didn&#39;t predict with [None]</span>
+<span class="n">df</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{IS}</span><span class="s2">}$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">window_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make out of sample prediction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{OS}</span><span class="s2">}$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">window_size</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">window_size</span><span class="p">:,</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>$y_{t+h}$</th>
+      <th>$\hat{y}_{t+h}^{\operatorname{IS}}$</th>
+      <th>$\hat{y}_{t+h}^{\operatorname{OS}}$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6.0</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>NaN</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8.0</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9.0</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{OS}</span><span class="s2">}$&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{OS}</span><span class="s2">}$&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$ and $\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{OS}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_16_0.png" src="_images/time-fcasts-env_16_0.png" />
+</div>
+</div>
+<p>Oh dear, it doesn’t look like our out-of-sample prediction did very well! Let’s see what the RMSE error is for both the in-sample and out-of-sample prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+
+<span class="k">def</span> <span class="nf">get_rmse</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fcast_name</span><span class="p">,</span> <span class="n">target_name</span><span class="p">):</span>
+    <span class="c1"># Get the index of the fcast</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fcast_name</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+    <span class="c1"># only compare to values of target for which we have predictions:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">fcast_name</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">target_name</span><span class="p">])</span>
+    <span class="p">)</span>
+
+
+<span class="n">is_rmse</span> <span class="o">=</span> <span class="n">get_rmse</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{IS}</span><span class="s2">}$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">)</span>
+<span class="n">os_rmse</span> <span class="o">=</span> <span class="n">get_rmse</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\hat</span><span class="si">{y}</span><span class="s2">_{t+h}^{\operatorname</span><span class="si">{OS}</span><span class="s2">}$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rmse for in-sample best predictions is </span><span class="si">{</span><span class="n">is_rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rmse for out-of-sample best predictions is </span><span class="si">{</span><span class="n">os_rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rmse for in-sample best predictions is 0.00
+The rmse for out-of-sample best predictions is 2.83
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case - unsurprisingly given the big break in the trend of the time series - even though in-sample forecast is perfect, the <em>out-of-sample</em> forecast is terrible! If you ever have a situation where the OS RMSE is <em>lower</em> than the IS RMSE, it should ring alarm bells: it suggests something has gone wrong in the code.</p>
+</div>
+<div class="section" id="adding-a-lag">
+<h3><span class="section-number">3.1.2. </span>Adding a Lag<a class="headerlink" href="#adding-a-lag" title="Permalink to this headline">¶</a></h3>
+<p>Quite frequently, you’ll want to include lags in your forecast specification. Let’s see how to do that in this simple, two-period forecast example.</p>
+<p>Just as forecasting a variable at <span class="math notranslate nohighlight">\(t+h\)</span> means performing a <code class="docutils literal notranslate"><span class="pre">.shift(-h)</span></code> in order to bring the data together in the same row of a dataframe, so creating a feature (or regressor) that is a lag of another column will involve shifting the <em>other</em> way in time. So we’re going to use <code class="docutils literal notranslate"><span class="pre">.shift(lag)</span></code>. Let’s see it with some data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">horizon</span> <span class="o">=</span> <span class="mi">3</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span> <span class="o">+</span> <span class="n">horizon</span><span class="p">),</span>
+        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">horizon</span><span class="p">,</span> <span class="n">window_size</span><span class="p">))</span>
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1"># Bring y_{t+h} in line with feature x so that models always take data from the same row.</span>
+<span class="c1"># Note that for a variable to be at t+h today, with h the horizon, we need to bring it *back* by h steps</span>
+<span class="n">df</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$y_{t+h}$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">horizon</span><span class="p">)</span>
+
+<span class="c1"># New part: create a single lag of y</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;lag_y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+      <th>$y_{t+h}$</th>
+      <th>lag_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.0</td>
+      <td>-4</td>
+      <td>-1.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>-3</td>
+      <td>0.0</td>
+      <td>-4.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>-2</td>
+      <td>1.0</td>
+      <td>-3.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>-1</td>
+      <td>2.0</td>
+      <td>-2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5.0</td>
+      <td>2</td>
+      <td>9.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6.0</td>
+      <td>3</td>
+      <td>8.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7.0</td>
+      <td>4</td>
+      <td>7.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8.0</td>
+      <td>9</td>
+      <td>6.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9.0</td>
+      <td>8</td>
+      <td>5.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10.0</td>
+      <td>7</td>
+      <td>NaN</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>11.0</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>12.0</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now you can see that there’s an extra row we can’t use (because we don’t have the data for a lag of y from that time). As before, in practice, we’d drop y so that we didn’t use it by mistake and also drop the top and tail rows that have nans in. We also reset the index to ensure it starts at 0 (by dropping the first row, we would otherwise lose the first index of zero):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>$y_{t+h}$</th>
+      <th>lag_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-4.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>-3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>-2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6.0</td>
+      <td>8.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8.0</td>
+      <td>6.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9.0</td>
+      <td>5.0</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="expanding-window">
+<h2><span class="section-number">3.2. </span>Expanding Window<a class="headerlink" href="#expanding-window" title="Permalink to this headline">¶</a></h2>
+<p>In an expanding window forecast exercise, multiple forecasts are made. In each, the in-sample period grows over time. Necessarily (given finite data), the out-of-sample period shrinks over time. The overall out-of-sample forecast is given by the unique union of the out-of-sample forecasts that are trained on the most information. To make this clear, let’s first define it mathematically and then with a diagram.</p>
+<p>We index the different forecasts (synoymous with different models <span class="math notranslate nohighlight">\(f_\mu\)</span>) by <span class="math notranslate nohighlight">\(\mu\)</span>. The starting size of the window will be <span class="math notranslate nohighlight">\(s + \alpha\)</span> where <span class="math notranslate nohighlight">\(s\)</span> is the step size and <span class="math notranslate nohighlight">\(\alpha\)</span> is a parameter that adjusts window size. For arbitrary <span class="math notranslate nohighlight">\(z_t\)</span>, the <span class="math notranslate nohighlight">\(\mu\)</span>th in-sample slice of time series data is:</p>
+<div class="math notranslate nohighlight">
+\[
+I^e_{\mu}(\vec{z}) = \left\{z_t  \right\}_{t=0}^{t=\mu\cdot s + \alpha -1}
+\]</div>
+<p>Applied to the features, this is the slice that will be used to train (aka fit) model <span class="math notranslate nohighlight">\(f_\mu\)</span>.</p>
+<p>Likewise, the out-of-sample set is:</p>
+<div class="math notranslate nohighlight">
+\[
+O^e_{\mu}(\vec{z}) = \left\{z_t \right\}^{t=T-1}_{t=\mu\cdot s + \alpha}
+\]</div>
+<p>We can visualise this like so:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_25_0.png" src="_images/time-fcasts-env_25_0.png" />
+</div>
+</div>
+<p>Note that in-sample and out-of-sample never overlap in time for the same value of <span class="math notranslate nohighlight">\(\mu\)</span>. This is important because it helps keep our out-of-sample period out-of-sample. We do not want a situation where we <em>think</em> we are performing an out-of-sample forecast but actually the model was trained on some of the supposedly out-of-sample data.</p>
+<div class="section" id="the-likely-best-possible-expanding-window-forecast">
+<h3><span class="section-number">3.2.1. </span>The Likely Best Possible Expanding Window Forecast<a class="headerlink" href="#the-likely-best-possible-expanding-window-forecast" title="Permalink to this headline">¶</a></h3>
+<p>When we are assessing the potential of a model, we want to know i) how it would perform in practice and ii) that we are testing the best version of it possible. To address both of these points, we need to make a choice from the possible out-of-sample predictions because we have several for the same value of <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|\mu|\)</span> out-of-sample prediction models for <span class="math notranslate nohighlight">\(t=T-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|\mu|-1\)</span> out-of-sample prediction models for <span class="math notranslate nohighlight">\(t=T-2\)</span></p></li>
+<li><p>and so on…</p></li>
+</ul>
+<p>To choose which of our out-of-sample predictions when we have multiple ones to choose from, we create the <em>union</em> of step ahead out-of-sample forecasts. Step ahead because that’s what will likely be the best forecast (as opposed to many steps ahead) while still being out-of-sample. Because there are no <em>guarantees</em> which out-of-sample forecast will be best, it might be more accurate to call this the <em>preferred</em> or <em>one-step ahead</em> out-of-sample expanding forecast. For each possible value of <span class="math notranslate nohighlight">\(t\)</span>, this is the out-of-sample prediction with the highest possible value of <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{O}^{e} = \bigcup_\mu  \bigg\{ f_\mu\left(O_\mu^e(X)\right) \bigg\}_{t=\mu s+ \alpha }^{t=(\mu+1)s -1+ \alpha}
+\]</div>
+<p>in the diagram above, it’s the longest diagonal of out-of-sample predictions. Equivalently, the out-of-sample prediction set is composed of the first step of each test set indexed by <span class="math notranslate nohighlight">\(\mu\)</span>. In each case, these out-of-sample predictions are likely to be better than ones for other values of <span class="math notranslate nohighlight">\(\mu\)</span> because they are trained on models that are closer in time to the value that is being predicted.</p>
+<p>Let’s work this out using code too. First, we define a function that, given a data frame with a time index as defined earlier, can return the out-of-sample rows. We know this ranges from <span class="math notranslate nohighlight">\(\mu \cdot s + \alpha\)</span> to <span class="math notranslate nohighlight">\(T-1\)</span> (inclusive), so will become <code class="docutils literal notranslate"><span class="pre">range(mu</span> <span class="pre">*</span> <span class="pre">s</span> <span class="pre">+</span> <span class="pre">alpha,</span> <span class="pre">T,</span> <span class="pre">step_size)</span></code> inside the function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">step_size</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">step_size</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">max_mu</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">T</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="n">step_size</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">os_sample_block_e</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the times within the $mu$th block of an expanding window (out-of-sample)&quot;&quot;&quot;</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)})</span>
+    <span class="n">xf</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">))</span>
+    <span class="n">xf</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;out-of-sample&quot;</span>
+    <span class="k">return</span> <span class="n">xf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we create the union of best predictions, which will always be the last time step in ascending order of <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over increasing values of mu</span>
+<span class="n">script_O_e</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">os_sample_block_e</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">script_O_e</span> <span class="o">=</span> <span class="n">script_O_e</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">script_O_e</span><span class="p">[</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># Drop any duplicates of timesteps, keeping only the last entry (which will have highest mu)</span>
+<span class="n">script_O_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">script_O_e</span><span class="p">[</span><span class="o">~</span><span class="n">script_O_e</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;Preferred Prediction&quot;</span>
+<span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">script_O_e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t</th>
+      <th>$\mu$</th>
+      <th>sample</th>
+      <th>Preferred Prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>8</td>
+      <td>5</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>9</td>
+      <td>5</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>8</td>
+      <td>6</td>
+      <td>out-of-sample</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>9</td>
+      <td>6</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>9</td>
+      <td>7</td>
+      <td>out-of-sample</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>28 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Now we can plot the pattern of predictions we’d like to use as a function of <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">,</span> <span class="s2">&quot;Union&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">geom_tile</span><span class="p">(</span><span class="n">script_O_e</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_fill_brewer</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;qual&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Pastel1&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Union of Expanding Window One-Step Ahead Out-of-Sample Predictions&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_31_0.png" src="_images/time-fcasts-env_31_0.png" />
+</div>
+</div>
+<p>The series in blue above is the one that we would use to compare against real data out-of-sample: it is the best <em>set</em> of predictions we are likely to make out-of-sample.</p>
+<p>Of course, it’s easy to create a set of in-sample preferred predictions by analogy. These are less interesting but follow the same principle of taking the time steps with the highest numbered value of <span class="math notranslate nohighlight">\(\mu\)</span> available. In this special case of an expanding window, that’s just going to be all of the predictions in the final <span class="math notranslate nohighlight">\(\mu\)</span>. The expression is</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{I}^{e} = \bigcup_\mu \bigg\{ f_\mu\left(I_\mu^e(X)\right)\bigg\}_{t=(\mu -1) s + \alpha}^{t=\mu s -1+\alpha}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">in_sample_block_e</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the times within the $mu$th block of an expanding window (in-sample)&quot;&quot;&quot;</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)})</span>
+    <span class="n">xf</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">xf</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;in-sample&quot;</span>
+    <span class="k">return</span> <span class="n">xf</span>
+
+
+<span class="n">script_I_e</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">in_sample_block_e</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">script_I_e</span> <span class="o">=</span> <span class="n">script_I_e</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">script_I_e</span><span class="p">[</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">script_I_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">script_I_e</span><span class="p">[</span><span class="o">~</span><span class="n">script_I_e</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;Preferred Prediction&quot;</span>
+<span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Plot the union of expanding window in-sample predictions:</span>
+<span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">,</span> <span class="s2">&quot;Union&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">geom_tile</span><span class="p">(</span><span class="n">script_I_e</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_fill_brewer</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;qual&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Pastel1&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Union of Expanding Window In-Sample Preferred Predictions&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_33_0.png" src="_images/time-fcasts-env_33_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rolling-window">
+<h2><span class="section-number">3.3. </span>Rolling Window<a class="headerlink" href="#rolling-window" title="Permalink to this headline">¶</a></h2>
+<p>In a rolling window forecast exercise, multiple forecasts are made. In each, the in-sample period <em>moves</em> (rather than grows) over time. Necessarily (given finite data), the out-of-sample period shrinks over time as the exercise progresses through different window configurations.</p>
+<p>We index the different forecasts (synoymous with different models <span class="math notranslate nohighlight">\(f_\mu\)</span>) by <span class="math notranslate nohighlight">\(\mu\)</span>. The starting size of the window will be <span class="math notranslate nohighlight">\(s + \alpha\)</span> where <span class="math notranslate nohighlight">\(s\)</span> is the step size and <span class="math notranslate nohighlight">\(\alpha\)</span> is a parameter that adjusts window size. For arbitrary <span class="math notranslate nohighlight">\(z_t\)</span>, the <span class="math notranslate nohighlight">\(\mu\)</span>th in-sample slice of time series data is:</p>
+<div class="math notranslate nohighlight">
+\[
+I^r_{\mu}(\vec{z}) = \bigg\{ z_{t} \bigg\}_{t=(\mu-1)\cdot s}^{t=\mu\cdot s+\alpha -1}
+\]</div>
+<p>Applied to the features, this is the slice that will be used to train (aka fit) model <span class="math notranslate nohighlight">\(f_\mu\)</span>.</p>
+<p>Likewise, the out-of-sample set is:</p>
+<div class="math notranslate nohighlight">
+\[
+O^r_{\mu}(\vec{z}) = \bigg\{ z_{t} \bigg\}_{t=\mu\cdot s+\alpha}^{t=T} 
+\]</div>
+<p>Below is a visualisation of all the rolling window forecasts in a single forecasting exercise.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_36_0.png" src="_images/time-fcasts-env_36_0.png" />
+</div>
+</div>
+<div class="section" id="the-likely-best-possible-rolling-window-forecast">
+<h3><span class="section-number">3.3.1. </span>The Likely Best Possible Rolling Window Forecast<a class="headerlink" href="#the-likely-best-possible-rolling-window-forecast" title="Permalink to this headline">¶</a></h3>
+<p>As with the expanding window, we want to know how models will perform in practice and that the best version of it is being assessed. To address both of these points, we need to make a choice from the possible out-of-sample predictions because we have several for the same value of <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|\mu|\)</span> out-of-sample prediction models for <span class="math notranslate nohighlight">\(t=T-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|\mu|-1\)</span> out-of-sample prediction models for <span class="math notranslate nohighlight">\(t=T-2\)</span></p></li>
+<li><p>and so on…</p></li>
+</ul>
+<p>To do this we create the <em>union</em> of step ahead out-of-sample forecasts. Step ahead because that’s what will likely be the best forecast (as opposed to many steps ahead) while still being out-of-sample. Because there are no <em>guarantees</em> which out-of-sample forecast will be best, it might be more accurate to call this the <em>preferred</em> or <em>one-step ahead</em> out-of-sample rolling window forecast. For each possible value of <span class="math notranslate nohighlight">\(t\)</span>, this is the out-of-sample prediction with the highest possible value of <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{O}^{r} = \bigcup_\mu  \bigg\{ f_\mu\left(O_\mu^r(X)\right) \bigg\}_{t=\mu s+ \alpha }^{t=(\mu+1)s -1+ \alpha}
+\]</div>
+<p>in the diagram above, it’s the longest diagonal of out-of-sample predictions. Equivalently, the out-of-sample prediction set is composed of the first step of each test set indexed by <span class="math notranslate nohighlight">\(\mu\)</span>. In each case, these out-of-sample predictions are likely to be better than ones for other values of <span class="math notranslate nohighlight">\(\mu\)</span> because they are trained on models that are closer in time to the value that is being predicted.</p>
+<p>Let’s work this out using code too. First, we define function thats, given a data frame with a time index as defined earlier, can return the in-sample or out-of-sample rows. For out-of-sample, the slices range from <span class="math notranslate nohighlight">\(\mu\cdot s + \alpha\)</span> to <span class="math notranslate nohighlight">\(T-1\)</span> (inclusive), so will become <code class="docutils literal notranslate"><span class="pre">range(mu</span> <span class="pre">*</span> <span class="pre">s</span> <span class="pre">+</span> <span class="pre">alpha,</span> <span class="pre">T,</span> <span class="pre">step_size)</span></code> inside the function. Likewise, the inclusive/exclusive distinction applies to the in-sample slice, which will have <code class="docutils literal notranslate"><span class="pre">range((mu</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">*</span> <span class="pre">s,</span> <span class="pre">mu</span> <span class="pre">*</span> <span class="pre">s</span> <span class="pre">+</span> <span class="pre">alpha,</span> <span class="pre">s)</span></code> for <span class="math notranslate nohighlight">\((\mu-1)\cdot s\)</span> to <span class="math notranslate nohighlight">\(\mu\cdot s+\alpha -1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">in_sample_block_r</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">s</span><span class="p">)})</span>
+    <span class="n">xf</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">-</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">xf</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;in-sample&quot;</span>
+    <span class="k">return</span> <span class="n">xf</span>
+
+
+<span class="k">def</span> <span class="nf">os_sample_block_r</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="p">)})</span>
+    <span class="n">xf</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">))</span>
+    <span class="n">xf</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;out-of-sample&quot;</span>
+    <span class="k">return</span> <span class="n">xf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having defined these, we can compute the unions of best in- and out-of-sample predictions. For the expanding window case, we ended up repeating some of the same code. This is bad practice. We can do better by putting all of the common elements into a single function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Config:</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="k">def</span> <span class="nf">return_rolling_union_of_slices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">out_of_sample</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a dataframe explaining where the best in-sample or out-of-sample forecasts are</span>
+<span class="sd">    for a a given stepsize (s), alpha (=windowsize-s), and total number of time steps of</span>
+<span class="sd">    the data (T).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">out_of_sample</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">slice_function</span> <span class="o">=</span> <span class="n">os_sample_block_r</span>
+        <span class="n">keep_string</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span>
+    <span class="k">elif</span> <span class="n">out_of_sample</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">slice_function</span> <span class="o">=</span> <span class="n">in_sample_block_r</span>
+        <span class="n">keep_string</span> <span class="o">=</span> <span class="s2">&quot;first&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;out_of_sample must be True or False (and of type bool).&quot;</span><span class="p">)</span>
+
+    <span class="n">max_mu</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">T</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">slice_function</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="n">union</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">union</span><span class="p">[</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">union</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="n">union</span><span class="p">[</span><span class="o">~</span><span class="n">union</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="n">keep_string</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;Preferred Prediction&quot;</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">union</span>
+
+
+<span class="n">script_I_r</span> <span class="o">=</span> <span class="n">return_rolling_union_of_slices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">out_of_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">script_O_r</span> <span class="o">=</span> <span class="n">return_rolling_union_of_slices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">out_of_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">script_O_r</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t</th>
+      <th>$\mu$</th>
+      <th>sample</th>
+      <th>Preferred Prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>1</td>
+      <td>out-of-sample</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s plot the union of best rolling out-of-sample predictions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">,</span> <span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">geom_tile</span><span class="p">(</span><span class="n">script_O_r</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_fill_brewer</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;qual&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Pastel1&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Union of Rolling Window One Step Ahead Out-of-Sample Predictions&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_42_0.png" src="_images/time-fcasts-env_42_0.png" />
+</div>
+</div>
+<p>And the equivalent for in-sample predictions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">,</span> <span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">geom_tile</span><span class="p">(</span><span class="n">script_I_r</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;Preferred Prediction&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_mu</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">scale_fill_brewer</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;qual&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Pastel1&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Union of Rolling Window In-Sample Preferred Predictions&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-fcasts-env_44_0.png" src="_images/time-fcasts-env_44_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="transforms-of-series-in-forecasting-exercises">
+<h2><span class="section-number">3.4. </span>Transforms of Series in Forecasting Exercises<a class="headerlink" href="#transforms-of-series-in-forecasting-exercises" title="Permalink to this headline">¶</a></h2>
+<p>In practice, you often <em>don’t</em> want to throw a time series straight into a forecast. This is for lots of reasons: stationarity, producing the best performing model, the ranges that certain models will accept, and so on. Instead you want to transform the data first using a general transform <span class="math notranslate nohighlight">\(T\colon X\to Z\)</span>. But when in a forecasting situation, extra care must be taken not to let information leak from the period that a model is <em>not</em> supposed to know about. For example, a forecast that is supposed to be out-of-sample, ie it is forecasting a time period <span class="math notranslate nohighlight">\(t''\)</span>, should not be able to see any information about <span class="math notranslate nohighlight">\(X_{t''}\)</span> or <span class="math notranslate nohighlight">\(y_{t''}\)</span>. Why is this a problem when doing transforms? Because many transforms of, say, a scalar <span class="math notranslate nohighlight">\(x_t\)</span> depend on <span class="math notranslate nohighlight">\(x_{t'}; \: t\neq t'\)</span>.</p>
+<p>First, let’s take an example of a common transform with no dependence on any other data: <span class="math notranslate nohighlight">\(T(x_t) = \ln(x_t)\)</span>. In this case we do not need to worry.</p>
+<p>Another example that’s quite common is <span class="math notranslate nohighlight">\(T(x_t) = \frac{x_t}{x_{t-1}}\)</span>. Again, this transform shouldn’t cause us much concern because it only depends on <em>past</em> information.</p>
+<p>Let’s now turn to more tricky transforms. Let’s imagine we wish to normalise the data, ie take</p>
+<div class="math notranslate nohighlight">
+\[
+T(x_t) = \frac{1}{\sigma_{x}} \left( x_t - \frac{\sum_{t'} x_{t'}}{\sum_{t'} t'} \right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\({\displaystyle \sigma_{x}={\sqrt {{\frac {1}{\sum_{t'} x_t'}} \sum_{t'}\left(x_{t'}-{\frac{\sum_{t''} x_{t''}}{\sum_{t''} t''}}\right)^{2}}}}\)</span>. The summations are over <em>all</em> values of <span class="math notranslate nohighlight">\(t\)</span>, but this means that <span class="math notranslate nohighlight">\(T(x_t)\)</span> has ‘seen’ <span class="math notranslate nohighlight">\(x_{t'}\)</span>, <span class="math notranslate nohighlight">\(t'&gt;t\)</span> and <span class="math notranslate nohighlight">\(t'\)</span> may well be in the out-of-sample slice. This could be a problem: imagine that the mean or standard deviation changes significantly because of a crisis. Being privy to that shift may make it easier to predict post-crisis values of the target variable.</p>
+<p>To fix information leakage due to transforms, we redefine transformations to make them a function of the windows being used in the forecasting exercise. For an expanding window transform of a variable <span class="math notranslate nohighlight">\(x_t\)</span>, this would be:</p>
+<div class="math notranslate nohighlight">
+\[
+T_{\mu}^e (\vec{x}) = T_{\mu}^e (\vec{x}; I_\mu^e(\vec{x})) = \frac{\vec{x} - \langle{I_\mu^e(\vec{x})\rangle}}{\sigma_{I_\mu^e(\vec{x})}} 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle x \rangle\)</span> is the mean of <span class="math notranslate nohighlight">\(\{x_t\}\)</span>. So now the transform is dependent on the <em>type</em> of forecasting exercise, the <em>period</em> (<span class="math notranslate nohighlight">\(\mu\)</span>) of the forecasting exercise, and the <em>input data</em>. A similar definition applies to the rolling window configuration.</p>
+<p>How do we apply this in code? That part’s easy: we can re-use the slice functions we made earlier, namely <code class="docutils literal notranslate"><span class="pre">in_sample_block_r</span></code> for in-sample rolling windows and <code class="docutils literal notranslate"><span class="pre">in_sample_block_e</span></code> for out-of-sample expanding windows.</p>
+</div>
+<div class="section" id="data-vintage-and-the-real-time-information-flow">
+<h2><span class="section-number">3.5. </span>Data Vintage and the Real-Time Information Flow<a class="headerlink" href="#data-vintage-and-the-real-time-information-flow" title="Permalink to this headline">¶</a></h2>
+<p>There’s another complication if you want an accurate assessment of how good your forecast will be in the real world: some data, and especially economic data, are revised over time. But to give an <em>accurate</em> picture of how well your forecast approach would have done at the time, you need to use only the data that would have been available at the time the forecast was made: you need to use real-time data vintages. Typically, one only considers different vintages of regressors–but target variables change too and this is worth bearing in mind if you are using lags.</p>
+<p>A few labelling operations help us use everything defined so far in this chapter in the real-time data vintage case. We introduce an extra label for vintage, <span class="math notranslate nohighlight">\(\tau\)</span>, which says when the data were released. Features are now given by <span class="math notranslate nohighlight">\(x_{tk\tau}\)</span>. Assuming that vintages are improving over time, models will always be trained using the most up-to-date vintage available up to that time so that a forecast made at <span class="math notranslate nohighlight">\(t\)</span> uses the highest available value of <span class="math notranslate nohighlight">\(\tau\)</span> for which <span class="math notranslate nohighlight">\(\tau \leq t\)</span>, eg <span class="math notranslate nohighlight">\(\tau = \max{ \{ \tau' | \tau' \leq t \}}\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="time-series.html" title="previous page"><span class="section-number">2. </span>Time Series</a>
+    <a class='right-next' id="next-link" href="geo-intro.html" title="next page"><span class="section-number">1. </span>Intro to Geo-Spatial Analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Arthur Turrell<br/>
+        
+            &copy; Copyright 2020.<br/>
+          <div class="extra_footer">
+            This book is available under an MIT license.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-189705534-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

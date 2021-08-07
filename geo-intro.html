@@ -60,7 +60,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Geo-Spatial Visualisation" href="geo-vis.html" />
-    <link rel="prev" title="2. Time Series" href="time-series.html" />
+    <link rel="prev" title="3. Forecasting Exercises" href="time-fcasts-env.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -272,6 +272,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
    2. Time Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time-fcasts-env.html">
+   3. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -1816,7 +1821,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Bank of England, 8AH, Threadneedle Street, Barbican, City of London, Greater London, England, EC2R 8AH, United Kingdom&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Bank of England, 8AH, Threadneedle Street, Barbican, City of London, England, EC2R 8AH, United Kingdom&#39;
 </pre></div>
 </div>
 </div>
@@ -1845,7 +1850,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;British Library, 96, Euston Road, St Pancras, London Borough of Camden, London, Greater London, England, NW1 2DB, United Kingdom&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;British Library, 96, Euston Road, St Pancras, Camden Town, London Borough of Camden, England, NW1 2DB, United Kingdom&#39;
 </pre></div>
 </div>
 </div>
@@ -2021,7 +2026,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Borough Market, Stoney Street, Bankside, Borough, London Borough of Southwark, London, Greater London, England, SE1 9AA, United Kingdom&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Borough Market, Stoney Street, Bankside, Borough, London Borough of Southwark, England, SE1 9AA, United Kingdom&#39;
 </pre></div>
 </div>
 </div>
@@ -2122,6 +2127,18 @@ Name: geometry, dtype: geometry
   and should_run_async(code)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/geopandas/_vectorized.py:142: DeprecationWarning: An exception was ignored while fetching the attribute `__array_interface__` from an object of type &#39;Polygon&#39;.  With the exception of `AttributeError` NumPy will always raise this exception in the future.  Raise this deprecation warning to see the original exception. (Warning added NumPy 1.21)
+  aout[:] = out
+/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/geopandas/_vectorized.py:770: DeprecationWarning: An exception was ignored while fetching the attribute `__array_interface__` from an object of type &#39;Polygon&#39;.  With the exception of `AttributeError` NumPy will always raise this exception in the future.  Raise this deprecation warning to see the original exception. (Warning added NumPy 1.21)
+  out[:] = [
+/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/geopandas/_vectorized.py:142: DeprecationWarning: An exception was ignored while fetching the attribute `__array_interface__` from an object of type &#39;MultiPolygon&#39;.  With the exception of `AttributeError` NumPy will always raise this exception in the future.  Raise this deprecation warning to see the original exception. (Warning added NumPy 1.21)
+  aout[:] = out
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/pandas/core/dtypes/cast.py:1981: DeprecationWarning: An exception was ignored while fetching the attribute `__array_interface__` from an object of type &#39;Polygon&#39;.  With the exception of `AttributeError` NumPy will always raise this exception in the future.  Raise this deprecation warning to see the original exception. (Warning added NumPy 1.21)
+  result[:] = values
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -2184,7 +2201,7 @@ Name: geometry, dtype: geometry
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="time-series.html" title="previous page"><span class="section-number">2. </span>Time Series</a>
+    <a class='left-prev' id="prev-link" href="time-fcasts-env.html" title="previous page"><span class="section-number">3. </span>Forecasting Exercises</a>
     <a class='right-next' id="next-link" href="geo-vis.html" title="next page"><span class="section-number">2. </span>Geo-Spatial Visualisation</a>
 
     </div>
