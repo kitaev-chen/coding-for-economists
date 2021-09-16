@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Geo-Spatial Visualisation &#8212; Coding for Economists</title>
+    <title>28. Geo-Spatial Visualisation &#8212; Coding for Economists</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,25 +54,16 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/geo-vis.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Intro to Mathematics with Code" href="maths-maths-coding.html" />
-    <link rel="prev" title="1. Intro to Geo-Spatial Analysis" href="geo-intro.html" />
-
+    <link rel="next" title="29. Intro to Mathematics with Code" href="maths-maths-coding.html" />
+    <link rel="prev" title="27. Intro to Geo-Spatial Analysis" href="geo-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/geo-vis.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Geo-Spatial Visualisation" />
-<meta property="og:description" content="Geo-Spatial Visualisation  Introduction  In this chapter, you’ll learn the basics of geospatial visualisation using code. If you’re new to geospatial analysis, " />
-<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coding
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
    1. Preliminaries
@@ -133,200 +119,205 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Workflow
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   1. Tips for Better Coding
+   5. Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   2. Tools for Better Coding
+   6. Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   3. The Command Line
+   7. The Command Line
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   1. Data Analysis Quickstart
+   8. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   2. Working with Data
+   9. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   3. Exploratory Data Analysis
+   10. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   4. Reading and Writing Files
+   11. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   5. Extracting Data
+   12. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   6. Sharing Data
+   13. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   7. Advanced Data
+   14. Advanced Data
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data Visualisation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   1. Intro to Data Visualisation
+   15. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   2. Common Plots
+   16. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-narrative.html">
+   17. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   3. Animation
+   18. Animation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Econometrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   1. Probability and Random Processes
+   19. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   2. Statistics
+   20. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   3. Regression
+   21. Regression
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   1. Introduction to Text
+   22. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   2. Natural Language Processing
+   23. Natural Language Processing
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Time
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   1. Introduction to Time
+   24. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   2. Time Series
+   25. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   3. Forecasting Exercises
+   26. Forecasting Exercises
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   1. Intro to Geo-Spatial Analysis
+   27. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Geo-Spatial Visualisation
+   28. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Mathematics with Code
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   1. Intro to Mathematics with Code
+   29. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Automation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   1. Automating Research Outputs
+   30. Automating Research Outputs
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coming from ...
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="coming-from-stata.html">
    Coming from Stata
@@ -348,12 +339,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Elsewhere
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
    Bibliography
@@ -361,6 +352,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -376,21 +368,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -408,7 +400,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -426,14 +418,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -457,89 +449,89 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   2.1. Introduction
+   28.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#imports-and-packages">
-     2.1.1. Imports and packages
+     28.1.1. Imports and packages
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#maps">
-   2.2. Maps
+   28.2. Maps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#choropleths">
-   2.3. Choropleths
+   28.3. Choropleths
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cartogram">
-   2.4. Cartogram
+   28.4. Cartogram
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quadtree">
-   2.5. Quadtree
+   28.5. Quadtree
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#kde-plot">
-   2.6. KDE plot
+   28.6. KDE plot
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spatio-temporal-plots">
-   2.7. Spatio-Temporal Plots
+   28.7. Spatio-Temporal Plots
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-basemaps">
-   2.8. Using basemaps
+   28.8. Using basemaps
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#contextily">
-     2.8.1. Contextily
+     28.8.1. Contextily
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interactive-maps">
-   2.9. Interactive maps
+   28.9. Interactive maps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#static-maps">
-   2.10. Static maps
+   28.10. Static maps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#review">
-   2.11. Review
+   28.11. Review
   </a>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -548,13 +540,13 @@
               <div>
                 
   <div class="section" id="geo-spatial-visualisation">
-<h1><span class="section-number">2. </span>Geo-Spatial Visualisation<a class="headerlink" href="#geo-spatial-visualisation" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">28. </span>Geo-Spatial Visualisation<a class="headerlink" href="#geo-spatial-visualisation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, you’ll learn the basics of geospatial visualisation using code. If you’re new to geospatial analysis, you should look at the introduction page first.</p>
 <p>You should be aware when following this chapter that installing geographic analysis packages isn’t always the easiest and things can and do go wrong! (Some geospatial analysis courses recommend running everything in a Docker container.)</p>
 <div class="section" id="imports-and-packages">
-<h3><span class="section-number">2.1.1. </span>Imports and packages<a class="headerlink" href="#imports-and-packages" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.1.1. </span>Imports and packages<a class="headerlink" href="#imports-and-packages" title="Permalink to this headline">¶</a></h3>
 <p>We’ll be using <a class="reference external" href="https://geopandas.org/index.html"><strong>geopandas</strong></a>, the go-to package for vector spatial analysis in Python. The easiest way to install this package is using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">geopandas</span></code>; if you want to install it via pip then look at the <a class="reference external" href="https://geopandas.org/install.html">install instructions</a>.</p>
 <p>Let’s import some of the packages we’ll be using:</p>
 <div class="cell docutils container">
@@ -593,7 +585,7 @@
 </div>
 </div>
 <div class="section" id="maps">
-<h2><span class="section-number">2.2. </span>Maps<a class="headerlink" href="#maps" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.2. </span>Maps<a class="headerlink" href="#maps" title="Permalink to this headline">¶</a></h2>
 <p>If you’ve looked at the introductory page on geospatial analysis, you’ll know it’s easy to make basic maps: you just need to load a shapefile and use the <code class="docutils literal notranslate"><span class="pre">.plot</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -651,7 +643,7 @@
 </div>
 </div>
 <div class="section" id="choropleths">
-<h2><span class="section-number">2.3. </span>Choropleths<a class="headerlink" href="#choropleths" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.3. </span>Choropleths<a class="headerlink" href="#choropleths" title="Permalink to this headline">¶</a></h2>
 <p>A choropleth map shows different areas in colours according to a statistic that represents an aggregate summary of a geographic characteristic within each area. Population density or per-capita income are good examples of characteristics. The statistic shown might be unique values, equal intervals, quantiles, or the Fisher-Jenks natural breaks.</p>
 <p>First, though, let’s create a basic choropleth.</p>
 <div class="cell docutils container">
@@ -819,7 +811,7 @@
 <p>This is useful for, for example, plotting streets of different types.</p>
 </div>
 <div class="section" id="cartogram">
-<h2><span class="section-number">2.4. </span>Cartogram<a class="headerlink" href="#cartogram" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.4. </span>Cartogram<a class="headerlink" href="#cartogram" title="Permalink to this headline">¶</a></h2>
 <p>A cartogram is a thematic map in which the geographic size of regions is altered to be proportional to a variable. The shape of the region is warped or shrunk. They can be especially useful when trying to refectly the fact that regions with the largest area do not always have proportionate variable values. Actually, due to the tendency of the shape of political regions to reflect choices made 100s or 1000s of years previously, and for urban areas to be under separate political arrangements, quite often economic variables are anti-correlated with areas.</p>
 <p>A cartogram of pay in Wales demonstrates this. Some areas with higer median incomes, such as Monmouthshire and Conwy, almost completely fill their potential region areas. But others, including Blaenau Gwent and Powys, are shown much smaller than their actual areas.</p>
 <p>The important part of the plot below is the <code class="docutils literal notranslate"><span class="pre">gplt.cartogram</span></code> but, along with other bits to make the plot look better, we’re adding <code class="docutils literal notranslate"><span class="pre">gplt.polyplot</span></code> to show what the true size of each region is when it is not proportional to another variable.</p>
@@ -859,7 +851,7 @@
 </div>
 </div>
 <div class="section" id="quadtree">
-<h2><span class="section-number">2.5. </span>Quadtree<a class="headerlink" href="#quadtree" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.5. </span>Quadtree<a class="headerlink" href="#quadtree" title="Permalink to this headline">¶</a></h2>
 <p>A quadtree is a tree data structure that splits a space into increasingly small rectangular fractals. This plot takes a sequence of point or polygonal geometries as input and builds a choropleth out of their centroids. Quadtrees are good at illustrating density, and are more flexible than a conventional choropleth: remember that choropleths can be the result of binning point occurrences into geographical regions or of data that are already aggregated to the region level. Quadtree is not a replacement for the latter, because the data are already aggregated. But, if you have point data, quadtree allows you to aggregate them <em>not</em> according to a pre-defined geography. Given pre-defined geographies such as Local Authority Districts may not be useful for the question you’re thinking about (or worse could be downright misleading), this is a very helpful property.</p>
 <p>We’ll use an example from the <strong>geoplot</strong> documentation to illustrate them. The most basic layer just turns a series of points into a quadtree. We’ll use the lats and longs of collisions in New York:</p>
 <div class="cell docutils container">
@@ -931,7 +923,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </div>
 </div>
 <div class="section" id="kde-plot">
-<h2><span class="section-number">2.6. </span>KDE plot<a class="headerlink" href="#kde-plot" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.6. </span>KDE plot<a class="headerlink" href="#kde-plot" title="Permalink to this headline">¶</a></h2>
 <p>You probably know kernel density estimation from 1D distribution functions, but there’s no reason not to have the same fun in 2D. Taking the collisions data again, below is an example for New York. The <code class="docutils literal notranslate"><span class="pre">thresh=0</span></code> keyword argument just tells the KDE estimation to leave no empty whitespace where the estimated values are at their lowest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -954,7 +946,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </div>
 </div>
 <div class="section" id="spatio-temporal-plots">
-<h2><span class="section-number">2.7. </span>Spatio-Temporal Plots<a class="headerlink" href="#spatio-temporal-plots" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.7. </span>Spatio-Temporal Plots<a class="headerlink" href="#spatio-temporal-plots" title="Permalink to this headline">¶</a></h2>
 <p>This is really going to combine two things we already have at our fingertips: space and time. There are various ways we could approach this. The first we’ll see is to do a series of <em>small multiples</em>, also known as a <em>facet chart</em>, and advance time by one unit in each plot. The second is just a heat map in which the two dimensions are space and time.</p>
 <p>The data we’ll be using tell a tragic story. They are counts of deaths that occurred within 28 days of (a known case of) coronavirus organised by the death date. Note that there are various issues with these data and they do not tell the whole story of coronavirus by any means. But this is just an illustrative example.</p>
 <p>We’ll just bring in data for London. They don’t come with their own geometry, so our first job is to merge them onto our existing UK local authority geodataframe, which does have a geometry. Fortunately, both data sets have the ‘LAD20CD’ and ‘LAD20NM’ columns, which makes this easier than it might have been.</p>
@@ -1318,7 +1310,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </div>
 </div>
 <div class="section" id="using-basemaps">
-<h2><span class="section-number">2.8. </span>Using basemaps<a class="headerlink" href="#using-basemaps" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.8. </span>Using basemaps<a class="headerlink" href="#using-basemaps" title="Permalink to this headline">¶</a></h2>
 <p>All of the examples we’ve seen have just been lines around coloured polygons. This is, fortunately, not how most maps look. Instead, they have lots of detail or other features. Sometimes you want to incorporate other features into your map, or just give some context to where things are beyond the boundaries of your polygons. Enter different basemaps, ie different backgrounds for you to draw the geospatial data on top of.</p>
 <p>There are a few options to do this. Let’s begin with <strong>geoplot</strong>, the package from the examples above. It has projection called <code class="docutils literal notranslate"><span class="pre">WebMercator</span></code> that is a ‘real’ map. It’s easiest to illustrate with an example; let’s use Wales again. But the whole point is that we can combine this map with other things, so we’ll do a few points to show where some places are: LLandudno, Cardiff, Rhyll, Newport, and St Davids. St Davids is the smallest city in Britain, and we’ll make the points proportional to population, so you may have to squint to see it!</p>
 <div class="cell docutils container">
@@ -1420,7 +1412,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </div>
 </div>
 <div class="section" id="contextily">
-<h3><span class="section-number">2.8.1. </span>Contextily<a class="headerlink" href="#contextily" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.8.1. </span>Contextily<a class="headerlink" href="#contextily" title="Permalink to this headline">¶</a></h3>
 <p><strong>geoplot</strong> has some basic functionality for basemaps but the <a class="reference external" href="https://contextily.readthedocs.io/en/latest/intro_guide.html"><strong>contextlily</strong></a> package provides a whole lot more flexibility and is solely focused on different ‘context tiles’ for your map. It’s also designed to work with <strong>geopandas</strong> (it’s built by the same people) and the syntax is quite similar to what you’ve seen already.</p>
 <p>Let’s see an example of it in action. We’ll ask for a bounding box around a place we’re interested in, London’s Canary Wharf. The option that brings in different basemaps is the <code class="docutils literal notranslate"><span class="pre">source=</span></code> keyword argument. There are a range of sources of basemaps but the real magic is that, given a location, <strong>contextily</strong> <em>downloads a background map for you</em>. Pretty cool. There is a full list of providers <a class="reference external" href="https://contextily.readthedocs.io/en/latest/providers_deepdive.html">here</a>.</p>
 <div class="cell docutils container">
@@ -1485,7 +1477,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </div>
 </div>
 <div class="section" id="interactive-maps">
-<h2><span class="section-number">2.9. </span>Interactive maps<a class="headerlink" href="#interactive-maps" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.9. </span>Interactive maps<a class="headerlink" href="#interactive-maps" title="Permalink to this headline">¶</a></h2>
 <p>We’ll use <a class="reference external" href="https://python-visualization.github.io/folium/index.html"><strong>folium</strong></a>, a wrapper for the leaflet javascript library, to create interactive maps that we can layer information on top of. The library has a number of built-in tilesets from OpenStreetMap, Mapbox, and Stamen, and supports custom tilesets too. If it has a disadvantage, it’s that it doesn’t play that nicely with <strong>geopandas</strong>. It isn’t easy to create an interactive choropleth using a <strong>geopandas</strong> dataframe, for example. However, choropleths can be added as a layer from a URL that points to a geoJSON file.</p>
 <p>In the simple example below, we’ll do two things: create a basemap showing the City of London and add some markers to it that show new information on a mouse hover and when clicked. Let’s put markers down for the places to get coffee in the serenity of a City church.</p>
 <div class="cell docutils container">
@@ -1517,12 +1509,12 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
   and should_run_async(code)
 </pre></div>
 </div>
-<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_f992c757bdaf44ff8ac22f37b9fb9bf7%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_f992c757bdaf44ff8ac22f37b9fb9bf7%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_f992c757bdaf44ff8ac22f37b9fb9bf7%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_f992c757bdaf44ff8ac22f37b9fb9bf7%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B51.5128%2C%20-0.0933%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%2016%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_6763c199bb6245f9bb87b4a78d0e55b4%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22Data%20by%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//openstreetmap.org%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%2C%20under%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eODbL%5Cu003c/a%5Cu003e.%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_f992c757bdaf44ff8ac22f37b9fb9bf7%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_1f1863341e6249009809ac033bfb3dab%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.5128%2C%20-0.0933%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_f992c757bdaf44ff8ac22f37b9fb9bf7%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_eae0d0cf19b54cdd84bd332df79badf5%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_07d5017406a249048fefca2ab17040c5%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_07d5017406a249048fefca2ab17040c5%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3EHost%20Coffee%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_eae0d0cf19b54cdd84bd332df79badf5.setContent%28html_07d5017406a249048fefca2ab17040c5%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_1f1863341e6249009809ac033bfb3dab.bindPopup%28popup_eae0d0cf19b54cdd84bd332df79badf5%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_1f1863341e6249009809ac033bfb3dab.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_b6c522b301464908b3d4656e2e81c1bb%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.5128%2C%20-0.0882%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_f992c757bdaf44ff8ac22f37b9fb9bf7%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_4496645f79bf41d2910a257214e7e95e%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_ba2d900f236e49708c342c23d338b7b9%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_ba2d900f236e49708c342c23d338b7b9%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3ECosy%20Coffee%20Corner%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_4496645f79bf41d2910a257214e7e95e.setContent%28html_ba2d900f236e49708c342c23d338b7b9%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_b6c522b301464908b3d4656e2e81c1bb.bindPopup%28popup_4496645f79bf41d2910a257214e7e95e%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_b6c522b301464908b3d4656e2e81c1bb.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_6917937ea8fc439fa70ed6a5ecb2d443%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.512106%2C%20-0.09687%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_f992c757bdaf44ff8ac22f37b9fb9bf7%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_7d444b1dee75493da328072c8ce96381%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_ad253a64a4a644a5a728cd58bb3eb8a5%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_ad253a64a4a644a5a728cd58bb3eb8a5%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3EThe%20Wren%20Coffee%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_7d444b1dee75493da328072c8ce96381.setContent%28html_ad253a64a4a644a5a728cd58bb3eb8a5%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_6917937ea8fc439fa70ed6a5ecb2d443.bindPopup%28popup_7d444b1dee75493da328072c8ce96381%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_6917937ea8fc439fa70ed6a5ecb2d443.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_689ffe00f55842ccb590e5806212ae71%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_689ffe00f55842ccb590e5806212ae71%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_689ffe00f55842ccb590e5806212ae71%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_689ffe00f55842ccb590e5806212ae71%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B51.5128%2C%20-0.0933%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%2016%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_7128b80d05a841be86bfab447e85c0c1%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22Data%20by%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//openstreetmap.org%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%2C%20under%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eODbL%5Cu003c/a%5Cu003e.%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_689ffe00f55842ccb590e5806212ae71%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_3f3cbe5baaa9423c8a81adbe670072b7%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.5128%2C%20-0.0933%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_689ffe00f55842ccb590e5806212ae71%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_f95a16dc0d864785a4f7b26b49cbe614%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_02595c2c28b848018a5db62984fedc6b%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_02595c2c28b848018a5db62984fedc6b%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3EHost%20Coffee%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_f95a16dc0d864785a4f7b26b49cbe614.setContent%28html_02595c2c28b848018a5db62984fedc6b%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_3f3cbe5baaa9423c8a81adbe670072b7.bindPopup%28popup_f95a16dc0d864785a4f7b26b49cbe614%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_3f3cbe5baaa9423c8a81adbe670072b7.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_2fc23bc6ac9d45ee9691882c1e222e6a%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.5128%2C%20-0.0882%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_689ffe00f55842ccb590e5806212ae71%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_d161a6e64cb44f8b8296633b510fd030%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_bf25cc5077ab45708fc8314972f299a7%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_bf25cc5077ab45708fc8314972f299a7%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3ECosy%20Coffee%20Corner%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_d161a6e64cb44f8b8296633b510fd030.setContent%28html_bf25cc5077ab45708fc8314972f299a7%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_2fc23bc6ac9d45ee9691882c1e222e6a.bindPopup%28popup_d161a6e64cb44f8b8296633b510fd030%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_2fc23bc6ac9d45ee9691882c1e222e6a.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20marker_32c3444ae827410b8561f5516489fcb7%20%3D%20L.marker%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5B51.512106%2C%20-0.09687%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_689ffe00f55842ccb590e5806212ae71%29%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20var%20popup_b5cd411f2aab4de2bb3efa248e786a3f%20%3D%20L.popup%28%7B%22maxWidth%22%3A%20%22100%25%22%7D%29%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20html_c8845b3a9b154a769d18002571a60de1%20%3D%20%24%28%60%3Cdiv%20id%3D%22html_c8845b3a9b154a769d18002571a60de1%22%20style%3D%22width%3A%20100.0%25%3B%20height%3A%20100.0%25%3B%22%3EThe%20Wren%20Coffee%3C/div%3E%60%29%5B0%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20popup_b5cd411f2aab4de2bb3efa248e786a3f.setContent%28html_c8845b3a9b154a769d18002571a60de1%29%3B%0A%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20marker_32c3444ae827410b8561f5516489fcb7.bindPopup%28popup_b5cd411f2aab4de2bb3efa248e786a3f%29%0A%20%20%20%20%20%20%20%20%3B%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20marker_32c3444ae827410b8561f5516489fcb7.bindTooltip%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%60%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Click%20here.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22sticky%22%3A%20true%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
 </div>
 <p>Folium can also be combined with a choropleth; see the <a class="reference external" href="https://python-visualization.github.io/folium/quickstart.html">documentation</a> for more information.</p>
 </div>
 <div class="section" id="static-maps">
-<h2><span class="section-number">2.10. </span>Static maps<a class="headerlink" href="#static-maps" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.10. </span>Static maps<a class="headerlink" href="#static-maps" title="Permalink to this headline">¶</a></h2>
 <p>This is an honourable mention to <a class="reference external" href="https://github.com/flopp/py-staticmaps"><strong>py-staticmaps</strong></a>, which provides the kind of tilesets we’ve seen already with <strong>contextlily</strong> and <strong>folium</strong> but includes easy methods to add:</p>
 <ul class="simple">
 <li><p>markers</p></li>
@@ -1534,7 +1526,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 </ul>
 </div>
 <div class="section" id="review">
-<h2><span class="section-number">2.11. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.11. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <p>If you know how to :</p>
 <ul class="simple">
 <li><p>✅  plot geographic data on a map;</p></li>
@@ -1572,15 +1564,35 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="geo-intro.html" title="previous page"><span class="section-number">1. </span>Intro to Geo-Spatial Analysis</a>
-    <a class='right-next' id="next-link" href="maths-maths-coding.html" title="next page"><span class="section-number">1. </span>Intro to Mathematics with Code</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="geo-intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">27. </span>Intro to Geo-Spatial Analysis</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="maths-maths-coding.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">29. </span>Intro to Mathematics with Code</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1588,7 +1600,7 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
         
           By Arthur Turrell<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
           <div class="extra_footer">
             This book is available under an MIT license.
           </div>
@@ -1600,21 +1612,19 @@ import warnings; warnings.filterwarnings(&#39;ignore&#39;, &#39;GeoSeries.isna&#
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-189705534-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-189705534-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

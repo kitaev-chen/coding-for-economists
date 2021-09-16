@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Automating Research Outputs &#8212; Coding for Economists</title>
+    <title>30. Automating Research Outputs &#8212; Coding for Economists</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -60,24 +55,15 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Coming from Stata" href="coming-from-stata.html" />
-    <link rel="prev" title="1. Intro to Mathematics with Code" href="maths-maths-coding.html" />
-
+    <link rel="prev" title="29. Intro to Mathematics with Code" href="maths-maths-coding.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/auto-research-outputs.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Automating Research Outputs" />
-<meta property="og:description" content="Automating Research Outputs  In this chapter, you’ll learn how to automate the inclusion of figures and tables in research outputs including PDFs, Word document" />
-<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coding
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
    1. Preliminaries
@@ -133,200 +119,205 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Workflow
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   1. Tips for Better Coding
+   5. Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   2. Tools for Better Coding
+   6. Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   3. The Command Line
+   7. The Command Line
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   1. Data Analysis Quickstart
+   8. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   2. Working with Data
+   9. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   3. Exploratory Data Analysis
+   10. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   4. Reading and Writing Files
+   11. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   5. Extracting Data
+   12. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   6. Sharing Data
+   13. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   7. Advanced Data
+   14. Advanced Data
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data Visualisation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   1. Intro to Data Visualisation
+   15. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   2. Common Plots
+   16. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-narrative.html">
+   17. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   3. Animation
+   18. Animation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Econometrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   1. Probability and Random Processes
+   19. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   2. Statistics
+   20. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   3. Regression
+   21. Regression
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   1. Introduction to Text
+   22. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   2. Natural Language Processing
+   23. Natural Language Processing
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Time
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   1. Introduction to Time
+   24. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   2. Time Series
+   25. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   3. Forecasting Exercises
+   26. Forecasting Exercises
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   1. Intro to Geo-Spatial Analysis
+   27. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   2. Geo-Spatial Visualisation
+   28. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Mathematics with Code
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   1. Intro to Mathematics with Code
+   29. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Automation
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Automating Research Outputs
+   30. Automating Research Outputs
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coming from ...
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="coming-from-stata.html">
    Coming from Stata
@@ -348,12 +339,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Elsewhere
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
    Bibliography
@@ -361,6 +352,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -376,21 +368,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -411,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -429,14 +421,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -455,54 +447,54 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#including-research-outputs-in-latex-documents-and-slides">
-   1.1. Including research outputs in LaTeX documents and slides
+   30.1. Including research outputs in LaTeX documents and slides
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#figures">
-     1.1.1. Figures
+     30.1.1. Figures
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tables">
-     1.1.2. Tables
+     30.1.2. Tables
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exporting-papers-and-slides-to-other-document-types">
-   1.2. Exporting papers and slides to other document types
+   30.2. Exporting papers and slides to other document types
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#converting-documents">
-     1.2.1. Converting Documents
+     30.2.1. Converting Documents
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#converting-slides">
-     1.2.2. Converting Slides
+     30.2.2. Converting Slides
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -511,7 +503,7 @@
               <div>
                 
   <div class="section" id="automating-research-outputs">
-<h1><span class="section-number">1. </span>Automating Research Outputs<a class="headerlink" href="#automating-research-outputs" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">30. </span>Automating Research Outputs<a class="headerlink" href="#automating-research-outputs" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, you’ll learn how to automate the inclusion of figures and tables in research outputs including PDFs, Word documents, slides, and more. Much of what you’ll see in this chapter applies to a wide range of coding languages.</p>
 <p>Automating the inclusion of figures and tables in your research outputs has many benefits:</p>
 <ul class="simple">
@@ -523,11 +515,11 @@
 </ul>
 <p>Let’s now turn to the how.</p>
 <div class="section" id="including-research-outputs-in-latex-documents-and-slides">
-<h2><span class="section-number">1.1. </span>Including research outputs in LaTeX documents and slides<a class="headerlink" href="#including-research-outputs-in-latex-documents-and-slides" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">30.1. </span>Including research outputs in LaTeX documents and slides<a class="headerlink" href="#including-research-outputs-in-latex-documents-and-slides" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say you’re writing a paper, using <span class="math notranslate nohighlight">\(\LaTeX\)</span>, or a presentation, using <span class="math notranslate nohighlight">\(\LaTeX\)</span> and beamer. (Perhaps you’d like the final document or presentation to be in Word, Powerpoint-that’s okay too, and we’ll come to it shortly, but let’s assume you’re <em>writing</em> it in <span class="math notranslate nohighlight">\(\LaTeX\)</span>.)</p>
 <p>Including code outputs is pretty simple, but is slightly different for figures and tables (the two main outputs you might include).</p>
 <div class="section" id="figures">
-<h3><span class="section-number">1.1.1. </span>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">30.1.1. </span>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h3>
 <p>For figures, the <span class="math notranslate nohighlight">\(\LaTeX\)</span> <strong>graphicx</strong> package is your friend as it allows you to set a directory where your figures live, for example <code class="docutils literal notranslate"><span class="pre">outputs/figures</span></code>, which would be set like this at the top of the document:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
 <span class="k">\graphicspath</span><span class="nb">{{</span>outputs/figures/<span class="nb">}}</span>
@@ -560,7 +552,7 @@
 <p>The important line here is <code class="docutils literal notranslate"><span class="pre">plt.savefig(&quot;outputs/figures/chart.pdf&quot;)</span></code> because it says to save the figure in the ‘figures’ directory. When you re-run your code, the chart ends up in the right place. When you re-compile your <span class="math notranslate nohighlight">\(\LaTeX\)</span> document or presentation, it can pick the chart up from the right place.</p>
 </div>
 <div class="section" id="tables">
-<h3><span class="section-number">1.1.2. </span>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">30.1.2. </span>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Now let’s imagine you’ve created a table of descriptive statistics such as the one below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -688,12 +680,12 @@
 </div>
 </div>
 <div class="section" id="exporting-papers-and-slides-to-other-document-types">
-<h2><span class="section-number">1.2. </span>Exporting papers and slides to other document types<a class="headerlink" href="#exporting-papers-and-slides-to-other-document-types" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">30.2. </span>Exporting papers and slides to other document types<a class="headerlink" href="#exporting-papers-and-slides-to-other-document-types" title="Permalink to this headline">¶</a></h2>
 <p>When including your research outputs automatically, you may not want your <em>final</em> output to be a PDF (the standard output for <span class="math notranslate nohighlight">\(\LaTeX\)</span>), but to be one of a range of other document types. That’s perfectly possible, and you can choose from a really wide range of output types, although input types will be limited to formats that can use file paths such as <span class="math notranslate nohighlight">\(\LaTeX\)</span> and markdown.</p>
 <p>To perform the magic conversion to other document types (and often <em>between</em> types), we’ll use the command line tool <a class="reference external" href="https://pandoc.org/"><strong>pandoc</strong></a>, which is absolutely brilliant. It can translate <span class="math notranslate nohighlight">\(\LaTeX\)</span> papers and beamer presentations into a whole variety of other formats, including Microsoft Word’s .docx, OpenOffice’s .ODT, Microsoft Powerpoint’s .pptx, HTML, plain text, markdown, and more. It can also write from any of those formats (and more) in one direction <em>to</em> PDF, Microsoft Powerpoint, and <span class="math notranslate nohighlight">\(\LaTeX\)</span> Beamer.</p>
 <p>To use <a class="reference external" href="https://pandoc.org/"><strong>pandoc</strong></a>, first install it following the <a class="reference external" href="https://pandoc.org/installing.html">instructions</a> on the website.</p>
 <div class="section" id="converting-documents">
-<h3><span class="section-number">1.2.1. </span>Converting Documents<a class="headerlink" href="#converting-documents" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">30.2.1. </span>Converting Documents<a class="headerlink" href="#converting-documents" title="Permalink to this headline">¶</a></h3>
 <p>To convert documents, the general syntax for <strong>pandoc</strong> looks like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pandoc mydoc.tex -o mydoc.docx
 </pre></div>
@@ -745,7 +737,7 @@ More text
 </ul>
 </div>
 <div class="section" id="converting-slides">
-<h3><span class="section-number">1.2.2. </span>Converting Slides<a class="headerlink" href="#converting-slides" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">30.2.2. </span>Converting Slides<a class="headerlink" href="#converting-slides" title="Permalink to this headline">¶</a></h3>
 <p>Beamer slides can be converted in much the same way that documents can. Popular output formats for slides include PDF, HTML (via dzslides, slidy, or revealjs), and .pptx (powerpoint).</p>
 <p>For example, to create revealjs slides,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pandoc -f latex -t revealjs -s --self-contained -o presentation.html presentation.tex --mathjax
@@ -830,15 +822,35 @@ Slide with an equation
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="maths-maths-coding.html" title="previous page"><span class="section-number">1. </span>Intro to Mathematics with Code</a>
-    <a class='right-next' id="next-link" href="coming-from-stata.html" title="next page">Coming from Stata</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="maths-maths-coding.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">29. </span>Intro to Mathematics with Code</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="coming-from-stata.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Coming from Stata</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -846,7 +858,7 @@ Slide with an equation
         
           By Arthur Turrell<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
           <div class="extra_footer">
             This book is available under an MIT license.
           </div>
@@ -858,21 +870,19 @@ Slide with an equation
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-189705534-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-189705534-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

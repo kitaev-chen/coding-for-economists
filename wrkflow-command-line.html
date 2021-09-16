@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. The Command Line &#8212; Coding for Economists</title>
+    <title>7. The Command Line &#8212; Coding for Economists</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,25 +54,16 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/wrkflow-command-line.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Data Analysis Quickstart" href="data-analysis-quickstart.html" />
-    <link rel="prev" title="2. Tools for Better Coding" href="wrkflow-advcd-best-practice.html" />
-
+    <link rel="next" title="8. Data Analysis Quickstart" href="data-analysis-quickstart.html" />
+    <link rel="prev" title="6. Tools for Better Coding" href="wrkflow-advcd-best-practice.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/wrkflow-command-line.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="The Command Line" />
-<meta property="og:description" content="The Command Line  In this chapter, you’ll meet the command line and learn how to use it. Beyond a few key commands like pip install &lt;packagename&gt;, conda activat" />
-<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coding
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
    1. Preliminaries
@@ -133,200 +119,205 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Workflow
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   1. Tips for Better Coding
+   5. Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   2. Tools for Better Coding
+   6. Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. The Command Line
+   7. The Command Line
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   1. Data Analysis Quickstart
+   8. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   2. Working with Data
+   9. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   3. Exploratory Data Analysis
+   10. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   4. Reading and Writing Files
+   11. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   5. Extracting Data
+   12. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   6. Sharing Data
+   13. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   7. Advanced Data
+   14. Advanced Data
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data Visualisation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   1. Intro to Data Visualisation
+   15. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   2. Common Plots
+   16. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-narrative.html">
+   17. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   3. Animation
+   18. Animation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Econometrics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   1. Probability and Random Processes
+   19. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   2. Statistics
+   20. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   3. Regression
+   21. Regression
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   1. Introduction to Text
+   22. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   2. Natural Language Processing
+   23. Natural Language Processing
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Time
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   1. Introduction to Time
+   24. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   2. Time Series
+   25. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   3. Forecasting Exercises
+   26. Forecasting Exercises
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   1. Intro to Geo-Spatial Analysis
+   27. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   2. Geo-Spatial Visualisation
+   28. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Mathematics with Code
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   1. Intro to Mathematics with Code
+   29. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Automation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   1. Automating Research Outputs
+   30. Automating Research Outputs
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coming from ...
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="coming-from-stata.html">
    Coming from Stata
@@ -348,12 +339,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Elsewhere
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
    Bibliography
@@ -361,6 +352,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -376,21 +368,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -411,7 +403,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -429,14 +421,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -455,67 +447,67 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-the-command-line">
-   3.1. What is the command line?
+   7.1. What is the command line?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-is-the-command-line-useful">
-   3.2. Why is the command line useful?
+   7.2. Why is the command line useful?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-the-command-line">
-   3.3. Using the command line
+   7.3. Using the command line
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#navigating-directories">
-     3.3.1. Navigating directories
+     7.3.1. Navigating directories
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-python-on-the-command-line">
-   3.4. Using Python on the command line
+   7.4. Using Python on the command line
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#useful-commands-for-the-terminal">
-   3.5. Useful commands for the terminal
+   7.5. Useful commands for the terminal
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scripting">
-   3.6. Scripting
+   7.6. Scripting
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#useful-command-line-tools">
-   3.7. Useful command line tools
+   7.7. Useful command line tools
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#review">
-   3.8. Review
+   7.8. Review
   </a>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -524,17 +516,17 @@
               <div>
                 
   <div class="section" id="the-command-line">
-<h1><span class="section-number">3. </span>The Command Line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>The Command Line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, you’ll meet the <em>command line</em> and learn how to use it. Beyond a few key commands like <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;packagename&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;environmentname&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, you don’t strictly need to know how to use the command line to follow the rest of this book. However, even a tiny bit of knowledge of the command line goes a long way in coding and will serve you well.</p>
 <p>To try out any of the commands in this chapter on your machine, you can select ‘New Terminal’ from the menu bar in Visual Studio Code (Mac and Linux), use the Windows Subsystem for Linux or git bash (Windows), or use a free <a class="reference external" href="https://cocalc.com/doc/terminal.html">online terminal</a>.</p>
 <p>This chapter has benefited from numerous sources, including absolutely excellent notes by <a class="reference external" href="https://grantmcdermott.com/">Grant McDermott</a>, Melanie Walsh’s <a class="reference external" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html">Introduction to Cultural Analytics &amp; Python</a>, <a class="reference external" href="https://ericmjl.github.io/data-science-bootstrap-notes/">Data Science Bootstrap</a>, <a class="reference external" href="https://calmcode.io/">calmcode.io</a>, and <a class="reference external" href="https://merely-useful.tech/py-rse/">Research Software Engineering with Python</a>. A promising resource that, at the time of writing, was still being compiled is <a class="reference external" href="https://www.datascienceatthecommandline.com/2e/">Data Science at the Command Line</a>.</p>
 <div class="section" id="what-is-the-command-line">
-<h2><span class="section-number">3.1. </span>What is the command line?<a class="headerlink" href="#what-is-the-command-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>What is the command line?<a class="headerlink" href="#what-is-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>The command line is a way to directly issue text-based commands to a computer one line at a time (as distinct from a graphical user interface, or GUI, that you navigate with a mouse). It goes under many names: shell, bash, terminal, CLI, and command line. These are actually different things but most people tend to use them to mean the same thing most of the time. The <em>shell</em> is the part of an operating system that you interact with but mostly people use shell to mean the command line. <em>bash</em> is the programming language that is used in the command line; it’s actually a synonym for ‘Born Again SHell’. The <em>terminal</em> is sometimes used to refer to the command line on Macs. Finally, a <em>CLI</em> is just an acronym for command line interface, and is often used in the context of an application; for example, pip has a command line interface because you run it on the command line to install packages (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code>).</p>
 <p>It’s worth mentioning that there’s a big difference between the command line on UNIX based systems (MacOS and Linux), and on Windows systems. Here, we’ll only address the UNIX version. There is a command line on Windows but it’s not widely used for coding. If you’re on a Windows machine, you can access a UNIX command line using the Windows Subsystem for Linux.</p>
 </div>
 <div class="section" id="why-is-the-command-line-useful">
-<h2><span class="section-number">3.2. </span>Why is the command line useful?<a class="headerlink" href="#why-is-the-command-line-useful" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Why is the command line useful?<a class="headerlink" href="#why-is-the-command-line-useful" title="Permalink to this headline">¶</a></h2>
 <p>The command line has many uses. Graphical user interfaces are, generally, a bit easier to use <em>but</em> they’re not very repeatable or scalable. Because the command line uses text-based instructions and can be programmed, it is both repeatable and scalable; properties that are very useful for research and analysis.</p>
 <p>The broad reasons you might use the command line to issue instructions include:</p>
 <ul class="simple">
@@ -554,7 +546,7 @@
 </ul>
 </div>
 <div class="section" id="using-the-command-line">
-<h2><span class="section-number">3.3. </span>Using the command line<a class="headerlink" href="#using-the-command-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>Using the command line<a class="headerlink" href="#using-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Bash is often the default command line shell on UNIX but zsh has gained popularity and is now the default for Mac. If you’re wondering what to use then I recommend zsh (Z Shell) from <a class="reference external" href="https://ohmyz.sh/">oh-my-zsh</a>.</p>
 <p>To open up the command line within Visual Studio Code, you can use the <kbd>⌃</kbd> + <kbd>`</kbd> keyboard shortcut (on Mac) or <kbd>ctrl</kbd> + <kbd>`</kbd> (Windows/Linux), or click “View &gt; Terminal”.</p>
 <p>You should now see something like this</p>
@@ -588,7 +580,7 @@
 clear to clear your terminal.</p></li>
 </ul>
 <div class="section" id="navigating-directories">
-<h3><span class="section-number">3.3.1. </span>Navigating directories<a class="headerlink" href="#navigating-directories" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.3.1. </span>Navigating directories<a class="headerlink" href="#navigating-directories" title="Permalink to this headline">¶</a></h3>
 <p>While we’re on navigating, it’s useful to understand <em>where</em> in the computer you are when you open the command line. If you open a terminal pane within VS Code, you will start (by default at least) within the same folder as your project. Starting a terminal instance outside of VS Code will get you a terminal in a root directory for your computer; for example, on a Mac, opening a new terminal window starts you in <code class="docutils literal notranslate"><span class="pre">/Users/yourusername/</span></code>.</p>
 <p>To find out “where” you are when you open a terminal, you can use the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> command, which stands for “print working directory”.</p>
 <p>The table below shows some useful commands for moving around your computer using the command line. Note that <code class="docutils literal notranslate"><span class="pre">cd</span></code> accepts a location <em>relative</em> to your current directory.</p>
@@ -622,7 +614,7 @@ clear to clear your terminal.</p></li>
 </div>
 </div>
 <div class="section" id="using-python-on-the-command-line">
-<h2><span class="section-number">3.4. </span>Using Python on the command line<a class="headerlink" href="#using-python-on-the-command-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Using Python on the command line<a class="headerlink" href="#using-python-on-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>There are several ways in which the command line is useful for Python (and these ways are applicable to other languages too).</p>
 <p>Of course, packages are installed at the command line, for example to install Jupyter Lab (for running notebooks), the command is</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install jupyterlab
@@ -648,7 +640,7 @@ clear to clear your terminal.</p></li>
 </div>
 </div>
 <div class="section" id="useful-commands-for-the-terminal">
-<h2><span class="section-number">3.5. </span>Useful commands for the terminal<a class="headerlink" href="#useful-commands-for-the-terminal" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.5. </span>Useful commands for the terminal<a class="headerlink" href="#useful-commands-for-the-terminal" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll see some useful commands for the terminal.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -773,7 +765,7 @@ clear to clear your terminal.</p></li>
 <p>would create the files a.csv, a.txt, b.csv, b.txt, c.csv, and c.txt.</p>
 </div>
 <div class="section" id="scripting">
-<h2><span class="section-number">3.6. </span>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.6. </span>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h2>
 <p>For tasks that will be repeated, it’s more reproducible and reliable to put your terminal commands into a script than executing them from memory each time—not to mention a lot easier! Because the command line has its own language, we can create scripts that execute commands. There are some differences between bash and zsh but we’ll try and keep the guidelines general.</p>
 <p>Create a script called <code class="docutils literal notranslate"><span class="pre">hello_world.sh</span></code>. Inside it, write:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -810,7 +802,7 @@ Running program hello_world.sh with <span class="m">0</span> arguments
 <p>You can find more of these special variables <a class="reference external" href="https://tldp.org/LDP/abs/html/special-chars.html">here</a>.</p>
 </div>
 <div class="section" id="useful-command-line-tools">
-<h2><span class="section-number">3.7. </span>Useful command line tools<a class="headerlink" href="#useful-command-line-tools" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.7. </span>Useful command line tools<a class="headerlink" href="#useful-command-line-tools" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pandoc.org/"><strong>pandoc</strong></a> is absolutely brilliant: if you need to convert files containing text from one format to another, it really is a swiss-army knife. There isn’t space here to list the ridiculous number of documents it can convert between, but, importantly, it can translate back and forth between all of the following: markdown, <span class="math notranslate nohighlight">\(\LaTeX\)</span>, Microsoft Word’s docx, OpenOffice’s ODT, HTML, and Jupyter Notebook.</p>
 <p>It can also write from any of those formats (and more) in one direction <em>to</em> PDF, Microsoft Powerpoint, and <span class="math notranslate nohighlight">\(\LaTeX\)</span> Beamer.</p>
 <p>To use <strong>pandoc</strong>, install it following the instructions on the website and then call it like this:</p>
@@ -868,7 +860,7 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
 <p>For more on the command line, see <a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">The Art of the Command Line</a>.</p>
 </div>
 <div class="section" id="review">
-<h2><span class="section-number">3.8. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <p>This brief introduction to the command line, should have made you feel comfortable with: opening terminal windows; using built-in commands to change directories, rename files, and list files; using Python on the command line; scripting terminal commands; and using installed command line tools such as <strong>pandoc</strong>.</p>
 </div>
 </div>
@@ -895,15 +887,35 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="wrkflow-advcd-best-practice.html" title="previous page"><span class="section-number">2. </span>Tools for Better Coding</a>
-    <a class='right-next' id="next-link" href="data-analysis-quickstart.html" title="next page"><span class="section-number">1. </span>Data Analysis Quickstart</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="wrkflow-advcd-best-practice.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">6. </span>Tools for Better Coding</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="data-analysis-quickstart.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">8. </span>Data Analysis Quickstart</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -911,7 +923,7 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
         
           By Arthur Turrell<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
           <div class="extra_footer">
             This book is available under an MIT license.
           </div>
@@ -923,21 +935,19 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-189705534-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-189705534-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

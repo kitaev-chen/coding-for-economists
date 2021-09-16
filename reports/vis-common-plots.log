@@ -17,23 +17,36 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import arrow
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from plotnine import *
+import altair as alt
+import plotly.express as px
+from vega_datasets import data
+import os
+from pathlib import Path
 
-dt = arrow.get("2013-05-11T21:23:00")
-print(dt)
-dt2 = arrow.now()
-dt2
+# Set seed for reproducibility
+np.random.seed(10)
+# Set max rows displayed for readability
+pd.set_option("display.max_rows", 6)
+# Plot settings
+plt.style.use(
+    "https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt"
+)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-12-575b735fe61d>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0marrow[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0mdt[0m [0;34m=[0m [0marrow[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m"2013-05-11T21:23:00"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0mprint[0m[0;34m([0m[0mdt[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mdt2[0m [0;34m=[0m [0marrow[0m[0;34m.[0m[0mnow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-1-9be131f124af>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;32mfrom[0m [0mplotnine[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;32mimport[0m [0maltair[0m [0;32mas[0m [0malt[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m [0;32mimport[0m [0mplotly[0m[0;34m.[0m[0mexpress[0m [0;32mas[0m [0mpx[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0;32mfrom[0m [0mvega_datasets[0m [0;32mimport[0m [0mdata[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'arrow'
-ModuleNotFoundError: No module named 'arrow'
+[0;31mModuleNotFoundError[0m: No module named 'plotly'
+ModuleNotFoundError: No module named 'plotly'
 

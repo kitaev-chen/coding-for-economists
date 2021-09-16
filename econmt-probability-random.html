@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Probability and Random Processes &#8212; Coding for Economists</title>
+    <title>19. Probability and Random Processes &#8212; Coding for Economists</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,25 +54,16 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/econmt-probability-random.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Statistics" href="econmt-statistics.html" />
-    <link rel="prev" title="3. Animation" href="vis-animation.html" />
-
+    <link rel="next" title="20. Statistics" href="econmt-statistics.html" />
+    <link rel="prev" title="18. Animation" href="vis-animation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://aeturrell.github.io/coding-for-economists/econmt-probability-random.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Probability and Random Processes" />
-<meta property="og:description" content="Probability and Random Processes  Introduction  In this chapter, you’ll learn about how to use randomness and probability with code.  If you’re running this cod" />
-<meta property="og:image"       content="https://aeturrell.github.io/coding-for-economists/_static/smith_lovelace.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -86,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/smith_lovelace.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Coding for Economists</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/smith_lovelace.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Coding for Economists</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coding
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
    1. Preliminaries
@@ -133,200 +119,205 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Workflow
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   1. Tips for Better Coding
+   5. Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   2. Tools for Better Coding
+   6. Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   3. The Command Line
+   7. The Command Line
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   1. Data Analysis Quickstart
+   8. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   2. Working with Data
+   9. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   3. Exploratory Data Analysis
+   10. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   4. Reading and Writing Files
+   11. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   5. Extracting Data
+   12. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   6. Sharing Data
+   13. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   7. Advanced Data
+   14. Advanced Data
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Data Visualisation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   1. Intro to Data Visualisation
+   15. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   2. Common Plots
+   16. Common Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vis-narrative.html">
+   17. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   3. Animation
+   18. Animation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Econometrics
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Probability and Random Processes
+   19. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   2. Statistics
+   20. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   3. Regression
+   21. Regression
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   1. Introduction to Text
+   22. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   2. Natural Language Processing
+   23. Natural Language Processing
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Time
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   1. Introduction to Time
+   24. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   2. Time Series
+   25. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   3. Forecasting Exercises
+   26. Forecasting Exercises
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   1. Intro to Geo-Spatial Analysis
+   27. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   2. Geo-Spatial Visualisation
+   28. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Mathematics with Code
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   1. Intro to Mathematics with Code
+   29. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Automation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   1. Automating Research Outputs
+   30. Automating Research Outputs
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Coming from ...
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="coming-from-stata.html">
    Coming from Stata
@@ -348,12 +339,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Elsewhere
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
    Bibliography
@@ -361,6 +352,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -376,21 +368,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -408,7 +400,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -426,14 +418,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -457,93 +449,93 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   1.1. Introduction
+   19.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#imports">
-     1.1.1. Imports
+     19.1.1. Imports
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probability-definitions">
-   1.2. Probability (definitions)
+   19.2. Probability (definitions)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#discrete-random-variables">
-     1.2.1. Discrete random variables
+     19.2.1. Discrete random variables
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#continuous-random-variables">
-     1.2.2. Continuous random variables
+     19.2.2. Continuous random variables
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#distribution-functions">
-   1.3. Distribution functions
+   19.3. Distribution functions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#other-properties-of-pmfs-and-pdfs">
-     1.3.1. Other properties of PMFs and PDFs
+     19.3.1. Other properties of PMFs and PDFs
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#randomness-for-computers">
-   1.4. Randomness for computers
+   19.4. Randomness for computers
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#reproducibility">
-     1.4.1. Reproducibility
+     19.4.1. Reproducibility
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#random-numbers-drawn-from-distributions">
-     1.4.2. Random numbers drawn from distributions
+     19.4.2. Random numbers drawn from distributions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-monte-carlo-method">
-     1.4.3. The Monte Carlo Method
+     19.4.3. The Monte Carlo Method
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fitting-a-probability-distribution">
-   1.5. Fitting a probability distribution
+   19.5. Fitting a probability distribution
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#review">
-   1.6. Review
+   19.6. Review
   </a>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -552,13 +544,13 @@
               <div>
                 
   <div class="section" id="probability-and-random-processes">
-<h1><span class="section-number">1. </span>Probability and Random Processes<a class="headerlink" href="#probability-and-random-processes" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">19. </span>Probability and Random Processes<a class="headerlink" href="#probability-and-random-processes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, you’ll learn about how to use randomness and probability with code.</p>
 <p>If you’re running this code (either by copying and pasting it, or by downloading it using the icons at the top of the page), you may need to the packages it uses by, for example, running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. (If you’re not sure what a command line is, take a quick look at the basics of coding chapter.)</p>
 <div class="section" id="imports">
-<h3><span class="section-number">1.1.1. </span>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.1.1. </span>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <p>First we need to import the packages we’ll be using</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -586,13 +578,13 @@
 </div>
 </div>
 <div class="section" id="probability-definitions">
-<h2><span class="section-number">1.2. </span>Probability (definitions)<a class="headerlink" href="#probability-definitions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.2. </span>Probability (definitions)<a class="headerlink" href="#probability-definitions" title="Permalink to this headline">¶</a></h2>
 <p>Let’s get the jargon and definitions out of the way first, then we’ll find out a bit about random numbers in code, then we’ll actually see how to <em>use</em> for probability!</p>
 <p>Any probabilistic event can be considered to have three components: the sample space of possible outcomes <span class="math notranslate nohighlight">\(\Omega\)</span>, the set of possible events <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>, and a probability measure <span class="math notranslate nohighlight">\(P\)</span>. Furthermore, <span class="math notranslate nohighlight">\(A\)</span> is often used to denote a subset of <span class="math notranslate nohighlight">\(\Omega\)</span> and <span class="math notranslate nohighlight">\(A^c\)</span> the complement of <span class="math notranslate nohighlight">\(A\)</span>, while individual events in <span class="math notranslate nohighlight">\(\Omega\)</span> are <span class="math notranslate nohighlight">\(\omega\)</span>. In the classic example of rolling a 6-sided fair die once, <span class="math notranslate nohighlight">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span>. If <span class="math notranslate nohighlight">\(A = \{1, 2, 3\}\)</span> then, by definition of <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(A^c = \{4, 5, 6\}\)</span>. The probability measure of any sample space satisfies <span class="math notranslate nohighlight">\(P(\Omega)=1\)</span> and <span class="math notranslate nohighlight">\(P(\varnothing)\)</span> = 0.</p>
 <p>The most important examples of probability that arise in economics are <strong>continuous random variables</strong> and <strong>discrete random variables</strong>. A random variable is a function <span class="math notranslate nohighlight">\(X: \Omega \rightarrow \mathbb{R}\)</span> such that <span class="math notranslate nohighlight">\(\{ \omega \in \Omega: X(w) \leq x\} \in \mathcal{F}\)</span> for each <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>. All this is saying is that for every possible outcome, the random variable is a mapping of that outcome into a well-defined space of real numbers. It makes the connection between outcomes, events, and real numbers.</p>
 <p>Now we’ll go on to more practical matters: discrete and continuous random variables.</p>
 <div class="section" id="discrete-random-variables">
-<h3><span class="section-number">1.2.1. </span>Discrete random variables<a class="headerlink" href="#discrete-random-variables" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.2.1. </span>Discrete random variables<a class="headerlink" href="#discrete-random-variables" title="Permalink to this headline">¶</a></h3>
 <p>A random variable is discrete if it only takes values in a countable subset of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>; think the integers, or <span class="math notranslate nohighlight">\(x\in\{0, 1\}\)</span>. The distribution of such values is given by the <strong>probability mass function</strong>, or pmf. The pmf is an object that tells us the probabilty mass given to specific outcomes. The more precise defintion is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -606,7 +598,7 @@ p(x_i) = P(X=x_i) = P(\underbrace{\{\omega\in \Omega\ |\ X(\omega) = x_i\}}_{\te
 \]</div>
 </div>
 <div class="section" id="continuous-random-variables">
-<h3><span class="section-number">1.2.2. </span>Continuous random variables<a class="headerlink" href="#continuous-random-variables" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.2.2. </span>Continuous random variables<a class="headerlink" href="#continuous-random-variables" title="Permalink to this headline">¶</a></h3>
 <p>Continuous random variables are functions such that <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow [0, \infty)\)</span> is a <strong>probability density</strong>. Probability density functions are to continuous random variables what PMFs are to discrete random variables, though there are some important differences that can trip up even the most careful. They are defined as follows: the probability of <span class="math notranslate nohighlight">\(X\)</span> taking a value betwen <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -622,7 +614,7 @@ P(a \leq X \leq b) = \displaystyle\int_a^b f(x) dx
 </div>
 </div>
 <div class="section" id="distribution-functions">
-<h2><span class="section-number">1.3. </span>Distribution functions<a class="headerlink" href="#distribution-functions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.3. </span>Distribution functions<a class="headerlink" href="#distribution-functions" title="Permalink to this headline">¶</a></h2>
 <p>Let’s now see how code can help us when working with distributions, beginning with the probability mass function. As an example, let’s take a look at the binomial distribution. This is defined as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -720,7 +712,7 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 </div>
 <div class="section" id="other-properties-of-pmfs-and-pdfs">
-<h3><span class="section-number">1.3.1. </span>Other properties of PMFs and PDFs<a class="headerlink" href="#other-properties-of-pmfs-and-pdfs" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.3.1. </span>Other properties of PMFs and PDFs<a class="headerlink" href="#other-properties-of-pmfs-and-pdfs" title="Permalink to this headline">¶</a></h3>
 <p>A range of functions are available for PMFs and PDFs in addition to the ones we’ve seen already. For a pmf or pdf, we can call <code class="docutils literal notranslate"><span class="pre">median</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">std</span></code>, and so on. Let’s see an example with two of the most useful: interval and percentile.</p>
 <p><code class="docutils literal notranslate"><span class="pre">interval(alpha,</span> <span class="pre">...)</span></code> gives the endpoints of the range around the median that contain alpha percent of the distribution. <code class="docutils literal notranslate"><span class="pre">ppf(q,</span> <span class="pre">...)</span></code> gives the quantiles of a given distribution, defined as <span class="math notranslate nohighlight">\(F(x) = P(X\leq x) = q\)</span>.</p>
 <div class="cell docutils container">
@@ -767,7 +759,7 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 </div>
 <div class="section" id="randomness-for-computers">
-<h2><span class="section-number">1.4. </span>Randomness for computers<a class="headerlink" href="#randomness-for-computers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.4. </span>Randomness for computers<a class="headerlink" href="#randomness-for-computers" title="Permalink to this headline">¶</a></h2>
 <p>Computers love instruction and hate ambiguity. As such, randomness is quite tricky for them. So tricky, that no computer is able to produce <em>perfectly</em> random numbers but instead only has a <strong>pseudo-random number generator</strong>, or PRNG. As far as humans go, these are pretty good and modern ones are so good that using them is unlikely to be an issue unless you really are working at the frontiers of the science of randomness.</p>
 <p><strong>numpy</strong> uses a PRNG that’s a 64-bit Permuted Congruential Generator, though you can access other generators too. Here’s how to call it to generate <span class="math notranslate nohighlight">\(x \thicksim \mathcal{U}(0,1)\)</span>,</p>
 <div class="cell docutils container">
@@ -780,7 +772,7 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.22678663, 0.64989474])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.15580549, 0.84000308])
 </pre></div>
 </div>
 </div>
@@ -797,16 +789,16 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[13, 16],
-        [16, 17],
-        [ 2,  9]],
+        [ 2,  5],
+        [13,  3]],
 
-       [[ 2,  2],
-        [13, 10],
-        [12, 19]],
+       [[ 2, 15],
+        [15,  6],
+        [18,  8]],
 
-       [[12,  9],
-        [19,  6],
-        [15,  5]]])
+       [[10, 13],
+        [15, 11],
+        [12,  8]]])
 </pre></div>
 </div>
 </div>
@@ -819,7 +811,7 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;e&#39;, &#39;a&#39;], dtype=&#39;&lt;U1&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;c&#39;, &#39;d&#39;], dtype=&#39;&lt;U1&#39;)
 </pre></div>
 </div>
 </div>
@@ -863,13 +855,13 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;well&#39;, &#39;This&#39;, &#39;list&#39;, &#39;is&#39;, &#39;ordered.&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ordered.&#39;, &#39;well&#39;, &#39;This&#39;, &#39;is&#39;, &#39;list&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="reproducibility">
-<h3><span class="section-number">1.4.1. </span>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.4.1. </span>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this headline">¶</a></h3>
 <p>If you need to create random numbers reproducibly, then you can do it by setting a seed value like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -903,7 +895,7 @@ f(k; n, p) = \binom{n}{k} p^k q^{n-k}
 <p>The seed tells the generator where to start (PCG64 is the default generator), so by passing the same seed in we can make the random numbers begin in the same place. The <code class="docutils literal notranslate"><span class="pre">prng</span></code> above can also be passed to some functions as a keyword argument.</p>
 </div>
 <div class="section" id="random-numbers-drawn-from-distributions">
-<h3><span class="section-number">1.4.2. </span>Random numbers drawn from distributions<a class="headerlink" href="#random-numbers-drawn-from-distributions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.4.2. </span>Random numbers drawn from distributions<a class="headerlink" href="#random-numbers-drawn-from-distributions" title="Permalink to this headline">¶</a></h3>
 <p>Using <strong>numpy</strong>, we can draw samples from distributions using the <code class="docutils literal notranslate"><span class="pre">prng.distribution</span></code> syntax. One of the most common distributions you might like to draw from is the uniform, for example</p>
 <div class="math notranslate nohighlight">
 \[
@@ -964,7 +956,7 @@ x \thicksim \mathcal{U}(0, 10)
 </div>
 </div>
 <div class="section" id="the-monte-carlo-method">
-<h3><span class="section-number">1.4.3. </span>The Monte Carlo Method<a class="headerlink" href="#the-monte-carlo-method" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">19.4.3. </span>The Monte Carlo Method<a class="headerlink" href="#the-monte-carlo-method" title="Permalink to this headline">¶</a></h3>
 <p>Monte Carlo is the name of a part of Monaco that harbours a famous casino, yes, but it’s also the name given to a bunch of techniques that rely on generating random numbers in order to solve problems. It’s a really useful technique that entire textbooks cover and we can’t hope to give it the love and attention it requires here, covering as it does Bayesian statistics, random walks, Markov switching models, Markov Chain Monte Carlo, bootstrapping, and optimisation! But what we can do is take a quick look at the very, very core code tools that can support these applications. The bottom line is that between the drawing of random variables from given <strong>scipy</strong> distributions we’ve already seen, the use of <code class="docutils literal notranslate"><span class="pre">prng.choice()</span></code>, and the use of <code class="docutils literal notranslate"><span class="pre">prng.uniform</span></code>, a lot of Monte Carlo methods are covered.</p>
 <p>We already covered drawing random numbers from distributions already included in <strong>scipy</strong>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">prng.uniform</span></code> is helpful in the following case: in the (extremely unlikely) event that there isn’t a pre-built distribution available for a case where you know the analytical expression of a PDF and its CDF, a quick way to get random numbers distributed according to that PDF is to plug random numbers into the inverse cumulative distribution function. ie you plug random numbers <span class="math notranslate nohighlight">\(r\)</span> into <span class="math notranslate nohighlight">\(\text{cdf}^{-1}(r)\)</span> in order to generate <span class="math notranslate nohighlight">\(x \thicksim \text{pdf}\)</span>. The random numbers you plug in must come from a uniform distribution between 0 and 1.</p>
@@ -1055,7 +1047,7 @@ x \thicksim \mathcal{U}(0, 10)
 </div>
 </div>
 <div class="section" id="fitting-a-probability-distribution">
-<h2><span class="section-number">1.5. </span>Fitting a probability distribution<a class="headerlink" href="#fitting-a-probability-distribution" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.5. </span>Fitting a probability distribution<a class="headerlink" href="#fitting-a-probability-distribution" title="Permalink to this headline">¶</a></h2>
 <p>Often we are in a situation where we are working with empirical data and we want to know if a particular distribution function provides a good fit for a variable. <strong>scipy</strong> has a neat ‘fit’ function that can do this for us, given a guess at a distribution. This fit is computed by maximising a log-likelihood function, with a penalty applied for samples outside of range of the distribution.</p>
 <p>Let’s see this in action with an example using synthetic data created from a noisy normal distribution:</p>
 <div class="cell docutils container">
@@ -1109,7 +1101,7 @@ x \thicksim \mathcal{U}(0, 10)
 <p>As you can see, in this case the estimate <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are pretty close to the true values. The probability plot, the second chart shown, is very useful in practice because it shows how the often problematic tails are behaving.</p>
 </div>
 <div class="section" id="review">
-<h2><span class="section-number">1.6. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.6. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <p>In this very short introduction to probability and random processes with code, you should have learned how to:</p>
 <ul class="simple">
 <li><p>✅ use a wide range of probability density functions and probability mass functions from <strong>scipy</strong>;</p></li>
@@ -1143,15 +1135,35 @@ x \thicksim \mathcal{U}(0, 10)
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="vis-animation.html" title="previous page"><span class="section-number">3. </span>Animation</a>
-    <a class='right-next' id="next-link" href="econmt-statistics.html" title="next page"><span class="section-number">2. </span>Statistics</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="vis-animation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">18. </span>Animation</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="econmt-statistics.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">20. </span>Statistics</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1159,7 +1171,7 @@ x \thicksim \mathcal{U}(0, 10)
         
           By Arthur Turrell<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
           <div class="extra_footer">
             This book is available under an MIT license.
           </div>
@@ -1171,21 +1183,19 @@ x \thicksim \mathcal{U}(0, 10)
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-189705534-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-189705534-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>
