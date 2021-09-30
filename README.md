@@ -17,13 +17,13 @@ These instructions are only for developers working on the book.
 Install the environment using
 
 ```bash
-conda env create -f environment.yml
+poetry install
 ```
 
 on the command line. After installing the environment, activate using `conda activate codeforecon`, and use
 
 ```bash
-python3.8 -m ipykernel install --user --name=codeforecon
+poetry run python3.8 -m ipykernel install --user --name=codeforecon
 ```
 
 to install a new named ipykernel. To ensure that Jupyter notebooks are running the correct kernel, open them in Jupyter notebook server and change the kernel there to 'codeforecon' and save it.
@@ -33,7 +33,7 @@ to install a new named ipykernel. To ensure that Jupyter notebooks are running t
 To build the book using Jupyter books use
 
 ```bash
-jupyter-book build .
+poetry run jupyter-book build .
 ```
 
 Once this command is run, you should be able to look at the HTML files for the book locally on your computer.
@@ -49,7 +49,7 @@ ghp-import -n -p -f _build/html
 To perform the pre-commit checks, use
 
 ```bash
-pre-commit run --all-files
+poetry run pre-commit run --all-files
 ```
 
 ### Pre-commit
@@ -63,5 +63,5 @@ Pre-commit is currently configured to:
 If **black-nb** finds a pre-commit error that is difficult to diagnose, a tip is to convert it to a regular script to find the problem, using, for example,
 
 ```bash
-jupytext --to py data-intro.ipynb
+poetry run jupytext --to py data-intro.ipynb
 ```
