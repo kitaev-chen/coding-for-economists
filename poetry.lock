@@ -1630,6 +1630,17 @@ pandas = ">=0.20.0"
 scipy = ">=0.11.0"
 
 [[package]]
+name = "json5"
+version = "0.9.6"
+description = "A Python implementation of the JSON5 data format."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+dev = ["hypothesis"]
+
+[[package]]
 name = "jsonpatch"
 version = "1.32"
 description = "Apply JSON-Patches (RFC 6902)"
@@ -1856,6 +1867,49 @@ ipywidgets = ">=7.0.0"
 nbconvert = ">=5.5"
 nbformat = "*"
 Sphinx = ">=2"
+
+[[package]]
+name = "jupyterlab"
+version = "3.1.14"
+description = "JupyterLab computational environment"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+ipython = "*"
+jinja2 = ">=2.1"
+jupyter-core = "*"
+jupyter-server = ">=1.4,<2.0"
+jupyterlab-server = ">=2.3,<3.0"
+nbclassic = ">=0.2,<1.0"
+packaging = "*"
+tornado = ">=6.1.0"
+
+[package.extras]
+test = ["coverage", "pytest (>=6.0)", "pytest-cov", "pytest-console-scripts", "pytest-check-links (>=0.5)", "jupyterlab-server[test] (>=2.2,<3.0)", "requests", "requests-cache", "virtualenv", "check-manifest"]
+ui-tests = ["build"]
+
+[[package]]
+name = "jupyterlab-server"
+version = "2.8.2"
+description = "A set of server components for JupyterLab and JupyterLab like applications ."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+babel = "*"
+entrypoints = ">=0.2.2"
+jinja2 = ">=2.10"
+json5 = "*"
+jsonschema = ">=3.0.1"
+jupyter-server = ">=1.4,<2.0"
+packaging = "*"
+requests = "*"
+
+[package.extras]
+test = ["codecov", "ipykernel", "pytest (>=5.3.2)", "pytest-cov", "jupyter-server", "openapi-core (>=0.14.0,<0.15.0)", "pytest-console-scripts", "strict-rfc3339", "ruamel.yaml", "wheel"]
 
 [[package]]
 name = "jupyterlab-widgets"
@@ -2258,6 +2312,21 @@ rtd = ["ipython", "sphinx-book-theme (>=0.1.0,<0.2.0)", "sphinx-panels (>=0.5.2,
 testing = ["beautifulsoup4", "coverage", "docutils (>=0.17.0,<0.18.0)", "pytest (>=3.6,<4)", "pytest-cov", "pytest-regressions"]
 
 [[package]]
+name = "nbclassic"
+version = "0.3.2"
+description = "Jupyter Notebook as a Jupyter Server Extension."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+jupyter-server = ">=1.8,<2.0"
+notebook = "<7"
+
+[package.extras]
+test = ["pytest", "pytest-tornasync", "pytest-console-scripts"]
+
+[[package]]
 name = "nbclient"
 version = "0.5.4"
 description = "A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor."
@@ -2460,6 +2529,31 @@ numpy = ">=1.7"
 [package.extras]
 docs = ["sphinx (==1.2.3)", "sphinxcontrib-napoleon", "sphinx-rtd-theme", "numpydoc"]
 tests = ["pytest", "pytest-cov", "pytest-pep8"]
+
+[[package]]
+name = "osmnx"
+version = "1.1.1"
+description = "Retrieve, model, analyze, and visualize OpenStreetMap street networks and other spatial data"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+geopandas = ">=0.9"
+matplotlib = ">=3.3"
+networkx = ">=2.5"
+numpy = ">=1.19"
+pandas = ">=1.1"
+pyproj = ">=2.6"
+requests = ">=2.25"
+Rtree = ">=0.9"
+Shapely = ">=1.7"
+
+[package.extras]
+entropy = ["scipy"]
+nearest_neighbor = ["scikit-learn", "scipy"]
+raster = ["gdal", "rasterio"]
+web_map = ["folium"]
 
 [[package]]
 name = "outdated"
@@ -2809,7 +2903,7 @@ test = ["appdirs (==1.4.4)", "pytest (>=6)", "pytest-cov (>=2.7)", "pytest-mock 
 
 [[package]]
 name = "plotly"
-version = "5.3.1"
+version = "5.3.0"
 description = "An open-source, interactive data visualization library for Python"
 category = "main"
 optional = false
@@ -4566,7 +4660,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.10"
-content-hash = "bd7c52b6965ac4867138aa7490ff2ca71de84661cccd0ae11a6e486d98d6fa29"
+content-hash = "7a6a385db564174c09333397b9d475b11df7a9ae2adb1ca81ca671924d1516e5"
 
 [metadata.files]
 absl-py = [
@@ -5363,6 +5457,10 @@ joypy = [
     {file = "joypy-0.2.5-py2.py3-none-any.whl", hash = "sha256:ba65b8cacb2877e0e2fffad26306e04fdb55900e055aad27d06bc7639017ae44"},
     {file = "joypy-0.2.5.tar.gz", hash = "sha256:1ce768cdee9a66c81dbdffef8b17612457c948bd706587b8cd333da01ff6587d"},
 ]
+json5 = [
+    {file = "json5-0.9.6-py2.py3-none-any.whl", hash = "sha256:823e510eb355949bed817e1f3e2d682455dc6af9daf6066d5698d6a2ca4481c2"},
+    {file = "json5-0.9.6.tar.gz", hash = "sha256:9175ad1bc248e22bb8d95a8e8d765958bf0008fef2fe8abab5bc04e0f1ac8302"},
+]
 jsonpatch = [
     {file = "jsonpatch-1.32-py2.py3-none-any.whl", hash = "sha256:26ac385719ac9f54df8a2f0827bb8253aa3ea8ab7b3368457bcdb8c14595a397"},
     {file = "jsonpatch-1.32.tar.gz", hash = "sha256:b6ddfe6c3db30d81a96aaeceb6baf916094ffa23d7dd5fa2c13e13f8b6e600c2"},
@@ -5416,6 +5514,14 @@ jupyter-server-mathjax = [
 jupyter-sphinx = [
     {file = "jupyter_sphinx-0.3.2-py3-none-any.whl", hash = "sha256:301e36d0fb3007bb5802f6b65b60c24990eb99c983332a2ab6eecff385207dc9"},
     {file = "jupyter_sphinx-0.3.2.tar.gz", hash = "sha256:37fc9408385c45326ac79ca0452fbd7ae2bf0e97842d626d2844d4830e30aaf2"},
+]
+jupyterlab = [
+    {file = "jupyterlab-3.1.14-py3-none-any.whl", hash = "sha256:1241ff4ab8604a281eda5d8215fe59e418737edcdfe71df09a0bd5fdd4ccfd2c"},
+    {file = "jupyterlab-3.1.14.tar.gz", hash = "sha256:13174cb6076dd5da6f1b85725ccfcc9518d8f98e86b8b644fc89b1dfaeda63a9"},
+]
+jupyterlab-server = [
+    {file = "jupyterlab_server-2.8.2-py3-none-any.whl", hash = "sha256:9507f059ddb3d088674ed76fd3d751cedd940f8a74055e2250bf44babcc2ea1f"},
+    {file = "jupyterlab_server-2.8.2.tar.gz", hash = "sha256:26d813c8162c83d466df7d155865987dabe70aa452f9187dfb79fd88afc8fa0b"},
 ]
 jupyterlab-widgets = [
     {file = "jupyterlab_widgets-1.0.2-py3-none-any.whl", hash = "sha256:f5d9efface8ec62941173ba1cffb2edd0ecddc801c11ae2931e30b50492eb8f7"},
@@ -5760,6 +5866,10 @@ myst-parser = [
     {file = "myst-parser-0.13.7.tar.gz", hash = "sha256:e4bc99e43e19f70d22e528de8e7cce59f7e8e7c4c34dcba203de92de7a7c7c85"},
     {file = "myst_parser-0.13.7-py3-none-any.whl", hash = "sha256:260355b4da8e8865fe080b0638d7f1ab1791dc4bed02a7a48630b6bad4249219"},
 ]
+nbclassic = [
+    {file = "nbclassic-0.3.2-py3-none-any.whl", hash = "sha256:57936a39410a18261442ca3b298421f859c9012272b87bf55e17b5507f052f4d"},
+    {file = "nbclassic-0.3.2.tar.gz", hash = "sha256:863462bf6a6e0e5e502dcc479ce2ea1edf60437c969f1850d0c0823dba0c39b7"},
+]
 nbclient = [
     {file = "nbclient-0.5.4-py3-none-any.whl", hash = "sha256:95a300c6fbe73721736cf13972a46d8d666f78794b832866ed7197a504269e11"},
     {file = "nbclient-0.5.4.tar.gz", hash = "sha256:6c8ad36a28edad4562580847f9f1636fe5316a51a323ed85a24a4ad37d4aefce"},
@@ -5835,6 +5945,10 @@ numpy = [
 opt-einsum = [
     {file = "opt_einsum-3.3.0-py3-none-any.whl", hash = "sha256:2455e59e3947d3c275477df7f5205b30635e266fe6dc300e3d9f9646bfcea147"},
     {file = "opt_einsum-3.3.0.tar.gz", hash = "sha256:59f6475f77bbc37dcf7cd748519c0ec60722e91e63ca114e68821c0c54a46549"},
+]
+osmnx = [
+    {file = "osmnx-1.1.1-py2.py3-none-any.whl", hash = "sha256:90332c549760d4683f077ee8f5db7b2f8be5d942940beecbb765f4cc7ba0086a"},
+    {file = "osmnx-1.1.1.tar.gz", hash = "sha256:8ed9b69f2365a252b9cae78a1611ef7adb6b9800ca880aa49b3edcde6bcc5fbc"},
 ]
 outdated = [
     {file = "outdated-0.2.1-py3-none-any.whl", hash = "sha256:177e381857c10c410dc643b48ace8753ab977d5ae39642297a7f76eb4a3c1c8e"},
@@ -6040,8 +6154,8 @@ platformdirs = [
     {file = "platformdirs-2.4.0.tar.gz", hash = "sha256:367a5e80b3d04d2428ffa76d33f124cf11e8fff2acdaa9b43d545f5c7d661ef2"},
 ]
 plotly = [
-    {file = "plotly-5.3.1-py2.py3-none-any.whl", hash = "sha256:c3da90d41cab36722048eaa5d0eee7a286a55982835980e5f183e5536b823f07"},
-    {file = "plotly-5.3.1.tar.gz", hash = "sha256:6598393e898a9c5ae78397f76f07002ec41fd92e5f746d3b9806248d53885643"},
+    {file = "plotly-5.3.0-py2.py3-none-any.whl", hash = "sha256:70bb0aa3920ac8d2b237361c3536b3b6a86fb722e893eaf4806591b22065e27f"},
+    {file = "plotly-5.3.0.tar.gz", hash = "sha256:b6dc306c56e7d5fa7d017718894099b27290b427abf4acad8e5b77fdc3bd32ec"},
 ]
 plotnine = [
     {file = "plotnine-0.8.0-py3-none-any.whl", hash = "sha256:3c938093e20c6e68d1ee4591967a2e5093d185046bad88af00af81bf14215549"},
