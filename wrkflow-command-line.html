@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -51,10 +51,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/wrkflow-command-line.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8. Data Analysis Quickstart" href="data-analysis-quickstart.html" />
+    <link rel="next" title="8. Reproducible Analysis" href="wrkflow-rap.html" />
     <link rel="prev" title="6. Tools for Better Coding" href="wrkflow-advcd-best-practice.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -73,6 +74,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -140,6 +145,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -149,37 +159,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -191,22 +201,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -218,17 +228,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -240,12 +250,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -257,17 +267,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -279,12 +289,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -296,7 +306,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -308,7 +318,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -516,7 +526,7 @@
               <div>
                 
   <div class="section" id="the-command-line">
-<h1><span class="section-number">7. </span>The Command Line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h1>
+<span id="wrkflow-command-line"></span><h1><span class="section-number">7. </span>The Command Line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, you’ll meet the <em>command line</em> and learn how to use it. Beyond a few key commands like <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;packagename&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;environmentname&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, you don’t strictly need to know how to use the command line to follow the rest of this book. However, even a tiny bit of knowledge of the command line goes a long way in coding and will serve you well.</p>
 <p>To try out any of the commands in this chapter on your machine, you can select ‘New Terminal’ from the menu bar in Visual Studio Code (Mac and Linux), use the Windows Subsystem for Linux or git bash (Windows), or use a free <a class="reference external" href="https://cocalc.com/doc/terminal.html">online terminal</a>.</p>
 <p>This chapter has benefited from numerous sources, including absolutely excellent notes by <a class="reference external" href="https://grantmcdermott.com/">Grant McDermott</a>, Melanie Walsh’s <a class="reference external" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html">Introduction to Cultural Analytics &amp; Python</a>, <a class="reference external" href="https://ericmjl.github.io/data-science-bootstrap-notes/">Data Science Bootstrap</a>, <a class="reference external" href="https://calmcode.io/">calmcode.io</a>, and <a class="reference external" href="https://merely-useful.tech/py-rse/">Research Software Engineering with Python</a>. A promising resource that, at the time of writing, was still being compiled is <a class="reference external" href="https://www.datascienceatthecommandline.com/2e/">Data Science at the Command Line</a>.</p>
@@ -904,10 +914,10 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="data-analysis-quickstart.html" title="next page">
+        <a class="right-next" href="wrkflow-rap.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">8. </span>Data Analysis Quickstart</p>
+                <p class="prevnext-title"><span class="section-number">8. </span>Reproducible Analysis</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -917,7 +927,7 @@ Input settings: <span class="o">[</span><span class="s1">&#39;print_num.py&#39;<
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -51,6 +51,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/code-advanced.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -73,6 +74,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -140,6 +145,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -149,37 +159,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -191,22 +201,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -218,17 +228,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -240,12 +250,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -257,17 +267,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -279,12 +289,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -296,7 +306,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -308,7 +318,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -582,7 +592,7 @@
               <div>
                 
   <div class="section" id="advanced-coding">
-<h1><span class="section-number">3. </span>Advanced Coding<a class="headerlink" href="#advanced-coding" title="Permalink to this headline">¶</a></h1>
+<span id="code-advanced"></span><h1><span class="section-number">3. </span>Advanced Coding<a class="headerlink" href="#advanced-coding" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you’re just starting to code, you can safely skip this chapter.</p>
@@ -647,7 +657,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Ostrom&#39;, &#39;Robinson&#39;, &#39;Fawcett&#39;, &#39;Martineau&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Fawcett&#39;, &#39;Robinson&#39;, &#39;Ostrom&#39;, &#39;Martineau&#39;]
 </pre></div>
 </div>
 </div>
@@ -776,7 +786,7 @@ Using higher_order_function(&#39;cube&#39;), result(3) yields 27
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14:39
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16:23
 </pre></div>
 </div>
 </div>
@@ -1116,7 +1126,7 @@ cube applied to 4 is 64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7fe0a6505e40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7faf78d1ef20&gt;
 </pre></div>
 </div>
 </div>
@@ -1423,9 +1433,6 @@ exception: no negatives: -1
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error trying to sum reciprocals: division by zero
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <p>Here’s an example of combining a <code class="docutils literal notranslate"><span class="pre">try</span></code>, several <code class="docutils literal notranslate"><span class="pre">except</span></code> statements, an <code class="docutils literal notranslate"><span class="pre">else</span></code> that gets executed if <code class="docutils literal notranslate"><span class="pre">try</span></code> is, and a <code class="docutils literal notranslate"><span class="pre">finally</span></code> that always get executed.</p>
@@ -1591,9 +1598,7 @@ I alway run.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>231
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>67
+67
 </pre></div>
 </div>
 </div>
@@ -1643,7 +1648,7 @@ I alway run.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Circle1 at 0x7fe0a633b190&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Circle1 at 0x7faf78b7ea60&gt;
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1946,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0049447850000002
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.00077799
 </pre></div>
 </div>
 </div>
@@ -1971,7 +1976,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.001449
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000926010000004
 </pre></div>
 </div>
 </div>
@@ -1984,7 +1989,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.1 ms ± 132 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.7 ms ± 123 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -2023,7 +2028,7 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0034526999999969
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.002141182999999
 </pre></div>
 </div>
 </div>
@@ -2045,15 +2050,15 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         6 function calls in 3.510 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         6 function calls in 3.506 seconds
 
    Ordered by: standard name
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    0.000    0.000    3.510    3.510 &lt;ipython-input-63-f51148211faf&gt;:5(foo)
-        1    0.000    0.000    3.510    3.510 &lt;string&gt;:1(&lt;module&gt;)
-        1    0.000    0.000    3.510    3.510 {built-in method builtins.exec}
-        2    3.510    1.755    3.510    1.755 {built-in method time.sleep}
+        1    0.000    0.000    3.506    3.506 487730401.py:5(foo)
+        1    0.000    0.000    3.506    3.506 &lt;string&gt;:1(&lt;module&gt;)
+        1    0.000    0.000    3.506    3.506 {built-in method builtins.exec}
+        2    3.506    1.753    3.506    1.753 {built-in method time.sleep}
         1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
 </pre></div>
 </div>
@@ -2092,33 +2097,29 @@ TOTAL                        <span class="m">76</span>     <span class="m">10</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  _     ._   __/__   _ _  _  _ _/_   Recorded: 14:39:27  Samples:  5
- /_//_/// /_\ / //_// / //_&#39;/ //     Duration: 0.006     CPU time: 0.005
-/   _/                      v3.4.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  _     ._   __/__   _ _  _  _ _/_   Recorded: 16:23:27  Samples:  3
+ /_//_/// /_\ / //_// / //_&#39;/ //     Duration: 0.003     CPU time: 0.003
+/   _/                      v4.0.3
 
-Program: /Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/ipykernel_launcher.py -f /private/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/tmpsp1nfmm2.json
+Program: /Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/ipykernel_launcher.py -f /private/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/tmpnyv5my14.json
 
-<span class=" -Color -Color-Red">0.005</span> run_code  <span class=" -Color -Color-Faint">IPython/core/interactiveshell.py:3377</span>
-└─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">&lt;module&gt;</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:19</span>
-   └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-      └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-         └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-            └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-               └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                  └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                     └─ <span class=" -Color -Color-Red">0.005</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        ├─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │  └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │     └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │        └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │           └─ <span class=" -Color -Color-Red">0.004</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │              ├─ <span class=" -Color -Color-Yellow">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │              │  ├─ <span class=" -Color -Color-Yellow">0.002</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │              │  │  ├─ <span class=" -Color -Color-Green">0.001</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">&lt;ipython-input-64-2665b32434ef&gt;:8</span>
-                        │              │  │  └─ <span class=" -Color -Color-Green">0.001</span> [self]  
-                        │              │  └─ <span class=" -Color -Color-Green">0.001</span> [self]  
-                        │              └─ <span class=" -Color -Color-Green">0.001</span> [self]  
-                        └─ <span class=" -Color -Color-Yellow">0.001</span> [self]  
+<span class=" -Color -Color-Red">0.003</span> run_code  <span class=" -Color -Color-Faint">IPython/core/interactiveshell.py:3403</span>
+└─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">&lt;module&gt;</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:19</span>
+   └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+      └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+         └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+            └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+               └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                  └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                     └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                        └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                           └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                              └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                                 └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                                    └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                                       └─ <span class=" -Color -Color-Red">0.003</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
+                                          ├─ <span class=" -Color -Color-Red">0.002</span> [self]  
+                                          └─ <span class=" -Color -Color-Yellow">0.001</span> <span class=" -Color -Color-C15 -Color-C15-BGC24">fibonacci</span>  <span class=" -Color -Color-Faint">../../../var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53211/4099532080.py:8</span>
 </pre></div>
 </div>
 </div>
@@ -2255,7 +2256,7 @@ Program: /Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/i
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

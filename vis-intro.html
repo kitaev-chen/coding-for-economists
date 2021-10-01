@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>15. Intro to Data Visualisation &#8212; Coding for Economists</title>
+    <title>16. Intro to Data Visualisation &#8212; Coding for Economists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -49,11 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/vis-intro.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. Common Plots" href="vis-common-plots.html" />
-    <link rel="prev" title="14. Advanced Data" href="data-advanced.html" />
+    <link rel="next" title="17. Common Plots" href="vis-common-plots.html" />
+    <link rel="prev" title="15. Advanced Data" href="data-advanced.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -71,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -138,6 +143,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -147,37 +157,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -189,22 +199,22 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -216,17 +226,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -238,12 +248,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -255,17 +265,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -277,12 +287,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -294,7 +304,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -306,7 +316,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -459,47 +469,83 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   15.1. Introduction
+   16.1. Introduction
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploratory-visualisation">
+     16.1.1. Exploratory Visualisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scientific-visualisation">
+     16.1.2. Scientific Visualisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#narrative-visualisation">
+     16.1.3. Narrative Visualisation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quick-guide-to-data-visualisation">
-   15.2. Quick guide to data visualisation
+   16.2. Quick guide to data visualisation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#colour">
+     16.2.1. Colour
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#categorical-data">
+       16.2.1.1. Categorical Data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#continuous-colour-scales">
+       16.2.1.2. Continuous Colour Scales
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#libraries-for-data-visualisation">
-   15.3. Libraries for data visualisation
+   16.3. Libraries for data visualisation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matplotlib">
-     15.3.1. Matplotlib
+     16.3.1. Matplotlib
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#seaborn">
-     15.3.2. Seaborn
+     16.3.2. Seaborn
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotnine">
-     15.3.3. Plotnine
+     16.3.3. Plotnine
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#altair">
-     15.3.4. Altair
+     16.3.4. Altair
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#other-useful-data-visualisation-tools">
-     15.3.5. Other useful data visualisation tools
+     16.3.5. Other useful data visualisation tools
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#honourable-mentions">
-       15.3.5.1. Honourable mentions
+       16.3.5.1. Honourable mentions
       </a>
      </li>
     </ul>
@@ -508,7 +554,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#review">
-   15.4. Review
+   16.4. Review
   </a>
  </li>
 </ul>
@@ -523,41 +569,29 @@
               <div>
                 
   <div class="section" id="intro-to-data-visualisation">
-<h1><span class="section-number">15. </span>Intro to Data Visualisation<a class="headerlink" href="#intro-to-data-visualisation" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">16. </span>Intro to Data Visualisation<a class="headerlink" href="#intro-to-data-visualisation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">15.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Here you’ll see how to make plots that present data in an engaging and informative way.</p>
 <p>There are a plethora of options (and packages) for data visualisation using code. First, though a note about the different <em>philosophies</em> of data visualisation. There are broadly two categories of approach to using code to create data visualisations: <em>imperative</em>, where you build what you want, and <em>declarative</em>, where you say what you want. Choosing which to use involves a trade-off: imperative libraries offer you flexibility but at the cost of some verbosity; declarative libraries offer you a quick way to plot your data, but only if it’s in the right format to begin with, and customisation may be more difficult.</p>
-</div>
-<div class="section" id="quick-guide-to-data-visualisation">
-<h2><span class="section-number">15.2. </span>Quick guide to data visualisation<a class="headerlink" href="#quick-guide-to-data-visualisation" title="Permalink to this headline">¶</a></h2>
-<p>Addressing data visualisation, a huge topic in itself, is definitely out of scope for this book! But it’s worth discussing a few general pointers at the outset that will serve you very well if you follow them.</p>
-<p>A picture may tell a 1000 words, but you’ve got to be a bit careful about what those words are. The first question you should ask yourself when it comes to data visualisation is ‘what does this plot tell the viewer?’, ie what do you want people to take away from your chart. That nugget of information should be as apparent as possible from the plot. Then you want to ensure that people <em>do</em> take away what you meant them to; the viewer should be left in little doubt about what you are saying.</p>
-<p>Another factor to bear in mind is that papers typically don’t have more than, say, ten plots in them–and frequently fewer than that. So each one must count and advance the narrative of your work somehow. (Easier to say, hard to do in practice.) As an example, if you have data that are normally distributed, and you want to show this, it’s probably not worth showing it on a plot. But if you had two distributions whose differences were important for the overall story you were telling, that might be something to highlight.</p>
-<p>Then there are more practical matters: is this plot better done as a scatter plot or a line? Should I stack my bar chart or split out the contributions? Those questions address the <em>type</em> of plot you’re creating. For example, if you have observations that are independent from one another, with no auto-correlation along the x-axis, a scatter plot is more appropriate than a line chart. However, for time series, which tend to exhibit a high degree of auto-correlation, a line chart could be just the thing. As well as the overall type, for example scatter plot, you can think about adding more information through the use of colours, shapes, sizes, and so on. But my advice is always to be sparing with extra dimensions of information as it very quickly becomes difficult to read. In most cases, an x-axis, a y-axis, and, usually, one other dimension (eg colour) will be the best option.</p>
-<p>Once you’ve decided on the <em>type</em> of chart, you can then think about smaller details. Unfortunately, lack of labels is endemic in economics (“percent of what!?”, I cry at least three times a day). Always make what you’re plotting clear and, if it has units, express them (eg “Salary (2015 USD)”). Think carefully about the tick labels to use too; you’ll want something quite different for linear versus log plots. Titles can be helpful too, if the axes labels and the chart by themselves don’t tell the whole story. Colours often make a chart come alive, but, when encoding differences with colour, think carefully about whether your data are categorical (and so need visually distinct colours), continuous (and so need a sequential colour scale-hopefully one that’s perceptually uniform), or neutral around a mid-point (and so need a diverging colour scale). (You can find information about those <a class="reference external" href="https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html">here</a> and <a class="reference external" href="https://colorcet.holoviz.org/">here</a>.) The best colour palettes take into account that colour blindness is a problem for many people too.</p>
-<p>Then, if there are very specific features you’d like to draw attention to, you can achieve this with text labels (as used liberally in the data visualisations you’ll see in newspapers like the <em>Financial Times</em>), greying out all but the most interesting data point, etc.; anything that singles out one part of the chart as the interesting one. A common trick is to plot the less important features with greater transparency and the important line/point/bar with solid colour. These all have the effect of drawing the eye straight to where it should spend the most time.</p>
-<p>This is just the briefest of brief overviews of what you should bear in mind for good visualisation; I highly recommend the short and delightful <a class="reference external" href="https://clauswilke.com/dataviz/">Fundamentals of Data visualisation</a> if you’d like to know more.</p>
-<p>In terms of further resources to help you choose the right plot for the occassion, you can’t go too far wrong than the <a class="reference external" href="https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary"><em>Financial Times</em> Visual Vocabulary of charts</a>. And, please, please use <a class="reference external" href="https://clauswilke.com/dataviz/image-file-formats.html">vector graphics</a> whenever you can!</p>
-</div>
-<div class="section" id="libraries-for-data-visualisation">
-<h2><span class="section-number">15.3. </span>Libraries for data visualisation<a class="headerlink" href="#libraries-for-data-visualisation" title="Permalink to this headline">¶</a></h2>
-<p>In the rest of this chapter, we’ll take a look at making visualisations with several of these libraries. But first, let’s introduce them.</p>
-<p>The most important and widely used data visualisation library in Python is <a class="reference external" href="https://matplotlib.org/"><strong>matplotlib</strong></a>. It was used to make the first image of a black hole <span id="id1">[<a class="reference internal" href="zreferences.html#id11">3</a>]</span> and to image the first empirical evidence of gravitational waves <span id="id2">[<a class="reference internal" href="zreferences.html#id12">4</a>]</span>. <strong>matplotlib</strong> is an imperative visualisation library: you specify each part of what you want individually to build up an entire picture. It’s perhaps the easiest to get started with and the most difficult to master. As well as making plots, it can also be used to make diagrams, animations, and 3D visualisations (which you should use sparingly, if at all).</p>
-<p><a class="reference external" href="https://seaborn.pydata.org/index.html"><strong>seaborn</strong></a> is a popular declarative library that builds on <strong>maplotlib</strong> and works especially well with data that are in a <em>tidy</em> format (one row per observation, one column per variable). I tend to use a mixture of <strong>seaborn</strong> and <strong>matplotlib</strong> in my work.</p>
-<p><a class="reference external" href="https://plotnine.readthedocs.io/en/latest/"><strong>plotnine</strong></a> is another declarative plotting library but, rather than having lots of different functions (eg ‘boxplot’, ‘violinplot’, ‘scatterplot’) as <strong>seaborn</strong> does, it adopts a <em>grammar of graphics</em> approach. What this means is that <em>all</em> visualisations begin with the same command, <code class="docutils literal notranslate"><span class="pre">ggplot</span></code>, and are combinations of layers that address different aspects of a plot, for example points or lines, scale, labels, and so on. It’ll be clearer when we come to an example.</p>
-<p><a class="reference external" href="https://altair-viz.github.io/"><strong>altair</strong></a> is yet another declarative plotting library for Python! It’s most suited to interactive graphics on the web, and produces really beautiful charts. Under the hood, it calls a javascript library named <strong>Vega-Lite</strong> that’s the sort of thing newspaper data visualisation units might use to make their infographics.</p>
-<p><strong>pandas</strong> also has built-in plotting functions that you will have seen in the data analysis part of this book. They are of the form <code class="docutils literal notranslate"><span class="pre">df.plot.*</span></code> where <code class="docutils literal notranslate"><span class="pre">*</span></code> could be, for example, <code class="docutils literal notranslate"><span class="pre">scatter</span></code>. These are convenience functions for making a quick plot of your data and they actually use <strong>matplotlib</strong>; we won’t see much of these here but you can find them in the data analysis chapter.</p>
-<p>We’re going to start this chapter by finding out a little bit more about each of these data visualisation libraries before looking at some examples of how to make specific plots with all the main libraries. We’ll end by looking at some more interesting and advanced plots.</p>
-<div class="section" id="matplotlib">
-<h3><span class="section-number">15.3.1. </span>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
-<p>For a more in-depth introduction to matplotlib, head over to <a class="reference external" href="https://github.com/rougier/matplotlib-tutorial">this tutorial</a>.</p>
-<p>Each of these libraries has their own default theme for how it shows plots. Personally, I’m not much of a fan of the <strong>matplotlib</strong> default so the first thing I do is to change it to something more aesthetically pleasing and that uses the kind of fonts you’ll see in a paper compiled with latex.</p>
+<p>There are also different purposes of data visualisation. It can be useful to bear in mind the three broad categories of visualisation that are out there:</p>
+<ul class="simple">
+<li><p>exploratory</p></li>
+<li><p>scientific</p></li>
+<li><p>narrative</p></li>
+</ul>
+<p>Python excels at exploratory and scientific visualisation. The tools for narrative visualisation are not as good as they could be for making common chart types efficiently, but the endless customisability of one particular Python package (<strong>matplotlib</strong>) means you can always get the effect you need (with some work).</p>
+<div class="section" id="exploratory-visualisation">
+<h3><span class="section-number">16.1.1. </span>Exploratory Visualisation<a class="headerlink" href="#exploratory-visualisation" title="Permalink to this headline">¶</a></h3>
+<p>The first of the three kinds of vis, <em>exploratory visualisation</em>, is the kind that you do when you’re looking and data and trying to understand it. Just plotting the data is a really good strategy for getting a feel for any issues there might be. This is perhaps most famously demonstrated by <em>Anscombe’s quartet</em>: four different datasets with the same mean, standard deviation, and correlation but <em>very</em> different data distributions.</p>
+<p>(First let’s import the packages we’ll need:)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
 
 <span class="c1"># Set seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -571,6 +605,94 @@
 </div>
 </div>
 </div>
+<p><em>Anscombe’s quartet</em>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_4_0.png" src="_images/vis-intro_4_0.png" />
+</div>
+</div>
+<p>Exploratory visualisation is usually quick and dirty, and flexible too. Some exploratory data viz can be automated, and some of the packages we saw in the chapter on <a class="reference internal" href="data-exploratory-analysis.html#exploratory-data-analysis"><span class="std std-ref">Exploratory Data Analysis</span></a> can do this. For an EDA package that’s explicitly built with visalisation in mind, check out <a class="reference external" href="https://github.com/fbdesignpro/sweetviz">SweetViz</a>. Beyond you and perhaps your co-authors/collaborators, not many other people should be seeing your exploratory visualisation.</p>
+</div>
+<div class="section" id="scientific-visualisation">
+<h3><span class="section-number">16.1.2. </span>Scientific Visualisation<a class="headerlink" href="#scientific-visualisation" title="Permalink to this headline">¶</a></h3>
+<p>The second kind, scientific visualisation, is the prime cut of your exploratory visualisation. It’s the kind of plot you might include in a more technical paper, the picture that says a thousand words. I often think of the first image of a black hole <span id="id1">[<a class="reference internal" href="zreferences.html#id11">3</a>]</span> as a prime example of this. You can get away with having a high density of information in a scientific plot and, in short format journals, you may need to. The journal <em>Physical Review Letters</em>, which has an 8 page limit, has a classic of this genre in more or less every issue. Ensuring that important values can be accurately read from the plot is especially important in these kinds of charts. But they can also be the kind of plot that presents the killer results in a study; they might not be exciting to people who don’t look at charts for a living, but they might be exciting and, just as importantly, understandable by your peers.</p>
+</div>
+<div class="section" id="narrative-visualisation">
+<h3><span class="section-number">16.1.3. </span>Narrative Visualisation<a class="headerlink" href="#narrative-visualisation" title="Permalink to this headline">¶</a></h3>
+<p>The third and final kind is narrative visualisation. This is the one that requires the most thought in the step where you go from the first view to the end product. It’s a visualisation that doesn’t just show a picture, but gives an insight. These are the kind of visualisations that you might see in the <em>Financial Times</em>, <em>The Economist</em>, or on the BBC News website. They come with aids that help the viewer focus on the aspects that the creator wanted them to (you can think of these aids or focuses as doing for visualisation what bold font does for text). They’re well worth using in your work, especially if you’re trying to communicate a particular narrative, and especially if the people you’re communicating with don’t have deep knowledge of the topic. You might use them in a paper that you hope will have a wide readership, in a blog post summarising your work, or in a report intended for a policymaker.</p>
+<p>You can find more information on the topic in the <a class="reference internal" href="vis-narrative.html#vis-narrative"><span class="std std-ref">Narrative Data Visualisation</span></a> chapter.</p>
+</div>
+</div>
+<div class="section" id="quick-guide-to-data-visualisation">
+<h2><span class="section-number">16.2. </span>Quick guide to data visualisation<a class="headerlink" href="#quick-guide-to-data-visualisation" title="Permalink to this headline">¶</a></h2>
+<p>Addressing data visualisation, a huge topic in itself, is definitely out of scope for this book! But it’s worth discussing a few general pointers at the outset that will serve you very well if you follow them.</p>
+<p>A picture may tell a 1000 words, but you’ve got to be a bit careful about what those words are. The first question you should ask yourself when it comes to data visualisation is ‘what does this plot tell the viewer?’, ie what do you want people to take away from your chart. That nugget of information should be as apparent as possible from the plot. Then you want to ensure that people <em>do</em> take away what you meant them to; the viewer should be left in little doubt about what you are saying.</p>
+<p>Another factor to bear in mind is that papers typically don’t have more than, say, ten plots in them–and frequently fewer than that. So each one must count and advance the narrative of your work somehow. (Easier to say, hard to do in practice.) As an example, if you have data that are normally distributed, and you want to show this, it’s probably not worth showing it on a plot. But if you had two distributions whose differences were important for the overall story you were telling, that might be something to highlight.</p>
+<p>Then there are more practical matters: is this plot better done as a scatter plot or a line? Should I stack my bar chart or split out the contributions? Those questions address the <em>type</em> of plot you’re creating. For example, if you have observations that are independent from one another, with no auto-correlation along the x-axis, a scatter plot is more appropriate than a line chart. However, for time series, which tend to exhibit a high degree of auto-correlation, a line chart could be just the thing. As well as the overall type, for example scatter plot, you can think about adding more information through the use of colours, shapes, sizes, and so on. But my advice is always to be sparing with extra dimensions of information as it very quickly becomes difficult to read. In most cases, an x-axis, a y-axis, and, usually, one other dimension (eg colour) will be the best option.</p>
+<p>Once you’ve decided on the <em>type</em> of chart, you can then think about smaller details. Unfortunately, lack of labels is endemic in economics (“percent of what!?”, I cry at least three times a day). Always make what you’re plotting clear and, if it has units, express them (eg “Salary (2015 USD)”). Think carefully about the tick labels to use too; you’ll want something quite different for linear versus log plots. Titles can be helpful too, if the axes labels and the chart by themselves don’t tell the whole story.</p>
+<p>Then, if there are very specific features you’d like to draw attention to, you can achieve this with text labels (as used liberally in the data visualisations you’ll see in newspapers like the <em>Financial Times</em>), greying out all but the most interesting data point, etc.; anything that singles out one part of the chart as the interesting one. A common trick is to plot the less important features with greater transparency and the important line/point/bar with solid colour. These all have the effect of drawing the eye straight to where it should spend the most time.</p>
+<p>This is just the briefest of brief overviews of what you should bear in mind for good visualisation; I highly recommend the short and delightful <a class="reference external" href="https://clauswilke.com/dataviz/">Fundamentals of Data visualisation</a> if you’d like to know more.</p>
+<p>In terms of further resources to help you choose the right plot for the occassion, you can’t go too far wrong than the <a class="reference external" href="https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary"><em>Financial Times</em> Visual Vocabulary of charts</a>. And, please, please use <a class="reference external" href="https://clauswilke.com/dataviz/image-file-formats.html">vector graphics</a> whenever you can!</p>
+<div class="section" id="colour">
+<h3><span class="section-number">16.2.1. </span>Colour<a class="headerlink" href="#colour" title="Permalink to this headline">¶</a></h3>
+<p>This section has benefitted from this <a class="reference external" href="https://blog.datawrapper.de/which-color-scale-to-use-in-data-vis/">blog piece</a> on visualisation and colour, and you can find more information there.</p>
+<p>Colours often make a chart come alive, but, when encoding differences with colour, think carefully about what would serve your audience and message best. It’s best not to use colour randomly, but to choose colours that either add information to the chart or get out of the way of the message. Often, you’ll want to draw your colours from a ‘colour palette’, a collection of different colours that work together to create a particular effect. The best colour palettes take into account that colour blindness is a problem for many people, and they remain informative even when converted to greyscale.</p>
+<p>One of the most popular Python visualisation libraries, <strong>matplotlib</strong>, comes with a wide range of colour palettes available <a class="reference external" href="https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html">here</a> and you can find another good package for colour palettes <a class="reference external" href="https://colorcet.holoviz.org/">here</a>.</p>
+<div class="section" id="categorical-data">
+<h4><span class="section-number">16.2.1.1. </span>Categorical Data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">¶</a></h4>
+<p>For (unordered) categorical data, visually distinct colour palettes (also known as qualitative palettes) are better. The basic rule is that you should use distinct hues when your values don’t have an inherent order or range. Note that this does not include Likert scales (“strongly agree, agree, neutral, disagree, strongly disagree”), because even though there are distinct categories, there is an order to the possible responses.</p>
+<p>Here are some examples of the qualitative hues available in the visualisation package <strong>matplotlib</strong>.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_8_0.png" src="_images/vis-intro_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="continuous-colour-scales">
+<h4><span class="section-number">16.2.1.2. </span>Continuous Colour Scales<a class="headerlink" href="#continuous-colour-scales" title="Permalink to this headline">¶</a></h4>
+<p>Continuously varying data need a sequential colour scale, but there are two types: <em>sequential</em> and <em>diverging</em></p>
+<p>For data that vary from low to high, you can use a sequential colourmap. Best practice is to use a sequential colourmap that is perceptually uniform. The authors of the Python package <strong>matplotlib</strong> <a class="reference external" href="https://bids.github.io/colormap/">developed</a> several perceptually uniform colourmaps that are now widely used, not just in Python, but in other languages and contexts too <span id="id2">[<a class="reference internal" href="zreferences.html#id18">4</a>]</span>. These are the ones built-in to <strong>matplotlib</strong>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_10_0.png" src="_images/vis-intro_10_0.png" />
+</div>
+</div>
+<p>Do not use the JET colourmap: it is very much not perceptually uniform. If you do want a rainbow-like sequential and perceptually uniform colourmap, then turbo, <a class="reference external" href="https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html">developed by Google</a>, is as good a choice as you’re going to find. You can find turbo within matplotlib.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_12_0.png" src="_images/vis-intro_12_0.png" />
+</div>
+</div>
+<p>Sometimes a <em>diverging</em> colourmap will be more appropriate for your data. These are also called bipolar or double-ended color scales and, instead of just going from low to high, they tend to have a default middle value (often brighter) with values either side that are darker in different hues. Diverging color scales are often used to visualise negative and positive differences relative to zero, election results, or Likert scales (for example, “strongly agree, agree, neutral, disagree, strongly disagree”).</p>
+<p>These are the built-in ones in <strong>matplotlib</strong>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_14_0.png" src="_images/vis-intro_14_0.png" />
+</div>
+</div>
+<p>So how do you choose between a diverging or sequential colour scale? Divering colour scales work better when i) there’s a meaningful middle point, ii) there are extremes that you want to emphasise, iii) when differences are more of the story than levels, and iv) when you don’t mind that people will have to put in a bit of extra effort to understand the chart relative to the typically more intuitive sequential colour scale.</p>
+<p>Finally, this book uses a colour-blind friendly qualitative scheme (you can find the list of colours in <a class="reference external" href="https://github.com/aeturrell/coding-for-economists/blob/main/plot_style.txt">this</a> file).</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/vis-intro_17_0.png" src="_images/vis-intro_17_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="libraries-for-data-visualisation">
+<h2><span class="section-number">16.3. </span>Libraries for data visualisation<a class="headerlink" href="#libraries-for-data-visualisation" title="Permalink to this headline">¶</a></h2>
+<p>In the rest of this chapter, we’ll take a look at making visualisations with several of these libraries. But first, let’s introduce them.</p>
+<p>The most important and widely used data visualisation library in Python is <a class="reference external" href="https://matplotlib.org/"><strong>matplotlib</strong></a>. It was used to make the first image of a black hole <span id="id3">[<a class="reference internal" href="zreferences.html#id11">3</a>]</span> and to image the first empirical evidence of gravitational waves <span id="id4">[<a class="reference internal" href="zreferences.html#id12">5</a>]</span>. <strong>matplotlib</strong> is an imperative visualisation library: you specify each part of what you want individually to build up an entire picture. It’s perhaps the easiest to get started with and the most difficult to master. As well as making plots, it can also be used to make diagrams, animations, and 3D visualisations (which you should use sparingly, if at all).</p>
+<p><a class="reference external" href="https://seaborn.pydata.org/index.html"><strong>seaborn</strong></a> is a popular declarative library that builds on <strong>maplotlib</strong> and works especially well with data that are in a <em>tidy</em> format (one row per observation, one column per variable). I tend to use a mixture of <strong>seaborn</strong> and <strong>matplotlib</strong> in my work.</p>
+<p><a class="reference external" href="https://plotnine.readthedocs.io/en/latest/"><strong>plotnine</strong></a> is another declarative plotting library but, rather than having lots of different functions (eg ‘boxplot’, ‘violinplot’, ‘scatterplot’) as <strong>seaborn</strong> does, it adopts a <em>grammar of graphics</em> approach. What this means is that <em>all</em> visualisations begin with the same command, <code class="docutils literal notranslate"><span class="pre">ggplot</span></code>, and are combinations of layers that address different aspects of a plot, for example points or lines, scale, labels, and so on. It’ll be clearer when we come to an example.</p>
+<p><a class="reference external" href="https://altair-viz.github.io/"><strong>altair</strong></a> is yet another declarative plotting library for Python! It’s most suited to interactive graphics on the web, and produces really beautiful charts. Under the hood, it calls a javascript library named <strong>Vega-Lite</strong> that’s the sort of thing newspaper data visualisation units might use to make their infographics.</p>
+<p><strong>pandas</strong> also has built-in plotting functions that you will have seen in the data analysis part of this book. They are of the form <code class="docutils literal notranslate"><span class="pre">df.plot.*</span></code> where <code class="docutils literal notranslate"><span class="pre">*</span></code> could be, for example, <code class="docutils literal notranslate"><span class="pre">scatter</span></code>. These are convenience functions for making a quick plot of your data and they actually use <strong>matplotlib</strong>; we won’t see much of these here but you can find them in the data analysis chapter.</p>
+<p>We’re going to start this chapter by finding out a little bit more about each of these data visualisation libraries before looking at some examples of how to make specific plots with all the main libraries. We’ll end by looking at some more interesting and advanced plots.</p>
+<div class="section" id="matplotlib">
+<h3><span class="section-number">16.3.1. </span>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>For a more in-depth introduction to matplotlib, head over to <a class="reference external" href="https://github.com/rougier/matplotlib-tutorial">this tutorial</a>.</p>
+<p>Each of these libraries has their own default theme for how it shows plots. Personally, I’m not much of a fan of the <strong>matplotlib</strong> default so the first thing I do is to change it to something more aesthetically pleasing and that uses the kind of fonts you’ll see in a paper compiled with latex.</p>
 <p>You’ll see we imported <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code> above; this is the main part of <strong>matplotlib</strong> that we’ll use in practice.</p>
 <p>There are actually two ways to use <strong>matplotlib</strong>: the ‘pyplot API’ and the ‘object-oriented API’. The pyplot API (application programming interface) gives an experience that’s much closer to Matlab and can be useful to make a quick chart. It’s very simple to use, for example:</p>
 <div class="cell docutils container">
@@ -580,10 +702,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff3505bad00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe667b277f0&gt;]
 </pre></div>
 </div>
-<img alt="_images/vis-intro_5_1.png" src="_images/vis-intro_5_1.png" />
+<img alt="_images/vis-intro_20_1.png" src="_images/vis-intro_20_1.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -602,10 +724,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff350a6af10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fe6678a9370&gt;
 </pre></div>
 </div>
-<img alt="_images/vis-intro_7_1.png" src="_images/vis-intro_7_1.png" />
+<img alt="_images/vis-intro_22_1.png" src="_images/vis-intro_22_1.png" />
 </div>
 </div>
 <p>In the above example, we used <code class="docutils literal notranslate"><span class="pre">ax.scatter</span></code> to get a scatter plot, <code class="docutils literal notranslate"><span class="pre">s=150</span></code> to set the area of the points, and <code class="docutils literal notranslate"><span class="pre">c='b'</span></code> to set the color. Many of these features will accept an array instead of a single value and will map them into the plot in the way you’d expect, for instance:</p>
@@ -624,7 +746,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_10_0.png" src="_images/vis-intro_10_0.png" />
+<img alt="_images/vis-intro_25_0.png" src="_images/vis-intro_25_0.png" />
 </div>
 </div>
 <p>Here we asked for a different colour for each point, an area that’s increasing linearly, partly transparent points (default is <code class="docutils literal notranslate"><span class="pre">alpha=1</span></code>, which is a solid colour), and a black edge colour.</p>
@@ -844,7 +966,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_13_0.png" src="_images/vis-intro_13_0.png" />
+<img alt="_images/vis-intro_28_0.png" src="_images/vis-intro_28_0.png" />
 </div>
 </div>
 <p>Perhaps you can see from this already that <strong>matplotlib</strong> offers a ton of customisation features <em>and</em> that it can be quite verbose.</p>
@@ -867,7 +989,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_15_0.png" src="_images/vis-intro_15_0.png" />
+<img alt="_images/vis-intro_30_0.png" src="_images/vis-intro_30_0.png" />
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">AutoMinorLocator(4)</span></code> inserts 4 minor tick marks between each major tick mark. The major formatter is <code class="docutils literal notranslate"><span class="pre">'{x:.2f}%'</span></code>, which says print 2 decimal places followed by a % sign. Finally, the <code class="docutils literal notranslate"><span class="pre">ax.ticklabel_format</span></code> option changes the computer science notation to use latex to print a prettier form of the one million signifier.</p>
@@ -910,7 +1032,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_17_0.png" src="_images/vis-intro_17_0.png" />
+<img alt="_images/vis-intro_32_0.png" src="_images/vis-intro_32_0.png" />
 </div>
 </div>
 <p>Okay, so we managed to get what we wanted. We used a colormap to get 5 qualitatively different colours; there are also sequential colormaps for continuous (as opposed to discrete) variables. You can find out more about the colormaps available in base matplotlib <a class="reference external" href="https://matplotlib.org/3.1.0/tutorials/colors/colormaps.html">here</a>. We also subsetted the dataframe and looped over it by state. Matplotlib doesn’t always work so well with tidy data. As you saw in this example, we had to loop over the different states. Some of its defaults are a little more friendly when using data that is unstacked, eg with one state per column.</p>
@@ -936,7 +1058,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_19_0.png" src="_images/vis-intro_19_0.png" />
+<img alt="_images/vis-intro_34_0.png" src="_images/vis-intro_34_0.png" />
 </div>
 </div>
 <p>This demonstrates creating a heatmap (or contour plot) with a colour bar legend and a title that’s rendered with latex. The heatmap uses a perceptually uniform distribution that makes equal changes look equal; <strong>matplotlib</strong> has a few of these. If you need more colours, check out the packages <a class="reference external" href="https://colorcet.holoviz.org/"><strong>colorcet</strong></a> and <a class="reference external" href="https://jiffyclub.github.io/palettable/"><strong>palettable</strong></a>.</p>
@@ -954,7 +1076,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_22_0.png" src="_images/vis-intro_22_0.png" />
+<img alt="_images/vis-intro_37_0.png" src="_images/vis-intro_37_0.png" />
 </div>
 </div>
 <p>Another important class of plots that we should look at are line charts, especially time series. Let’s grab the real GDP time series for the UK and US and look at the year-on-year quarterly growth rates (the first few entries will be <code class="docutils literal notranslate"><span class="pre">NaN</span></code> because we switched to growth space).</p>
@@ -1051,7 +1173,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_26_0.png" src="_images/vis-intro_26_0.png" />
+<img alt="_images/vis-intro_41_0.png" src="_images/vis-intro_41_0.png" />
 </div>
 </div>
 <p>We could also have created this chart by looping through the different countries just as we looped through the difference states in the previous example.</p>
@@ -1070,7 +1192,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_28_0.png" src="_images/vis-intro_28_0.png" />
+<img alt="_images/vis-intro_43_0.png" src="_images/vis-intro_43_0.png" />
 </div>
 </div>
 <p>As you can see, the plot dynamically responded to the shorter time period by putting more details in, here of quarters. You can specify exactly what you want with the tick label formatters that cater to datetimes, but the defaults are pretty well-behaved.</p>
@@ -1093,13 +1215,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_30_0.png" src="_images/vis-intro_30_0.png" />
+<img alt="_images/vis-intro_45_0.png" src="_images/vis-intro_45_0.png" />
 </div>
 </div>
 <p>Quite a few things are happening here. The first is that we asked for more rows and columns from matplotlib using <code class="docutils literal notranslate"><span class="pre">plt.subplots(nrows,</span> <span class="pre">ncolumns)</span></code> and instead of returning a single <code class="docutils literal notranslate"><span class="pre">ax</span></code> it returned a list of axes (here of length 2). We then iterated over those axes using enumerate, which gives an integer <code class="docutils literal notranslate"><span class="pre">i</span></code> and an <code class="docutils literal notranslate"><span class="pre">ax</span></code> from the list, and plotted a column on each axis by subsetting the dataframe one column at a time using <code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">i]</span></code>. Remember that the first position in <code class="docutils literal notranslate"><span class="pre">iloc</span></code> is for the index values (ie the rows), while the second is for the columns. Again, this was quite a lot of code to get a relatively simple chart done! And that’s exactly why we’re now going to take a look at the declarative library <strong>seaborn</strong> that wraps <strong>matplotlib</strong>.</p>
 </div>
 <div class="section" id="seaborn">
-<h3><span class="section-number">15.3.2. </span>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">16.3.2. </span>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h3>
 <p><strong>seaborn</strong> provides a high-level interface for quickly drawing standard charts. It is based on *<em>matplotlib</em>, which is great because it means you can always tinker if you need to. And it plays very nicely with <strong>pandas</strong> dataframes too, so it can easily fit into your workflow.</p>
 <p>Here’s an overview of the API (application programming interface; basically the commands we can feed the library) for <strong>seaborn</strong>. (NB: this figure excludes the facet option, which combines multiple versions of the below plots.)</p>
 <p><img alt="seaborn api diagram" src="https://seaborn.pydata.org/_images/function_overview_8_0.png" /></p>
@@ -1189,7 +1311,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_35_0.png" src="_images/vis-intro_35_0.png" />
+<img alt="_images/vis-intro_50_0.png" src="_images/vis-intro_50_0.png" />
 </div>
 </div>
 <p>In this case, we got a very similar plot with less effort–and what we do is more generalisable too. As long as we have data in a tidy format, we can specify the columns to seaborn and let it put them in different facets. And facets aren’t the only difference it can provide either: you can specify the hue such that it depends on another categorical variable (rather than, as in this case, changing with each facet). Here’s an example changing the hue to reflect an extra type of information, region:</p>
@@ -1308,7 +1430,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_38_0.png" src="_images/vis-intro_38_0.png" />
+<img alt="_images/vis-intro_53_0.png" src="_images/vis-intro_53_0.png" />
 </div>
 </div>
 <p>As you can see, we now have two colours: one for each region.</p>
@@ -1340,7 +1462,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_40_0.png" src="_images/vis-intro_40_0.png" />
+<img alt="_images/vis-intro_55_0.png" src="_images/vis-intro_55_0.png" />
 </div>
 </div>
 <p><strong>seaborn</strong> also offers convenience functions for (continuous) heatmaps, kernel density estimates, and marginal plots:</p>
@@ -1362,7 +1484,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_42_0.png" src="_images/vis-intro_42_0.png" />
+<img alt="_images/vis-intro_57_0.png" src="_images/vis-intro_57_0.png" />
 </div>
 </div>
 <p>And plotting simple linear models according to a category:</p>
@@ -1383,7 +1505,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_44_0.png" src="_images/vis-intro_44_0.png" />
+<img alt="_images/vis-intro_59_0.png" src="_images/vis-intro_59_0.png" />
 </div>
 </div>
 <p>And, finally, violin plots:</p>
@@ -1403,12 +1525,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_46_0.png" src="_images/vis-intro_46_0.png" />
+<img alt="_images/vis-intro_61_0.png" src="_images/vis-intro_61_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="plotnine">
-<h3><span class="section-number">15.3.3. </span>Plotnine<a class="headerlink" href="#plotnine" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">16.3.3. </span>Plotnine<a class="headerlink" href="#plotnine" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://plotnine.readthedocs.io/en/stable/"><strong>plotnine</strong></a> is, like <strong>seaborn</strong>, a declarative library. Unlike <strong>seaborn</strong>, it adopts a ‘grammar of graphics’ approach inspired by the book ‘The Grammar of Graphics’ by Leland Wilkinson. <strong>plotnine</strong> is heavily inspired by the API of the popular <strong>ggplot2</strong> plotting package in the statistical programming language R. The point behind the grammar of graphics approach is that users can compose plots by explicitly mapping data to the various elements that make up the plot. It is a particularly effective approach for a whole slew of standard plots created from tidy data.</p>
 <p>Before playing with <strong>plotnine</strong> though, I found that my preferred settings for <strong>maplotlib</strong> made the (very sensible) defaults for <strong>plotnine</strong> go awry, particularly for facet plots, so I’m going to switch back to the matplotlib defaults:</p>
 <div class="cell docutils container">
@@ -1431,8 +1553,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_50_0.png" src="_images/vis-intro_50_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792692287856)&gt;
+<img alt="_images/vis-intro_65_0.png" src="_images/vis-intro_65_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789220464969)&gt;
 </pre></div>
 </div>
 </div>
@@ -1446,8 +1568,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_52_0.png" src="_images/vis-intro_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792693176534)&gt;
+<img alt="_images/vis-intro_67_0.png" src="_images/vis-intro_67_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789230079751)&gt;
 </pre></div>
 </div>
 </div>
@@ -1466,8 +1588,8 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/plotnine/stats/smoothers.py:310: PlotnineWarning: Confidence intervals are not yet implementedfor lowess smoothings.
 </pre></div>
 </div>
-<img alt="_images/vis-intro_54_1.png" src="_images/vis-intro_54_1.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792686695286)&gt;
+<img alt="_images/vis-intro_69_1.png" src="_images/vis-intro_69_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789220527038)&gt;
 </pre></div>
 </div>
 </div>
@@ -1483,8 +1605,8 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/plotnine/stats/smoothers.py:310: PlotnineWarning: Confidence intervals are not yet implementedfor lowess smoothings.
 </pre></div>
 </div>
-<img alt="_images/vis-intro_56_1.png" src="_images/vis-intro_56_1.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792692426225)&gt;
+<img alt="_images/vis-intro_71_1.png" src="_images/vis-intro_71_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789226742209)&gt;
 </pre></div>
 </div>
 </div>
@@ -1504,8 +1626,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_58_0.png" src="_images/vis-intro_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792692714963)&gt;
+<img alt="_images/vis-intro_73_0.png" src="_images/vis-intro_73_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789226882392)&gt;
 </pre></div>
 </div>
 </div>
@@ -1524,8 +1646,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_60_0.png" src="_images/vis-intro_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792692974273)&gt;
+<img alt="_images/vis-intro_75_0.png" src="_images/vis-intro_75_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789227109124)&gt;
 </pre></div>
 </div>
 </div>
@@ -1547,8 +1669,8 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/plotnine/layer.py:401: PlotnineWarning: geom_point : Removed 2 rows containing missing values.
 </pre></div>
 </div>
-<img alt="_images/vis-intro_61_1.png" src="_images/vis-intro_61_1.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792693243399)&gt;
+<img alt="_images/vis-intro_76_1.png" src="_images/vis-intro_76_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789227512474)&gt;
 </pre></div>
 </div>
 </div>
@@ -1564,15 +1686,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vis-intro_63_0.png" src="_images/vis-intro_63_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792693220286)&gt;
+<img alt="_images/vis-intro_78_0.png" src="_images/vis-intro_78_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8789227379167)&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="altair">
-<h3><span class="section-number">15.3.4. </span>Altair<a class="headerlink" href="#altair" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">16.3.4. </span>Altair<a class="headerlink" href="#altair" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://altair-viz.github.io/"><strong>Altair</strong></a> is similar to <strong>plotnine</strong> and <strong>seaborn</strong>, in that it’s declarative, but it’s very dissimilar in its look and feel. It isn’t based on <strong>matplotlib</strong> and it’s really more suited to displaying graphics on the web than anything else. Under the hood, it uses powerful javascript visualisation libraries. Because you’re unlikely to use it in a paper, we won’t give it quite the same amount of time or consideration as the other libraries.</p>
 <p>A note of caution about <strong>altair</strong>: you shouldn’t use it for very large datasets (see the guidance <a class="reference external" href="https://altair-viz.github.io/user_guide/faq.html#altair-faq-large-notebook">here</a>–there is a way around it) and, last time I tried, charts couldn’t easily be exported to a PDF friendly format. It’s really geared around web visualisation, and very beautiful web vis at that!</p>
 <p>The first thing to understand about <strong>altair</strong> is that, in a similar way to <strong>plotnine</strong>, the creation of a chart is always the same and it’s only the specification of the type of chart that happens differently. Here’s a by now familiar scatterplot example:</p>
@@ -1591,12 +1713,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-0555b6d848884562937eda4901cdd9f0"></div>
+<div id="altair-viz-bcfb01afe64d4ddda9d416a904f8e0ca"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0555b6d848884562937eda4901cdd9f0") {
-      outputDiv = document.getElementById("altair-viz-0555b6d848884562937eda4901cdd9f0");
+    if (outputDiv.id !== "altair-viz-bcfb01afe64d4ddda9d416a904f8e0ca") {
+      outputDiv = document.getElementById("altair-viz-bcfb01afe64d4ddda9d416a904f8e0ca");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1667,12 +1789,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-f9501184570346708259fdc8685984a0"></div>
+<div id="altair-viz-525ba234d2bf4f2f9eb9cf9b612a9ff1"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-f9501184570346708259fdc8685984a0") {
-      outputDiv = document.getElementById("altair-viz-f9501184570346708259fdc8685984a0");
+    if (outputDiv.id !== "altair-viz-525ba234d2bf4f2f9eb9cf9b612a9ff1") {
+      outputDiv = document.getElementById("altair-viz-525ba234d2bf4f2f9eb9cf9b612a9ff1");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1742,12 +1864,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-4b169b5508fc45429293b2d36a9ba8ad"></div>
+<div id="altair-viz-b7797ac17c724c84bb1d89f3bb32bc59"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4b169b5508fc45429293b2d36a9ba8ad") {
-      outputDiv = document.getElementById("altair-viz-4b169b5508fc45429293b2d36a9ba8ad");
+    if (outputDiv.id !== "altair-viz-b7797ac17c724c84bb1d89f3bb32bc59") {
+      outputDiv = document.getElementById("altair-viz-b7797ac17c724c84bb1d89f3bb32bc59");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1807,12 +1929,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-c3713ff4cb56479f8b972db64ce37df5"></div>
+<div id="altair-viz-2e4865cd73784df69dd4c357a8f52f5e"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c3713ff4cb56479f8b972db64ce37df5") {
-      outputDiv = document.getElementById("altair-viz-c3713ff4cb56479f8b972db64ce37df5");
+    if (outputDiv.id !== "altair-viz-2e4865cd73784df69dd4c357a8f52f5e") {
+      outputDiv = document.getElementById("altair-viz-2e4865cd73784df69dd4c357a8f52f5e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1871,12 +1993,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-4f798132739049339a5dea62bc8480c3"></div>
+<div id="altair-viz-c0de897f859a439a868d8ff1de4bc7bb"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4f798132739049339a5dea62bc8480c3") {
-      outputDiv = document.getElementById("altair-viz-4f798132739049339a5dea62bc8480c3");
+    if (outputDiv.id !== "altair-viz-c0de897f859a439a868d8ff1de4bc7bb") {
+      outputDiv = document.getElementById("altair-viz-c0de897f859a439a868d8ff1de4bc7bb");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1940,12 +2062,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-a39fd635d41f4d3283dc6b0a9decc2e4"></div>
+<div id="altair-viz-70a31c926c684720b0dd382ea1fdce73"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a39fd635d41f4d3283dc6b0a9decc2e4") {
-      outputDiv = document.getElementById("altair-viz-a39fd635d41f4d3283dc6b0a9decc2e4");
+    if (outputDiv.id !== "altair-viz-70a31c926c684720b0dd382ea1fdce73") {
+      outputDiv = document.getElementById("altair-viz-70a31c926c684720b0dd382ea1fdce73");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -2024,12 +2146,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-a3eef5ce1e7a4b2aaf69cb5e49e2385e"></div>
+<div id="altair-viz-bf511753aaa544dab104d14a0030a3c1"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a3eef5ce1e7a4b2aaf69cb5e49e2385e") {
-      outputDiv = document.getElementById("altair-viz-a3eef5ce1e7a4b2aaf69cb5e49e2385e");
+    if (outputDiv.id !== "altair-viz-bf511753aaa544dab104d14a0030a3c1") {
+      outputDiv = document.getElementById("altair-viz-bf511753aaa544dab104d14a0030a3c1");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -2154,12 +2276,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-b5175b9baaf14ef5beb622d1d87274f1"></div>
+<div id="altair-viz-21f962a9b99b49059124013e5b8c7654"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b5175b9baaf14ef5beb622d1d87274f1") {
-      outputDiv = document.getElementById("altair-viz-b5175b9baaf14ef5beb622d1d87274f1");
+    if (outputDiv.id !== "altair-viz-21f962a9b99b49059124013e5b8c7654") {
+      outputDiv = document.getElementById("altair-viz-21f962a9b99b49059124013e5b8c7654");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -2206,9 +2328,9 @@
 </div>
 </div>
 <div class="section" id="other-useful-data-visualisation-tools">
-<h3><span class="section-number">15.3.5. </span>Other useful data visualisation tools<a class="headerlink" href="#other-useful-data-visualisation-tools" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">16.3.5. </span>Other useful data visualisation tools<a class="headerlink" href="#other-useful-data-visualisation-tools" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="honourable-mentions">
-<h4><span class="section-number">15.3.5.1. </span>Honourable mentions<a class="headerlink" href="#honourable-mentions" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">16.3.5.1. </span>Honourable mentions<a class="headerlink" href="#honourable-mentions" title="Permalink to this headline">¶</a></h4>
 <p>There are tons of data visualisation libraries in Python and it didn’t seem sensible to feature them all in great detail, but here are a few more that may be worth looking into depending on what you need.</p>
 <p><a class="reference external" href="https://proplot.readthedocs.io/en/latest/index.html"><strong>proplot</strong></a> aims to be “A lightweight matplotlib wrapper for making beautiful, publication-quality graphics”, though the style is more similar to how people might make plots in the hard sciences rather than the social sciences. The point of this library is to take some of the verbosity out of <strong>matplotlib</strong>:</p>
 <blockquote>
@@ -2243,7 +2365,7 @@
 </div>
 </div>
 <div class="section" id="review">
-<h2><span class="section-number">15.4. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.4. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <p>If you know:</p>
 <ul class="simple">
 <li><p>✅ a little bit about how to use data visualisation;</p></li>
@@ -2263,16 +2385,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "codeforecon"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "codeforecon",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'codeforecon'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -2288,7 +2410,7 @@
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">14. </span>Advanced Data</p>
+                <p class="prevnext-title"><span class="section-number">15. </span>Advanced Data</p>
             </div>
         </a>
     </div>
@@ -2296,7 +2418,7 @@
         <a class="right-next" href="vis-common-plots.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">16. </span>Common Plots</p>
+                <p class="prevnext-title"><span class="section-number">17. </span>Common Plots</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -2306,7 +2428,7 @@
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

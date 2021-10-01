@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+df = sns.load_dataset("penguins")
+
+g = sns.JointGrid(data=df, x="body_mass_g", y="bill_depth_mm", space=0)
+g.plot_joint(
+    sns.kdeplot,
+    fill=True,
+    clip=((2200, 6800), (10, 25)),
+    thresh=0,
+    levels=100,
+    cmap="inferno",
+)
+g.plot_marginals(sns.histplot, color="#03051A", alpha=1, bins=25);
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53353/3647287403.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     10[0m     [0mcmap[0m[0;34m=[0m[0;34m"inferno"[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m )
+[0;32m---> 12[0;31m [0mg[0m[0;34m.[0m[0mplot_marginals[0m[0;34m([0m[0msns[0m[0;34m.[0m[0mhistplot[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m"#03051A"[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m1[0m[0;34m,[0m [0mbins[0m[0;34m=[0m[0;36m25[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mAttributeError[0m: module 'seaborn' has no attribute 'histplot'
+AttributeError: module 'seaborn' has no attribute 'histplot'
+

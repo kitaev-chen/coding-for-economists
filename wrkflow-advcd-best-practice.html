@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -49,6 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/wrkflow-advcd-best-practice.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -71,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -138,6 +143,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -147,37 +157,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -189,22 +199,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -216,17 +226,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -238,12 +248,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -255,17 +265,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -277,12 +287,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -294,7 +304,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -306,7 +316,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -463,23 +473,40 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#auto-magically-improving-your-code">
+   6.2. Auto-magically improving your code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linting">
+     6.2.1. Linting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#formatting">
+     6.2.2. Formatting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#debugging-code">
-   6.2. Debugging code
+   6.3. Debugging code
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#print-statements">
-     6.2.1. Print statements
+     6.3.1. Print statements
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#icecream-and-better-print-statements">
-     6.2.2. Icecream and better print statements
+     6.3.2. Icecream and better print statements
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rich-for-beautiful-debugging">
-     6.2.3.
+     6.3.3.
      <strong>
       rich
      </strong>
@@ -488,32 +515,15 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#debugging-with-the-ide">
-     6.2.4. Debugging with the IDE
+     6.3.4. Debugging with the IDE
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#logging">
-   6.3. Logging
+   6.4. Logging
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#auto-magically-improving-your-code">
-   6.4. Auto-magically improving your code
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linting">
-     6.4.1. Linting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#formatting">
-     6.4.2. Formatting
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -527,19 +537,99 @@
               <div>
                 
   <div class="section" id="tools-for-better-coding">
-<h1><span class="section-number">6. </span>Tools for Better Coding<a class="headerlink" href="#tools-for-better-coding" title="Permalink to this headline">¶</a></h1>
+<span id="advcd-best-practice"></span><h1><span class="section-number">6. </span>Tools for Better Coding<a class="headerlink" href="#tools-for-better-coding" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This chapter covers the tools that will help you to write better code. This includes practical topics such as debugging code, logging, linting, and the magic of auto-formatting.</p>
 <p>As ever, you may need to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on the terminal before being able to use some of the packages that are featured.</p>
 </div>
+<div class="section" id="auto-magically-improving-your-code">
+<h2><span class="section-number">6.2. </span>Auto-magically improving your code<a class="headerlink" href="#auto-magically-improving-your-code" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter, we met the idea of <em>code style</em>: even for code that runs, <em>how</em> you write it matters for readability. (And it goes without saying that you don’t want bugs in your code that stop it running at all.) It is possible to catch some errors, to flag style issues, and even to re-format code to comply with a code style automatically. In this section, we’ll see how to use tools to perform these functions automatically.</p>
+<div class="section" id="linting">
+<h3><span class="section-number">6.2.1. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">¶</a></h3>
+<p>Linters are tools that analyse code for programmatic and stylistic errors, assuming you have declared a style. A linting tool flags any potential errors and deviations from style before you even run it. When you run a linter, you get a report of what line the issue is on and why it has been raised. They are supposedly named after the lint trap in a clothes dryer because of the way they catch small errors that could have big effects.</p>
+<p>Some of the most popular linters in Python are <a class="reference external" href="https://flake8.pycqa.org/en/latest/"><strong>flake8</strong></a>, <a class="reference external" href="https://pycodestyle.pycqa.org/en/latest/intro.html"><strong>pycodestyle</strong></a>, and <a class="reference external" href="https://www.pylint.org/"><strong>pylint</strong></a>.</p>
+<p>Let’s see an example of running a linter. VS Code has direct integration with a range of linters. To get going, use <code class="docutils literal notranslate"><span class="pre">⇧⌘P</span></code> (Mac) and then type ‘Python Select Linter’. In the example below, we’ll use <strong>flake8</strong> (and <strong>pylance</strong>, another VS Code extension). Let’s pretend we have a script, <code class="docutils literal notranslate"><span class="pre">test.py</span></code>, containing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+<span class="mi">7</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">this_is_a_func</span><span class="p">():</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>To see the linting report, press ``⌃``` (Mac) and navigate to the ‘Problems’ tab. We get a whole load of error messages about this script, here are a few:</p>
+<ul class="simple">
+<li><p>ⓧ missing whitespace after ‘,’ flake8(E231) 1, 15</p></li>
+<li><p>ⓧ continuation line under-indented for visual indent flake8(E128) 2, 1</p></li>
+<li><p>ⓧ expected 2 blank lines, found 1 flake8(E302) 4, 1</p></li>
+<li><p>ⓧ indentation is not a multiple of 4 flake8(E111) 5, 4</p></li>
+<li><p>ⓧ undefined name ‘X’ flake8(F821) 7, 7</p></li>
+<li><p>ⓧ module level import not at top of file flake8(E402) 9, 1</p></li>
+<li><p>ⓧ ‘numpy as np’ imported but unused flake8(F3401) 9, 1</p></li>
+<li><p>⚠ “X” is not defined Pylance(reportUndefinedVariable) 7, 7</p></li>
+<li><p>⚠ no newline at end of file flake8(W292) 78, 338</p></li>
+</ul>
+<p>each message is a warning or error that says what the problem is (for example, missing whitespace after ‘,’), what library is reporting it (mostly flake8 here), the name of the rule that has been broken (E231), and the line, row position (1, 15). Very helpfully, we get an undefined name message for variable <code class="docutils literal notranslate"><span class="pre">X</span></code>, this is especially handy because it would cause an error on execution otherwise. The same goes for the indentation message (indentation matters!). You can customise your <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">linting settings</a> in VS Code too.</p>
+<p>Although the automatic linting offered by an IDE is very convenient, it’s not the only way to use linting tools. You can also run them from the command line. For example, for <strong>flake8</strong>, the command is <code class="docutils literal notranslate"><span class="pre">flake8</span> <span class="pre">test.py</span></code>.</p>
+</div>
+<div class="section" id="formatting">
+<h3><span class="section-number">6.2.2. </span>Formatting<a class="headerlink" href="#formatting" title="Permalink to this headline">¶</a></h3>
+<p>It’s great to find out all the ways in which you are failing with respect to code style from a linter but wouldn’t it be <em>even</em> better if you could fix those style issues automatically? The answer is clearly yes! This is where formatters come in; they can take valid code and forcibly apply a code style to them. This is really handy in practice for all kinds of reasons.</p>
+<p>The most popular code formatters in Python are probably: <a class="reference external" href="https://github.com/google/yapf"><strong>yapf</strong></a>, ‘yet another Python formatter’, from Google; <a class="reference external" href="https://github.com/hhatto/autopep8"><strong>autopep8</strong></a>, which applies PEP8 to your code; and <a class="reference external" href="https://black.readthedocs.io/en/stable/"><strong>black</strong></a>, the ‘uncompromising formatter’ that is very opinionated (“any colour, as long as it’s black”).</p>
+<p>There are two ways to use formatters, line-by-line (though <strong>black</strong> doesn’t work in this mode) or on an entire script at once. VS Code offers an integration with formatters. To select a formatter in VS Code, bring up the settings using <code class="docutils literal notranslate"><span class="pre">⌘,</span></code> (Mac) or <code class="docutils literal notranslate"><span class="pre">ctrl+,</span></code> (otherwise) and type ‘python formatting provider’ and you can choose from autopep8, black, and yapf.</p>
+<p>If you choose <strong>autopep8</strong> and then open a script you can format a <em>selection</em> of code by pressing <code class="docutils literal notranslate"><span class="pre">⌘+k,</span> <span class="pre">⌘+f</span></code> (Mac) or  <code class="docutils literal notranslate"><span class="pre">ctrl+k,</span> <span class="pre">ctrl+f</span></code> (otherwise). They can also (and only, in the case of <strong>black</strong>) be used from the command line. For instance, to use <strong>black</strong>, the command is <code class="docutils literal notranslate"><span class="pre">black</span> <span class="pre">test.py</span></code>, assuming you have it installed.</p>
+<p>Let’s see an example of a poorly styled script and see what happens when we select all lines and use ctrl+k, ctrl+f to auto format with <strong>autopep8</strong>. The contents of <code class="docutils literal notranslate"><span class="pre">test.py</span></code> before formatting are:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">very_important_function</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">keyword_arg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">another_arg</span>  <span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="o">+</span>  <span class="n">y_val</span> <span class="o">+</span><span class="n">keyword_arg</span>
+<span class="n">very_important_function</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>
+<span class="mi">2</span><span class="p">,</span>
+<span class="mi">3</span><span class="p">,</span>
+<span class="mi">5</span><span class="p">,</span>
+<span class="mi">6</span><span class="p">,</span>
+<span class="mi">7</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>and, after running the auto-formatting command,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">very_important_function</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">keyword_arg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">another_arg</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span> <span class="o">+</span> <span class="n">y_val</span> <span class="o">+</span> <span class="n">keyword_arg</span>
+
+
+<span class="n">very_important_function</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>
+             <span class="mi">2</span><span class="p">,</span>
+             <span class="mi">3</span><span class="p">,</span>
+             <span class="mi">5</span><span class="p">,</span>
+             <span class="mi">6</span><span class="p">,</span>
+             <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>So what did the formatter do? Many things. It moved the import to the top, put two blank lines after the function definition, removed whitespace around keyword arguments, added a new line at the end, and fixed some of the indentation. The different formatters have different strengths and weaknesses; for example, <strong>black</strong> is not so good at putting imports in the right place but excels at splitting up troublesome wide lines. If you need a formatter that deals specifically with module imports, check out <a class="reference external" href="https://pycqa.github.io/isort/"><strong>isort</strong></a>.</p>
+<p>Apart from taking the pressure off you to always be thinking about code style, formatters can be useful when working collaboratively too. For some open source packages, maintainers ask that new code or changed code be run through a particular formatter if it is to be incorporated into the main branch. This helps ensure the code style is consistent regardless of who is writing it. Running the code formatter can even be automated to happen every time someone <em>commits</em> some code to a shared code repository too, using something called a <em>pre-commit hook</em>.</p>
+<p>There is a package that can run <strong>Black</strong> on Jupyter Notebooks too: <a class="reference external" href="https://pypi.org/project/black-nb/"><strong>black-nb</strong></a>.</p>
+</div>
+</div>
 <div class="section" id="debugging-code">
-<h2><span class="section-number">6.2. </span>Debugging code<a class="headerlink" href="#debugging-code" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Debugging code<a class="headerlink" href="#debugging-code" title="Permalink to this headline">¶</a></h2>
 <p>Computers are <em>very</em> literal, so literal that unless you’re perfectly precise about what you want, they will end up doing something different. When that happens, one of the most difficult issues in programming is to understand <em>why</em> the code isn’t doing what you expected. When the code doesn’t do what we expect, it’s called a bug.</p>
 <p>Bugs could be fundamental issues with the code you’re using (in fact, the term originated because a moth causing a problem in an early computer) and, if you find one of these, you should file an issue with the maintainers of the code. However, what’s much more likely is that the instructions you gave aren’t quite what is needed to produce the outcome that you want. And, in this case, you might need to <em>debug</em> the code: to find out which part of it isn’t doing what you expect.</p>
 <p>Even with a small code base, it can be tricky to track down where the bug is: but don’t fear, there are tools on hand to help you find where the bug is.</p>
 <div class="section" id="print-statements">
-<h3><span class="section-number">6.2.1. </span>Print statements<a class="headerlink" href="#print-statements" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.1. </span>Print statements<a class="headerlink" href="#print-statements" title="Permalink to this headline">¶</a></h3>
 <p>The simplest, and I’m afraid to say the most common, way to debug code is to plonk <code class="docutils literal notranslate"><span class="pre">print</span></code> statements in the code. Let’s take a common example in which we perform some simple array operations, here multiplying an array and then summing it with another array:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -689,7 +779,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">print</span></code> statements are great for a quick bit of debugging and you are likely to want to use them more frequently than any other debugging tool. However, for complex, nested code debugging, they aren’t always very efficient and you will sometimes feel like you are playing battleships in continually refining where they should go until you have pinpointed the actual problem, so they’re far from perfect. Fortunately, there are other tools in the debugging toolbox…</p>
 </div>
 <div class="section" id="icecream-and-better-print-statements">
-<h3><span class="section-number">6.2.2. </span>Icecream and better print statements<a class="headerlink" href="#icecream-and-better-print-statements" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.2. </span>Icecream and better print statements<a class="headerlink" href="#icecream-and-better-print-statements" title="Permalink to this headline">¶</a></h3>
 <p>Typing <code class="docutils literal notranslate"><span class="pre">print</span></code> statements with arguments that help you debug code can become tedious. There are better ways to work, which we’ll come to, but we must also recognise that <code class="docutils literal notranslate"><span class="pre">print</span></code> is used widely in practice. So what if we had a function that was as easier to use as <code class="docutils literal notranslate"><span class="pre">print</span></code> but better geared toward debugging? Well, we do, and it’s called <a class="reference external" href="https://github.com/gruns/icecream"><strong>icecream</strong></a>, and it’s available in most major languages, including Python, Dart, Rust, javascript, C++, PHP, Go, Ruby, and Java.</p>
 <p>Let’s take an example from earlier in this chapter, where we used a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement to display the contents of <code class="docutils literal notranslate"><span class="pre">in_arr_one</span></code> in advance of the line that caused an error being run. All we will do now is switch out <code class="docutils literal notranslate"><span class="pre">print(f'in_arr_one</span> <span class="pre">is</span> <span class="pre">{in_arr_one}')</span></code> for <code class="docutils literal notranslate"><span class="pre">ic(in_arr_one)</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">icecream</span> <span class="kn">import</span> <span class="n">ic</span>
@@ -770,7 +860,7 @@
 <p>All in all, if you find yourself using <code class="docutils literal notranslate"><span class="pre">print</span></code> to debug, you might find a one-time import of <strong>icecream</strong> followed by use of <code class="docutils literal notranslate"><span class="pre">ic</span></code> instead both more convenient and more effective.</p>
 </div>
 <div class="section" id="rich-for-beautiful-debugging">
-<h3><span class="section-number">6.2.3. </span><strong>rich</strong> for beautiful debugging<a class="headerlink" href="#rich-for-beautiful-debugging" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.3. </span><strong>rich</strong> for beautiful debugging<a class="headerlink" href="#rich-for-beautiful-debugging" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/willmcgugan/rich"><strong>rich</strong></a> is much more than just a tool for debugging, it’s a way to create beautiful renderings of all objects both in the terminal and in interactive Python windows. You can use it to build fantastic looking command line interfaces. Here, we’ll see how it can help us debug what value a variable takes <em>and</em> what methods can be used on a variable via its <code class="docutils literal notranslate"><span class="pre">inspect</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,7 +903,7 @@
 </div>
 </div>
 <div class="section" id="debugging-with-the-ide">
-<h3><span class="section-number">6.2.4. </span>Debugging with the IDE<a class="headerlink" href="#debugging-with-the-ide" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.4. </span>Debugging with the IDE<a class="headerlink" href="#debugging-with-the-ide" title="Permalink to this headline">¶</a></h3>
 <p>In this section, we’ll learn about how your Integrated Development Environment, or IDE, can aid you with debugging. While we’ll talk through the use of Visual Studio Code, which is free, directly supports Python, R, and other languages, and is especially rich, many of the features will be present in other IDEs too and the ideas are somewhat general.</p>
 <p>To begin debugging using Visual Studio Code, get a script ready, for example <code class="docutils literal notranslate"><span class="pre">script.py</span></code>, that you’d like to debug. If your script has an error in, a debug run will automatically run into it and stop on the error; alternatively you can click to the left of the line number in your script to create a <em>breakpoint</em> that your code will stop at anyway when in debug mode.</p>
 <p>To begin a debug session, click on the play button partially covered by a bug that’s on the left hand ribbon of the VS Code window. It will bring up a menu. Click ‘Run and debug’ and select ‘Python file’. The debugger will now start running the script you had open. When it reaches and error or a breakpoint it will stop.</p>
@@ -823,7 +913,7 @@
 </div>
 </div>
 <div class="section" id="logging">
-<h2><span class="section-number">6.3. </span>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
 <p>Logging is a means of tracking events that happen when software runs. An event is described by a descriptive message that can optionally contain data about variables that are defined as the code is executing.</p>
 <p>Logging has two main purposes: to record events of interest, such as an error, and to act as an auditable account of what happened after the fact.</p>
 <p>Although Python has a built-in logger, we will see an example of logging using <a class="reference external" href="https://github.com/Delgan/loguru"><strong>loguru</strong></a>, a package that makes logging a little easier and has some nice settings.</p>
@@ -837,7 +927,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:38:17.138 | DEBUG    | __main__:&lt;module&gt;:3 - Simple logging!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-01 16:25:28.717 | DEBUG    | __main__:&lt;module&gt;:3 - Simple logging!
 </pre></div>
 </div>
 </div>
@@ -896,86 +986,6 @@ ZeroDivisionError: division by zero
 </pre></div>
 </div>
 </div>
-<div class="section" id="auto-magically-improving-your-code">
-<h2><span class="section-number">6.4. </span>Auto-magically improving your code<a class="headerlink" href="#auto-magically-improving-your-code" title="Permalink to this headline">¶</a></h2>
-<p>In the previous chapter, we met the idea of <em>code style</em>: even for code that runs, <em>how</em> you write it matters for readability. (And it goes without saying that you don’t want bugs in your code that stop it running at all.) It is possible to catch some errors, to flag style issues, and even to re-format code to comply with a code style automatically. In this section, we’ll see how to use tools to perform these functions automatically.</p>
-<div class="section" id="linting">
-<h3><span class="section-number">6.4.1. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">¶</a></h3>
-<p>Linters are tools that analyse code for programmatic and stylistic errors, assuming you have declared a style. A linting tool flags any potential errors and deviations from style before you even run it. When you run a linter, you get a report of what line the issue is on and why it has been raised. They are supposedly named after the lint trap in a clothes dryer because of the way they catch small errors that could have big effects.</p>
-<p>Some of the most popular linters in Python are <a class="reference external" href="https://flake8.pycqa.org/en/latest/"><strong>flake8</strong></a>, <a class="reference external" href="https://pycodestyle.pycqa.org/en/latest/intro.html"><strong>pycodestyle</strong></a>, and <a class="reference external" href="https://www.pylint.org/"><strong>pylint</strong></a>.</p>
-<p>Let’s see an example of running a linter. VS Code has direct integration with a range of linters. To get going, use <code class="docutils literal notranslate"><span class="pre">⇧⌘P</span></code> (Mac) and then type ‘Python Select Linter’. In the example below, we’ll use <strong>flake8</strong> (and <strong>pylance</strong>, another VS Code extension). Let’s pretend we have a script, <code class="docutils literal notranslate"><span class="pre">test.py</span></code>, containing</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
-<span class="mi">7</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">this_is_a_func</span><span class="p">():</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-<p>To see the linting report, press ``⌃``` (Mac) and navigate to the ‘Problems’ tab. We get a whole load of error messages about this script, here are a few:</p>
-<ul class="simple">
-<li><p>ⓧ missing whitespace after ‘,’ flake8(E231) 1, 15</p></li>
-<li><p>ⓧ continuation line under-indented for visual indent flake8(E128) 2, 1</p></li>
-<li><p>ⓧ expected 2 blank lines, found 1 flake8(E302) 4, 1</p></li>
-<li><p>ⓧ indentation is not a multiple of 4 flake8(E111) 5, 4</p></li>
-<li><p>ⓧ undefined name ‘X’ flake8(F821) 7, 7</p></li>
-<li><p>ⓧ module level import not at top of file flake8(E402) 9, 1</p></li>
-<li><p>ⓧ ‘numpy as np’ imported but unused flake8(F3401) 9, 1</p></li>
-<li><p>⚠ “X” is not defined Pylance(reportUndefinedVariable) 7, 7</p></li>
-<li><p>⚠ no newline at end of file flake8(W292) 78, 338</p></li>
-</ul>
-<p>each message is a warning or error that says what the problem is (for example, missing whitespace after ‘,’), what library is reporting it (mostly flake8 here), the name of the rule that has been broken (E231), and the line, row position (1, 15). Very helpfully, we get an undefined name message for variable <code class="docutils literal notranslate"><span class="pre">X</span></code>, this is especially handy because it would cause an error on execution otherwise. The same goes for the indentation message (indentation matters!). You can customise your <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">linting settings</a> in VS Code too.</p>
-<p>Although the automatic linting offered by an IDE is very convenient, it’s not the only way to use linting tools. You can also run them from the command line. For example, for <strong>flake8</strong>, the command is <code class="docutils literal notranslate"><span class="pre">flake8</span> <span class="pre">test.py</span></code>.</p>
-</div>
-<div class="section" id="formatting">
-<h3><span class="section-number">6.4.2. </span>Formatting<a class="headerlink" href="#formatting" title="Permalink to this headline">¶</a></h3>
-<p>It’s great to find out all the ways in which you are failing with respect to code style from a linter but wouldn’t it be <em>even</em> better if you could fix those style issues automatically? The answer is clearly yes! This is where formatters come in; they can take valid code and forcibly apply a code style to them. This is really handy in practice for all kinds of reasons.</p>
-<p>The most popular code formatters in Python are probably: <a class="reference external" href="https://github.com/google/yapf"><strong>yapf</strong></a>, ‘yet another Python formatter’, from Google; <a class="reference external" href="https://github.com/hhatto/autopep8"><strong>autopep8</strong></a>, which applies PEP8 to your code; and <a class="reference external" href="https://black.readthedocs.io/en/stable/"><strong>black</strong></a>, the ‘uncompromising formatter’ that is very opinionated (“any colour, as long as it’s black”).</p>
-<p>There are two ways to use formatters, line-by-line (though <strong>black</strong> doesn’t work in this mode) or on an entire script at once. VS Code offers an integration with formatters. To select a formatter in VS Code, bring up the settings using <code class="docutils literal notranslate"><span class="pre">⌘,</span></code> (Mac) or <code class="docutils literal notranslate"><span class="pre">ctrl+,</span></code> (otherwise) and type ‘python formatting provider’ and you can choose from autopep8, black, and yapf.</p>
-<p>If you choose <strong>autopep8</strong> and then open a script you can format a <em>selection</em> of code by pressing <code class="docutils literal notranslate"><span class="pre">⌘+k,</span> <span class="pre">⌘+f</span></code> (Mac) or  <code class="docutils literal notranslate"><span class="pre">ctrl+k,</span> <span class="pre">ctrl+f</span></code> (otherwise). They can also (and only, in the case of <strong>black</strong>) be used from the command line. For instance, to use <strong>black</strong>, the command is <code class="docutils literal notranslate"><span class="pre">black</span> <span class="pre">test.py</span></code>, assuming you have it installed.</p>
-<p>Let’s see an example of a poorly styled script and see what happens when we select all lines and use ctrl+k, ctrl+f to auto format with <strong>autopep8</strong>. The contents of <code class="docutils literal notranslate"><span class="pre">test.py</span></code> before formatting are:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">very_important_function</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">keyword_arg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">another_arg</span>  <span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">X</span><span class="o">+</span>  <span class="n">y_val</span> <span class="o">+</span><span class="n">keyword_arg</span>
-<span class="n">very_important_function</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>
-<span class="mi">2</span><span class="p">,</span>
-<span class="mi">3</span><span class="p">,</span>
-<span class="mi">5</span><span class="p">,</span>
-<span class="mi">6</span><span class="p">,</span>
-<span class="mi">7</span><span class="p">]</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-<p>and, after running the auto-formatting command,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="k">def</span> <span class="nf">very_important_function</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">keyword_arg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">another_arg</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">X</span> <span class="o">+</span> <span class="n">y_val</span> <span class="o">+</span> <span class="n">keyword_arg</span>
-
-
-<span class="n">very_important_function</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">list_defn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>
-             <span class="mi">2</span><span class="p">,</span>
-             <span class="mi">3</span><span class="p">,</span>
-             <span class="mi">5</span><span class="p">,</span>
-             <span class="mi">6</span><span class="p">,</span>
-             <span class="mi">7</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>So what did the formatter do? Many things. It moved the import to the top, put two blank lines after the function definition, removed whitespace around keyword arguments, added a new line at the end, and fixed some of the indentation. The different formatters have different strengths and weaknesses; for example, <strong>black</strong> is not so good at putting imports in the right place but excels at splitting up troublesome wide lines. If you need a formatter that deals specifically with module imports, check out <a class="reference external" href="https://pycqa.github.io/isort/"><strong>isort</strong></a>.</p>
-<p>Apart from taking the pressure off you to always be thinking about code style, formatters can be useful when working collaboratively too. For some open source packages, maintainers ask that new code or changed code be run through a particular formatter if it is to be incorporated into the main branch. This helps ensure the code style is consistent regardless of who is writing it. Running the code formatter can even be automated to happen every time someone <em>commits</em> some code to a shared code repository too, using something called a <em>pre-commit hook</em>.</p>
-<p>There is a package that can run <strong>Black</strong> on Jupyter Notebooks too: <a class="reference external" href="https://pypi.org/project/black-nb/"><strong>black-nb</strong></a>.</p>
-</div>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -1030,7 +1040,7 @@ ZeroDivisionError: division by zero
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

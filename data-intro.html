@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Working with Data &#8212; Coding for Economists</title>
+    <title>10. Working with Data &#8212; Coding for Economists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -49,11 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/data-intro.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="10. Exploratory Data Analysis" href="data-exploratory-analysis.html" />
-    <link rel="prev" title="8. Data Analysis Quickstart" href="data-analysis-quickstart.html" />
+    <link rel="next" title="11. Exploratory Data Analysis" href="data-exploratory-analysis.html" />
+    <link rel="prev" title="9. Data Analysis Quickstart" href="data-analysis-quickstart.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -71,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -138,6 +143,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -147,37 +157,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -189,22 +199,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -216,17 +226,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -238,12 +248,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -255,17 +265,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -277,12 +287,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -294,7 +304,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -306,7 +316,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -459,151 +469,151 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   9.1. Introduction
+   10.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-tidy-data">
-     9.1.1. Using tidy data
+     10.1.1. Using tidy data
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dataframes-and-series">
-   9.2. Dataframes and series
+   10.2. Dataframes and series
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#values-columns-and-index">
-     9.2.1. Values, columns, and index
+     10.2.1. Values, columns, and index
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#datatypes">
-   9.3. Datatypes
+   10.3. Datatypes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-variables">
-     9.3.1. Categorical variables
+     10.3.1. Categorical variables
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#accessing-and-slicing">
-   9.4. Accessing and slicing
+   10.4. Accessing and slicing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#operations-on-dataframes">
-   9.5. Operations on dataframes
+   10.5. Operations on dataframes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aggregation">
-   9.6. Aggregation
+   10.6. Aggregation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#split-apply-and-combine">
-   9.7. Split, apply, and combine
+   10.7. Split, apply, and combine
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filter-transform-apply-and-assign">
-   9.8. Filter, transform, apply, and assign
+   10.8. Filter, transform, apply, and assign
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#filter">
-     9.8.1. Filter
+     10.8.1. Filter
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transform">
-     9.8.2. Transform
+     10.8.2. Transform
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#apply">
-     9.8.3. Apply
+     10.8.3. Apply
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#assign">
-     9.8.4. Assign
+     10.8.4. Assign
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#time-series-resampling-and-rolling-windows">
-   9.9. Time series, resampling, and rolling windows
+   10.9. Time series, resampling, and rolling windows
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#method-chaining">
-   9.10. Method chaining
+   10.10. Method chaining
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pyjanitor-and-more-extensive-method-chaining">
-     9.10.1. Pyjanitor and more extensive method chaining
+     10.10.1. Pyjanitor and more extensive method chaining
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reshaping-data">
-   9.11. Reshaping data
+   10.11. Reshaping data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pivoting-data-from-tidy-to-err-untidy">
-     9.11.1. Pivoting data from tidy to, err, untidy
+     10.11.1. Pivoting data from tidy to, err, untidy
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#melt">
-     9.11.2. Melt
+     10.11.2. Melt
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#stack-and-unstack">
-     9.11.3. Stack and unstack
+     10.11.3. Stack and unstack
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#get-dummies">
-     9.11.4. Get dummies
+     10.11.4. Get dummies
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#combining-data">
-   9.12. Combining data
+   10.12. Combining data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#concatenate">
-     9.12.1. Concatenate
+     10.12.1. Concatenate
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#merge">
-     9.12.2. Merge
+     10.12.2. Merge
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#advanced-alternatives-to-pandas">
-   9.13. (Advanced) alternatives to
+   10.13. (Advanced) alternatives to
    <strong>
     pandas
    </strong>
@@ -611,34 +621,34 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datatable">
-     9.13.1. Datatable
+     10.13.1. Datatable
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cudf">
-     9.13.2. cuDF
+     10.13.2. cuDF
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polars">
-     9.13.3. Polars
+     10.13.3. Polars
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plydata">
-     9.13.4. Plydata
+     10.13.4. Plydata
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dfplyr">
-     9.13.5. dfplyr
+     10.13.5. dfplyr
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#review">
-   9.14. Review
+   10.14. Review
   </a>
  </li>
 </ul>
@@ -653,16 +663,16 @@
               <div>
                 
   <div class="section" id="working-with-data">
-<span id="id1"></span><h1><span class="section-number">9. </span>Working with Data<a class="headerlink" href="#working-with-data" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">10. </span>Working with Data<a class="headerlink" href="#working-with-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The previous chapter was just a quick tour of what can be done with a single tabular dataset (a ‘dataframe’). In this chapter, we’ll go deeper into working with data.</p>
 <p>The ability to extract, clean, and analyse data is one of the core skills any economist needs. Fortunately, the (open source) tools that are available for data analysis have improved enormously in recent years, and working with them can be a delight–even the most badly formatted data can be beaten into shape.</p>
 <p>In this chapter, you’ll get really good introduction to the <a class="reference external" href="https://pandas.pydata.org/"><strong>pandas</strong></a> package, the core data manipulation library in Python. The name is derived from ‘panel data’ but it’s suited to any tabular data, and can be used to work with more complex data structures too. We <em>won’t</em> cover reading in or writing data here; see the next chapter for that.</p>
 <p>This chapter is hugely indebted to the fantastic <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake Vanderplas. Remember, if you get stuck with pandas, there is brilliant <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">documentation</a> and a fantastic set of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/index.html">introductory tutorials</a> on their website. These notes are heavily indebted to those introductory tutorials.</p>
 <p>This chapter uses the <strong>pandas</strong>, <strong>seaborn</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. (If you’re not sure what a command line or terminal is, take a quick look at the basics of coding chapter.)</p>
 <div class="section" id="using-tidy-data">
-<h3><span class="section-number">9.1.1. </span>Using tidy data<a class="headerlink" href="#using-tidy-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.1.1. </span>Using tidy data<a class="headerlink" href="#using-tidy-data" title="Permalink to this headline">¶</a></h3>
 <p>As an aside, if you’re working with tabular data, it’s good to try and use a so-called ‘tidy data’ format. This is data with one observation per row, and one variable per column, like so:</p>
 <p><img alt="" src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png" /></p>
 <p>Tidy data aren’t going to be appropriate <em>every</em> time and in every case, but they’re a really, really good default for tabular data. Once you use it as your default, it’s easier to think about how to perform subsequent operations. Some plotting libraries, such as <strong>seaborn</strong>, take that your data are in tidy format as a given. And many operations that you can perform on dataframes (the objects that hold tabular data within many programming languages) are easier when you have tidy data. If you’re writing out data to file to share, putting it in tidy format is a really good idea.</p>
@@ -671,7 +681,7 @@
 </div>
 </div>
 <div class="section" id="dataframes-and-series">
-<h2><span class="section-number">9.2. </span>Dataframes and series<a class="headerlink" href="#dataframes-and-series" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.2. </span>Dataframes and series<a class="headerlink" href="#dataframes-and-series" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with the absolute basics. The most basic <strong>pandas</strong> object is a dataframe. A DataFrame is a 2-dimensional data structure that can store data of different types (including characters, integers, floating point values, categorical data, even lists) in columns.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg" /></p>
 <p>We’ll now import some useful packages, set a random number seed (some examples use randomly generated data), set up some nice plot settings, and load a dataset.</p>
@@ -1054,7 +1064,7 @@ dtype: int64
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">reshape</span></code> takes an input and puts it into a given shape (a 6 by 6 matrix in the above example).</p>
 <div class="section" id="values-columns-and-index">
-<h3><span class="section-number">9.2.1. </span>Values, columns, and index<a class="headerlink" href="#values-columns-and-index" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.2.1. </span>Values, columns, and index<a class="headerlink" href="#values-columns-and-index" title="Permalink to this headline">¶</a></h3>
 <p>You’ll have seen that there are three different things that make up a dataframe: the values that are in the cells, the column names, and the index. The column and index can take on values that are the same as the values in a dataframe do; string, int, float, datetime, and more. It’s pretty obvious what role the columns play: they keep track of the name of different sets of values. But for people who may have seen other dataframe-like libraries, the role played by the index may be less familiar. The easiest way to think about a <strong>pandas</strong> index is that it does for row values what the columns do for columnar values: it’s a way of keeping track of what individual roles are and it <em>doesn’t</em> get used for calculations (just as summing a column ignores the name of the row).</p>
 <p>Here’s an example to show this. Let’s first create a simple dataframe:</p>
 <div class="cell docutils container">
@@ -1391,7 +1401,7 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="datatypes">
-<h2><span class="section-number">9.3. </span>Datatypes<a class="headerlink" href="#datatypes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.3. </span>Datatypes<a class="headerlink" href="#datatypes" title="Permalink to this headline">¶</a></h2>
 <p>Pandas has some built-in datatypes (some are the basic Python datatypes) that will make your life a <em>lot</em> easier if you work with them. Why bother specifying datatypes? Languages like Python let you get away with having pretty much anything in your columns. But this can be a problem: sometimes you’ll end up mixing integers, strings, the generic ‘object’ datatype, and more by mistake. By ensuring that columns conform to a datatype, you can save yourself from some of the trials that come with these mixed datatypes. Some of the most important datatypes for dataframe are string, float, categorical, datetime, int, and boolean.</p>
 <p>Typically, you’ll read in a dataset where the dataypes of the columns are a mess. One of the first things you’ll want to do is sort these out. Here’s an example dataset showing how to set the datatypes:</p>
 <div class="cell docutils container">
@@ -1503,7 +1513,7 @@ memory usage: 320.0 bytes
 </div>
 </div>
 <div class="section" id="categorical-variables">
-<h3><span class="section-number">9.3.1. </span>Categorical variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.3.1. </span>Categorical variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h3>
 <p>Categorical variables can be especially useful and there are a couple of convenience functions that allow you to create them from other types of columns. Cut splits input data into a given number of (evenly spaced) bins that you can optionally give names to via the <code class="docutils literal notranslate"><span class="pre">labels=</span></code> keyword. The default behaviour is for the order of the labels to matter so that, in the below example, the bins will be evenly spaced from the smallest value to the largest, with the smallest receiving the label <code class="docutils literal notranslate"><span class="pre">bad</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1549,7 +1559,7 @@ Categories (4, interval[float64, right]): [(0.999, 3.0] &lt; (3.0, 5.0] &lt; (5.
 </div>
 </div>
 <div class="section" id="accessing-and-slicing">
-<h2><span class="section-number">9.4. </span>Accessing and slicing<a class="headerlink" href="#accessing-and-slicing" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.4. </span>Accessing and slicing<a class="headerlink" href="#accessing-and-slicing" title="Permalink to this headline">¶</a></h2>
 <p>Now you know how to put data in a dataframe, how do you access the bits of it you need? There are various ways. If you want to access an entire column, the syntax is very simple; <code class="docutils literal notranslate"><span class="pre">df['columname']</span></code> (you can also use <code class="docutils literal notranslate"><span class="pre">df.columname</span></code>).</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/03_subset_columns.svg" /></p>
 <div class="cell docutils container">
@@ -2050,7 +2060,7 @@ Name: col1, dtype: float64
 <p>Two important points to note here: first, pandas doesn’t mind that we supplied a date that didn’t actually exist in the index. It worked out that by ‘2000-01-01’ we meant a datetime and compared the values of the index to that datetime in order to decide what rows to return from the dataframe. The second thing to notice is the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> for the column names; this explicitly says ‘give me all the columns’.</p>
 </div>
 <div class="section" id="operations-on-dataframes">
-<h2><span class="section-number">9.5. </span>Operations on dataframes<a class="headerlink" href="#operations-on-dataframes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.5. </span>Operations on dataframes<a class="headerlink" href="#operations-on-dataframes" title="Permalink to this headline">¶</a></h2>
 <p>Columns in dataframes can undergo all the usual arithmetic operations you’d expect of addition, multiplication, division, and so on. If the underlying datatypes of two columns have a group operation, then the dataframe columns will use that.</p>
 <p><img alt="" src="https://github.com/pandas-dev/pandas/raw/059c8bac51e47d6eaaa3e36d6a293a22312925e6/doc/source/_static/schemas/05_newcolumn_1.svg" /></p>
 <p>The results of these manipulations can just be saved as a new series, eg, <code class="docutils literal notranslate"><span class="pre">new_series</span> <span class="pre">=</span> <span class="pre">df['A']</span> <span class="pre">+</span> <span class="pre">df['B']</span></code> or created as a new column of the dataframe:</p>
@@ -2263,8 +2273,9 @@ dtype: bool
 0  7.389056  20.085537   1.000000  54.598150  54.598150
 1  1.000000   2.718282   2.718282  54.598150   1.000000
 2  7.389056   2.718282  20.085537   2.718282   7.389056
-
- Transpose:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Transpose:
    0  1  2
 A  2  0  2
 B  3  1  1
@@ -2277,7 +2288,7 @@ E  4  0  2
 </div>
 </div>
 <div class="section" id="aggregation">
-<h2><span class="section-number">9.6. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.6. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
 <p><strong>pandas</strong> has built-in aggregation functions such as</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2335,7 +2346,7 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="split-apply-and-combine">
-<h2><span class="section-number">9.7. </span>Split, apply, and combine<a class="headerlink" href="#split-apply-and-combine" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.7. </span>Split, apply, and combine<a class="headerlink" href="#split-apply-and-combine" title="Permalink to this headline">¶</a></h2>
 <p>Splitting a dataset, applying a function, and combining the results are three key operations that we’ll want to use again and again. Splitting means differentiating between rows or columns of data based on some conditions, for instance different categories or different values. Applying means applying a function, for example finding the mean or sum. Combine means putting the results of these operations back into the dataframe, or into a variable. The figure gives an example</p>
 <p><img alt="" src="https://jakevdp.github.io/PythonDataScienceHandbook/figures/03.08-split-apply-combine.png" /></p>
 <p>Note that the ‘combine’ part doesn’t always have to result in a new dataframe; it could create new columns in an existing dataframe.</p>
@@ -2756,9 +2767,9 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="filter-transform-apply-and-assign">
-<h2><span class="section-number">9.8. </span>Filter, transform, apply, and assign<a class="headerlink" href="#filter-transform-apply-and-assign" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.8. </span>Filter, transform, apply, and assign<a class="headerlink" href="#filter-transform-apply-and-assign" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="filter">
-<h3><span class="section-number">9.8.1. </span>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.8.1. </span>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
 <p>Filtering does exactly what it sounds like, but it can make use of group-by commands. In the example below, all but one species is filtered out.</p>
 <p>In the example below, <code class="docutils literal notranslate"><span class="pre">filter</span></code> passes a grouped version of the dataframe into the <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> we’ve defined (imagine that a dataframe is passed for each group). Because the passed variable is a dataframe, and variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is defined in the function, the <code class="docutils literal notranslate"><span class="pre">x</span></code> within <code class="docutils literal notranslate"><span class="pre">filter_func</span></code> body behaves like our dataframe–including having the same columns.</p>
 <div class="cell docutils container">
@@ -2862,7 +2873,7 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="transform">
-<h3><span class="section-number">9.8.2. </span>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.8.2. </span>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h3>
 <p>Transforms return a transformed version of the data that has the same shape as the input. This is useful when creating new columns that depend on some grouped data, for instance creating group-wise means. Here’s an example using the datetime group to subtract a yearly mean. First let’s create some synthetic data with some data, a datetime index, and some groups:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3089,7 +3100,7 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="apply">
-<h3><span class="section-number">9.8.3. </span>Apply<a class="headerlink" href="#apply" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.8.3. </span>Apply<a class="headerlink" href="#apply" title="Permalink to this headline">¶</a></h3>
 <p>Both regular functions and lambda functions can be used with the more general apply method, which takes a function and applies it to a given axis (<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> for index, <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> for columns):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3212,7 +3223,7 @@ dtype: int64
 <p>Of course, the much easier way to do this very common operation is <code class="docutils literal notranslate"><span class="pre">df['val1_times_val2']</span> <span class="pre">=</span> <span class="pre">df['values1']*df['values2']</span></code>, but there are times when you need to run more complex functions element-wise and, for those, <code class="docutils literal notranslate"><span class="pre">apply</span></code> is really useful.</p>
 </div>
 <div class="section" id="assign">
-<h3><span class="section-number">9.8.4. </span>Assign<a class="headerlink" href="#assign" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.8.4. </span>Assign<a class="headerlink" href="#assign" title="Permalink to this headline">¶</a></h3>
 <p>Assign is a method that allows you to return a new object with all the original columns in addition to new ones. Existing columns that are re-assigned will be overwritten. This is <em>really</em> useful when you want to perform a bunch of operations together in a concise way and keep the original columns. For instance, to demean the ‘values1’ column by year-type and to recompute the ‘val1_times_val2’ column using the newly demeaned ‘values1’ column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3341,7 +3352,7 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="time-series-resampling-and-rolling-windows">
-<h2><span class="section-number">9.9. </span>Time series, resampling, and rolling windows<a class="headerlink" href="#time-series-resampling-and-rolling-windows" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.9. </span>Time series, resampling, and rolling windows<a class="headerlink" href="#time-series-resampling-and-rolling-windows" title="Permalink to this headline">¶</a></h2>
 <p>The support for time series and the datetime type is excellent in pandas. It is very easy to manipulate datetimes. The <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">relevant part</a> of the documentation has more info; here we’ll just see a couple of the most important bits. First, let’s create some synthetic data to work with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3578,7 +3589,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="section" id="method-chaining">
-<h2><span class="section-number">9.10. </span>Method chaining<a class="headerlink" href="#method-chaining" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.10. </span>Method chaining<a class="headerlink" href="#method-chaining" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, rather than splitting operations out into multiple lines, it can be more concise and clear to chain methods together. A typical time you might do this is when reading in a dataset and perfoming all of the initial cleaning. Tom Augsperger has a <a class="reference external" href="https://tomaugspurger.github.io/method-chaining">great tutorial</a> on this, which I’ve reproduced parts of here. For more info on the <code class="docutils literal notranslate"><span class="pre">pipe</span></code> function used below, check out these short <a class="reference external" href="https://calmcode.io/pandas-pipe/introduction.html">video tutorials</a>.</p>
 <p>To chain methods together, both the input and output must be a pandas dataframe. Many functions already do input and output these, for example the <code class="docutils literal notranslate"><span class="pre">df.rename(columns={'old_col':</span> <span class="pre">'new_col'})</span></code> takes in <code class="docutils literal notranslate"><span class="pre">df</span></code> and outputs a dataframe with one column name changed.</p>
 <p>But occassionally, we’ll want to use a function that we’ve defined (rather than an already existing one). For that, we need the <code class="docutils literal notranslate"><span class="pre">pipe</span></code> method; it ‘pipes’ the result of one operation to the next operation. When objects are being passed through multiple functions, this can be much clearer. Compare, for example,</p>
@@ -3792,7 +3803,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-45-eae7ecd0a915&gt;:22: FutureWarning: The default value of regex will change from True to False in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_53538/1424200124.py:22: FutureWarning: The default value of regex will change from True to False in a future version.
   col.astype(str)
 </pre></div>
 </div>
@@ -3927,7 +3938,7 @@ Name: diff_values, dtype: float64
 </div></div></div>
 </div>
 <div class="section" id="pyjanitor-and-more-extensive-method-chaining">
-<h3><span class="section-number">9.10.1. </span>Pyjanitor and more extensive method chaining<a class="headerlink" href="#pyjanitor-and-more-extensive-method-chaining" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.10.1. </span>Pyjanitor and more extensive method chaining<a class="headerlink" href="#pyjanitor-and-more-extensive-method-chaining" title="Permalink to this headline">¶</a></h3>
 <p>Although there’s enough support for functional style method chaining to get by, you might find that doing this or that operation isn’t always as efficient or as concise as you’d like. Let’s look at two examples where this bites and what a wonderful little extension to <strong>pandas</strong> called <a class="reference external" href="https://pyjanitor.readthedocs.io"><strong>Pyjanitor</strong></a> does about it.</p>
 <p>First, you’ll have seen that the syntax for assigning a new column as part of a method chain is relatively fussy, using as it does the <code class="docutils literal notranslate"><span class="pre">new_column=lambda</span> <span class="pre">x:</span> <span class="pre">func(x['old_column])</span></code> syntax. If you already have a dataframe named <code class="docutils literal notranslate"><span class="pre">df</span></code>, <strong>pyjanitor</strong> gives you the option to create new columns like so (using an example from the documentation):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
@@ -3944,10 +3955,10 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="section" id="reshaping-data">
-<h2><span class="section-number">9.11. </span>Reshaping data<a class="headerlink" href="#reshaping-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.11. </span>Reshaping data<a class="headerlink" href="#reshaping-data" title="Permalink to this headline">¶</a></h2>
 <p>The main options for reshaping data are <code class="docutils literal notranslate"><span class="pre">pivot</span></code>, <code class="docutils literal notranslate"><span class="pre">melt</span></code>, <code class="docutils literal notranslate"><span class="pre">stack</span></code>, <code class="docutils literal notranslate"><span class="pre">unstack</span></code>, <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code>, <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code>, <code class="docutils literal notranslate"><span class="pre">cross_tab</span></code>, and <code class="docutils literal notranslate"><span class="pre">explode</span></code>. We’ll look at some of these here.</p>
 <div class="section" id="pivoting-data-from-tidy-to-err-untidy">
-<h3><span class="section-number">9.11.1. </span>Pivoting data from tidy to, err, untidy<a class="headerlink" href="#pivoting-data-from-tidy-to-err-untidy" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.11.1. </span>Pivoting data from tidy to, err, untidy<a class="headerlink" href="#pivoting-data-from-tidy-to-err-untidy" title="Permalink to this headline">¶</a></h3>
 <p>At the start of this chapter, I said you should use tidy data–one row per observation, one column per variable–whenever you can. But there are times when you will want to take your lovingly prepared tidy data and pivot it into a wider format. <code class="docutils literal notranslate"><span class="pre">pivot</span></code> and <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> help you to do that.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/reshaping_pivot.png" /></p>
 <p>This can be especially useful for time series data, where operations like <code class="docutils literal notranslate"><span class="pre">shift</span></code> or <code class="docutils literal notranslate"><span class="pre">diff</span></code> are typically applied assuming that an entry in one row follows (in time) from the one above. Here’s an example:</p>
@@ -4117,7 +4128,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="section" id="melt">
-<h3><span class="section-number">9.11.2. </span>Melt<a class="headerlink" href="#melt" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.11.2. </span>Melt<a class="headerlink" href="#melt" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">melt</span></code> can help you go from untidy to tidy data (from wide data to long data), and is a <em>really</em> good one to remember. Of course, I have to look at the documentation every single time myself, but I’m sure you’ll do better.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/reshaping_melt.png" /></p>
 <p>Here’s an example of it in action:</p>
@@ -4368,7 +4379,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="section" id="stack-and-unstack">
-<h3><span class="section-number">9.11.3. </span>Stack and unstack<a class="headerlink" href="#stack-and-unstack" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.11.3. </span>Stack and unstack<a class="headerlink" href="#stack-and-unstack" title="Permalink to this headline">¶</a></h3>
 <p>Stack, <code class="docutils literal notranslate"><span class="pre">stack()</span></code> is a shortcut for taking a single type of wide data variable from columns and turning it into a long form dataset, but with an extra index.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/reshaping_stack.png" /></p>
 <p>Unstack, <code class="docutils literal notranslate"><span class="pre">unstack()</span></code> unsurprisingly does the same operation, but in reverse.</p>
@@ -4580,7 +4591,7 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="get-dummies">
-<h3><span class="section-number">9.11.4. </span>Get dummies<a class="headerlink" href="#get-dummies" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.11.4. </span>Get dummies<a class="headerlink" href="#get-dummies" title="Permalink to this headline">¶</a></h3>
 <p>This is a really useful reshape command for when you want (explicit) dummies in your dataframe. When running simple regressions, you can achieve the same effect by declaring the column only be included as a fixed effect, but there are some machine learning packages where converting to dummies may be easier.</p>
 <p>Here’s an example:</p>
 <div class="cell docutils container">
@@ -4658,10 +4669,10 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="combining-data">
-<h2><span class="section-number">9.12. </span>Combining data<a class="headerlink" href="#combining-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.12. </span>Combining data<a class="headerlink" href="#combining-data" title="Permalink to this headline">¶</a></h2>
 <p><strong>pandas</strong> has a really rich set of options for combining one or more dataframes. The two most important are concatenate and merge.</p>
 <div class="section" id="concatenate">
-<h3><span class="section-number">9.12.1. </span>Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.12.1. </span>Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">¶</a></h3>
 <p>If you have two or more dataframes with the same index or the same columns, you can glue them together into a single dataframe using <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code>.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/08_concat_row.svg" /></p>
 <p>For the same columns, pass <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> to glue the index together; for the same index, pass <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> to glue the columns together. The concatenate function will typically be used on a list of dataframes.</p>
@@ -4745,7 +4756,7 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="merge">
-<h3><span class="section-number">9.12.2. </span>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.12.2. </span>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h3>
 <p>There are so many options for merging dataframes using <code class="docutils literal notranslate"><span class="pre">pd.merge(left,</span> <span class="pre">right,</span> <span class="pre">on=...,</span> <span class="pre">how=...</span></code> that we won’t be able to cover them all here. The most important features are: the two dataframes to be merged, what variables (aka keys) to merge on (and these can be indexes) via <code class="docutils literal notranslate"><span class="pre">on=</span></code>, and <em>how</em> to do the merge (eg left, right, outer, inner) via <code class="docutils literal notranslate"><span class="pre">how=</span></code>. This diagram shows an example of a merge using keys from the left-hand dataframe:</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/08_merge_left.svg" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">how=</span></code> keyword works in the following ways:</p>
@@ -5020,13 +5031,14 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="advanced-alternatives-to-pandas">
-<h2><span class="section-number">9.13. </span>(Advanced) alternatives to <strong>pandas</strong><a class="headerlink" href="#advanced-alternatives-to-pandas" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.13. </span>(Advanced) alternatives to <strong>pandas</strong><a class="headerlink" href="#advanced-alternatives-to-pandas" title="Permalink to this headline">¶</a></h2>
 <p>Feel free to skip this section if you’re just interested in getting going as quickly as possible.</p>
-<p><strong>pandas</strong> isn’t the only game in town, not by a long way–though it’s by far the best supported and the most fully featured. But it’s always good to have options–or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer or provide a speed-up (perhaps in certain situations, for example when working with very large datasets).</p>
+<p><strong>pandas</strong> isn’t the only game in town, not by a long way—though it’s by far the best supported and the most fully featured. But it’s always good to have options—or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer or provide a speed-up (perhaps in certain situations, for example when working with very large datasets).</p>
 <p>If you’re specifically interested in how different dataframe options perform on increasingly large datasets, take a look at the benchmarks <a class="reference external" href="https://h2oai.github.io/db-benchmark/">here</a>.</p>
+<p>If you need speed, the Python and Rust library Polars is currently the fastest performer on small and big data in any of Python, Julia, R, and Rust.</p>
 <p>Here’s a quick run-through of some alternatives to <strong>pandas</strong>:</p>
 <div class="section" id="datatable">
-<h3><span class="section-number">9.13.1. </span>Datatable<a class="headerlink" href="#datatable" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.13.1. </span>Datatable<a class="headerlink" href="#datatable" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://datatable.readthedocs.io/en/latest/"><strong>datatable</strong></a> is another dataframe based way to do analysis, and it has quite a different syntax to <strong>pandas</strong> for data manipulation. <strong>datatable</strong> is very fast, not the fastest dataframe option out there, but it holds its own. Its other major advantage is that it is comfortable running on extremely large (think 50GB) datasets. Most other dataframe packages (including in other languages) cannot cope with this.</p>
 <p>I am indebted to the very well-written datatable documentation for the rest of this demonstration.</p>
 <p>In datatable, almost all operations are achieved via so-called ‘square-bracket notation’. Operations with a (data) Frame are almost all expressed in the form</p>
@@ -5058,12 +5070,15 @@ dtype: float64
 .datatable .int     { background: #5D9E5D; }
 .datatable .float   { background: #4040CC; }
 .datatable .str     { background: #CC4040; }
+.datatable .time    { background: #40CC40; }
 .datatable .row_index {  background: var(--jp-border-color3);  border-right: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  font-size: 9px;}
+.datatable .frame tbody td { text-align: left; }
 .datatable .frame tr.coltypes .row_index {  background: var(--jp-border-color0);}
 .datatable th:nth-child(2) { padding-left: 12px; }
 .datatable .hellipsis {  color: var(--jp-cell-editor-border-color);}
 .datatable .vellipsis {  background: var(--jp-layout-color0);  color: var(--jp-cell-editor-border-color);}
 .datatable .na {  color: var(--jp-cell-editor-border-color);  font-size: 80%;}
+.datatable .sp {  opacity: 0.25;}
 .datatable .footer { font-size: 9px; }
 .datatable .frame_dimensions {  background: var(--jp-border-color3);  border-top: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  display: inline-block;  opacity: 0.6;  padding: 1px 10px 1px 5px;}
 </style>
@@ -5307,9 +5322,9 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="cudf">
-<h3><span class="section-number">9.13.2. </span>cuDF<a class="headerlink" href="#cudf" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.13.2. </span>cuDF<a class="headerlink" href="#cudf" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/rapidsai/cudf"><strong>cuDF</strong></a> is still under development and so doesn’t yet have all the features of <strong>pandas</strong>. It’s a Python GPU DataFrame library built on the blisteringly fast Apache Arrow columnar memory format. The parts of the library that have been implemented follow the same commands and structure as <strong>pandas</strong>, so it should be easy to use it should you need to.</p>
-<p><strong>cuDF</strong> is <em>the</em> fastest dataframe library out there in any of Python, Julia, Rust, or R with the caveats that:</p>
+<p><strong>cuDF</strong> is one of the fastest dataframe library out there in any of Python, Julia, Rust, or R with the caveats that:</p>
 <ul class="simple">
 <li><p>this only applies to in-memory datasets, ie datasets smaller than a few GB</p></li>
 <li><p>it doesn’t yet do everything</p></li>
@@ -5318,20 +5333,20 @@ dtype: float64
 </ul>
 </div>
 <div class="section" id="polars">
-<h3><span class="section-number">9.13.3. </span>Polars<a class="headerlink" href="#polars" title="Permalink to this headline">¶</a></h3>
-<p><span class="xref myst"><strong>Polars</strong></span> is almost as fast as <strong>cuDF</strong>, but is further down the development path. It also uses Apache Arrow as backend. It currently consists of an ‘eager’ (for datasets smaller than approximately a few GB) interface that’s very similar to <strong>pandas</strong> and a ‘lazy’ interface (don’t worry if you don’t know what that means, it’s a big data thing) that is somewhat similar to spark (a big data tool). <strong>Polars</strong> is built on the Rust language. It’s particularly effective at merging datasets.</p>
+<h3><span class="section-number">10.13.3. </span>Polars<a class="headerlink" href="#polars" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.pola.rs/"><strong>Polars</strong></a> is consistently the fastest dataframe library in any of Python, Julia, Rust, or R. It also uses Apache Arrow as backend. It currently consists of an ‘eager’ (for datasets smaller than approximately a few GB) interface that’s very similar to <strong>pandas</strong> and a ‘lazy’ interface (don’t worry if you don’t know what that means, it’s a big data thing) that is somewhat similar to spark (a big data tool). <strong>Polars</strong> is built on the Rust language. It’s particularly effective at merging datasets.</p>
 </div>
 <div class="section" id="plydata">
-<h3><span class="section-number">9.13.4. </span>Plydata<a class="headerlink" href="#plydata" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.13.4. </span>Plydata<a class="headerlink" href="#plydata" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://plydata.readthedocs.io/en/stable/index.html">Plydata</a> uses the syntax of the <strong>dplyr</strong> package in the R statistical language (the package is a really important part of the data ecosystem in R). It’s built around method chaining and everything being in a tidy format, which has pros and cons. Largely, the benefits are in readability and a smaller number of commands to cover the ground that you need to. The downsides are that it plays best with tidy data and when chained methods go wrong it can be more difficult to find out what the issue is.</p>
 </div>
 <div class="section" id="dfplyr">
-<h3><span class="section-number">9.13.5. </span>dfplyr<a class="headerlink" href="#dfplyr" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.13.5. </span>dfplyr<a class="headerlink" href="#dfplyr" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/kieferk/dfply">dfplyr</a> also follows the syntax of the <strong>dplyr</strong> package in R. <em>Note</em> that it does not appear to be under active development.</p>
 </div>
 </div>
 <div class="section" id="review">
-<h2><span class="section-number">9.14. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.14. </span>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <p>If you know:</p>
 <ul class="simple">
 <li><p>✅ what tidy data are;</p></li>
@@ -5381,7 +5396,7 @@ dtype: float64
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">8. </span>Data Analysis Quickstart</p>
+                <p class="prevnext-title"><span class="section-number">9. </span>Data Analysis Quickstart</p>
             </div>
         </a>
     </div>
@@ -5389,7 +5404,7 @@ dtype: float64
         <a class="right-next" href="data-exploratory-analysis.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">10. </span>Exploratory Data Analysis</p>
+                <p class="prevnext-title"><span class="section-number">11. </span>Exploratory Data Analysis</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -5399,7 +5414,7 @@ dtype: float64
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

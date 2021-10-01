@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -51,6 +51,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/code-basics.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -73,6 +74,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/smith_lovelace.png" class="logo" alt="logo">
       
@@ -140,6 +145,11 @@
    7. The Command Line
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   8. Reproducible Analysis
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -149,37 +159,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   8. Data Analysis Quickstart
+   9. Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   9. Working with Data
+   10. Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   10. Exploratory Data Analysis
+   11. Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   11. Reading and Writing Files
+   12. Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   12. Extracting Data
+   13. Extracting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   13. Sharing Data
+   14. Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   14. Advanced Data
+   15. Advanced Data
   </a>
  </li>
 </ul>
@@ -191,22 +201,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   15. Intro to Data Visualisation
+   16. Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   16. Common Plots
+   17. Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   17. Narrative Data Visualisation
+   18. Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   18. Animation
+   19. Animation
   </a>
  </li>
 </ul>
@@ -218,17 +228,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   19. Probability and Random Processes
+   20. Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   20. Statistics
+   21. Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   21. Regression
+   22. Regression
   </a>
  </li>
 </ul>
@@ -240,12 +250,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   22. Introduction to Text
+   23. Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   23. Natural Language Processing
+   24. Natural Language Processing
   </a>
  </li>
 </ul>
@@ -257,17 +267,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   24. Introduction to Time
+   25. Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   25. Time Series
+   26. Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   26. Forecasting Exercises
+   27. Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -279,12 +289,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   27. Intro to Geo-Spatial Analysis
+   28. Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   28. Geo-Spatial Visualisation
+   29. Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -296,7 +306,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   29. Intro to Mathematics with Code
+   30. Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -308,7 +318,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   30. Automating Research Outputs
+   31. Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -595,7 +605,7 @@
               <div>
                 
   <div class="section" id="basics-of-coding">
-<h1><span class="section-number">2. </span>Basics of Coding<a class="headerlink" href="#basics-of-coding" title="Permalink to this headline">¶</a></h1>
+<span id="code-basics"></span><h1><span class="section-number">2. </span>Basics of Coding<a class="headerlink" href="#basics-of-coding" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, you’ll learn about the basics of objects, types, operations, conditions, loops, functions, and imports. These are the basic building blocks of almost all programming languages.</p>
 <p>This chapter has benefited from the excellent <a class="reference external" href="https://www.tomasbeuzen.com/python-programming-for-data-science/README.html"><em>Python Programming for Data Science</em></a> book by Tomas Beuzen.</p>
 <div class="admonition tip">
@@ -604,7 +614,7 @@
 </div>
 <div class="section" id="if-you-get-stuck">
 <h2><span class="section-number">2.1. </span>If you get stuck<a class="headerlink" href="#if-you-get-stuck" title="Permalink to this headline">¶</a></h2>
-<p>It’s worth saying at the outset that, <em>no-one</em>, and I mean no-one, memorises half of the stuff you’ll see in this book. 80% or more of time spent programming is actually time spent looking up how to do this or that online, ‘debugging’ a code for errors, or testing code. This applies to all programmers, regardless of level. You are here to learn the skills and concepts of programming, not the precise syntax (which is easy to look up later).</p>
+<p>It’s worth saying at the outset that <em>no-one</em> memorises half of the stuff you’ll see in this book. 80% or more of time spent programming is actually time spent looking up how to do this or that online, ‘debugging’ a code for errors, or testing code. This applies to all programmers, regardless of level. You are here to learn the skills and concepts of programming, not the precise syntax (which is easy to look up later).</p>
 <p><img alt="xkcd-what-did-you-see" src="https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png" /></p>
 <p>Knowing how to Google is one of the most important skills of any coder. No-one remembers every function from every library. Here are some useful coding resources:</p>
 <ul class="simple">
@@ -1336,9 +1346,7 @@ Babbage
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The name in position 0 is Lovelace
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The name in position 1 is Smith
+The name in position 1 is Smith
 The name in position 2 is Hopper
 The name in position 3 is Babbage
 </pre></div>
@@ -1362,8 +1370,8 @@ The name in position 4 is Babbage
 </div>
 </div>
 </div>
-<p>High-level languages like Python and R do not get <em>compiled</em> into highly performant machine code ahead of being run, unlike C++ and FORTRAN. What this means is that although they are much less unwieldy to use, some types of operation can be very slow–and <code class="docutils literal notranslate"><span class="pre">for</span></code> loops are particularly cumbersome. (Although you may not notice this unless you’re working on a bigger computation.)</p>
-<p>But there is a way around this, and it’s with something called a <em>list comprehension</em>. These can combine what a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and a <code class="docutils literal notranslate"><span class="pre">condition</span></code> do in a single line of efficiently executable code. Say we had a list of numbers and wanted to filter it according to whether the numbers divided by 3 or not:</p>
+<p>There’s a second way to do loops in Python and, in most but <a class="reference external" href="https://towardsdatascience.com/list-comprehensions-vs-for-loops-it-is-not-what-you-think-34071d4d8207">not all</a> <a class="reference external" href="https://stackoverflow.com/questions/22108488/are-list-comprehensions-and-functional-functions-faster-than-for-loops">cases</a>, they run faster. More importantly, and <em>this</em> is the reason it’s good practice to use them where possible, they are very readable. They are called <em>list comprehensions</em>.</p>
+<p>List comprehensions can combine what a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and (if needed) what a <code class="docutils literal notranslate"><span class="pre">condition</span></code> do in a single line of efficiently executable code. Say we had a list of numbers and wanted to filter it according to whether the numbers divided by 3 or not:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_list</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
@@ -1545,7 +1553,7 @@ Cox maps into Apple
 </div>
 <div class="section" id="functions">
 <h2><span class="section-number">2.14. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<p>If you’re an economist, I hardly need to tell you what a function is. In coding, it’s much the same as in mathematics: a function has inputs, it performs its function, and it returns any outputs. Functions begin with a <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword for ‘define a function’. It then has a name, followed by brackets, <code class="docutils literal notranslate"><span class="pre">()</span></code>, which may contain <em>function arguments</em> and <em>function keyword arguments</em>. The body of the function is then indented relative to the left-most text. Function arguments are defined in brackets following the name, with different inputs separated by commas. Any outputs are given with the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, again with different variables separated by commas. Let’s see a very simple example:</p>
+<p>If you’re an economist, you hardly need to be told you what a function is. In coding, it’s much the same as in mathematics: a function has inputs, it performs its function, and it returns any outputs. Functions begin with a <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword for ‘define a function’. It then has a name, followed by brackets, <code class="docutils literal notranslate"><span class="pre">()</span></code>, which may contain <em>function arguments</em> and <em>function keyword arguments</em>. The body of the function is then indented relative to the left-most text. Function arguments are defined in brackets following the name, with different inputs separated by commas. Any outputs are given with the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, again with different variables separated by commas. Let’s see a very simple example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">welcome_message</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -1823,7 +1831,7 @@ Name: strings, dtype: object
 </div>
 <div class="section" id="splat-and-splatty-splat">
 <h2><span class="section-number">2.18. </span>Splat and splatty-splat<a class="headerlink" href="#splat-and-splatty-splat" title="Permalink to this headline">¶</a></h2>
-<p>You read those right, yes. These are also known as unpacking operators for, respectively, arguments and dictionaries. For instance, if I have a function that takes two arguments I can send variables to it in different ways:</p>
+<p>You read those right, yes. These are also known as unpacking operators for, respectively, arguments and dictionaries. For instance, if we have a function that takes two arguments we can send variables to it in different ways:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -1907,7 +1915,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:40:01.380219
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-01 16:22:48.139696
 </pre></div>
 </div>
 </div>
@@ -1925,7 +1933,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021/9/16, 14:40
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021/10/1, 16:22
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1949,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-09-16 19:40:01.380219
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-01 21:22:48.139696
 </pre></div>
 </div>
 </div>
@@ -1958,7 +1966,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>107 days until New Year
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>92 days until New Year
 </pre></div>
 </div>
 </div>
@@ -2078,7 +2086,7 @@ red lorry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-01
 </pre></div>
 </div>
 </div>
@@ -2190,7 +2198,7 @@ False
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
