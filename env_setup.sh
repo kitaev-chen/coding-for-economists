@@ -1,5 +1,9 @@
+sudo apt-get update -y
+
 # to install non Python packages in linux envs
-sudo apt-get install graphviz graphviz-dev
+sudo apt-get -y install graphviz graphviz-dev libgdal-dev build-essential
+
+sudo apt-get -y install libgeos-dev libproj-dev proj-data proj-bin
 
 # install the env
 poetry install
