@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Data Analysis Quickstart &#8212; Coding for Economists</title>
+    <title>Data Analysis Quickstart &#8212; Coding for Economists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -53,8 +55,8 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/data-analysis-quickstart.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="10. Working with Data" href="data-intro.html" />
-    <link rel="prev" title="8. Reproducible Analysis" href="wrkflow-rap.html" />
+    <link rel="next" title="Working with Data" href="data-intro.html" />
+    <link rel="prev" title="Reproducible Analysis" href="wrkflow-rap.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -103,22 +105,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
-   1. Preliminaries
+   Preliminaries
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-basics.html">
-   2. Basics of Coding
+   Basics of Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-advanced.html">
-   3. Advanced Coding
+   Advanced Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
-   4. Options for Writing Code
+   Options for Writing Code
   </a>
  </li>
 </ul>
@@ -130,22 +132,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   5. Tips for Better Coding
+   Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   6. Tools for Better Coding
+   Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   7. The Command Line
+   The Command Line
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-rap.html">
-   8. Reproducible Analysis
+   Reproducible Analysis
   </a>
  </li>
 </ul>
@@ -157,37 +159,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Data Analysis Quickstart
+   Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   10. Working with Data
+   Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   11. Exploratory Data Analysis
+   Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   12. Reading and Writing Files
+   Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   13. Extracting Data
+   Getting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   14. Sharing Data
+   Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   15. Advanced Data
+   Advanced Data
   </a>
  </li>
 </ul>
@@ -199,22 +201,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   16. Intro to Data Visualisation
+   Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   17. Common Plots
+   Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   18. Narrative Data Visualisation
+   Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   19. Animation
+   Animation
   </a>
  </li>
 </ul>
@@ -226,17 +228,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   20. Probability and Random Processes
+   Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   21. Statistics
+   Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   22. Regression
+   Regression
   </a>
  </li>
 </ul>
@@ -248,12 +250,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   23. Introduction to Text
+   Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   24. Natural Language Processing
+   Natural Language Processing
   </a>
  </li>
 </ul>
@@ -265,17 +267,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   25. Introduction to Time
+   Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   26. Time Series
+   Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   27. Forecasting Exercises
+   Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -287,12 +289,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   28. Intro to Geo-Spatial Analysis
+   Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   29. Geo-Spatial Visualisation
+   Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -304,7 +306,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   30. Intro to Mathematics with Code
+   Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -316,7 +318,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   31. Automating Research Outputs
+   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -469,17 +471,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   9.1. Introduction
+   Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#loading-data-and-checking-datatypes">
-   9.2. Loading data and checking datatypes
+   Loading data and checking datatypes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#look-at-the-first-few-rows-with-head">
-     9.2.1. Look at the first few rows with
+     Look at the first few rows with
      <code class="docutils literal notranslate">
       <span class="pre">
        head()
@@ -491,7 +493,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filter-rows-and-columns-with-conditions-using-df-loc-condition-s-or-row-s-column-s">
-   9.3. Filter rows and columns with conditions using
+   Filter rows and columns with conditions using
    <code class="docutils literal notranslate">
     <span class="pre">
      df.loc[condition(s)
@@ -510,7 +512,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sort-rows-or-columns-with-sort-values">
-   9.4. Sort rows or columns with
+   Sort rows or columns with
    <code class="docutils literal notranslate">
     <span class="pre">
      .sort_values()
@@ -520,12 +522,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#choose-multiple-rows-or-columns-using-slices">
-   9.5. Choose multiple rows or columns using slices
+   Choose multiple rows or columns using slices
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#randomly-selecting-a-sample-using-sample">
-   9.6. Randomly selecting a sample using
+   Randomly selecting a sample using
    <code class="docutils literal notranslate">
     <span class="pre">
      .sample
@@ -535,7 +537,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rename-with-rename">
-   9.7. Rename with
+   Rename with
    <code class="docutils literal notranslate">
     <span class="pre">
      .rename
@@ -545,7 +547,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#add-new-columns-with-assign-or-assignment">
-   9.8. Add new columns with
+   Add new columns with
    <code class="docutils literal notranslate">
     <span class="pre">
      .assign
@@ -556,7 +558,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summarise-numerical-values-with-describe">
-   9.9. Summarise numerical values with
+   Summarise numerical values with
    <code class="docutils literal notranslate">
     <span class="pre">
      .describe()
@@ -566,7 +568,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#group-variables-values-with-groupby">
-   9.10. Group variables values with
+   Group variables values with
    <code class="docutils literal notranslate">
     <span class="pre">
      .groupby()
@@ -576,7 +578,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#add-transformed-columns-using-transform">
-   9.11. Add transformed columns using
+   Add transformed columns using
    <code class="docutils literal notranslate">
     <span class="pre">
      .transform()
@@ -586,7 +588,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#make-quick-charts-with-plot">
-   9.12. Make quick charts with
+   Make quick charts with
    <code class="docutils literal notranslate">
     <span class="pre">
      .plot.*
@@ -596,7 +598,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#export-results-and-descriptive-statistics-to-latex-with-to-latex">
-   9.13. Export results and descriptive statistics to latex with
+   Export results and descriptive statistics to latex with
    <code class="docutils literal notranslate">
     <span class="pre">
      to_latex
@@ -616,15 +618,15 @@
               <div>
                 
   <div class="section" id="data-analysis-quickstart">
-<span id="data-quickstart"></span><h1><span class="section-number">9. </span>Data Analysis Quickstart<a class="headerlink" href="#data-analysis-quickstart" title="Permalink to this headline">¶</a></h1>
+<span id="data-quickstart"></span><h1>Data Analysis Quickstart<a class="headerlink" href="#data-analysis-quickstart" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Here we’ll do a whistlestop tour of data analysis on a <em>single</em> dataframe using the Star Wars’ characters dataset as an example. For a more thorough grounding in using data, see the next chapter.</p>
 <p>This chapter uses the <strong>pandas</strong>, <strong>pyarrow</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. (If you’re not sure what a command line or terminal is, take a quick look at the basics-of-coding chapter.)</p>
 <p>This chapter is hugely indebted to the fantastic <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>, and both the <strong>pandas</strong> <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">documentation</a> and amazing <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/index.html">introductory tutorials</a>.</p>
 </div>
 <div class="section" id="loading-data-and-checking-datatypes">
-<h2><span class="section-number">9.2. </span>Loading data and checking datatypes<a class="headerlink" href="#loading-data-and-checking-datatypes" title="Permalink to this headline">¶</a></h2>
+<h2>Loading data and checking datatypes<a class="headerlink" href="#loading-data-and-checking-datatypes" title="Permalink to this headline">¶</a></h2>
 <p>Loading data into a dataframe is achieved with commands like <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(...)</span></code> or <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_stata(...)</span></code>. Let’s load the Star Wars data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -673,7 +675,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="look-at-the-first-few-rows-with-head">
-<h3><span class="section-number">9.2.1. </span>Look at the first few rows with <code class="docutils literal notranslate"><span class="pre">head()</span></code><a class="headerlink" href="#look-at-the-first-few-rows-with-head" title="Permalink to this headline">¶</a></h3>
+<h3>Look at the first few rows with <code class="docutils literal notranslate"><span class="pre">head()</span></code><a class="headerlink" href="#look-at-the-first-few-rows-with-head" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -772,7 +774,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="filter-rows-and-columns-with-conditions-using-df-loc-condition-s-or-row-s-column-s">
-<h2><span class="section-number">9.3. </span>Filter rows and columns with conditions using <code class="docutils literal notranslate"><span class="pre">df.loc[condition(s)</span> <span class="pre">or</span> <span class="pre">row(s),</span> <span class="pre">column(s)]</span></code><a class="headerlink" href="#filter-rows-and-columns-with-conditions-using-df-loc-condition-s-or-row-s-column-s" title="Permalink to this headline">¶</a></h2>
+<h2>Filter rows and columns with conditions using <code class="docutils literal notranslate"><span class="pre">df.loc[condition(s)</span> <span class="pre">or</span> <span class="pre">row(s),</span> <span class="pre">column(s)]</span></code><a class="headerlink" href="#filter-rows-and-columns-with-conditions-using-df-loc-condition-s-or-row-s-column-s" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">.loc</span></code> stands for location and allows you to filter (aka subset) a dataframe. <code class="docutils literal notranslate"><span class="pre">.loc</span></code> works like an index, so it always comes with square brackets, eg <code class="docutils literal notranslate"><span class="pre">df.loc[...]</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">loc</span></code> takes two arguments. The first is a list of the names of the rows that you’d like to select <em>or</em> a condition (ie a list of booleans with the same length as the dataframe) that selects certain rows. Remember, you can easily create a series of booleans by checking a column against a condition, for example <code class="docutils literal notranslate"><span class="pre">df['column1']</span> <span class="pre">==</span> <span class="pre">'black'</span></code>.</p>
 <p>The second argument consists of a list of column names you’d like to select. In both cases, <code class="docutils literal notranslate"><span class="pre">:</span></code> is shorthand for ‘use all rows’ or ‘use all columns’. If you have <em>either</em> condition(s) <em>or</em> column(s) (but not both), you can simply write <code class="docutils literal notranslate"><span class="pre">df[condition(s)]</span></code> or <code class="docutils literal notranslate"><span class="pre">df[column(s)]</span></code>.</p>
@@ -849,7 +851,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="sort-rows-or-columns-with-sort-values">
-<h2><span class="section-number">9.4. </span>Sort rows or columns with <code class="docutils literal notranslate"><span class="pre">.sort_values()</span></code><a class="headerlink" href="#sort-rows-or-columns-with-sort-values" title="Permalink to this headline">¶</a></h2>
+<h2>Sort rows or columns with <code class="docutils literal notranslate"><span class="pre">.sort_values()</span></code><a class="headerlink" href="#sort-rows-or-columns-with-sort-values" title="Permalink to this headline">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">sort_values(columns,</span> <span class="pre">ascending=False)</span></code> for descending order.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -971,7 +973,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="choose-multiple-rows-or-columns-using-slices">
-<h2><span class="section-number">9.5. </span>Choose multiple rows or columns using slices<a class="headerlink" href="#choose-multiple-rows-or-columns-using-slices" title="Permalink to this headline">¶</a></h2>
+<h2>Choose multiple rows or columns using slices<a class="headerlink" href="#choose-multiple-rows-or-columns-using-slices" title="Permalink to this headline">¶</a></h2>
 <p>Slices can be passed by name using <code class="docutils literal notranslate"><span class="pre">.loc[startrow:stoprow:step,</span> <span class="pre">startcolumn:stopcolumn:step]</span></code> or by position using <code class="docutils literal notranslate"><span class="pre">.iloc[start:stop:step,</span> <span class="pre">start:stop:step]</span></code>.</p>
 <p>Choosing every 10th row from the second, and the columns between ‘name’ and ‘gender’:</p>
 <div class="cell docutils container">
@@ -1139,7 +1141,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="randomly-selecting-a-sample-using-sample">
-<h2><span class="section-number">9.6. </span>Randomly selecting a sample using <code class="docutils literal notranslate"><span class="pre">.sample</span></code><a class="headerlink" href="#randomly-selecting-a-sample-using-sample" title="Permalink to this headline">¶</a></h2>
+<h2>Randomly selecting a sample using <code class="docutils literal notranslate"><span class="pre">.sample</span></code><a class="headerlink" href="#randomly-selecting-a-sample-using-sample" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">.sample(n)</span></code> randomly selects <code class="docutils literal notranslate"><span class="pre">n</span></code> rows, <code class="docutils literal notranslate"><span class="pre">.sample(frac=0.4)</span></code> selects 40% of the data, <code class="docutils literal notranslate"><span class="pre">replace=True</span></code> samples with replacement, and passing <code class="docutils literal notranslate"><span class="pre">weights=</span></code> selects a number or fraction with the probabilities given by the passed weights. (Note that weights passed should have the same length as the dataframe.)</p>
 <p>Taking a sample of 5 rows:</p>
 <div class="cell docutils container">
@@ -1239,7 +1241,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="rename-with-rename">
-<h2><span class="section-number">9.7. </span>Rename with <code class="docutils literal notranslate"><span class="pre">.rename</span></code><a class="headerlink" href="#rename-with-rename" title="Permalink to this headline">¶</a></h2>
+<h2>Rename with <code class="docutils literal notranslate"><span class="pre">.rename</span></code><a class="headerlink" href="#rename-with-rename" title="Permalink to this headline">¶</a></h2>
 <p>You can rename all columns by passing a function, for instance <code class="docutils literal notranslate"><span class="pre">df.rename(columns=str.lower)</span></code> to put all columns in lower case. Alternatively, use a dictionary to say which columns should be mapped to what:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1361,7 +1363,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="add-new-columns-with-assign-or-assignment">
-<h2><span class="section-number">9.8. </span>Add new columns with <code class="docutils literal notranslate"><span class="pre">.assign</span></code> or assignment<a class="headerlink" href="#add-new-columns-with-assign-or-assignment" title="Permalink to this headline">¶</a></h2>
+<h2>Add new columns with <code class="docutils literal notranslate"><span class="pre">.assign</span></code> or assignment<a class="headerlink" href="#add-new-columns-with-assign-or-assignment" title="Permalink to this headline">¶</a></h2>
 <p>Very often you will want to create new columns based on existing columns.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/05_newcolumn_1.svg" /></p>
 <p><code class="docutils literal notranslate"><span class="pre">.assign</span></code> is a function that applies to a dataframe and returns a copy of that dataframe:</p>
@@ -1625,7 +1627,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="summarise-numerical-values-with-describe">
-<h2><span class="section-number">9.9. </span>Summarise numerical values with <code class="docutils literal notranslate"><span class="pre">.describe()</span></code><a class="headerlink" href="#summarise-numerical-values-with-describe" title="Permalink to this headline">¶</a></h2>
+<h2>Summarise numerical values with <code class="docutils literal notranslate"><span class="pre">.describe()</span></code><a class="headerlink" href="#summarise-numerical-values-with-describe" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1698,7 +1700,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="group-variables-values-with-groupby">
-<h2><span class="section-number">9.10. </span>Group variables values with <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code><a class="headerlink" href="#group-variables-values-with-groupby" title="Permalink to this headline">¶</a></h2>
+<h2>Group variables values with <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code><a class="headerlink" href="#group-variables-values-with-groupby" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)[[</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;mass&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1776,7 +1778,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="add-transformed-columns-using-transform">
-<h2><span class="section-number">9.11. </span>Add transformed columns using <code class="docutils literal notranslate"><span class="pre">.transform()</span></code><a class="headerlink" href="#add-transformed-columns-using-transform" title="Permalink to this headline">¶</a></h2>
+<h2>Add transformed columns using <code class="docutils literal notranslate"><span class="pre">.transform()</span></code><a class="headerlink" href="#add-transformed-columns-using-transform" title="Permalink to this headline">¶</a></h2>
 <p>Quite often, it’s useful to put a column into a dataframe that is the result of an intermediate groupby and aggregation. For example, subtracting the group mean or normalisation. Transform does this and returns the column with the same shape as the original dataframe.</p>
 <p>Below is an example of transform being used to demean a variable according to the mean by species. Note that we use <code class="docutils literal notranslate"><span class="pre">pd.notna</span></code> to filter out missing species values (otherwise this would result in an error, which is actually <em>helpful</em> behaviour) and we are using lambda functions. Lambda functions are a quick way of writing functions, e.g. <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x+1</span></code> defines a function that adds one to x.</p>
 <div class="cell docutils container">
@@ -1916,7 +1918,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="make-quick-charts-with-plot">
-<h2><span class="section-number">9.12. </span>Make quick charts with <code class="docutils literal notranslate"><span class="pre">.plot.*</span></code><a class="headerlink" href="#make-quick-charts-with-plot" title="Permalink to this headline">¶</a></h2>
+<h2>Make quick charts with <code class="docutils literal notranslate"><span class="pre">.plot.*</span></code><a class="headerlink" href="#make-quick-charts-with-plot" title="Permalink to this headline">¶</a></h2>
 <p>Including scatter, area, bar, box, density, hexbin, histogram, kde, and line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1950,7 +1952,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="section" id="export-results-and-descriptive-statistics-to-latex-with-to-latex">
-<h2><span class="section-number">9.13. </span>Export results and descriptive statistics to latex with <code class="docutils literal notranslate"><span class="pre">to_latex</span></code><a class="headerlink" href="#export-results-and-descriptive-statistics-to-latex-with-to-latex" title="Permalink to this headline">¶</a></h2>
+<h2>Export results and descriptive statistics to latex with <code class="docutils literal notranslate"><span class="pre">to_latex</span></code><a class="headerlink" href="#export-results-and-descriptive-statistics-to-latex-with-to-latex" title="Permalink to this headline">¶</a></h2>
 <p>You’ll often want to export your results to a latex file for inclusion in a paper, presentation, or poster. Let’s say we had some descriptive statistics on a dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2034,16 +2036,16 @@ std  &amp;  169.457163 &amp;   34.770429 \\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "codeforecon"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "codeforecon",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'codeforecon'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -2059,7 +2061,7 @@ std  &amp;  169.457163 &amp;   34.770429 \\
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">8. </span>Reproducible Analysis</p>
+                <p class="prevnext-title">Reproducible Analysis</p>
             </div>
         </a>
     </div>
@@ -2067,7 +2069,7 @@ std  &amp;  169.457163 &amp;   34.770429 \\
         <a class="right-next" href="data-intro.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">10. </span>Working with Data</p>
+                <p class="prevnext-title">Working with Data</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

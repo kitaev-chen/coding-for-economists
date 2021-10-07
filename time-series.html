@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>26. Time Series &#8212; Coding for Economists</title>
+    <title>Time Series &#8212; Coding for Economists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -55,8 +57,8 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/time-series.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="27. Forecasting Exercises" href="time-fcasts-env.html" />
-    <link rel="prev" title="25. Introduction to Time" href="time-intro.html" />
+    <link rel="next" title="Forecasting Exercises" href="time-fcasts-env.html" />
+    <link rel="prev" title="Introduction to Time" href="time-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -105,22 +107,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
-   1. Preliminaries
+   Preliminaries
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-basics.html">
-   2. Basics of Coding
+   Basics of Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-advanced.html">
-   3. Advanced Coding
+   Advanced Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
-   4. Options for Writing Code
+   Options for Writing Code
   </a>
  </li>
 </ul>
@@ -132,22 +134,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   5. Tips for Better Coding
+   Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   6. Tools for Better Coding
+   Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   7. The Command Line
+   The Command Line
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-rap.html">
-   8. Reproducible Analysis
+   Reproducible Analysis
   </a>
  </li>
 </ul>
@@ -159,37 +161,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   9. Data Analysis Quickstart
+   Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   10. Working with Data
+   Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   11. Exploratory Data Analysis
+   Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   12. Reading and Writing Files
+   Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   13. Extracting Data
+   Getting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   14. Sharing Data
+   Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   15. Advanced Data
+   Advanced Data
   </a>
  </li>
 </ul>
@@ -201,22 +203,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   16. Intro to Data Visualisation
+   Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   17. Common Plots
+   Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   18. Narrative Data Visualisation
+   Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   19. Animation
+   Animation
   </a>
  </li>
 </ul>
@@ -228,17 +230,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   20. Probability and Random Processes
+   Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   21. Statistics
+   Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   22. Regression
+   Regression
   </a>
  </li>
 </ul>
@@ -250,12 +252,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
-   23. Introduction to Text
+   Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   24. Natural Language Processing
+   Natural Language Processing
   </a>
  </li>
 </ul>
@@ -267,17 +269,17 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   25. Introduction to Time
+   Introduction to Time
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   26. Time Series
+   Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   27. Forecasting Exercises
+   Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -289,12 +291,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   28. Intro to Geo-Spatial Analysis
+   Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   29. Geo-Spatial Visualisation
+   Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -306,7 +308,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   30. Intro to Mathematics with Code
+   Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -318,7 +320,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   31. Automating Research Outputs
+   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -471,7 +473,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introducing-time-series-with-pandas">
-   26.1. Introducing Time Series with
+   Introducing Time Series with
    <strong>
     pandas
    </strong>
@@ -479,83 +481,83 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-time-series">
-   26.2. Creating Time Series
+   Creating Time Series
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#datetime-offsets">
-   26.3. Datetime Offsets
+   Datetime Offsets
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-a-datetime-index-and-setting-the-frequency">
-   26.4. Creating a datetime index and setting the frequency
+   Creating a datetime index and setting the frequency
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-quick-time-series-plots">
-   26.5. Making Quick Time Series Plots
+   Making Quick Time Series Plots
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resampling-rolling-and-shifting">
-   26.6. Resampling, Rolling, and Shifting
+   Resampling, Rolling, and Shifting
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#resampling">
-     26.6.1. Resampling
+     Resampling
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rolling-window-functions">
-     26.6.2. Rolling Window Functions
+     Rolling Window Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#shifting">
-     26.6.3. Shifting
+     Shifting
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#correlations">
-   26.7. Correlations
+   Correlations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#autocorrelation">
-     26.7.1. Autocorrelation
+     Autocorrelation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#correlations-with-other-series">
-     26.7.2. Correlations with Other Series
+     Correlations with Other Series
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transformations">
-   26.8. Transformations
+   Transformations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mathematical-transformations">
-     26.8.1. Mathematical Transformations
+     Mathematical Transformations
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-box-cox-transform">
-       26.8.1.1. The Box-Cox Transform
+       The Box-Cox Transform
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#adjusting-for-inflation">
-     26.8.2. Adjusting for Inflation
+     Adjusting for Inflation
     </a>
    </li>
   </ul>
@@ -572,7 +574,7 @@
               <div>
                 
   <div class="section" id="time-series">
-<span id="id1"></span><h1><span class="section-number">26. </span>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on <strong>pandas</strong>, the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> chapters, it might be worth taking a quick spin through them first. You may also find it useful to be familiar with a few of the concepts from the previous <a class="reference internal" href="time-intro.html#time-intro"><span class="std std-ref">chapter on time</span></a>.</p>
 <p>While we’ll cover the basics here, the full set of time series functionality of <strong>pandas</strong> can be <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">found here</a>.</p>
 <p>This chapter has benefitted from the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas, Tom Augspurger’s <a class="reference external" href="https://github.com/TomAugspurger/effective-pandas">Effective Pandas</a>, and <a class="reference external" href="https://nwfsc-timeseries.github.io/atsa-labs/">Applied Time Series for Fisheries and Environmental Sciences</a>.</p>
@@ -602,7 +604,7 @@
 </div>
 </div>
 <div class="section" id="introducing-time-series-with-pandas">
-<h2><span class="section-number">26.1. </span>Introducing Time Series with <strong>pandas</strong><a class="headerlink" href="#introducing-time-series-with-pandas" title="Permalink to this headline">¶</a></h2>
+<h2>Introducing Time Series with <strong>pandas</strong><a class="headerlink" href="#introducing-time-series-with-pandas" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pandas.pydata.org/"><strong>pandas</strong></a> is the workhorse of time series analysis in Python. The basic object is a <em>timestamp</em>. The <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> function creates timestamps from strings that could reasonably represent datetimes. Let’s see an example of using <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to create a timestamp and then inspect all of the methods and attributes of the created timestamp using <strong>rich</strong>’s <code class="docutils literal notranslate"><span class="pre">inspect</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,6 +614,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/rich/_inspect.py:125: FutureWarning: Timestamp.freq is deprecated and will be removed in a future version
+  return (None, getattr(obj, attr_name))
+/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/rich/_inspect.py:125: FutureWarning: Timestamp.freqstr is deprecated and will be removed in a future version.
+  return (None, getattr(obj, attr_name))
+</pre></div>
+</div>
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">class</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'pandas._libs.tslibs.timestamps.Timestamp'</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ─────────╮</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008080; text-decoration-color: #008080">Pandas replacement for python datetime.datetime object.</span>              <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>                                                                      <span style="color: #000080; text-decoration-color: #000080">│</span>
@@ -621,6 +629,8 @@
 <span style="color: #000080; text-decoration-color: #000080">│</span>                                                                      <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>             <span style="color: #808000; text-decoration-color: #808000; font-style: italic">asm8</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">numpy.datetime64</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'2020-02-16T00:00:00.000000000'</span><span style="font-weight: bold">)</span> <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day_of_week</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">day_of_year</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>        <span style="color: #808000; text-decoration-color: #808000; font-style: italic">dayofweek</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>        <span style="color: #808000; text-decoration-color: #808000; font-style: italic">dayofyear</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">47</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">days_in_month</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">29</span>                                                <span style="color: #000080; text-decoration-color: #000080">│</span>
@@ -638,12 +648,12 @@
 <span style="color: #000080; text-decoration-color: #000080">│</span>    <span style="color: #808000; text-decoration-color: #808000; font-style: italic">is_year_start</span> = <span style="color: #ff0000; text-decoration-color: #ff0000; font-style: italic">False</span>                                             <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">max</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'2262-04-11 23:47:16.854775807'</span><span style="font-weight: bold">)</span>        <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>      <span style="color: #808000; text-decoration-color: #808000; font-style: italic">microsecond</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
-<span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">min</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'1677-09-21 00:12:43.145225'</span><span style="font-weight: bold">)</span>           <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>              <span style="color: #808000; text-decoration-color: #808000; font-style: italic">min</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timestamp</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'1677-09-21 00:12:43.145224193'</span><span style="font-weight: bold">)</span>        <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">minute</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>            <span style="color: #808000; text-decoration-color: #808000; font-style: italic">month</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">nanosecond</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>          <span style="color: #808000; text-decoration-color: #808000; font-style: italic">quarter</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
-<span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">resolution</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timedelta</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'0 days 00:00:00.000000'</span><span style="font-weight: bold">)</span>               <span style="color: #000080; text-decoration-color: #000080">│</span>
+<span style="color: #000080; text-decoration-color: #000080">│</span>       <span style="color: #808000; text-decoration-color: #808000; font-style: italic">resolution</span> = <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Timedelta</span><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'0 days 00:00:00.000000001'</span><span style="font-weight: bold">)</span>            <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">second</span> = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>                                                 <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>               <span style="color: #808000; text-decoration-color: #808000; font-style: italic">tz</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>           <span style="color: #808000; text-decoration-color: #808000; font-style: italic">tzinfo</span> = <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span>                                              <span style="color: #000080; text-decoration-color: #000080">│</span>
@@ -658,7 +668,7 @@
 <p>This is of type <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> and you can see that it has many of the same properties as the built-in Python <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> class from the previous chapter. As with that, the default setting for <code class="docutils literal notranslate"><span class="pre">tz</span></code> (timezone) and <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>. There are some extra properties, though, such as <code class="docutils literal notranslate"><span class="pre">freq</span></code> for frequency, which will be very useful when it comes to manipulating time <em>series</em> as opposed to just one or two datetimes.</p>
 </div>
 <div class="section" id="creating-time-series">
-<h2><span class="section-number">26.2. </span>Creating Time Series<a class="headerlink" href="#creating-time-series" title="Permalink to this headline">¶</a></h2>
+<h2>Creating Time Series<a class="headerlink" href="#creating-time-series" title="Permalink to this headline">¶</a></h2>
 <p>There are two main scenarios in which you might be creating time series using <strong>pandas</strong>: i) creating one from scratch or ii) reading in data from a file. Let’s look at a few ways to do i) first.</p>
 <p>You can create a time series with <strong>pandas</strong> by taking a date as created above and extending it using <strong>pandas</strong> timedelta function:</p>
 <div class="cell docutils container">
@@ -866,7 +876,7 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="section" id="datetime-offsets">
-<h2><span class="section-number">26.3. </span>Datetime Offsets<a class="headerlink" href="#datetime-offsets" title="Permalink to this headline">¶</a></h2>
+<h2>Datetime Offsets<a class="headerlink" href="#datetime-offsets" title="Permalink to this headline">¶</a></h2>
 <p>Our data, currently held in <code class="docutils literal notranslate"><span class="pre">df</span></code>, were read in as if they were from the <em>start</em> of the month but these data refer to the month that has passed and so should be for the <em>end</em> of the month. Fortunately, we can change this using a time offset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -931,7 +941,7 @@ Name: date, dtype: datetime64[ns]
 <p>While we used the <code class="docutils literal notranslate"><span class="pre">MonthEnd</span></code> offset here, there are many different offsets available. You can find a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects">full table of date offsets here</a>.</p>
 </div>
 <div class="section" id="creating-a-datetime-index-and-setting-the-frequency">
-<h2><span class="section-number">26.4. </span>Creating a datetime index and setting the frequency<a class="headerlink" href="#creating-a-datetime-index-and-setting-the-frequency" title="Permalink to this headline">¶</a></h2>
+<h2>Creating a datetime index and setting the frequency<a class="headerlink" href="#creating-a-datetime-index-and-setting-the-frequency" title="Permalink to this headline">¶</a></h2>
 <p>For the subsequent parts, we’ll set the datetime column to be the index of the dataframe. <em>This is the standard setup you will likely want to use when dealing with time series.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1087,7 +1097,7 @@ Name: date, dtype: datetime64[ns]
 </table>
 </div>
 <div class="section" id="making-quick-time-series-plots">
-<h2><span class="section-number">26.5. </span>Making Quick Time Series Plots<a class="headerlink" href="#making-quick-time-series-plots" title="Permalink to this headline">¶</a></h2>
+<h2>Making Quick Time Series Plots<a class="headerlink" href="#making-quick-time-series-plots" title="Permalink to this headline">¶</a></h2>
 <p>Having managed to put your time series into a dataframe, perhaps converting a column of type string into a colume of type datetime in the process, you often just want to see the thing! We can achieve this using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command, as long as we have a datetime index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1101,10 +1111,10 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="section" id="resampling-rolling-and-shifting">
-<h2><span class="section-number">26.6. </span>Resampling, Rolling, and Shifting<a class="headerlink" href="#resampling-rolling-and-shifting" title="Permalink to this headline">¶</a></h2>
+<h2>Resampling, Rolling, and Shifting<a class="headerlink" href="#resampling-rolling-and-shifting" title="Permalink to this headline">¶</a></h2>
 <p>Now our data have a <em>datetime index</em>, some common time series operations are made very easy for us.</p>
 <div class="section" id="resampling">
-<h3><span class="section-number">26.6.1. </span>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h3>
+<h3>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h3>
 <p>Quite frequently, there is a situation in which one would like to change the frequency of a given time series. A time index-based dataframe makes this easy via the <code class="docutils literal notranslate"><span class="pre">resample</span></code> function. <code class="docutils literal notranslate"><span class="pre">resample</span></code> must be told <em>how</em> you’d like to resample the data, for example via the mean or median. Here’s an example resampling the monthly data to annual and taking the mean:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1410,7 +1420,7 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="section" id="rolling-window-functions">
-<h3><span class="section-number">26.6.2. </span>Rolling Window Functions<a class="headerlink" href="#rolling-window-functions" title="Permalink to this headline">¶</a></h3>
+<h3>Rolling Window Functions<a class="headerlink" href="#rolling-window-functions" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">rolling</span></code> and <code class="docutils literal notranslate"><span class="pre">ewm</span></code> methods are both rolling window functions. The first includes functions of the sequence</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1599,7 +1609,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="section" id="shifting">
-<h3><span class="section-number">26.6.3. </span>Shifting<a class="headerlink" href="#shifting" title="Permalink to this headline">¶</a></h3>
+<h3>Shifting<a class="headerlink" href="#shifting" title="Permalink to this headline">¶</a></h3>
 <p>Shifting can move series around in time; it’s what we need to create leads and lags of time series. Let’s create a lead and a lag in the data. Remember that a lead is going to shift the pattern in the data to the left (ie earlier in time), while the lag is going to shift patterns later in time (ie to the right).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1690,10 +1700,10 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="section" id="correlations">
-<h2><span class="section-number">26.7. </span>Correlations<a class="headerlink" href="#correlations" title="Permalink to this headline">¶</a></h2>
+<h2>Correlations<a class="headerlink" href="#correlations" title="Permalink to this headline">¶</a></h2>
 <p>In this section, we’ll look at some different ways of comparing time series using simple metrics.</p>
 <div class="section" id="autocorrelation">
-<h3><span class="section-number">26.7.1. </span>Autocorrelation<a class="headerlink" href="#autocorrelation" title="Permalink to this headline">¶</a></h3>
+<h3>Autocorrelation<a class="headerlink" href="#autocorrelation" title="Permalink to this headline">¶</a></h3>
 <p>First, what about comparing a time series to itself? The autocorrelation of a time series tells you how persistent it is. The econometrics package <span class="xref myst"><strong>statsmodels</strong></span> has some tools for this, most notably <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.stattools.acf</span></code>. Sometimes what you want is just a visual cue though, in which case the code below produces a nice chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1716,14 +1726,18 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_60_0.png" src="_images/time-series_60_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/statsmodels/graphics/tsaplots.py:348: FutureWarning: The default method &#39;yw&#39; can produce PACF values outside of the [-1,1] interval. After 0.13, the default will change tounadjusted Yule-Walker (&#39;ywm&#39;). You can use this method now by setting method=&#39;ywm&#39;.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="_images/time-series_60_1.png" src="_images/time-series_60_1.png" />
 </div>
 </div>
 <p>Remember that the partial autocorrelation function can tell you about likely terms to include in an autoregressive (AR) model.</p>
 <p>By looking at both the ACF and PACF, you can get an idea of what terms would be good to include in <em>both</em> an MA and AR model which, combined, make an ARMA model. It’s also worth noting that, if the ACF and PACF do not seem to tail off, the series is likely to be non-stationary and differencing will be needed if you are going to model it with an ARMA approach.</p>
 </div>
 <div class="section" id="correlations-with-other-series">
-<h3><span class="section-number">26.7.2. </span>Correlations with Other Series<a class="headerlink" href="#correlations-with-other-series" title="Permalink to this headline">¶</a></h3>
+<h3>Correlations with Other Series<a class="headerlink" href="#correlations-with-other-series" title="Permalink to this headline">¶</a></h3>
 <p>To compute correlations with other time series, a popular choice is the cross-correlation function (CCF). Confusingly, there are different definitions of this object in statistics and signal processing. In statistics, it’s given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1870,10 +1884,10 @@ g_k = \frac{1}{n}\sum_{t=1}^{n-k} \left(y_t-\bar{y}\right) \left(x_{t+k}-\bar{x}
 </div>
 </div>
 <div class="section" id="transformations">
-<h2><span class="section-number">26.8. </span>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline">¶</a></h2>
+<h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline">¶</a></h2>
 <p>There are many reasons why you might want to perform transformations on series, including to normalise data and to adjust for changes (such as inflation). In this section, we’ll look at some of the most common transforms for time series.</p>
 <div class="section" id="mathematical-transformations">
-<h3><span class="section-number">26.8.1. </span>Mathematical Transformations<a class="headerlink" href="#mathematical-transformations" title="Permalink to this headline">¶</a></h3>
+<h3>Mathematical Transformations<a class="headerlink" href="#mathematical-transformations" title="Permalink to this headline">¶</a></h3>
 <p>The usual transformations that we know and love from other series of numerical data can equally be applied to time series, for example the log and power transforms. Let’s see some of these in action using data on US GDP.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2332,7 +2346,7 @@ y_t' = y_t - \frac{1}{t+1}\displaystyle{\sum_{\tau=0}^{\tau=t} y_\tau}
 </div></div></div>
 </div>
 <div class="section" id="the-box-cox-transform">
-<h4><span class="section-number">26.8.1.1. </span>The Box-Cox Transform<a class="headerlink" href="#the-box-cox-transform" title="Permalink to this headline">¶</a></h4>
+<h4>The Box-Cox Transform<a class="headerlink" href="#the-box-cox-transform" title="Permalink to this headline">¶</a></h4>
 <p>This transform actually nests power transforms and logarithms, depending on the value of a parameter that is usually denoted <span class="math notranslate nohighlight">\(\lambda\)</span>. The transform is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2386,7 +2400,7 @@ y_t'  =
 </div>
 </div>
 <div class="section" id="adjusting-for-inflation">
-<h3><span class="section-number">26.8.2. </span>Adjusting for Inflation<a class="headerlink" href="#adjusting-for-inflation" title="Permalink to this headline">¶</a></h3>
+<h3>Adjusting for Inflation<a class="headerlink" href="#adjusting-for-inflation" title="Permalink to this headline">¶</a></h3>
 <p>This one’s mighty important! As every economist knows, the value of money changes over time: a dollar in 1963 does not buy the same bundle of goods and services as a dollar in 2021 would. The price level has changed considerably between those two times. Let’s say we have prices in year <span class="math notranslate nohighlight">\(t\)</span> given by <span class="math notranslate nohighlight">\(y_t\)</span>. Then the price of that same good or service in year <span class="math notranslate nohighlight">\(\omega\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2538,7 +2552,7 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">25. </span>Introduction to Time</p>
+                <p class="prevnext-title">Introduction to Time</p>
             </div>
         </a>
     </div>
@@ -2546,7 +2560,7 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
         <a class="right-next" href="time-fcasts-env.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">27. </span>Forecasting Exercises</p>
+                <p class="prevnext-title">Forecasting Exercises</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

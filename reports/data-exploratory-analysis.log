@@ -1,19 +1,19 @@
 Traceback (most recent call last):
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
     return loop.run_until_complete(coro)
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
     await self.async_execute_cell(
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
     self._check_raise_for_error(cell, exec_reply)
-  File "/Users/aet/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -24,13 +24,104 @@ print(df.columns)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_63067/2738562948.py[0m in [0;36m<module>[0;34m[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_44966/2738562948.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0;32mfrom[0m [0mdataprep[0m[0;34m.[0m[0mclean[0m [0;32mimport[0m [0mclean_headers[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0;34m[0m[0m
 [1;32m      3[0m [0mdf[0m [0;34m=[0m [0mclean_headers[0m[0;34m([0m[0mdf[0m[0;34m,[0m [0mcase[0m[0;34m=[0m[0;34m"snake"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      4[0m [0mprint[0m[0;34m([0m[0mdf[0m[0;34m.[0m[0mcolumns[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'dataprep'
-ModuleNotFoundError: No module named 'dataprep'
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/clean/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m """
+[1;32m      5[0m [0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mfrom[0m [0;34m.[0m[0mclean_lat_long[0m [0;32mimport[0m [0mclean_lat_long[0m[0;34m,[0m [0mvalidate_lat_long[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;34m[0m[0m
+[1;32m      8[0m [0;32mfrom[0m [0;34m.[0m[0mclean_email[0m [0;32mimport[0m [0mclean_email[0m[0;34m,[0m [0mvalidate_email[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/clean/clean_lat_long.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     11[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;34m[0m[0m
+[0;32m---> 13[0;31m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0meda[0m[0;34m.[0m[0mprogress_bar[0m [0;32mimport[0m [0mProgressBar[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m [0;32mfrom[0m [0;34m.[0m[0mutils[0m [0;32mimport[0m [0mNULL_VALUES[0m[0;34m,[0m [0mcreate_report_new[0m[0;34m,[0m [0mto_dask[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m [0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0;32mfrom[0m [0;34m.[0m[0mcorrelation[0m [0;32mimport[0m [0mcompute_correlation[0m[0;34m,[0m [0mplot_correlation[0m[0;34m,[0m [0mrender_correlation[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0;32mfrom[0m [0;34m.[0m[0mcreate_report[0m [0;32mimport[0m [0mcreate_report[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;32mfrom[0m [0;34m.[0m[0mdistribution[0m [0;32mimport[0m [0mcompute[0m[0;34m,[0m [0mplot[0m[0;34m,[0m [0mrender[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m from .dtypes import (
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/create_report/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0;32mfrom[0m [0mbokeh[0m[0;34m.[0m[0mresources[0m [0;32mimport[0m [0mINLINE[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;32mfrom[0m [0mjinja2[0m [0;32mimport[0m [0mEnvironment[0m[0;34m,[0m [0mPackageLoader[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0;32mfrom[0m [0;34m.[0m[0mformatter[0m [0;32mimport[0m [0mformat_report[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0;32mfrom[0m [0;34m.[0m[0mreport[0m [0;32mimport[0m [0mReport[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/create_report/formatter.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     15[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mcorrelation[0m[0;34m.[0m[0mcompute[0m[0;34m.[0m[0mnullivariate[0m [0;32mimport[0m [0mcorrelation_nxn[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mdata_array[0m [0;32mimport[0m [0mDataArray[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 17[0;31m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mdistribution[0m [0;32mimport[0m [0mrender[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     18[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mdistribution[0m[0;34m.[0m[0mcompute[0m[0;34m.[0m[0mcommon[0m [0;32mimport[0m [0m_calc_line_dt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     19[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mdistribution[0m[0;34m.[0m[0mcompute[0m[0;34m.[0m[0moverview[0m [0;32mimport[0m [0mcalc_stats[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/distribution/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     11[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mdtypes[0m [0;32mimport[0m [0mDTypeDef[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mprogress_bar[0m [0;32mimport[0m [0mProgressBar[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m [0;32mfrom[0m [0;34m.[0m[0mcompute[0m [0;32mimport[0m [0mcompute[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m [0;32mfrom[0m [0;34m.[0m[0mrender[0m [0;32mimport[0m [0mrender[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m [0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/distribution/compute/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     12[0m [0;32mfrom[0m [0;34m.[0m[0moverview[0m [0;32mimport[0m [0mcompute_overview[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;32mfrom[0m [0;34m.[0m[0mtrivariate[0m [0;32mimport[0m [0mcompute_trivariate[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m [0;32mfrom[0m [0;34m.[0m[0munivariate[0m [0;32mimport[0m [0mcompute_univariate[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     15[0m [0;34m[0m[0m
+[1;32m     16[0m [0m__all__[0m [0;34m=[0m [0;34m[[0m[0;34m"compute"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/dataprep/eda/distribution/compute/univariate.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mfrom[0m [0mdask[0m[0;34m.[0m[0marray[0m[0;34m.[0m[0mstats[0m [0;32mimport[0m [0mchisquare[0m[0;34m,[0m [0mkurtosis[0m[0;34m,[0m [0mskew[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mstem[0m [0;32mimport[0m [0mPorterStemmer[0m[0;34m,[0m [0mWordNetLemmatizer[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m [0;34m[0m[0m
+[1;32m     13[0m [0;32mfrom[0m [0;34m...[0m[0;34m.[0m[0massets[0m[0;34m.[0m[0menglish_stopwords[0m [0;32mimport[0m [0menglish_stopwords[0m [0;32mas[0m [0mess[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nltk/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    135[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mgrammar[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    136[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mprobability[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 137[0;31m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtext[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    138[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtree[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    139[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mutil[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nltk/text.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     27[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mprobability[0m [0;32mimport[0m [0mConditionalFreqDist[0m [0;32mas[0m [0mCFD[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     28[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mprobability[0m [0;32mimport[0m [0mFreqDist[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 29[0;31m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtokenize[0m [0;32mimport[0m [0msent_tokenize[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     30[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mutil[0m [0;32mimport[0m [0mLazyConcatenation[0m[0;34m,[0m [0mtokenwrap[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     31[0m [0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nltk/tokenize/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     63[0m [0;34m[0m[0m
+[1;32m     64[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mdata[0m [0;32mimport[0m [0mload[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 65[0;31m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtokenize[0m[0;34m.[0m[0mcasual[0m [0;32mimport[0m [0mTweetTokenizer[0m[0;34m,[0m [0mcasual_tokenize[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     66[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtokenize[0m[0;34m.[0m[0mdestructive[0m [0;32mimport[0m [0mNLTKWordTokenizer[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     67[0m [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mtokenize[0m[0;34m.[0m[0mlegality_principle[0m [0;32mimport[0m [0mLegalitySyllableTokenizer[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nltk/tokenize/casual.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    270[0m [0;34m[0m[0m
+[1;32m    271[0m [0;34m[0m[0m
+[0;32m--> 272[0;31m [0;32mclass[0m [0mTweetTokenizer[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    273[0m     r"""
+[1;32m    274[0m     [0mTokenizer[0m [0;32mfor[0m [0mtweets[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/nltk/tokenize/casual.py[0m in [0;36mTweetTokenizer[0;34m()[0m
+[1;32m    355[0m [0;34m[0m[0m
+[1;32m    356[0m     [0;34m@[0m[0mproperty[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 357[0;31m     [0;32mdef[0m [0mWORD_RE[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m->[0m [0mregex[0m[0;34m.[0m[0mPattern[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    358[0m         [0;34m"""Core TweetTokenizer regex"""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    359[0m         [0;31m# Compiles the regex for this and all future instantiations of TweetTokenizer.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'regex' has no attribute 'Pattern'
+AttributeError: module 'regex' has no attribute 'Pattern'
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>23. Introduction to Text &#8212; Coding for Economists</title>
+    <title>Introduction to Text &#8212; Coding for Economists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -55,8 +57,8 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/text-intro.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="24. Natural Language Processing" href="text-nlp.html" />
-    <link rel="prev" title="22. Regression" href="econmt-regression.html" />
+    <link rel="next" title="Natural Language Processing" href="text-nlp.html" />
+    <link rel="prev" title="Regression" href="econmt-regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -105,22 +107,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-preliminaries.html">
-   1. Preliminaries
+   Preliminaries
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-basics.html">
-   2. Basics of Coding
+   Basics of Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-advanced.html">
-   3. Advanced Coding
+   Advanced Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
-   4. Options for Writing Code
+   Options for Writing Code
   </a>
  </li>
 </ul>
@@ -132,22 +134,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-best-practice.html">
-   5. Tips for Better Coding
+   Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-advcd-best-practice.html">
-   6. Tools for Better Coding
+   Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-command-line.html">
-   7. The Command Line
+   The Command Line
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wrkflow-rap.html">
-   8. Reproducible Analysis
+   Reproducible Analysis
   </a>
  </li>
 </ul>
@@ -159,37 +161,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="data-analysis-quickstart.html">
-   9. Data Analysis Quickstart
+   Data Analysis Quickstart
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-intro.html">
-   10. Working with Data
+   Working with Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-exploratory-analysis.html">
-   11. Exploratory Data Analysis
+   Exploratory Data Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-read-and-write.html">
-   12. Reading and Writing Files
+   Reading and Writing Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-extraction.html">
-   13. Extracting Data
+   Getting Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-sharing.html">
-   14. Sharing Data
+   Sharing Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="data-advanced.html">
-   15. Advanced Data
+   Advanced Data
   </a>
  </li>
 </ul>
@@ -201,22 +203,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="vis-intro.html">
-   16. Intro to Data Visualisation
+   Intro to Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-common-plots.html">
-   17. Common Plots
+   Common Plots
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-narrative.html">
-   18. Narrative Data Visualisation
+   Narrative Data Visualisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="vis-animation.html">
-   19. Animation
+   Animation
   </a>
  </li>
 </ul>
@@ -228,17 +230,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-probability-random.html">
-   20. Probability and Random Processes
+   Probability and Random Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-statistics.html">
-   21. Statistics
+   Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="econmt-regression.html">
-   22. Regression
+   Regression
   </a>
  </li>
 </ul>
@@ -250,12 +252,12 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   23. Introduction to Text
+   Introduction to Text
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
-   24. Natural Language Processing
+   Natural Language Processing
   </a>
  </li>
 </ul>
@@ -267,17 +269,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="time-intro.html">
-   25. Introduction to Time
+   Introduction to Time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-series.html">
-   26. Time Series
+   Time Series
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time-fcasts-env.html">
-   27. Forecasting Exercises
+   Forecasting Exercises
   </a>
  </li>
 </ul>
@@ -289,12 +291,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="geo-intro.html">
-   28. Intro to Geo-Spatial Analysis
+   Intro to Geo-Spatial Analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="geo-vis.html">
-   29. Geo-Spatial Visualisation
+   Geo-Spatial Visualisation
   </a>
  </li>
 </ul>
@@ -306,7 +308,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
-   30. Intro to Mathematics with Code
+   Intro to Mathematics with Code
   </a>
  </li>
 </ul>
@@ -318,7 +320,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto-research-outputs.html">
-   31. Automating Research Outputs
+   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -471,118 +473,118 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#an-aside-on-encodings">
-   23.1. An aside on encodings
+   An aside on encodings
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#strings">
-   23.2. Strings
+   Strings
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#f-strings">
-     23.2.1. f-strings
+     f-strings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#special-characters">
-     23.2.2. Special characters
+     Special characters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#methods-for-strings">
-     23.2.3. Methods for Strings
+     Methods for Strings
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cleaning-text">
-   23.3. Cleaning Text
+   Cleaning Text
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#replacing-sub-strings">
-     23.3.1. Replacing sub-strings
+     Replacing sub-strings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#replacing-characters-with-translate">
-     23.3.2. Replacing characters with translate
+     Replacing characters with translate
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#slugifying">
-     23.3.3. Slugifying
+     Slugifying
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#splitting-strings">
-     23.3.4. Splitting strings
+     Splitting strings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#count-and-find">
-     23.3.5. count and find
+     count and find
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regular-expressions">
-   23.4. Regular expressions
+   Regular expressions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     23.4.1. Special Characters
+     Special Characters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#quantifiers">
-     23.4.2. Quantifiers
+     Quantifiers
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#metacharacters">
-     23.4.3. Metacharacters
+     Metacharacters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ranges">
-     23.4.4. Ranges
+     Ranges
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#greedy-versus-lazy-regexes">
-     23.4.5. Greedy versus lazy regexes
+     Greedy versus lazy regexes
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matches-versus-capture-groups">
-     23.4.6. Matches versus capture groups
+     Matches versus capture groups
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scaling-up-from-a-single-string-to-a-corpus">
-   23.5. Scaling up from a single string to a corpus
+   Scaling up from a single string to a corpus
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reading-text-in">
-   23.6. Reading Text In
+   Reading Text In
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#text-file">
-     23.6.1. Text file
+     Text file
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#csv-file">
-     23.6.2. CSV file
+     CSV file
     </a>
    </li>
   </ul>
@@ -599,11 +601,11 @@
               <div>
                 
   <div class="section" id="introduction-to-text">
-<span id="text-intro"></span><h1><span class="section-number">23. </span>Introduction to Text<a class="headerlink" href="#introduction-to-text" title="Permalink to this headline">¶</a></h1>
+<span id="text-intro"></span><h1>Introduction to Text<a class="headerlink" href="#introduction-to-text" title="Permalink to this headline">¶</a></h1>
 <p>This chapter covers how to use code to work with text as data, including opening files with text in, changing and cleaning text, regular expressions, and vectorised operations on text.</p>
 <p>It has benefitted from the <a class="reference external" href="https://mkaz.blog/code/python-string-format-cookbook/">Python String Cook Book</a> and Jake VanderPlas’ <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/03.10-working-with-strings.html">Python Data Science Handbook</a>.</p>
 <div class="section" id="an-aside-on-encodings">
-<h2><span class="section-number">23.1. </span>An aside on encodings<a class="headerlink" href="#an-aside-on-encodings" title="Permalink to this headline">¶</a></h2>
+<h2>An aside on encodings<a class="headerlink" href="#an-aside-on-encodings" title="Permalink to this headline">¶</a></h2>
 <p>Before we get to the good stuff, we need to talk about string encodings. Whether you’re using code or a text editor (Notepad, Word, Pages, Visual Studio Code), every bit of text that you see on a computer will have an encoding behind the scenes that tells the computer how to display the underlying data. There is no such thing as ‘plain’ text: all text on computers is the result of an encoding. Oftentimes, a computer programme (email reader, Word, whatever) will guess the encoding and show you what it thinks the text should look like. But it doesn’t always know, or get it right: <em>that is what is happening when you get an email or open an file full of weird symbols and question marks</em>. If a computer doesn’t know whether a particular string is encoded using UTF-8 or ASCII or ISO 8859-1 (Latin 1) or Windows 1252 (Western European), it simply cannot display it correctly and you get gibberish.</p>
 <p>When it comes to encodings, there are just two things to remember: i) you should use UTF-8 (aka Unicode), it’s the international standard. ii) the Windows operating system tends to use either Latin 1 or Windows 1252 but (and this is good news) is moving to UTF-8.</p>
 <p><a class="reference external" href="https://www.unicode.org/">Unicode</a> is a specification that aims to list every character used by human languages and give each character its own unique code. The Unicode specifications are continually revised and updated to add new languages and symbols.</p>
@@ -611,7 +613,7 @@
 <p>Hopefully you’ll never have to worry about string encodings. But if you <em>do</em> see weird symbols appearing in your text, at least you’ll know that there’s an encoding problem and will know where to start Googling. You can find a much more in-depth explanation of text encodings <a class="reference external" href="https://kunststube.net/encoding/">here</a>.</p>
 </div>
 <div class="section" id="strings">
-<h2><span class="section-number">23.2. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h2>
+<h2>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h2>
 <p>Note that there are many built-in functions for using strings in Python, you can find a comprehensive list <a class="reference external" href="https://www.w3schools.com/python/python_ref_string.asp">here</a>.</p>
 <p>Strings are the basic data type for text in Python. They can be of any length. A string can be signalled by quote marks or double quote marks like so:</p>
 <p><code class="docutils literal notranslate"><span class="pre">'text'</span></code></p>
@@ -764,7 +766,7 @@ Input Text
 </div>
 <p>In this example two boolean variables and one integer variable were converted to strings. <code class="docutils literal notranslate"><span class="pre">str</span></code> generally makes an intelligent guess at how you’d like to convert your non-string type variable into a string type. You can pass a variable or a literal value to <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
 <div class="section" id="f-strings">
-<h3><span class="section-number">23.2.1. </span>f-strings<a class="headerlink" href="#f-strings" title="Permalink to this headline">¶</a></h3>
+<h3>f-strings<a class="headerlink" href="#f-strings" title="Permalink to this headline">¶</a></h3>
 <p>The example above is quite verbose. Another way of combining strings with variables is via <em>f-strings</em>. A simple f-string looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -886,7 +888,7 @@ Input Text
 <p>As well as using this page interactively through the Colab and Binder links at the top of the page, or downloading this page and using it on your own computer, you can play around with some of these options over at <a class="reference external" href="https://www.python-utils.com/">this link</a>.</p>
 </div>
 <div class="section" id="special-characters">
-<h3><span class="section-number">23.2.2. </span>Special characters<a class="headerlink" href="#special-characters" title="Permalink to this headline">¶</a></h3>
+<h3>Special characters<a class="headerlink" href="#special-characters" title="Permalink to this headline">¶</a></h3>
 <p>Python has a string module that comes with some useful built-in strings and characters. For example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -975,7 +977,7 @@ Here is an \n escaped new line
 </table>
 </div>
 <div class="section" id="methods-for-strings">
-<h3><span class="section-number">23.2.3. </span>Methods for Strings<a class="headerlink" href="#methods-for-strings" title="Permalink to this headline">¶</a></h3>
+<h3>Methods for Strings<a class="headerlink" href="#methods-for-strings" title="Permalink to this headline">¶</a></h3>
 <p>Let’s end this sub-section on strings with a comprehensive overview of all string methods, courtesy of the excellent <a class="reference external" href="https://github.com/willmcgugan/rich"><strong>rich</strong></a> package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1077,10 +1079,10 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="cleaning-text">
-<h2><span class="section-number">23.3. </span>Cleaning Text<a class="headerlink" href="#cleaning-text" title="Permalink to this headline">¶</a></h2>
+<h2>Cleaning Text<a class="headerlink" href="#cleaning-text" title="Permalink to this headline">¶</a></h2>
 <p>You often want to make changes to the text you’re working with. In this section, we’ll look at the various options to do this.</p>
 <div class="section" id="replacing-sub-strings">
-<h3><span class="section-number">23.3.1. </span>Replacing sub-strings<a class="headerlink" href="#replacing-sub-strings" title="Permalink to this headline">¶</a></h3>
+<h3>Replacing sub-strings<a class="headerlink" href="#replacing-sub-strings" title="Permalink to this headline">¶</a></h3>
 <p>A common text task is to replace a substring within a longer string. Let’s say you have a string variable <code class="docutils literal notranslate"><span class="pre">var</span></code>. You can use <code class="docutils literal notranslate"><span class="pre">.replace(old_text,</span> <span class="pre">new_text)</span></code> to do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1113,7 +1115,7 @@ Here is an \n escaped new line
 <p>Note that <code class="docutils literal notranslate"><span class="pre">.replace</span></code> performs an exact replace and so is case-sensitive.</p>
 </div>
 <div class="section" id="replacing-characters-with-translate">
-<h3><span class="section-number">23.3.2. </span>Replacing characters with translate<a class="headerlink" href="#replacing-characters-with-translate" title="Permalink to this headline">¶</a></h3>
+<h3>Replacing characters with translate<a class="headerlink" href="#replacing-characters-with-translate" title="Permalink to this headline">¶</a></h3>
 <p>A character is an individual entry within a string, like the ‘l’ in ‘equilibrium’. You can always count the number of characters in a string variable called <code class="docutils literal notranslate"><span class="pre">var</span></code> by using <code class="docutils literal notranslate"><span class="pre">len(var)</span></code>. A very fast method for replacing individual characters in a string is <code class="docutils literal notranslate"><span class="pre">str.translate</span></code>.</p>
 <p>Replacing characters is extremely useful in certain situations, most commonly when you wish to remote all punctuation prior to doing other text analysis. You can use the built-in <code class="docutils literal notranslate"><span class="pre">string.punctuation</span></code> for this.</p>
 <p>Let’s see how to use it to remove all of the vowels from some text. With apologies to economist Lisa Cook, we’ll use the abstract from <span id="id1">[<a class="reference internal" href="zreferences.html#id16">14</a>]</span> as the text we’ll modify and we’ll first create a dictionary of translations of vowels to nothing, i.e. <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>.</p>
@@ -1171,7 +1173,7 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="slugifying">
-<h3><span class="section-number">23.3.3. </span>Slugifying<a class="headerlink" href="#slugifying" title="Permalink to this headline">¶</a></h3>
+<h3>Slugifying<a class="headerlink" href="#slugifying" title="Permalink to this headline">¶</a></h3>
 <p>A special case of string cleaning occurs when you are given text with lots of non-standard characters in, and spaces, and other symbols; and what you want is a clean string suitable for a filename or column heading in a dataframe. Remember that it’s best practice to have filenames that don’t have spaces in. Slugiyfing is the process of creating the latter from the former and we can use the <a class="reference external" href="https://github.com/un33k/python-slugify"><strong>slugify</strong></a> package to do it.</p>
 <p>Here are some examples of slugifying text:</p>
 <div class="cell docutils container">
@@ -1205,7 +1207,7 @@ Here is an \n escaped new line
 <p>Slugify converts text to latin characters, while also removing accents and whitespace (of all kinds-the last whitespace is a tab). There’s also a <code class="docutils literal notranslate"><span class="pre">replacement=</span></code> keyword argument that will replace specific strings with other strings using a list of lists format, eg <code class="docutils literal notranslate"><span class="pre">replacement=[['old_text',</span> <span class="pre">'new_text']]</span></code></p>
 </div>
 <div class="section" id="splitting-strings">
-<h3><span class="section-number">23.3.4. </span>Splitting strings<a class="headerlink" href="#splitting-strings" title="Permalink to this headline">¶</a></h3>
+<h3>Splitting strings<a class="headerlink" href="#splitting-strings" title="Permalink to this headline">¶</a></h3>
 <p>If you want to split a string at a certain position, there are two quick ways to do it. The first is to use indexing methods, which work well if you know at which position you want to split text, eg</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1248,7 +1250,7 @@ Here is an \n escaped new line
 <p>A useful extra function to know about is <code class="docutils literal notranslate"><span class="pre">splitlines()</span></code>, which splits a string at line breaks and returns the split parts as a list.</p>
 </div>
 <div class="section" id="count-and-find">
-<h3><span class="section-number">23.3.5. </span>count and find<a class="headerlink" href="#count-and-find" title="Permalink to this headline">¶</a></h3>
+<h3>count and find<a class="headerlink" href="#count-and-find" title="Permalink to this headline">¶</a></h3>
 <p>Let’s do some simple counting of words within text using <code class="docutils literal notranslate"><span class="pre">str.count</span></code>. Let’s use the first verse of Elizabeth Bishop’s sestina ‘A Miracle for Breakfast’ for our text.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1306,7 +1308,7 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="regular-expressions">
-<h2><span class="section-number">23.4. </span>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
 <p>Regex, aka regular expressions, provide a way to both search and change text. Their advantages are that they are concise, they run very quickly, they can be ported across languages (they are definitely not just a Python thing!), and they are very powerful. The disadvantage is that they are confusing and take some getting used to!</p>
 <p>You can live code regex in a couple of places, the first is within Visual Studio Code itself. Do this by clicking the magnifying glass in the left-hand side panel of options. When the search strip appears, you can put a search term in. To the right of the text entry box, there are three buttons, one of which is a period (full stop) followed by an asterisk. This option allows the Visual Studio text search function to accept regular expressions. This will apply regex to all of the text in your current Visual Studio workspace.</p>
 <p>Another approach is to head over to <a class="reference external" href="https://regex101.com/">https://regex101.com/</a> or <a class="reference external" href="https://regexr.com/">https://regexr.com/</a> and begin typing your regular expression there (regexr’s cheat sheets and reference patterns are well worth checking out too). You will need to add some text in the box for the regex to be applied to.</p>
@@ -1374,7 +1376,7 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="id2">
-<h3><span class="section-number">23.4.1. </span>Special Characters<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Special Characters<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>So far, we’ve only seen a very simple application of regex involving a vanilla word, <code class="docutils literal notranslate"><span class="pre">string</span></code>, the code for another word <code class="docutils literal notranslate"><span class="pre">\w+</span></code> and the code for a whitespace <code class="docutils literal notranslate"><span class="pre">\s</span></code>. Let’s take a more comprehensive look at the regex special characters:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1439,7 +1441,7 @@ Here is an \n escaped new line
 <p>Note that whitespace characters include newlines, <code class="docutils literal notranslate"><span class="pre">\n</span></code>, and tabs, <code class="docutils literal notranslate"><span class="pre">\t</span></code>.</p>
 </div>
 <div class="section" id="quantifiers">
-<h3><span class="section-number">23.4.2. </span>Quantifiers<a class="headerlink" href="#quantifiers" title="Permalink to this headline">¶</a></h3>
+<h3>Quantifiers<a class="headerlink" href="#quantifiers" title="Permalink to this headline">¶</a></h3>
 <p>As well as these special characters, there are quantifiers which ask for more than one occurence of a character. For example, in the above, <code class="docutils literal notranslate"><span class="pre">\w\w</span></code> asked for two word characters, while <code class="docutils literal notranslate"><span class="pre">\d\d</span></code> asks for two digits. The next table shows all of the quantifiers.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1489,7 +1491,7 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="metacharacters">
-<h3><span class="section-number">23.4.3. </span>Metacharacters<a class="headerlink" href="#metacharacters" title="Permalink to this headline">¶</a></h3>
+<h3>Metacharacters<a class="headerlink" href="#metacharacters" title="Permalink to this headline">¶</a></h3>
 <p>Now, as well as special characters and quantifiers, we can have meta-character matches. These are not characters <em>per se</em>, but starts, ends, and other bits of words. For example, <code class="docutils literal notranslate"><span class="pre">\b</span></code> matches strings at a word (<code class="docutils literal notranslate"><span class="pre">\w+</span></code>) boundary, so if we took the text “Three letter words only are captured” and ran <code class="docutils literal notranslate"><span class="pre">\b\w\w\w\b</span></code> we would return “are”. <code class="docutils literal notranslate"><span class="pre">\B</span></code> matches strings not at word (<code class="docutils literal notranslate"><span class="pre">\w+</span></code>) boundaries so the text “Bricks” with <code class="docutils literal notranslate"><span class="pre">\B\w\w\B</span></code> applied would yield “ri”. The next table contains some useful metacharacters.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1529,7 +1531,7 @@ Here is an \n escaped new line
 </div>
 </div>
 <div class="section" id="ranges">
-<h3><span class="section-number">23.4.4. </span>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<h3>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
 <p>You probably think you’re done with regex, but not so fast! There are more metacharacters to come. This time, they will represent <em>ranges</em> of characters.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1565,7 +1567,7 @@ Here is an \n escaped new line
 <p>Ranges have two more neat tricks. The first is that they can be concatenated. For example, <code class="docutils literal notranslate"><span class="pre">[a-c-1-5]</span></code> would match any of a, b, c, 1, 2, 3, 4, 5. They can also be modified with a quantifier, so <code class="docutils literal notranslate"><span class="pre">[a-c0-2]{2}</span></code> would match “a0” and “ab”.</p>
 </div>
 <div class="section" id="greedy-versus-lazy-regexes">
-<h3><span class="section-number">23.4.5. </span>Greedy versus lazy regexes<a class="headerlink" href="#greedy-versus-lazy-regexes" title="Permalink to this headline">¶</a></h3>
+<h3>Greedy versus lazy regexes<a class="headerlink" href="#greedy-versus-lazy-regexes" title="Permalink to this headline">¶</a></h3>
 <p>Buckle up, because this one is a bit tricky to grasp. Adding a <code class="docutils literal notranslate"><span class="pre">?</span></code> after a regex will make it go from being ‘greedy’ to being ‘lazy’. Greedy means that you will match the longest possible string that hits the condition. Lazy will mean that you get the shortest possible string matching the condition. It’s easiest to demonstrate with an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1588,7 +1590,7 @@ The lazy match is stacko
 <p>In the former (greedy) case, we get from an ‘s’ all the way to the last ‘o’ within the same word. In the latter (lazy) case we just get everything between the start and first occurrence of an ‘o’.</p>
 </div>
 <div class="section" id="matches-versus-capture-groups">
-<h3><span class="section-number">23.4.6. </span>Matches versus capture groups<a class="headerlink" href="#matches-versus-capture-groups" title="Permalink to this headline">¶</a></h3>
+<h3>Matches versus capture groups<a class="headerlink" href="#matches-versus-capture-groups" title="Permalink to this headline">¶</a></h3>
 <p>There is often a difference between what you might want to match and what you actually want to <em>grab</em> with your regex. Let’s say, for example, we’re parsing some text and we want any numbers that follow the format ‘$xx.xx’, where the ‘x’ are numbers but we don’t want the dollar sign. To do this, we can create a <em>capture group</em> using brackets. Here’s an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1630,7 +1632,7 @@ The lazy match is stacko
 </div>
 </div>
 <div class="section" id="scaling-up-from-a-single-string-to-a-corpus">
-<h2><span class="section-number">23.5. </span>Scaling up from a single string to a corpus<a class="headerlink" href="#scaling-up-from-a-single-string-to-a-corpus" title="Permalink to this headline">¶</a></h2>
+<h2>Scaling up from a single string to a corpus<a class="headerlink" href="#scaling-up-from-a-single-string-to-a-corpus" title="Permalink to this headline">¶</a></h2>
 <p>For this section, it’s useful to be familiar with the <strong>pandas</strong> package, which is covered in the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Analysis Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> sections. This section will closely follow the treatment by Jake VanderPlas.</p>
 <p>We’ve seen how to work with individual strings. But often we want to work with a group of strings, otherwise known as a corpus, that is a collection of texts. It could be a collection of words, sentences, paragraphs, or some domain-based grouping (eg job descriptions).</p>
 <p>Fortunately, many of the methods that we have seen deployed on a single string can be straightforwardly scaled up to hundreds, thousands, or millions of strings using <strong>pandas</strong> or other tools. This scaling up is achieved via <em>vectorisation</em>, in analogy with going from a single value (a scalar) to multiple values in a list (a vector).</p>
@@ -2113,9 +2115,9 @@ Name: names, dtype: object
 </div>
 </div>
 <div class="section" id="reading-text-in">
-<h2><span class="section-number">23.6. </span>Reading Text In<a class="headerlink" href="#reading-text-in" title="Permalink to this headline">¶</a></h2>
+<h2>Reading Text In<a class="headerlink" href="#reading-text-in" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="text-file">
-<h3><span class="section-number">23.6.1. </span>Text file<a class="headerlink" href="#text-file" title="Permalink to this headline">¶</a></h3>
+<h3>Text file<a class="headerlink" href="#text-file" title="Permalink to this headline">¶</a></h3>
 <p>If you have just a plain text file, you can read it in like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;book.txt&#39;</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -2133,7 +2135,7 @@ Name: names, dtype: object
 </div>
 </div>
 <div class="section" id="csv-file">
-<h3><span class="section-number">23.6.2. </span>CSV file<a class="headerlink" href="#csv-file" title="Permalink to this headline">¶</a></h3>
+<h3>CSV file<a class="headerlink" href="#csv-file" title="Permalink to this headline">¶</a></h3>
 <p>CSV files are already split into rows. By far the easiest way to read in csv files is using <strong>pandas</strong>,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;book.csv&#39;</span><span class="p">)</span>
 </pre></div>
@@ -2152,16 +2154,16 @@ Name: names, dtype: object
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "codeforecon"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "codeforecon",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'codeforecon'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -2177,7 +2179,7 @@ Name: names, dtype: object
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">22. </span>Regression</p>
+                <p class="prevnext-title">Regression</p>
             </div>
         </a>
     </div>
@@ -2185,7 +2187,7 @@ Name: names, dtype: object
         <a class="right-next" href="text-nlp.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">24. </span>Natural Language Processing</p>
+                <p class="prevnext-title">Natural Language Processing</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
