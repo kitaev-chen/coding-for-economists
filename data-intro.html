@@ -114,40 +114,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="code-advanced.html">
-   Advanced Coding
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
    Options for Writing Code
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Workflow
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-best-practice.html">
+  <a class="reference internal" href="code-best-practice.html">
    Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+  <a class="reference internal" href="code-advcd-best-practice.html">
    Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-command-line.html">
-   The Command Line
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-rap.html">
-   Reproducible Analysis
+  <a class="reference internal" href="code-advanced.html">
+   Advanced Coding
   </a>
  </li>
 </ul>
@@ -241,6 +224,11 @@
    Regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-causal-inference.html">
+   Causal Inference
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -283,6 +271,28 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-research-outputs.html">
+   Automating Research Outputs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   Reproducible Analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -307,18 +317,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
    Intro to Mathematics with Code
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Automation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="auto-research-outputs.html">
-   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -561,13 +559,6 @@
   <a class="reference internal nav-link" href="#method-chaining">
    Method chaining
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pyjanitor-and-more-extensive-method-chaining">
-     Pyjanitor and more extensive method chaining
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reshaping-data">
@@ -615,7 +606,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#advanced-alternatives-to-pandas">
-   (Advanced) alternatives to
+   Advanced: alternatives to
    <strong>
     pandas
    </strong>
@@ -1485,7 +1476,7 @@ memory usage: 320.0 bytes
 </div>
 </div>
 </div>
-<p>Once you have applied datatypes to the columns in your dataframe, tools like <span class="xref myst">skimpy</span> (installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> can then provide richer summaries of your data.</p>
+<p>Once you have applied datatypes to the columns in your dataframe, tools like <a class="reference external" href="https://github.com/aeturrell/skimpy">skimpy</a> (install using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> on the command line or <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> within a Colab code cell if you’re using Google Colab) can then provide richer summaries of your data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimpy</span> <span class="kn">import</span> <span class="n">skim</span>
@@ -4004,22 +3995,6 @@ Name: diff_values, dtype: float64
 </table>
 </div></div></div>
 </div>
-<div class="section" id="pyjanitor-and-more-extensive-method-chaining">
-<h3>Pyjanitor and more extensive method chaining<a class="headerlink" href="#pyjanitor-and-more-extensive-method-chaining" title="Permalink to this headline">¶</a></h3>
-<p>Although there’s enough support for functional style method chaining to get by, you might find that doing this or that operation isn’t always as efficient or as concise as you’d like. Let’s look at two examples where this bites and what a wonderful little extension to <strong>pandas</strong> called <a class="reference external" href="https://pyjanitor.readthedocs.io"><strong>Pyjanitor</strong></a> does about it.</p>
-<p>First, you’ll have seen that the syntax for assigning a new column as part of a method chain is relatively fussy, using as it does the <code class="docutils literal notranslate"><span class="pre">new_column=lambda</span> <span class="pre">x:</span> <span class="pre">func(x['old_column])</span></code> syntax. If you already have a dataframe named <code class="docutils literal notranslate"><span class="pre">df</span></code>, <strong>pyjanitor</strong> gives you the option to create new columns like so (using an example from the documentation):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">add_columns</span><span class="p">(</span>
-        <span class="n">prop_late_departures</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">num_departing_late</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">total_num_trips</span><span class="p">,</span>
-        <span class="n">prop_late_arrivals</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">num_arriving_late</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">total_num_trips</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>What’s great about this is not only that it’s cleaner to read, but that all you need do to get the functionality is to import the pyjanitor library and the extra functions will appear magically as options to use on the usual pandas dataframes.</p>
-<p>Pyjanitor isn’t just about method chaining–it does a lot of other things too, like introducing a bunch of convenience commands with easily understandable verbs behind them. (Though do note it has a hefty download size.)</p>
-</div>
 </div>
 <div class="section" id="reshaping-data">
 <h2>Reshaping data<a class="headerlink" href="#reshaping-data" title="Permalink to this headline">¶</a></h2>
@@ -5098,11 +5073,13 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="advanced-alternatives-to-pandas">
-<h2>(Advanced) alternatives to <strong>pandas</strong><a class="headerlink" href="#advanced-alternatives-to-pandas" title="Permalink to this headline">¶</a></h2>
-<p>Feel free to skip this section if you’re just interested in getting going as quickly as possible.</p>
-<p><strong>pandas</strong> isn’t the only game in town, not by a long way—though it’s by far the best supported and the most fully featured. But it’s always good to have options—or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer or provide a speed-up (perhaps in certain situations, for example when working with very large datasets).</p>
+<h2>Advanced: alternatives to <strong>pandas</strong><a class="headerlink" href="#advanced-alternatives-to-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re just starting to code, you can safely skip this section.</p>
+</div>
+<p><strong>pandas</strong> isn’t the only game in town, not by a long way—though it’s by far the best supported and the most fully featured. <strong>pandas</strong> is a good default package to use for data in the vast majority of cases. But it’s always good to have options—or, put another way, options have value! Other dataframe libraries may have a syntax that you prefer (<strong>datatable</strong>’s syntax is popular with some) or provide a speed-up in certain situations, for example when working with large datasets (<strong>polars</strong> promises to breeze through big data far faster than pandas can).</p>
 <p>If you’re specifically interested in how different dataframe options perform on increasingly large datasets, take a look at the benchmarks <a class="reference external" href="https://h2oai.github.io/db-benchmark/">here</a>.</p>
-<p>If you need speed, the Python and Rust library Polars is currently the fastest performer on small and big data in any of Python, Julia, R, and Rust.</p>
 <p>Here’s a quick run-through of some alternatives to <strong>pandas</strong>:</p>
 <div class="section" id="datatable">
 <h3>Datatable<a class="headerlink" href="#datatable" title="Permalink to this headline">¶</a></h3>

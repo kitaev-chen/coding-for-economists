@@ -114,40 +114,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="code-advanced.html">
-   Advanced Coding
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
    Options for Writing Code
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Workflow
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-best-practice.html">
+  <a class="reference internal" href="code-best-practice.html">
    Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+  <a class="reference internal" href="code-advcd-best-practice.html">
    Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-command-line.html">
-   The Command Line
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-rap.html">
-   Reproducible Analysis
+  <a class="reference internal" href="code-advanced.html">
+   Advanced Coding
   </a>
  </li>
 </ul>
@@ -241,6 +224,11 @@
    Regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-causal-inference.html">
+   Causal Inference
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -283,6 +271,28 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-research-outputs.html">
+   Automating Research Outputs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   Reproducible Analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -307,18 +317,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
    Intro to Mathematics with Code
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Automation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="auto-research-outputs.html">
-   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -527,7 +525,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-orchestration">
-   Data orchestration
+   Data Orchestration
   </a>
  </li>
 </ul>
@@ -543,6 +541,10 @@
                 
   <div class="section" id="advanced-data">
 <span id="id1"></span><h1>Advanced Data<a class="headerlink" href="#advanced-data" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re just starting to code, you can safely skip this chapter.</p>
+</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, you’ll learn about advanced methods for working with data.</p>
@@ -1264,7 +1266,7 @@ failure cases:
 </div>
 </div>
 <div class="section" id="data-orchestration">
-<h2>Data orchestration<a class="headerlink" href="#data-orchestration" title="Permalink to this headline">¶</a></h2>
+<h2>Data Orchestration<a class="headerlink" href="#data-orchestration" title="Permalink to this headline">¶</a></h2>
 <p>Data orchestration is the automation of data-driven processes from end-to-end, including preparing data, making decisions based on that data, and taking actions based on those decisions. Think of a data pipeline in which you extract data (perhaps from files), transform it somehow, and load it into where you want to put it (downstream in your research process, or perhaps into an app).</p>
 <p>There are some truly amazing tools out there to help you do this on a production scale. Perhaps the best known and most suited for production are AirBnB’s <a class="reference external" href="http://airflow.incubator.apache.org/"><strong>Airflow</strong></a> and Spotify’s <a class="reference external" href="https://github.com/spotify/luigi"><strong>Luigi</strong></a>. Airflow in particular is widely used in the tech industry, and doesn’t just schedule data processes in Python: it can run processes in pretty much whatever you like. Both of these tools try to solve the ‘plumbing’ associated with long-running batch processes on data: chaining tasks, automating them, dealing with failures, and scheduling. Both Luigi and Airflow have fancy interfaces to show you what’s going on with your tasks.</p>
 <p>Data orchestration tools typically have a directed acyclic graph, a DAG, at the heart of how tasks are strung together. This defines how different tasks depend on each other in order, with one task following from the previous one (or perhaps following from multiple previous tasks). It’s an automation dream.</p>

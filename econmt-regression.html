@@ -57,7 +57,7 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/econmt-regression.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction to Text" href="text-intro.html" />
+    <link rel="next" title="Causal Inference" href="econmt-causal-inference.html" />
     <link rel="prev" title="Statistics" href="econmt-statistics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -116,40 +116,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="code-advanced.html">
-   Advanced Coding
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
    Options for Writing Code
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Workflow
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-best-practice.html">
+  <a class="reference internal" href="code-best-practice.html">
    Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+  <a class="reference internal" href="code-advcd-best-practice.html">
    Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-command-line.html">
-   The Command Line
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-rap.html">
-   Reproducible Analysis
+  <a class="reference internal" href="code-advanced.html">
+   Advanced Coding
   </a>
  </li>
 </ul>
@@ -243,6 +226,11 @@
    Regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-causal-inference.html">
+   Causal Inference
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -285,6 +273,28 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-research-outputs.html">
+   Automating Research Outputs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   Reproducible Analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -309,18 +319,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
    Intro to Mathematics with Code
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Automation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="auto-research-outputs.html">
-   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -3354,7 +3352,7 @@ strong multicollinearity or other numerical problems.
 <li><p>conducting statistical tests to determine whether as a whole results are inconsistent with the null hypothesis.</p></li>
 </ol>
 <p>For a good example of specification curve analysis in action, see this recent Nature Human Behaviour paper <span id="id6">[<a class="reference internal" href="zreferences.html#id10">13</a>]</span> on the association between adolescent well-being and the use of digital technology.</p>
-<p>We’ll use the <a class="reference external" href="https://specification-curve.readthedocs.io/en/latest/readme.html"><strong>specification curve analysis</strong></a> package to do the first two, which you can install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">specification_curve</span></code> (full disclosure: I wrote this package). To demonstrate the full functionality, we’ll create a second, alternative ‘hp’ that is a transformed version of the original.</p>
+<p>We’ll use the <a class="reference external" href="https://specification-curve.readthedocs.io/en/latest/readme.html"><strong>specification curve analysis</strong></a> package to do the first two, which you can install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">specification_curve</span></code>. To demonstrate the full functionality, we’ll create a second, alternative ‘hp’ that is a transformed version of the original.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;hp_boxcox&quot;</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s2">&quot;hp&quot;</span><span class="p">])</span>
@@ -3444,10 +3442,10 @@ strong multicollinearity or other numerical problems.
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="text-intro.html" title="next page">
+        <a class="right-next" href="econmt-causal-inference.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Introduction to Text</p>
+                <p class="prevnext-title">Causal Inference</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

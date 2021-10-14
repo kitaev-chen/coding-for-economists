@@ -114,40 +114,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="code-advanced.html">
-   Advanced Coding
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
    Options for Writing Code
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Workflow
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-best-practice.html">
+  <a class="reference internal" href="code-best-practice.html">
    Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+  <a class="reference internal" href="code-advcd-best-practice.html">
    Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-command-line.html">
-   The Command Line
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-rap.html">
-   Reproducible Analysis
+  <a class="reference internal" href="code-advanced.html">
+   Advanced Coding
   </a>
  </li>
 </ul>
@@ -241,6 +224,11 @@
    Regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-causal-inference.html">
+   Causal Inference
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -283,6 +271,28 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-research-outputs.html">
+   Automating Research Outputs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   Reproducible Analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -307,18 +317,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
    Intro to Mathematics with Code
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Automation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="auto-research-outputs.html">
-   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -463,8 +461,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-python">
-     Installing Python
+    <a class="reference internal nav-link" href="#installing-python-on-your-computer">
+     Installing Python On Your Computer
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -481,7 +479,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#writing-your-first-notebook">
-     Writing your First Notebook
+     Writing your first notebook
     </a>
    </li>
   </ul>
@@ -526,13 +524,13 @@
                 
   <div class="section" id="preliminaries">
 <h1>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter, you’ll find out about how to get the basic tools you need to code set up on your own computer. While you don’t need to know all of this if you’re planning on using the ‘Google Colab’ or ‘Binder’ options to run code examples from the book, you may find it helpful to read through this chapter anyway.</p>
+<p>In this chapter, you’ll find out about how to get the basic tools you need to code set up on your own computer. While you don’t need to know all of this if you’re planning on using the ‘Google Colab’ or ‘Binder’ options to run code examples from this book, you may find it helpful to read through this chapter anyway.</p>
 <div class="section" id="computational-environment">
 <h2>Computational environment<a class="headerlink" href="#computational-environment" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="operating-system">
 <h3>Operating system<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h3>
 <p>Almost all of the code you’ll see can be run on all three of the major operating systems: Windows, MacOS, and Linux.</p>
-<p>If you haven’t yet decided which operating system to use, I recommend either Linux or MacOS because, in a very small number of cases, your code, third party packages and libraries, the command line, and coding related tools like Docker, either won’t work at all on Windows or will be <em>much</em> more difficult to set up. (Don’t panic if you have Windows already: we’ll come to a workaround in a moment.) Although it is rare that you run into a case like this, it’s just often enough for it to be a real pain. The most common way this manifests is that Windows uses a different set of text-based commands to Linux and Mac. Furthermore, if you ever need to scale up your work to the cloud, you’ll find that it’s more cost effective to use machines that have use an operating system closer to Linux (which MacOS is). While Macs are famous for being expensive, most Linux distributions are free, so you should be able to find a code-friendly operating system to satisfy any budget constraint. Linux used to have a reputation as being fearsomely difficult for beginners. But modern Linux distributions, such as Ubuntu, are pretty user-friendly.</p>
+<p>If you haven’t yet decided which operating system to use, this book recommends either Linux or MacOS because, in a very small number of cases, your code, third party packages and libraries, the command line, and coding related tools like Docker, either won’t work at all on Windows or will be <em>much</em> more difficult to set up. (Don’t panic if you have Windows already: we’ll come to a workaround in a moment.) Although it is rare that you run into a case like this, it’s just often enough for it to be a real pain. The most common way this manifests is that Windows uses a different set of text-based commands to Linux and Mac. Furthermore, if you ever need to scale up your work to the cloud, you’ll find that it’s more cost effective to use machines that have use an operating system closer to Linux (which MacOS is). While Macs are famous for being expensive, most Linux distributions are free, so you should be able to find a code-friendly operating system to satisfy any budget constraint. Linux used to have a reputation as being fearsomely difficult for beginners. But modern Linux distributions, such as Ubuntu, are pretty user-friendly.</p>
 <p>If you are using Windows, then a good workaround for these issues is to use the <a class="reference external" href="https://pbpython.com/wsl-python.html"><em>Windows Subsystem for Linux</em></a>. It’s essentially a Linux operating system that installs alongside and integrates with your existing Windows operating system. This allows you to run code as if you were using Linux. You can get WSL <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">for free from Microsoft</a>. (The fact that Microsoft has included this feature speaks to the need for it.)</p>
 </div>
 <div class="section" id="choice-of-programming-language">
@@ -549,14 +547,14 @@
 <li><p>a way to write and run your code, using an integrated development environment (IDE)</p></li>
 </ul>
 </div>
-<div class="section" id="installing-python">
-<h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="installing-python-on-your-computer">
+<h3>Installing Python On Your Computer<a class="headerlink" href="#installing-python-on-your-computer" title="Permalink to this headline">¶</a></h3>
 <p>Python and Anaconda are available on all major operating systems.</p>
-<p>Note that if you are going to use Google Colab or Binder to run code examples, both of these come with Python installed. These instructions are just for installing Python on your own computer.</p>
 <p>Download the individual edition of the <a class="reference external" href="https://www.anaconda.com/">Anaconda distribution</a> of Python for your operating system and install it (on Anaconda’s website, this is currently found under Products -&gt; Individual Edition). This will provide you with a Python installation and a host of the most useful libraries.</p>
 <p>The instructions for <a class="reference external" href="https://docs.anaconda.com/anaconda/install/windows/">installing on Windows are here</a>, you can find <a class="reference external" href="https://docs.anaconda.com/anaconda/install/mac-os/">instructions for Mac here</a>, and the <a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">Linux instructions may be found here</a>.</p>
 <p>You can confirm that you’ve set up Anaconda correctly by following the <a class="reference external" href="https://docs.anaconda.com/anaconda/install/verify-install/">verify installation instructions</a> on the Anaconda website.</p>
-<p>If you’re using Windows, you can check if Anaconda has installed properly by opening the ‘Anaconda prompt’ (a special text-based way to issue commands to your computer) and type <code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">python</span></code>. You should see a path rendered as text in the prompt that includes “Anaconda3”, for example something like <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;your-username&gt;\Anaconda3\...</span></code>. On Mac and Linux you may need to run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code> on your command line to activate your Anaconda Python environment (Mac and Linux usually come with, typically, old versions of Python pre-installed). You can check you’ve got the right Python with <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code>, which should result in a message back saying <code class="docutils literal notranslate"><span class="pre">/Users/&lt;your-username&gt;/opt/anaconda3/bin/python</span></code>.</p>
+<p>If you’re using Windows, you can check if Anaconda has installed properly by opening the ‘Anaconda prompt’ (a special text-based way to issue commands to your computer) and type <code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">python</span></code>. You should see a path rendered as text in the prompt that includes “Anaconda3”, for example something like <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;your-username&gt;\Anaconda3\...</span></code>.</p>
+<p>On Mac and Linux you may need to run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code> on your command line to activate your Anaconda Python environment (Mac and Linux usually come with, typically, old versions of Python pre-installed). You can check you’ve got the right Python with <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code>, which should result in a message back saying <code class="docutils literal notranslate"><span class="pre">/Users/&lt;your-username&gt;/opt/anaconda3/bin/python</span></code>.</p>
 </div>
 <div class="section" id="installing-an-integrated-development-environment-ide">
 <h3>Installing an integrated development environment (IDE)<a class="headerlink" href="#installing-an-integrated-development-environment-ide" title="Permalink to this headline">¶</a></h3>
@@ -571,7 +569,7 @@
 <li><p>automatic code checking for basic errors</p></li>
 <li><p>colouring your brackets in pairs so you can keep track of the logical order of execution of your code!</p></li>
 </ul>
-<p>People have strong feelings about which IDE they prefer. I strongly recommend <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, a free and open source IDE from Microsoft that is available on all major operating systems. Just like Python itself, Visual Studio can be extended with packages, and it is those packages, called extensions in this case, that make it so useful. Visual Studio Code is available on all major operating systems.</p>
+<p>People have strong feelings about which IDE they prefer. I strongly recommend <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, a free and open source IDE from Microsoft that is available on all major operating systems. Just like Python itself, Visual Studio can be extended with packages, and it is those packages, called extensions in this case, that make it so useful.</p>
 <p>Another IDE that you might find useful from time to time is <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a>, which runs in a browser window. It is designed around ‘Jupyter’ notebooks (with the extension ‘.ipynb’), which mix code and text, rather than scripts, which are predominantly code (and have extension ‘.py’). The name, ‘Jupyter’, is a reference to the three original languages supported by Jupyter, which are Julia, Python, and R, and to Galileo’s notebooks recording the discovery of the moons of Jupiter. Jupyter notebooks now support a vast number of languages beyond the original three, including Ruby, Haskell, Go, Scala, Octave, Java, and <a class="reference external" href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">more</a>. There’ll be more about the difference between scripts and notebooks later on in the book, for now though, we’ll keep our focus on scripts and Visual Studio Code.</p>
 <p>Download and install Visual Studio Code. If you need some help, see this <a class="reference external" href="https://code.visualstudio.com/docs/python/python-tutorial">very short tutorial</a> on setting it up from Microsoft (ignore the bits about debugging and installing packages).</p>
 <p>Once you have Visual Studio Code installed and opened, navigate to the ‘extensions’ tab on the left hand side navigation bar. You’ll need to install the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension for VS Code</a>, which you can search for by using the text box within VS Code.</p>
@@ -614,7 +612,7 @@
 <p>Create a new script that, when run, prints “Welcome to coding for economists” and run it in both the terminal and an interactive window.</p>
 </div>
 <div class="section" id="writing-your-first-notebook">
-<h3>Writing your First Notebook<a class="headerlink" href="#writing-your-first-notebook" title="Permalink to this headline">¶</a></h3>
+<h3>Writing your first notebook<a class="headerlink" href="#writing-your-first-notebook" title="Permalink to this headline">¶</a></h3>
 <p>Notebooks are another popular way to write code, in addition to scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code> files). Notebooks can mix code and a type of plain text called Markdown by having “cells” that are either code or Markdown. This chapter was written in Markdown; many other chapters in the book are written as notebooks, and you can download them to run them on your own computer. Look for the download symbol at the top of each page; “.ipynb” means ipython notebook. We’ll be seeing more of notebooks in subsequent chapters.</p>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
@@ -627,7 +625,6 @@
 <div class="section" id="packages-and-how-to-install-them">
 <h2>Packages and How to Install Them<a class="headerlink" href="#packages-and-how-to-install-them" title="Permalink to this headline">¶</a></h2>
 <p>Packages (also called libraries) are key to extending the functionality of Python. The default installation of Anaconda comes with many (around 250) of the packages you’ll need, but it won’t be long before you’ll need to install some extra ones. There are packages for geoscience, for building websites, for analysing genetic data, and, yes, even for economics. Packages are typically not written by the core maintainers of the Python language but by enthusiasts, firms, researchers, academics, all sorts! Because anyone can write packages, they vary widely in their quality and usefulness. There are some that are key for an economics workflow, though, and you’ll be seeing them again and again.</p>
-<p><img alt="" src="https://pbs.twimg.com/media/DlSkZi5UYAAiMxG?format=jpg&amp;name=900x900" /></p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Name a more iconic trio, I&#39;ll wait. <a href="https://t.co/pGaLuUxQ3r">pic.twitter.com/pGaLuUxQ3r</a></p>&mdash; Vicki Boykis (@vboykis) <a href="https://twitter.com/vboykis/status/1032631145035427840?ref_src=twsrc%5Etfw">August 23, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>Python packages don’t come built-in (by definition) so you need to install them. When you issue an install command for a specific package, it is automatically downloaded from the internet and installed in the appropriate place on your computer.</p>
 <p>As with Linux’s <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span></code> or Mac’s <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span></code> commands, Python’s package install commands are issued in a text-based window called the “terminal”.</p>
@@ -654,7 +651,7 @@
 </div>
 <p>on Windows. If you don’t see the word <code class="docutils literal notranslate"><span class="pre">(base)</span></code> at the start of the line, you may need to type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> first.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">(base)</span></code> part is saying that your current Python environment is the base one (later, we’ll see how to add others for reproducibility and to isolate projects). Unfortunately, and confusingly, the commands that you can use in the terminal on Mac and Linux, on the one hand, and Windows, on the other, are different but many of the principles are the same.</p>
-<p>For now, to at least try out the command line, let’s use something that works across all three of the major operating systems. Type <code class="docutils literal notranslate"><span class="pre">python</span></code> on the command prompt that came up in your new terminal window. If you installed Python, and put it on your PATH, you should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>. This is a kind of interactive Python session, in the terminal. It’s much less rich than the one available in Visual Studio Code (it can’t run scripts line-by-line, for example) but you can try <code class="docutils literal notranslate"><span class="pre">print('Hello</span> <span class="pre">World!')</span></code> and it will run, printing your message. To exit the terminal-based Python session, type <code class="docutils literal notranslate"><span class="pre">exit()</span></code> to go back to the regular command line.</p>
+<p>For now, to at least try out the command line, let’s use something that works across all three of the major operating systems. Type <code class="docutils literal notranslate"><span class="pre">python</span></code> on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>. This is a kind of interactive Python session, in the terminal. It’s much less rich than the one available in Visual Studio Code (it can’t run scripts line-by-line, for example) but you can try <code class="docutils literal notranslate"><span class="pre">print('Hello</span> <span class="pre">World!')</span></code> and it will run, printing your message. To exit the terminal-based Python session, type <code class="docutils literal notranslate"><span class="pre">exit()</span></code> to go back to the regular command line.</p>
 <p>If you’re using a bash or zsh terminal, there are a couple of commands that are so essential it would be remiss <em>not</em> to mention them. One is to list the contents of the current directory, for which the command is <code class="docutils literal notranslate"><span class="pre">ls</span></code>. The other is to move directory, for which the command is <code class="docutils literal notranslate"><span class="pre">cd</span></code>. If you find that you’ve opened a terminal you can always get a sense of where you are from <code class="docutils literal notranslate"><span class="pre">ls</span></code> and move to where you need to be using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">directory/</span></code>. One of the advantages of opening a folder in Visual Studio Code and then opening a terminal with Code using ‘New Terminal’ is that the terminal will open in the folder you’re working in (which is usually where you want to be).</p>
 <p>In Windows prompts, <code class="docutils literal notranslate"><span class="pre">dir</span></code> lists the contents of a directory and <code class="docutils literal notranslate"><span class="pre">cd</span></code> moves directory.</p>
 </div>
@@ -703,6 +700,7 @@
 </li>
 <li><p>Coding extensions</p>
 <ul>
+<li><p><em>Jupyter</em> provides support for Jupyter Notebooks</p></li>
 <li><p><em>indent-rainbow</em>, gives different levels of indentation different colours for ease of reading.</p></li>
 <li><p><em>Path Intellisense</em>, autocompletes filenames in code.</p></li>
 </ul>
@@ -718,17 +716,30 @@
 <ul>
 <li><p><em>Rainbow CSV</em>, uses colour to make plain old CSV files much more readable in VS Code.</p></li>
 <li><p><em>vscode-icons</em>, intelligent icons for your files as seen in the VS Code file explorer, eg a folder called data gets an icon showing a disc drive superimposed onto a folder.</p></li>
+<li><p><em>polacode</em>, take pictures of code snippets to share on social media</p></li>
+<li><p><em>Excel viewer</em>, does what it says</p></li>
+<li><p><em>Selection Word Count</em>, calculates and displays the word count of a document and, when there is a selection, the word count of a selection (both are shown in the status bar)</p></li>
+<li><p><em>LiveShare</em>, to collaborate on code with someone else in real-time</p></li>
 </ul>
 </li>
-<li><p>LaTex - it’s a bit of surprise, but VS Code is one of the best LaTeX editors out there: if not <em>the</em> best. You will need LaTeX installed already though and initial setup of a compilation ‘recipe’ is a bit fiddly (though, once it works, it’s dreamy).</p>
+<li><p>LaTeX - it’s a bit of surprise, but VS Code is one of the best LaTeX editors out there. You will need LaTeX installed already though and initial setup of a compilation ‘recipe’ is a bit fiddly (though, once it works, it’s dreamy).</p>
 <ul>
 <li><p><em>LaTeX Workshop</em>, provides core features for LaTeX typesetting with Visual Studio Code.</p></li>
 <li><p><em>LaTeX Preview</em>, both in-line and side-by-side previews of LaTeX code. A really fantastic extension.</p></li>
 </ul>
 </li>
 </ul>
-<p>As well as adding extra extensions, you can customise the default settings of VS Code. As mentioned before, you’ll probably want to change the <code class="docutils literal notranslate"><span class="pre">jupyter.sendSelectionToInteractiveWindow</span></code> setting to True. The easiest way to do this is to go to Settings (the cog icon) and type in ‘Jupyter: Send Selection’, and you should see a tick box come up; make sure it’s ticked.</p>
-<p>Another useful one for coding is to change the ‘Editor: Render Whitespace’ setting, aka <code class="docutils literal notranslate"><span class="pre">editor.renderWhitespace</span></code> from ‘selection’ to ‘boundary’. This will now show any boundary whitespace, or more than one instance of whitespace contiguously, as a grey dot. This might seem odd but it’s really useful because the wrong amount of whitespace can create problems with code.</p>
+<p>There are some extensions that most people won’t need but which experienced coders may find useful:</p>
+<ul class="simple">
+<li><p><em>Github Pull Request</em> — allows you to review and manage GitHub pull requests and issues in Visual Studio Code</p></li>
+<li><p><em>Remote development</em> — allows you to open any folder in: a container, a remote machine, or the Windows Subsystem for Linux (WSL)</p></li>
+<li><p><em>Remote - WSL</em> — run VS Code in the Windows Subsystem for Linux</p></li>
+<li><p><em>Remote - SSH</em> — run VS Code over an SSH connection, eg in the cloud</p></li>
+<li><p><em>Remote - Container</em> — run VS Code in a Docker container</p></li>
+<li><p><em>Python Docstring Generator</em> — automatically generates part of the documentation for your Python functions</p></li>
+<li><p><em>Docker</em> - makes it easy to build, manage, and deploy Docker containers from Visual Studio Code</p></li>
+</ul>
+<p>As well as adding extra extensions, you can customise the default settings of VS Code. As mentioned before, you’ll probably want to change the <code class="docutils literal notranslate"><span class="pre">jupyter.sendSelectionToInteractiveWindow</span></code> setting to True. The easiest way to do this is to go to Settings (the cog icon) and type in ‘Jupyter: Send Selection’, and you should see a tick box come up; make sure it’s ticked. Another useful one for coding is to change the ‘Editor: Render Whitespace’ setting, aka <code class="docutils literal notranslate"><span class="pre">editor.renderWhitespace</span></code> from ‘selection’ to ‘boundary’. This will now show any boundary whitespace, or more than one instance of whitespace contiguously, as a grey dot. This might seem odd but it’s really useful because the wrong amount of whitespace can create problems with code.</p>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Go back to your <code class="docutils literal notranslate"><span class="pre">hello_world.py</span></code> script having installed the rainbow indent extension for Visual Studio Code. Modify the code to:</p>

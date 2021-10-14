@@ -57,7 +57,7 @@
     <link rel="canonical" href="https://aeturrell.github.io/coding-for-economists/code-basics.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Advanced Coding" href="code-advanced.html" />
+    <link rel="next" title="Options for Writing Code" href="code-where.html" />
     <link rel="prev" title="Preliminaries" href="code-preliminaries.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -116,40 +116,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="code-advanced.html">
-   Advanced Coding
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="code-where.html">
    Options for Writing Code
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Workflow
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-best-practice.html">
+  <a class="reference internal" href="code-best-practice.html">
    Tips for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-advcd-best-practice.html">
+  <a class="reference internal" href="code-advcd-best-practice.html">
    Tools for Better Coding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-command-line.html">
-   The Command Line
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wrkflow-rap.html">
-   Reproducible Analysis
+  <a class="reference internal" href="code-advanced.html">
+   Advanced Coding
   </a>
  </li>
 </ul>
@@ -243,6 +226,11 @@
    Regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="econmt-causal-inference.html">
+   Causal Inference
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -285,6 +273,28 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-research-outputs.html">
+   Automating Research Outputs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-command-line.html">
+   The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wrkflow-rap.html">
+   Reproducible Analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Geospatial
  </span>
 </p>
@@ -309,18 +319,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="maths-maths-coding.html">
    Intro to Mathematics with Code
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Automation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="auto-research-outputs.html">
-   Automating Research Outputs
   </a>
  </li>
 </ul>
@@ -564,16 +562,6 @@
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lambda-functions">
-   Lambda functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#splat-and-splatty-splat">
-   Splat and splatty-splat
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#time">
@@ -1762,7 +1750,13 @@ Cox maps into Apple
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<p>If you’re an economist, you hardly need to be told you what a function is. In coding, it’s much the same as in mathematics: a function has inputs, it performs its function, and it returns any outputs. Functions begin with a <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword for ‘define a function’. It then has a name, followed by brackets, <code class="docutils literal notranslate"><span class="pre">()</span></code>, which may contain <em>function arguments</em> and <em>function keyword arguments</em>. This is followed by a colon. The body of the function is then indented relative to the left-most text. Function arguments are defined in brackets following the name, with different inputs separated by commas. Any outputs are given with the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, again with different variables separated by commas. Let’s see a very simple example:</p>
+<p>If you’re an economist, you hardly need to be told you what a function is. In coding, it’s much the same as in mathematics: a function has inputs, it performs its function, and it returns any outputs. Functions begin with a <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword for ‘define a function’. It then has a name, followed by brackets, <code class="docutils literal notranslate"><span class="pre">()</span></code>, which may contain <em>function arguments</em> and <em>function keyword arguments</em>. This is followed by a colon. The body of the function is then indented relative to the left-most text. Function arguments are defined in brackets following the name, with different inputs separated by commas. Any outputs are given with the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, again with different variables separated by commas.</p>
+<div class="tip admonition">
+<p class="admonition-title">Arguments and keyword arguments</p>
+<p><em>arguments</em> are the variables that functions <em>always</em> need, so <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> in <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">add(a,</span> <span class="pre">b):</span> <span class="pre">return</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>. The function won’t work without them! Function arguments are sometimes referred to as <em>args</em>.</p>
+<p><em>Keyword arguments</em> are the variables that are optional for functions, so <code class="docutils literal notranslate"><span class="pre">c</span></code> in <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">add(a,</span> <span class="pre">b,</span> <span class="pre">c=5):</span> <span class="pre">return</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">-</span> <span class="pre">c</span></code>. If you do not provide a value for <code class="docutils literal notranslate"><span class="pre">c</span></code> when calling the function, it will automatically revert to <code class="docutils literal notranslate"><span class="pre">c=5</span></code>. Keyword arguments are sometimes referred to as <em>kwargs</em>.</p>
+</div>
+<p>Let’s see a very simple example of a function with a single <em>argument</em> (or arg):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">welcome_message</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -1782,7 +1776,7 @@ Cox maps into Apple
 </div>
 </div>
 </div>
-<p>One powerful feature of functions is that we can define defaults for the input arguments. Let’s see that in action by defining a default value for <code class="docutils literal notranslate"><span class="pre">name</span></code>, along with multiple outputs–a hello message and a score.</p>
+<p>One powerful feature of functions is that we can define defaults for the input arguments. These are called <em>keyword arguments</em> (or kwargs). Let’s see that in action by defining a default value for <code class="docutils literal notranslate"><span class="pre">name</span></code>, along with multiple outputs–a hello message and a score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">score_message</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;student&quot;</span><span class="p">):</span>
@@ -1847,10 +1841,13 @@ score_message(score, name=&#39;student&#39;)
 <p>Add a second argument that takes a default argument of an empty string but, if used, is added (concatenated) to the return message. Use it to create the return output, “:-/ here is my message.”</p>
 <p>Write a doc-string for your function and call <code class="docutils literal notranslate"><span class="pre">help</span></code> on it.</p>
 </div>
+<p>To learn more about args and kwargs, check out these <a class="reference external" href="https://calmcode.io/args-kwargs/introduction.html">short video tutorials</a>.</p>
 </div>
 <div class="section" id="scope">
 <h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
-<p>Scope refers to what parts of your code can see what other parts. If you define a variable inside a function, the rest of your code won’t be able to ‘see’ it or use it. For example, here’s a function that creates a variable and then an example of calling that variable:</p>
+<p>Scope refers to what parts of your code can see what other parts. There are three different scopes to bear in mind: local, global, and non-local.</p>
+<p><strong>Local</strong></p>
+<p>If you define a variable inside a function, the rest of your code won’t be able to ‘see’ it or use it. For example, here’s a function that creates a variable and then an example of calling that variable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">var_func</span><span class="p">():</span>
     <span class="n">str_variable</span> <span class="o">=</span> <span class="s1">&#39;Hello World!&#39;</span>
 
@@ -1858,7 +1855,8 @@ score_message(score, name=&#39;student&#39;)
 <span class="nb">print</span><span class="p">(</span><span class="n">str_variable</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This would raise an error, because as far as your general code is concerned <code class="docutils literal notranslate"><span class="pre">str_variable</span></code> doesn’t exist outside of the function. If you want to create variables inside a function and have them persist, you need to explicitly pass them out using, for example <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">str_variable</span></code> like this:</p>
+<p>This would raise an error, because as far as your general code is concerned <code class="docutils literal notranslate"><span class="pre">str_variable</span></code> doesn’t exist outside of the function. This is an example of a <em>local</em> variable, one that only exists within a function.</p>
+<p>If you want to create variables inside a function and have them persist, you need to explicitly pass them out using, for example <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">str_variable</span></code> like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">var_func</span><span class="p">():</span>
@@ -1877,7 +1875,58 @@ score_message(score, name=&#39;student&#39;)
 </div>
 </div>
 </div>
-<p>Or, if you only want to modify a variable, you can declare the variable before the function is run, pass it into the function, and then return it.</p>
+<p><strong>Global</strong></p>
+<p>A variable declared outside of a function is known as a global variable because it is accessible everywhere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m a global variable&quot;</span>
+
+<span class="k">def</span> <span class="nf">print_y</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y is inside a function:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="n">print_y</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y is outside a function:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y is inside a function: I&#39;m a global variable
+y is outside a function: I&#39;m a global variable
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>nonlocal</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are just learning to code you should feel free to skip this section.</p>
+</div>
+<p>Finally, non-local variables are used in nested functions as a means to say ‘hey, this variable is not just local to this nested function, it exists outside it too’. Here’s an example that prints “world” because we tell the inner function to use the same <code class="docutils literal notranslate"><span class="pre">x</span></code> as the outer function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+  <span class="k">def</span> <span class="nf">nested_function</span><span class="p">():</span>
+    <span class="k">nonlocal</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+  <span class="n">nested_function</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">outer_function</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>world
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Re-write the above function without the <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> keyword. What does it print?</p>
+</div>
 </div>
 <div class="section" id="using-packages-and-modules">
 <h2>Using packages and modules<a class="headerlink" href="#using-packages-and-modules" title="Permalink to this headline">¶</a></h2>
@@ -1939,7 +1988,7 @@ Inverse:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────────────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> inv at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7fc0316d54c0</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ──────────────────╮</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────────────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">function</span><span style="color: #000000; text-decoration-color: #000000"> inv at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff3c56deb80</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ──────────────────╮</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #00ffff; text-decoration-color: #00ffff; font-style: italic">def </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">inv</span><span style="font-weight: bold">(</span>a<span style="font-weight: bold">)</span>:                                                         <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>                                                                     <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008080; text-decoration-color: #008080">Compute the </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080">multiplicative</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">)</span><span style="color: #008080; text-decoration-color: #008080"> inverse of a matrix.</span>                   <span style="color: #000080; text-decoration-color: #000080">│</span>
@@ -2038,7 +2087,7 @@ Inverse:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/code-basics_115_0.png" src="_images/code-basics_115_0.png" />
+<img alt="_images/code-basics_120_0.png" src="_images/code-basics_120_0.png" />
 </div>
 </div>
 <p>How can we give code files a, b, and c access to the functions etc in the “Utility script”? We would define a file ‘<a class="reference external" href="http://utilities.py">utilities.py</a>’ that had the following function in that we would like to use in the other code files:</p>
@@ -2106,157 +2155,6 @@ Inverse:
 </div>
 </div>
 </div>
-<div class="section" id="lambda-functions">
-<h2>Lambda functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h2>
-<p>Lambda functions are a very old idea in programming, and are part of the functional programming paradigm. Coding languages tend to be more object-oriented or functional, with the object-oriented approach originating with Alan Turing’s “Turing Machines” and the functional approach with Alonso Church’s “lambda calculus”. These two approaches are mathematically equivalent and, on a more practical note, high-level programming languages often mix both. As examples, Haskell is strongly a functional language, statistics language R leans toward being more functional, Python is slightly more object oriented, and powerhouse languages like Fortran and C are object-oriented. However, despite being less functional than some languages, Python does have lambda functions, for example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus_one</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="n">plus_one</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>For a one-liner function that has a name it’s actually better practice here to use <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">plus_one(x):</span> <span class="pre">return</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>, so you shouldn’t see this form of lambda function too much in the wild. However, you are likely to see lambda functions being used with dataframes and other objects. For example, if you had a dataframe with a column of string called ‘strings’ that you want to change to “Title Case” and replace one phrase with another, you could use lambda functions to do that (there are better ways of doing this but this is useful as a simple example):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;hello my blah is Ada&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;hElLo mY blah IS Adam&quot;</span><span class="p">]],</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;strings&quot;</span><span class="p">],</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;strings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Blah&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     Hello My Name Is Ada
-1    Hello My Name Is Adam
-Name: strings, dtype: object
-</pre></div>
-</div>
-</div>
-</div>
-<p>More complex lambda functions can be constructed, eg <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z:</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span></code>. One of the best use cases of lambdas is when you <em>don’t</em> want to go to the trouble of declaring a function. For example, let’s say you want to compose a series of functions and you want to specify those functions in a list, one after the other. Using functions alone, you’d have to define a new function for each operation. With lambdas, it would look like this (again, there are easier ways to do this operation, but we’ll use simple functions to demonstrate the principle):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">]:</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-4
-16
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that people often use <code class="docutils literal notranslate"><span class="pre">x</span></code> by convention, but there’s nothing to stop you writing <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">horses:</span> <span class="pre">horses**2</span></code> (apart from the looks your co-authors will give you).</p>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Write a lambda function that takes the square root of an input number.</p>
-</div>
-<p>If you want to learn more about lambda functions, check out these <a class="reference external" href="https://calmcode.io/lambda/introduction.html">short video tutorials</a>.</p>
-</div>
-<div class="section" id="splat-and-splatty-splat">
-<h2>Splat and splatty-splat<a class="headerlink" href="#splat-and-splatty-splat" title="Permalink to this headline">¶</a></h2>
-<p>You read those right, yes. These are also known as “unpacking operators” for iterables that are fed into functions as arguments (in the form of a tuple) and keyword arguments (in the form of a dictionary) respectively. Splat is <code class="docutils literal notranslate"><span class="pre">*</span></code> and splatty-splat is <code class="docutils literal notranslate"><span class="pre">**</span></code>. Because they unpack, they allow us to efficiency send packages of arguments or keyword arguments into functions without labouriously writing out every single argument.</p>
-<div class="tip admonition">
-<p class="admonition-title">Arguments and keyword arguments</p>
-<p>As an aside <em>arguments</em> are the variables that functions <em>always</em> need, so <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> in <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">add(a,</span> <span class="pre">b):</span> <span class="pre">return</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>. The function won’t work without them! Function arguments are sometimes referred to as <em>args</em>.</p>
-<p><em>Keyword arguments</em> are the variables that are optional for functions, so <code class="docutils literal notranslate"><span class="pre">c</span></code> in <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">add(a,</span> <span class="pre">b,</span> <span class="pre">c=5):</span> <span class="pre">return</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">-</span> <span class="pre">c</span></code>. If you do not provide a value for <code class="docutils literal notranslate"><span class="pre">c</span></code> when calling the function, it will automatically revert to <code class="docutils literal notranslate"><span class="pre">c=5</span></code>. Keyword arguments are sometimes referred to as <em>kwargs</em>.</p>
-</div>
-<p>Because function arguments are always tuples, the use of <code class="docutils literal notranslate"><span class="pre">*</span></code> must be accompanied by a tuple. Because function keywords are always dictionaries of key, value pairs, the use of <code class="docutils literal notranslate"><span class="pre">**</span></code> must always be accompanied by a dictionary.</p>
-<p>Let’s take a look at splat, which unpacks tuples into function arguments. If we have a function that takes two arguments we can send variables to it in different ways:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-
-<span class="n">func_args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
-17
-</pre></div>
-</div>
-</div>
-</div>
-<p>The splat operator, <code class="docutils literal notranslate"><span class="pre">*</span></code>, unpacks the variable <code class="docutils literal notranslate"><span class="pre">func_args</span></code> into two different function arguments.</p>
-<p>Perhaps surprisingly, we can use the splat operator <em>in the definition of a function</em>. For example, sum_elements below</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_elements</span><span class="p">(</span><span class="o">*</span><span class="n">elements</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="o">*</span><span class="n">elements</span><span class="p">)</span>
-
-
-<span class="n">nums</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">sum_elements</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
-
-<span class="n">more_nums</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">sum_elements</span><span class="p">(</span><span class="n">more_nums</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-15
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Write a function multiply that multiplies two input numbers, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, together and returns the answer. Send the argument <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">12)</span></code> to it using the splat operator.</p>
-</div>
-<p>Splatty-splat, <code class="docutils literal notranslate"><span class="pre">**</span></code>, unpacks dictionaries into keyword arguments (aka kwargs):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_with_kwargs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="n">function_with_kwargs</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-
-<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">function_with_kwargs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-17
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Using a dictionary and splatty-splat with the <code class="docutils literal notranslate"><span class="pre">function_with_kwargs</span></code> function, find the sum of 9, 6, 13, and 2.</p>
-</div>
-<p>To learn more about args and kwargs, check out these <a class="reference external" href="https://calmcode.io/args-kwargs/introduction.html">short video tutorials</a>.</p>
-</div>
 <div class="section" id="time">
 <h2>Time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h2>
 <p>Let’s do a quick dive into how to deal with dates and times. This is only going to scratch the surface, but should give a sense of what’s possible.</p>
@@ -2271,7 +2169,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-07 21:22:20.911940
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-14 23:50:39.628949
 </pre></div>
 </div>
 </div>
@@ -2289,7 +2187,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021/10/7, 21:22
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021/10/14, 23:50
 </pre></div>
 </div>
 </div>
@@ -2309,7 +2207,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-08 02:22:20.911940
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-15 04:50:39.628949
 </pre></div>
 </div>
 </div>
@@ -2326,7 +2224,7 @@ Name: strings, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86 days until New Year
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79 days until New Year
 </pre></div>
 </div>
 </div>
@@ -2446,7 +2344,7 @@ red lorry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-14
 </pre></div>
 </div>
 </div>
@@ -2545,10 +2443,10 @@ False
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="code-advanced.html" title="next page">
+        <a class="right-next" href="code-where.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Advanced Coding</p>
+                <p class="prevnext-title">Options for Writing Code</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
