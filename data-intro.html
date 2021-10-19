@@ -551,13 +551,30 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-and-eval">
+   Query and Eval
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#query">
+     Query
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eval">
+     Eval
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#time-series-resampling-and-rolling-windows">
    Time series, resampling, and rolling windows
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#method-chaining">
-   Method chaining
+  <a class="reference internal nav-link" href="#advanced-method-chaining">
+   Advanced: Method Chaining
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -668,7 +685,7 @@
 <p>The ability to extract, clean, and analyse data is one of the core skills any economist needs. Fortunately, the (open source) tools that are available for data analysis have improved enormously in recent years, and working with them can be a delight–even the most badly formatted data can be beaten into shape.</p>
 <p>In this chapter, you’ll get really good introduction to the <a class="reference external" href="https://pandas.pydata.org/"><strong>pandas</strong></a> package, the core data manipulation library in Python. The name is derived from ‘panel data’ but it’s suited to any tabular data, and can be used to work with more complex data structures too. We <em>won’t</em> cover reading in or writing data here; see the next chapter for that.</p>
 <p>This chapter is hugely indebted to the fantastic <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake Vanderplas. Remember, if you get stuck with pandas, there is brilliant <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">documentation</a> and a fantastic set of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/index.html">introductory tutorials</a> on their website. These notes are heavily indebted to those introductory tutorials.</p>
-<p>This chapter uses the <strong>pandas</strong>, <strong>seaborn</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. (If you’re not sure what a command line or terminal is, take a quick look at the basics of coding chapter.)</p>
+<p>This chapter uses the <strong>pandas</strong>, <strong>seaborn</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line.  If you’re running this page in Google Colab, you can install new packages by running <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> in a new code cell but you will need to restart the Colab notebook for the change to take effect. There’s a brief guide on installing packages in the Chapter on <span class="xref std std-ref">code-preliminaries</span>.</p>
 <div class="section" id="using-tidy-data">
 <h3>Using tidy data<a class="headerlink" href="#using-tidy-data" title="Permalink to this headline">¶</a></h3>
 <p>As an aside, if you’re working with tabular data, it’s good to try and use a so-called ‘tidy data’ format. This is data with one observation per row, and one variable per column, like so:</p>
@@ -688,11 +705,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">PCG64</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Set seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">seed_for_prng</span> <span class="o">=</span> <span class="mi">78557</span>
+<span class="n">prng</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">PCG64</span><span class="p">(</span><span class="n">seed_for_prng</span><span class="p">))</span>
 <span class="c1"># Plot settings</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
     <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
@@ -866,6 +885,10 @@ dtype: int64
 </div>
 </div>
 <p>Note that in each case there is no column name (because this is a series, not a dataframe), and there <em>is</em> an index. The index is automatically created if we don’t specify it; in the third example, by passing a dictionary we implicitly asked for the index to be the locations we supplied.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a <strong>pandas</strong> series of ascending integers using the Python built-in <code class="docutils literal notranslate"><span class="pre">range(start,</span> <span class="pre">stop)</span></code> function.</p>
+</div>
 <p>If you ever need to get the data ‘out’ of a series or dataframe, you can just call the <code class="docutils literal notranslate"><span class="pre">values</span></code> method on the object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -960,6 +983,10 @@ dtype: int64
 </div></div></div>
 </div>
 <p>Remember, curly brackets in the format <code class="docutils literal notranslate"><span class="pre">{key:</span> <span class="pre">value}</span></code> denote a dictionary. In the above example, the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame()</span></code> function understands that any single value entries in the dictionary that is passed, such as <code class="docutils literal notranslate"><span class="pre">{'A':</span> <span class="pre">1.}</span></code>, should be repeated as many times as are needed to match the longest series in the dictionary (4 in the above example).</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using a dictionary structure like the one above, create a <strong>pandas</strong> dataframe from the series you created in the previous exercise so that the name of the column is ‘series’.</p>
+</div>
 <p>Another way to create dataframes is to pass a bunch of series (note that <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>, and <code class="docutils literal notranslate"><span class="pre">dtype</span></code> are optional–you can just specify the data):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1060,6 +1087,10 @@ dtype: int64
 </div></div></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">reshape</span></code> takes an input and puts it into a given shape (a 6 by 6 matrix in the above example).</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a <strong>pandas</strong> dataframe using the <code class="docutils literal notranslate"><span class="pre">data=</span></code>, <code class="docutils literal notranslate"><span class="pre">index=</span></code>, and <code class="docutils literal notranslate"><span class="pre">columns=</span></code> keyword arguments. The data should consist of one column with ascending integers from 0 to 5, the column name should be “series”, and the index should be the first 5 letters of the alphabet. Remember that the <code class="docutils literal notranslate"><span class="pre">index</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword arguments expect an iterable of some kind (not just a string).</p>
+</div>
 <div class="section" id="values-columns-and-index">
 <h3>Values, columns, and index<a class="headerlink" href="#values-columns-and-index" title="Permalink to this headline">¶</a></h3>
 <p>You’ll have seen that there are three different things that make up a dataframe: the values that are in the cells, the column names, and the index. The column and index can take on values that are the same as the values in a dataframe do; string, int, float, datetime, and more. It’s pretty obvious what role the columns play: they keep track of the name of different sets of values. But for people who may have seen other dataframe-like libraries, the role played by the index may be less familiar. The easiest way to think about a <strong>pandas</strong> index is that it does for row values what the columns do for columnar values: it’s a way of keeping track of what individual roles are and it <em>doesn’t</em> get used for calculations (just as summing a column ignores the name of the row).</p>
@@ -1143,7 +1174,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>If we add one to the integer columns in the dataframe, this is what we get (note we’re not saving the result):</p>
+<p>If we add one to the integer columns in the dataframe, this is what we get (note we’re not saving the result because we don’t have an assignment step with an <code class="docutils literal notranslate"><span class="pre">=</span></code> sign):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;col0&quot;</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
@@ -1203,7 +1234,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>Now let’s use <code class="docutils literal notranslate"><span class="pre">col0</span></code> as our index instead of the original labels we created and add one to the remaining numeric columns:</p>
+<p>Now let’s use <code class="docutils literal notranslate"><span class="pre">col0</span></code> as our index instead of the original labels we created and add one to the remaining numeric columns (this time assigning the result back to the original columns):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;col0&quot;</span><span class="p">)</span>
@@ -1277,8 +1308,12 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>What was a column name has become an index name (which you can change with <code class="docutils literal notranslate"><span class="pre">df.index.name='newname'</span></code>) and, when we do add one, it isn’t applied to the index. Even though their datatype is <code class="docutils literal notranslate"><span class="pre">int</span></code>, for integer, the index entries are now acting as a label for each row–not as values in the dataframe.</p>
+<p>What was a column name has become an index name (<code class="docutils literal notranslate"><span class="pre">col0</span></code>, which you can change with <code class="docutils literal notranslate"><span class="pre">df.index.name='newname'</span></code>) and, when we do add one, it isn’t applied to the index values (here, all zeros). Even though their datatype is <code class="docutils literal notranslate"><span class="pre">int</span></code>, for integer, the index entries are now acting as a label for each row—not as values in the dataframe.</p>
 <p>An index can be useful for keeping track of what’s going on, and it’s particularly convenient for some datetime operations.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Working with the dataframe above add the phrase ” more text” onto the two string columns, <code class="docutils literal notranslate"><span class="pre">col3</span></code> and <code class="docutils literal notranslate"><span class="pre">col4</span></code>. Remember that strings respect the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator.</p>
+</div>
 <p>Whenever you use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> (and some other operations), the columns you use to perform the operation are set as the index of the returned dataframe (you can have multiple index columns). To get back those back to being columns, use the <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> method like so:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1395,6 +1430,10 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Group the <code class="docutils literal notranslate"><span class="pre">df</span></code> object above by <code class="docutils literal notranslate"><span class="pre">col1</span></code> and <code class="docutils literal notranslate"><span class="pre">col2</span></code> using the <code class="docutils literal notranslate"><span class="pre">first</span></code> aggregation operation in place of <code class="docutils literal notranslate"><span class="pre">sum</span></code> above. Reset the index to return <code class="docutils literal notranslate"><span class="pre">col1</span></code> and <code class="docutils literal notranslate"><span class="pre">col2</span></code> to being regular columns.</p>
+</div>
 </div>
 </div>
 <div class="section" id="datatypes">
@@ -1476,7 +1515,7 @@ memory usage: 320.0 bytes
 </div>
 </div>
 </div>
-<p>Once you have applied datatypes to the columns in your dataframe, tools like <a class="reference external" href="https://github.com/aeturrell/skimpy">skimpy</a> (install using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> on the command line or <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> within a Colab code cell if you’re using Google Colab) can then provide richer summaries of your data.</p>
+<p>Once you have applied datatypes to the columns in your dataframe, tools like <a class="reference external" href="https://github.com/aeturrell/skimpy">skimpy</a> (install using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> on the command line or <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">skimpy</span></code> within a Colab code cell if you’re using Google Colab) can then provide richer summaries of your data. (Skimpy will try and infer column data types, but it’s not perfect.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimpy</span> <span class="kn">import</span> <span class="n">skim</span>
@@ -1534,7 +1573,23 @@ memory usage: 320.0 bytes
 </pre>
 </div></div>
 </div>
-<p>There’s a lot more on exploratory data analysis in the Chapter on <span class="xref std std-ref">data-exploratory-analysis</span>.</p>
+<p>There’s a lot more on exploratory data analysis in the Chapter on <a class="reference internal" href="data-exploratory-analysis.html#data-exploratory-analysis"><span class="std std-ref">Exploratory Data Analysis</span></a>.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Apply the relevant types to this dataframe:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;col0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;row&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <p>If you’re creating a series or dataframe from scratch, here’s how to start off with these datatypes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1615,6 +1670,10 @@ Categories (4, interval[float64, right]): [(0.999, 3.0] &lt; (3.0, 5.0] &lt; (5.
 </div>
 </div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Apply the 5-point Likert scale (Strongly disagree, Disagree, Neither Agree nor Disagree, Agree, Strongly Disagree) to the data generated by <code class="docutils literal notranslate"><span class="pre">prng.standard_normal(size=100)</span></code> using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> with the keyword argument <code class="docutils literal notranslate"><span class="pre">retbins=True</span></code>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="accessing-and-slicing">
@@ -1645,7 +1704,76 @@ Name: col1, dtype: float64
 </div>
 </div>
 </div>
-<p>To access a particular row, it’s <code class="docutils literal notranslate"><span class="pre">df.loc['rowname']</span></code> or <code class="docutils literal notranslate"><span class="pre">df.loc[['rowname1',</span> <span class="pre">'rowname1']]</span></code>.</p>
+<p>Accessing multiple columns can be achieved with a list of the columns you’d like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>7.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>13.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>19.0</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>25.0</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>f</th>
+      <td>31.0</td>
+      <td>32.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Access columns 2 and 3 using the named-access syntax above.</p>
+</div>
+<p>To access a particular row, it’s <code class="docutils literal notranslate"><span class="pre">df.loc['rowname']</span></code> or <code class="docutils literal notranslate"><span class="pre">df.loc[['rowname1',</span> <span class="pre">'rowname1']]</span></code> for two different rows.</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/03_subset_rows.svg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1703,23 +1831,31 @@ Name: col1, dtype: float64
 </table>
 </div></div></div>
 </div>
-<p>As well as the <code class="docutils literal notranslate"><span class="pre">.loc</span></code> method, there is the <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> method that accesses rows or columns based on their position, for example <code class="docutils literal notranslate"><span class="pre">df.iloc[i,</span> <span class="pre">:]</span></code> for the ith row and <code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">j]</span></code> for the jth column (but remember the numbers start from zero).</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Access rows c and f using the named-access syntax above.</p>
+</div>
+<p>As well as the <code class="docutils literal notranslate"><span class="pre">.loc</span></code> method, there is the <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> method that accesses rows or columns based on their position, for example <code class="docutils literal notranslate"><span class="pre">df.iloc[i,</span> <span class="pre">:]</span></code> for the ith row and <code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">j]</span></code> for the jth column (but remember that indexing starts from zero).</p>
 <p>To access an individual value from within the dataframe, we have two options: pass an index value and a column name to <code class="docutils literal notranslate"><span class="pre">.loc[rowname,</span> <span class="pre">columnname]</span></code> or retrieve the value by using its position using <code class="docutils literal notranslate"><span class="pre">.iloc[row,</span> <span class="pre">column]</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using .loc</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">])</span>
 <span class="c1"># Using .iloc</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.0
-6.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.0
+8.0
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Indexing from zero, access the row 0 and column 1 entries using the position based-access syntax above.</p>
 </div>
 <p>With all of these different ways to access values in dataframes, it can get confusing. These are the different ways to get the first column of a dataframe (when that first column is called <code class="docutils literal notranslate"><span class="pre">column</span></code> and the dataframe is <code class="docutils literal notranslate"><span class="pre">df</span></code>):</p>
 <ul class="simple">
@@ -1728,7 +1864,7 @@ Name: col1, dtype: float64
 <li><p><code class="docutils literal notranslate"><span class="pre">df.loc[:,</span> <span class="pre">&quot;column&quot;]</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">0]</span></code></p></li>
 </ul>
-<p>The ways to access rows are similar (here assuming the first row is called <code class="docutils literal notranslate"><span class="pre">row</span></code>):</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">:</span></code> means ‘give me everything’! The ways to access rows are similar (here assuming the first row is called <code class="docutils literal notranslate"><span class="pre">row</span></code>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">df.loc[&quot;row&quot;,</span> <span class="pre">:]</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">df.iloc[0,</span> <span class="pre">:]</span></code></p></li>
@@ -1740,12 +1876,21 @@ Name: col1, dtype: float64
 <li><p><code class="docutils literal notranslate"><span class="pre">df.iloc[0,</span> <span class="pre">0]</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">df.loc[&quot;row&quot;,</span> <span class="pre">&quot;column&quot;]</span></code></p></li>
 </ul>
-<p>In the above examples, square brackets are instructions about <em>where</em> to grab bits from the dataframe. They are a bit like an address system for values within a dataframe.</p>
-<p>Square brackets <em>also</em> denote lists though. So if you want to select <em>multiple</em> columns or rows, you might see syntax like this:</p>
+<p>In the above examples, square brackets are instructions about <em>where</em> to grab bits from the dataframe. They are a bit like an address system for values within a dataframe. Square brackets <em>also</em> denote lists though. So if you want to select <em>multiple</em> columns or rows, you might see syntax like this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">df.loc[[&quot;row0&quot;,</span> <span class="pre">&quot;row1&quot;],</span> <span class="pre">[&quot;column0&quot;,</span> <span class="pre">&quot;column2&quot;]]</span></code></p>
 <p>which picks out two rows and two columns via the lists <code class="docutils literal notranslate"><span class="pre">[&quot;row0&quot;,</span> <span class="pre">&quot;row1&quot;]</span></code> and <code class="docutils literal notranslate"><span class="pre">[&quot;column0&quot;,</span> <span class="pre">&quot;column2&quot;]</span></code>. Because there are lists alongside the usual system of selecting values, there are two sets of square brackets.</p>
-<p>So often what we really want is a subset of values (as opposed to <em>all</em> values or just <em>one</em> value). This is where <em>slicing</em> comes in. If you’ve looked at the Basics of Coding chapter, you’ll know a bit about slicing and indexing already, but we’ll cover the basics here too.</p>
-<p>The syntax for slicing is similar to what we’ve seen already: there are two methods <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to access items by name, and <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> to access them by position. The syntax for the former is <code class="docutils literal notranslate"><span class="pre">df.loc[start:stop:step,</span> <span class="pre">start:stop:step]</span></code>, where the first position is index name and the second is column name (and the same applies for numbers and <code class="docutils literal notranslate"><span class="pre">df.iloc</span></code>). Let’s see an example using the storms dataset, and do some cuts.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>If you only want to remember one syntax for accessing rows and columns by name, use the pattern <code class="docutils literal notranslate"><span class="pre">df.loc[[&quot;row0&quot;,</span> <span class="pre">&quot;row1&quot;,</span> <span class="pre">...],</span> <span class="pre">[&quot;col0&quot;,</span> <span class="pre">&quot;col1&quot;,</span> <span class="pre">...]]</span></code>. This also works with a single row or a single column (or both).</p>
+<p>If you only want to remember one syntax for accessing rows and columns by position, use the pattern <code class="docutils literal notranslate"><span class="pre">df.iloc[[0,</span> <span class="pre">1,</span> <span class="pre">...],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">...]]</span></code>. This also works with a single row or a single column (or both).</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Access columns 2 and 3, and rows a and c, using the <code class="docutils literal notranslate"><span class="pre">df.loc</span></code> syntax with lists for the columns and rows.</p>
+<p>Access columns 2 and 3, and rows a and c, using the <code class="docutils literal notranslate"><span class="pre">df.iloc</span></code> syntax with lists for the columns and rows.</p>
+</div>
+<p>So often, what we really want is a subset of values (as opposed to <em>all</em> values or just <em>one</em> value). This is where <em>slicing</em> comes in. If you’ve looked at the Chapter on <a class="reference internal" href="code-basics.html#code-basics"><span class="std std-ref">Basics of Coding</span></a>, you’ll know a bit about slicing and indexing already, but we’ll cover the basics here too.</p>
+<p>The syntax for slicing is similar to what we’ve seen already: there are two methods <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to access items by name, and <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> to access them by position. The syntax for the former is <code class="docutils literal notranslate"><span class="pre">df.loc[start:stop:step,</span> <span class="pre">start:stop:step]</span></code>, where the first position is index name and the second is column name (and the same applies for numbers and <code class="docutils literal notranslate"><span class="pre">df.iloc</span></code>). Let’s see some examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="s2">&quot;f&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;col1&quot;</span><span class="p">:</span><span class="s2">&quot;col3&quot;</span><span class="p">]</span>
@@ -1878,7 +2023,12 @@ Name: col1, dtype: float64
 </div></div></div>
 </div>
 <p>In this case, we asked for everything from row 1 onwards, and everything up to (but excluding) the last column.</p>
-<p>It’s not just strings and positions that can be sliced though, here’s an example using <em>dates</em> (pandas support for dates is truly excellent):</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Access every other column between columns 1 and 5, and rows a to c using the <code class="docutils literal notranslate"><span class="pre">.loc</span></code> syntax.</p>
+<p>Access the same columns and rows using the <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> syntax.</p>
+</div>
+<p>It’s not just strings and positions that can be sliced though, here’s an example using <em>dates</em> (<strong>pandas</strong> support for dates is truly excellent):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
@@ -1916,98 +2066,98 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>9</td>
-      <td>4</td>
-      <td>0</td>
-      <td>1</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>2000-06-30</th>
-      <td>0</td>
-      <td>1</td>
-      <td>8</td>
-      <td>9</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>8</td>
       <td>6</td>
-      <td>4</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>4</td>
-      <td>6</td>
-      <td>8</td>
-      <td>1</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>4</td>
       <td>1</td>
       <td>3</td>
-      <td>6</td>
+      <td>2</td>
       <td>5</td>
     </tr>
     <tr>
-      <th>2001-06-30</th>
-      <td>3</td>
-      <td>9</td>
-      <td>6</td>
-      <td>9</td>
+      <th>2000-06-30</th>
+      <td>8</td>
+      <td>8</td>
+      <td>4</td>
+      <td>7</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2000-09-30</th>
+      <td>5</td>
       <td>1</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>8</td>
+      <td>6</td>
+      <td>5</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2001-03-31</th>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
       <td>9</td>
+      <td>9</td>
       <td>4</td>
-      <td>2</td>
-      <td>6</td>
-      <td>7</td>
+      <td>1</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>8</td>
-      <td>8</td>
-      <td>9</td>
-      <td>2</td>
       <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>6</td>
-      <td>7</td>
+      <td>0</td>
+      <td>0</td>
       <td>8</td>
-      <td>1</td>
-      <td>7</td>
+      <td>6</td>
+      <td>8</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>1</td>
+      <td>6</td>
+      <td>6</td>
       <td>4</td>
-      <td>0</td>
+      <td>4</td>
       <td>8</td>
-      <td>5</td>
     </tr>
     <tr>
       <th>2002-09-30</th>
       <td>4</td>
-      <td>7</td>
-      <td>8</td>
-      <td>8</td>
-      <td>2</td>
+      <td>1</td>
+      <td>9</td>
+      <td>4</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>2002-12-31</th>
-      <td>6</td>
-      <td>2</td>
-      <td>8</td>
-      <td>8</td>
+      <td>9</td>
+      <td>7</td>
+      <td>1</td>
+      <td>4</td>
       <td>6</td>
     </tr>
   </tbody>
@@ -2050,73 +2200,73 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>9</td>
-      <td>4</td>
-      <td>0</td>
-      <td>1</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>2000-06-30</th>
-      <td>0</td>
-      <td>1</td>
-      <td>8</td>
-      <td>9</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>8</td>
       <td>6</td>
-      <td>4</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>4</td>
-      <td>6</td>
-      <td>8</td>
-      <td>1</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>4</td>
       <td>1</td>
       <td>3</td>
-      <td>6</td>
+      <td>2</td>
       <td>5</td>
     </tr>
     <tr>
-      <th>2001-06-30</th>
-      <td>3</td>
-      <td>9</td>
-      <td>6</td>
-      <td>9</td>
+      <th>2000-06-30</th>
+      <td>8</td>
+      <td>8</td>
+      <td>4</td>
+      <td>7</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2000-09-30</th>
+      <td>5</td>
       <td>1</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>8</td>
+      <td>6</td>
+      <td>5</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2001-03-31</th>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
       <td>9</td>
+      <td>9</td>
       <td>4</td>
-      <td>2</td>
-      <td>6</td>
-      <td>7</td>
+      <td>1</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>8</td>
-      <td>8</td>
-      <td>9</td>
-      <td>2</td>
       <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>Two important points to note here: first, pandas doesn’t mind that we supplied a date that didn’t actually exist in the index. It worked out that by ‘2000-01-01’ we meant a datetime and compared the values of the index to that datetime in order to decide what rows to return from the dataframe. The second thing to notice is the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> for the column names; this explicitly says ‘give me all the columns’.</p>
+<p>Two important points to note here: first, <strong>pandas</strong> doesn’t mind that we supplied a date that didn’t actually exist in the index. It worked out that by ‘2000-01-01’ we meant a datetime and compared the values of the index to that datetime in order to decide what rows to return from the dataframe. The second thing to notice is the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> for the column names; this explicitly says ‘give me all the columns’.</p>
 </div>
 <div class="section" id="operations-on-dataframes">
 <h2>Operations on dataframes<a class="headerlink" href="#operations-on-dataframes" title="Permalink to this headline">¶</a></h2>
@@ -2160,111 +2310,111 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>9</td>
-      <td>4</td>
-      <td>0</td>
+      <td>6</td>
       <td>1</td>
-      <td>9</td>
-      <td>145</td>
+      <td>3</td>
+      <td>2</td>
+      <td>5</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>0</td>
-      <td>1</td>
       <td>8</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
+      <td>8</td>
+      <td>4</td>
+      <td>7</td>
+      <td>5</td>
+      <td>513</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
+      <td>5</td>
+      <td>1</td>
       <td>8</td>
+      <td>7</td>
+      <td>1</td>
       <td>6</td>
-      <td>4</td>
-      <td>3</td>
-      <td>0</td>
-      <td>289</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>4</td>
+      <td>8</td>
       <td>6</td>
-      <td>8</td>
+      <td>5</td>
+      <td>0</td>
       <td>1</td>
-      <td>8</td>
-      <td>145</td>
+      <td>289</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>4</td>
-      <td>1</td>
-      <td>3</td>
-      <td>6</td>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
       <td>5</td>
-      <td>5</td>
+      <td>0</td>
+      <td>649</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
       <td>9</td>
-      <td>6</td>
-      <td>9</td>
-      <td>1</td>
-      <td>244</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
       <td>9</td>
+      <td>9</td>
       <td>4</td>
-      <td>2</td>
-      <td>6</td>
-      <td>7</td>
-      <td>145</td>
+      <td>1</td>
+      <td>3</td>
+      <td>730</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>8</td>
-      <td>8</td>
-      <td>9</td>
-      <td>2</td>
       <td>0</td>
-      <td>513</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
       <td>6</td>
-      <td>7</td>
       <td>8</td>
       <td>1</td>
-      <td>7</td>
-      <td>295</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>1</td>
+      <td>6</td>
+      <td>6</td>
       <td>4</td>
-      <td>0</td>
+      <td>4</td>
       <td>8</td>
-      <td>5</td>
-      <td>17</td>
+      <td>217</td>
     </tr>
     <tr>
       <th>2002-09-30</th>
       <td>4</td>
-      <td>7</td>
-      <td>8</td>
-      <td>8</td>
-      <td>2</td>
-      <td>197</td>
+      <td>1</td>
+      <td>9</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>2002-12-31</th>
+      <td>9</td>
+      <td>7</td>
+      <td>1</td>
+      <td>4</td>
       <td>6</td>
-      <td>2</td>
-      <td>8</td>
-      <td>8</td>
-      <td>6</td>
-      <td>25</td>
+      <td>442</td>
     </tr>
   </tbody>
 </table>
@@ -2307,7 +2457,7 @@ dtype: bool
 </div>
 </div>
 </div>
-<p>More complex operations on whole dataframes are supported, but if you’re doing very heavy lifting you might want to just switch to using numpy arrays (<strong>numpy</strong> is basically Matlab in Python). As examples though, you can transpose and exponentiate easily:</p>
+<p>More complex operations on whole dataframes are supported, but if you’re doing very heavy lifting you might want to just switch to using numpy arrays (<strong>numpy</strong> provides fast numerical, vector, matrix, and tensor operations in Python; it has some similarities with the functionality of Matlab). As examples though, you can transpose and exponentiate easily:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">))</span>
@@ -2323,23 +2473,23 @@ dtype: bool
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Dataframe:
    A  B  C  D  E
-0  2  3  0  4  4
-1  0  1  1  4  0
-2  2  1  3  1  2
+0  0  1  2  0  3
+1  2  2  1  1  3
+2  4  4  2  0  1
 
  Exponentiation:
-          A          B          C          D          E
-0  7.389056  20.085537   1.000000  54.598150  54.598150
-1  1.000000   2.718282   2.718282  54.598150   1.000000
-2  7.389056   2.718282  20.085537   2.718282   7.389056
+           A          B         C         D          E
+0   1.000000   2.718282  7.389056  1.000000  20.085537
+1   7.389056   7.389056  2.718282  2.718282  20.085537
+2  54.598150  54.598150  7.389056  1.000000   2.718282
 
  Transpose:
    0  1  2
-A  2  0  2
-B  3  1  1
-C  0  1  3
-D  4  4  1
-E  4  0  2
+A  0  2  4
+B  1  2  4
+C  2  1  2
+D  0  1  0
+E  3  3  1
 </pre></div>
 </div>
 </div>
@@ -2392,15 +2542,19 @@ E  4  0  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A    4
-B    5
-C    4
-D    9
-E    6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A    6
+B    7
+C    5
+D    1
+E    7
 dtype: int64
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Find the mean values of each column (eg leaving only column headers so aggregating over rows using <code class="docutils literal notranslate"><span class="pre">axis=0</span></code>) and the mean values of each row (eg leaving only row headers and therefore aggregating over columns using <code class="docutils literal notranslate"><span class="pre">axis=1</span></code>)</p>
 </div>
 </div>
 <div class="section" id="split-apply-and-combine">
@@ -2475,7 +2629,11 @@ dtype: int64
 </div></div></div>
 </div>
 <p>The aggregations from the previous part all work on grouped data. An example is <code class="docutils literal notranslate"><span class="pre">df['body_mass_g'].groupby('island').std()</span></code> for the standard deviation of body mass by island.</p>
-<p>You can also pass other functions via the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method (short for aggregation). Here we pass two numpy functions:</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using a groupby, find the standard deviation of different penguin species’ body measurements. (Hint: standard deviation has its own aggregation/combine function given by <code class="docutils literal notranslate"><span class="pre">std()</span></code>)</p>
+</div>
+<p>You can also pass other functions via the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method (short for aggregation). Here we pass two numpy functions (these two functions have built-in equivalents <code class="docutils literal notranslate"><span class="pre">std()</span></code> and <code class="docutils literal notranslate"><span class="pre">mean()</span></code> so this is just for illustrative purposes):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">])</span>
@@ -2571,6 +2729,10 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> functions, find the max and min of all columns grouping by <code class="docutils literal notranslate"><span class="pre">island</span></code>.</p>
+</div>
 <p>Multiple aggregations can also be performed at once on the entire dataframe by using a dictionary to map columns into functions. You can also group by as many variables as you like by passing the groupby method a list of variables. Here’s an example that combines both of these features:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2641,13 +2803,17 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using a two-column <code class="docutils literal notranslate"><span class="pre">groupby</span></code> on species and island and an <code class="docutils literal notranslate"><span class="pre">agg</span></code>, use a dictionary to find the min of <code class="docutils literal notranslate"><span class="pre">bill_depth_mm</span></code> and the max of <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code></p>
+</div>
 <p>Sometimes, inheriting the column names becomes problematic. There’s a slightly fussy syntax to help with that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;island&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
     <span class="n">count_bill</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
     <span class="n">mean_bill</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span>
-    <span class="n">std_flipper</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">),</span>
+    <span class="n">std_flipper</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -2721,6 +2887,10 @@ dtype: int64
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using a two-column <code class="docutils literal notranslate"><span class="pre">groupby</span></code> on species and island and a named <code class="docutils literal notranslate"><span class="pre">agg</span></code>, create a new column called <code class="docutils literal notranslate"><span class="pre">mean_flipper</span></code> that gives the mean of <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code>.</p>
 </div>
 <p>Finally, you should know about the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method, which takes a function and applies it to a given axis (<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> for index, <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> for columns) or column. The simple example below shows how it works, though in practice you’d just use <code class="docutils literal notranslate"><span class="pre">df['body_mass_kg']</span> <span class="pre">=</span> <span class="pre">df['body_mass_g]/1e3</span></code> to do this.</p>
 <div class="cell docutils container">
@@ -2822,6 +2992,10 @@ dtype: int64
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Write a function that converts flipper length into metres and use it to create a new column with a sensible name.</p>
 </div>
 </div>
 <div class="section" id="filter-transform-apply-and-assign">
@@ -2932,7 +3106,7 @@ dtype: int64
 </div>
 <div class="section" id="transform">
 <h3>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h3>
-<p>Transforms return a transformed version of the data that has the same shape as the input. This is useful when creating new columns that depend on some grouped data, for instance creating group-wise means. Here’s an example using the datetime group to subtract a yearly mean. First let’s create some synthetic data with some data, a datetime index, and some groups:</p>
+<p>Transforms return a transformed version of the data, typically with an intermediate groupby, that has the same shape as the input. Think of it as split-apply-combine but without the ‘combine’ part! This is useful when creating new columns that depend on some grouped data, for instance creating group-wise means. Here’s an example using the datetime group to subtract a yearly mean. First let’s create some synthetic data with some data, a datetime index, and some groups:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
@@ -2970,63 +3144,63 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>3</td>
       <td>8</td>
-      <td>9</td>
       <td>group0</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>9</td>
-      <td>5</td>
+      <td>4</td>
+      <td>0</td>
       <td>group1</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>0</td>
-      <td>2</td>
-      <td>group1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>group2</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
+      <td>9</td>
       <td>7</td>
-      <td>3</td>
       <td>group0</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>0</td>
-      <td>4</td>
-      <td>group1</td>
+      <td>1</td>
+      <td>7</td>
+      <td>group2</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>2</td>
       <td>0</td>
+      <td>6</td>
       <td>group2</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>3</td>
-      <td>3</td>
+      <td>5</td>
+      <td>4</td>
       <td>group0</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>1</td>
-      <td>2</td>
-      <td>group2</td>
+      <td>6</td>
+      <td>8</td>
+      <td>group1</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>5</td>
-      <td>9</td>
-      <td>group2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>group0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
+      <td>4</td>
       <td>0</td>
-      <td>1</td>
-      <td>group1</td>
+      <td>group2</td>
     </tr>
   </tbody>
 </table>
@@ -3035,7 +3209,7 @@ dtype: int64
 <p>Now we take the yearly means by type. <code class="docutils literal notranslate"><span class="pre">pd.Grouper(freq='A')</span></code> is an instruction to take the <code class="docutils literal notranslate"><span class="pre">A</span></code>nnual mean using the given datetime index. You can group on as many coloumns and/or index properties as you like: this example groups by a property of the datetime index and on the <code class="docutils literal notranslate"><span class="pre">type</span></code> column, but performs the computation on the <code class="docutils literal notranslate"><span class="pre">values1</span></code> column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;v1_demean_yr_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="s2">&quot;type&quot;</span><span class="p">])[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;v1_demean_yr_and_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="s2">&quot;type&quot;</span><span class="p">])[</span>
     <span class="s2">&quot;values1&quot;</span>
 <span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="n">df</span>
@@ -3064,83 +3238,87 @@ dtype: int64
       <th>values1</th>
       <th>values2</th>
       <th>type</th>
-      <th>v1_demean_yr_type</th>
+      <th>v1_demean_yr_and_type</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>3</td>
       <td>8</td>
-      <td>9</td>
       <td>group0</td>
-      <td>0.5</td>
+      <td>-3.0</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>9</td>
-      <td>5</td>
-      <td>group1</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>0</td>
-      <td>2</td>
-      <td>group1</td>
-      <td>-4.5</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>7</td>
-      <td>3</td>
-      <td>group0</td>
-      <td>-0.5</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>0</td>
       <td>4</td>
+      <td>0</td>
       <td>group1</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2001-06-30</th>
-      <td>2</td>
-      <td>0</td>
+      <th>2000-09-30</th>
+      <td>1</td>
+      <td>5</td>
+      <td>group2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>9</td>
+      <td>7</td>
+      <td>group0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2001-03-31</th>
+      <td>1</td>
+      <td>7</td>
       <td>group2</td>
       <td>0.5</td>
     </tr>
     <tr>
+      <th>2001-06-30</th>
+      <td>0</td>
+      <td>6</td>
+      <td>group2</td>
+      <td>-0.5</td>
+    </tr>
+    <tr>
       <th>2001-09-30</th>
-      <td>3</td>
-      <td>3</td>
+      <td>5</td>
+      <td>4</td>
       <td>group0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>1</td>
-      <td>2</td>
-      <td>group2</td>
-      <td>-0.5</td>
+      <td>6</td>
+      <td>8</td>
+      <td>group1</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>5</td>
-      <td>9</td>
-      <td>group2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>group0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
+      <td>4</td>
       <td>0</td>
-      <td>1</td>
-      <td>group1</td>
+      <td>group2</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a new column that gives <code class="docutils literal notranslate"><span class="pre">values2</span></code> normalised (minus the mean and divided by standard deviation) by <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
 </div>
 <p>You’ll have seen there’s a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword here. Lambda (or anonymous) functions have a rich history in mathematics, and were used by scientists such as Church and Turing to create proofs about what is computable <em>before electronic computers existed</em>. They can be used to define compact functions:</p>
 <div class="cell docutils container">
@@ -3189,88 +3367,88 @@ dtype: int64
       <th>values1</th>
       <th>values2</th>
       <th>type</th>
-      <th>v1_demean_yr_type</th>
+      <th>v1_demean_yr_and_type</th>
       <th>val1_times_val2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>3</td>
       <td>8</td>
-      <td>9</td>
       <td>group0</td>
-      <td>0.5</td>
-      <td>72</td>
+      <td>-3.0</td>
+      <td>24</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>9</td>
-      <td>5</td>
-      <td>group1</td>
-      <td>4.5</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>0</td>
-      <td>2</td>
-      <td>group1</td>
-      <td>-4.5</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>7</td>
-      <td>3</td>
-      <td>group0</td>
-      <td>-0.5</td>
-      <td>21</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>0</td>
       <td>4</td>
+      <td>0</td>
       <td>group1</td>
       <td>0.0</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>2001-06-30</th>
-      <td>2</td>
-      <td>0</td>
+      <th>2000-09-30</th>
+      <td>1</td>
+      <td>5</td>
+      <td>group2</td>
+      <td>0.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>9</td>
+      <td>7</td>
+      <td>group0</td>
+      <td>3.0</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>2001-03-31</th>
+      <td>1</td>
+      <td>7</td>
       <td>group2</td>
       <td>0.5</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>0</td>
+      <td>6</td>
+      <td>group2</td>
+      <td>-0.5</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>3</td>
-      <td>3</td>
+      <td>5</td>
+      <td>4</td>
       <td>group0</td>
       <td>0.0</td>
-      <td>9</td>
+      <td>20</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>1</td>
-      <td>2</td>
-      <td>group2</td>
-      <td>-0.5</td>
-      <td>2</td>
+      <td>6</td>
+      <td>8</td>
+      <td>group1</td>
+      <td>0.0</td>
+      <td>48</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>5</td>
-      <td>9</td>
-      <td>group2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>group0</td>
       <td>0.0</td>
-      <td>45</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
+      <td>4</td>
       <td>0</td>
-      <td>1</td>
-      <td>group1</td>
+      <td>group2</td>
       <td>0.0</td>
       <td>0</td>
     </tr>
@@ -3279,6 +3457,10 @@ dtype: int64
 </div></div></div>
 </div>
 <p>Of course, the much easier way to do this very common operation is <code class="docutils literal notranslate"><span class="pre">df['val1_times_val2']</span> <span class="pre">=</span> <span class="pre">df['values1']*df['values2']</span></code>, but there are times when you need to run more complex functions element-wise and, for those, <code class="docutils literal notranslate"><span class="pre">apply</span></code> is really useful.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Write an apply function that raises entries in <code class="docutils literal notranslate"><span class="pre">values1</span></code> to the power of entries in <code class="docutils literal notranslate"><span class="pre">values2</span></code></p>
+</div>
 </div>
 <div class="section" id="assign">
 <h3>Assign<a class="headerlink" href="#assign" title="Permalink to this headline">¶</a></h3>
@@ -3318,90 +3500,524 @@ dtype: int64
       <th>values1</th>
       <th>values2</th>
       <th>type</th>
-      <th>v1_demean_yr_type</th>
+      <th>v1_demean_yr_and_type</th>
       <th>val1_times_val2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>0.5</td>
-      <td>9</td>
+      <td>-3.0</td>
+      <td>8</td>
       <td>group0</td>
-      <td>0.5</td>
-      <td>4.5</td>
+      <td>-3.0</td>
+      <td>-24.0</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>4.5</td>
-      <td>5</td>
+      <td>0.0</td>
+      <td>0</td>
       <td>group1</td>
-      <td>4.5</td>
-      <td>22.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>-4.5</td>
-      <td>2</td>
-      <td>group1</td>
-      <td>-4.5</td>
-      <td>-9.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>group2</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>-0.5</td>
-      <td>3</td>
+      <td>3.0</td>
+      <td>7</td>
       <td>group0</td>
-      <td>-0.5</td>
-      <td>-1.5</td>
+      <td>3.0</td>
+      <td>21.0</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>0.0</td>
-      <td>4</td>
-      <td>group1</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>7</td>
+      <td>group2</td>
+      <td>0.5</td>
+      <td>3.5</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>0.5</td>
-      <td>0</td>
+      <td>-0.5</td>
+      <td>6</td>
       <td>group2</td>
-      <td>0.5</td>
-      <td>0.0</td>
+      <td>-0.5</td>
+      <td>-3.0</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
       <td>0.0</td>
-      <td>3</td>
+      <td>4</td>
       <td>group0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>-0.5</td>
-      <td>2</td>
-      <td>group2</td>
-      <td>-0.5</td>
-      <td>-1.0</td>
+      <td>0.0</td>
+      <td>8</td>
+      <td>group1</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
       <td>0.0</td>
-      <td>9</td>
-      <td>group2</td>
+      <td>0</td>
+      <td>group0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
       <td>0.0</td>
-      <td>1</td>
-      <td>group1</td>
+      <td>0</td>
+      <td>group2</td>
       <td>0.0</td>
       <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Re-write the transform function from the transform exercise (creating a normalised column transformed by <code class="docutils literal notranslate"><span class="pre">type</span></code>) as an assign statement with a new column name <code class="docutils literal notranslate"><span class="pre">transformed_by_type</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="query-and-eval">
+<h2>Query and Eval<a class="headerlink" href="#query-and-eval" title="Permalink to this headline">¶</a></h2>
+<p>Let’s load some data for demonstration purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="query">
+<h3>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">query</span></code> allows you to query the columns of a DataFrame with an expression in a string. It’s particularly useful for selecting a lot of rows at once based on a condition. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;body_mass_g &gt; 6e3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>237</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>49.2</td>
+      <td>15.2</td>
+      <td>221.0</td>
+      <td>6300.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>253</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>59.6</td>
+      <td>17.0</td>
+      <td>230.0</td>
+      <td>6050.0</td>
+      <td>Male</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">query</span></code> can be used to pick out rows based on relationships between columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;bill_length_mm&lt;bill_depth_mm*1.8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>34.6</td>
+      <td>21.1</td>
+      <td>198.0</td>
+      <td>4400.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>33.5</td>
+      <td>19.0</td>
+      <td>190.0</td>
+      <td>3600.0</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Variables not in dataframes can be referenced with an <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> character like <code class="docutils literal notranslate"><span class="pre">&#64;a</span> <span class="pre">+</span> <span class="pre">b</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outside_var</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;bill_depth_mm &gt; @outside_var&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>38.6</td>
+      <td>21.2</td>
+      <td>191.0</td>
+      <td>3800.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>34.6</td>
+      <td>21.1</td>
+      <td>198.0</td>
+      <td>4400.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>46.0</td>
+      <td>21.5</td>
+      <td>194.0</td>
+      <td>4200.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>39.2</td>
+      <td>21.1</td>
+      <td>196.0</td>
+      <td>4150.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>42.3</td>
+      <td>21.2</td>
+      <td>191.0</td>
+      <td>4150.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Adelie</td>
+      <td>Biscoe</td>
+      <td>41.3</td>
+      <td>21.1</td>
+      <td>195.0</td>
+      <td>4400.0</td>
+      <td>Male</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="eval">
+<h3>Eval<a class="headerlink" href="#eval" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluates a string describing operations on DataFrame columns to create new columns. It operates on columns only, not rows or elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;bill_length_mm / bill_depth_mm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2.090909
+1    2.270115
+2    2.238889
+3         NaN
+4    1.901554
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">eval</span></code> is especially useful for filtering by multiple columns at once:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eval_string</span> <span class="o">=</span> <span class="s2">&quot;species == &#39;Gentoo&#39; &amp; island == &#39;Biscoe&#39; &amp; sex == &#39;Female&#39;&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">eval_string</span><span class="p">),</span> <span class="p">:]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>220</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>46.1</td>
+      <td>13.2</td>
+      <td>211.0</td>
+      <td>4500.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>48.7</td>
+      <td>14.1</td>
+      <td>210.0</td>
+      <td>4450.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>225</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>46.5</td>
+      <td>13.5</td>
+      <td>210.0</td>
+      <td>4550.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>226</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>45.4</td>
+      <td>14.6</td>
+      <td>211.0</td>
+      <td>4800.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>228</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>43.3</td>
+      <td>13.4</td>
+      <td>209.0</td>
+      <td>4400.0</td>
+      <td>Female</td>
     </tr>
   </tbody>
 </table>
@@ -3455,31 +4071,31 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-01-31</th>
-      <td>0.418852</td>
+      <td>0.181742</td>
     </tr>
     <tr>
       <th>2000-02-29</th>
-      <td>1.694447</td>
+      <td>1.441183</td>
     </tr>
     <tr>
       <th>2000-03-31</th>
-      <td>1.920990</td>
+      <td>1.492117</td>
     </tr>
     <tr>
       <th>2000-04-30</th>
-      <td>3.752046</td>
+      <td>2.314940</td>
     </tr>
     <tr>
       <th>2000-05-31</th>
-      <td>3.467453</td>
+      <td>2.543858</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>3.167989</td>
+      <td>2.209637</td>
     </tr>
     <tr>
       <th>2000-07-31</th>
-      <td>3.959431</td>
+      <td>4.239999</td>
     </tr>
     <tr>
       <th>2000-08-31</th>
@@ -3487,19 +4103,19 @@ dtype: int64
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>4.884800</td>
+      <td>4.750010</td>
     </tr>
     <tr>
       <th>2000-10-31</th>
-      <td>4.374416</td>
+      <td>5.044723</td>
     </tr>
     <tr>
       <th>2000-11-30</th>
-      <td>4.864873</td>
+      <td>6.466476</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>4.708971</td>
+      <td>7.093132</td>
     </tr>
   </tbody>
 </table>
@@ -3545,81 +4161,86 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-02-01</th>
-      <td>0.418852</td>
+      <td>0.181742</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2000-03-01</th>
-      <td>1.694447</td>
-      <td>1.275595</td>
+      <td>1.441183</td>
+      <td>1.259440</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2000-04-01</th>
-      <td>1.920990</td>
-      <td>0.226543</td>
-      <td>1.275595</td>
+      <td>1.492117</td>
+      <td>0.050934</td>
+      <td>1.259440</td>
     </tr>
     <tr>
       <th>2000-05-01</th>
-      <td>3.752046</td>
-      <td>1.831056</td>
-      <td>0.226543</td>
+      <td>2.314940</td>
+      <td>0.822823</td>
+      <td>0.050934</td>
     </tr>
     <tr>
       <th>2000-06-01</th>
-      <td>3.467453</td>
-      <td>-0.284593</td>
-      <td>1.831056</td>
+      <td>2.543858</td>
+      <td>0.228919</td>
+      <td>0.822823</td>
     </tr>
     <tr>
       <th>2000-07-01</th>
-      <td>3.167989</td>
-      <td>-0.299464</td>
-      <td>-0.284593</td>
+      <td>2.209637</td>
+      <td>-0.334222</td>
+      <td>0.228919</td>
     </tr>
     <tr>
       <th>2000-08-01</th>
-      <td>3.959431</td>
-      <td>0.791442</td>
-      <td>-0.299464</td>
+      <td>4.239999</td>
+      <td>2.030363</td>
+      <td>-0.334222</td>
     </tr>
     <tr>
       <th>2000-09-01</th>
-      <td>4.429701</td>
-      <td>0.470269</td>
-      <td>0.791442</td>
+      <td>4.499185</td>
+      <td>0.259186</td>
+      <td>2.030363</td>
     </tr>
     <tr>
       <th>2000-10-01</th>
-      <td>4.884800</td>
-      <td>0.455099</td>
-      <td>0.470269</td>
+      <td>4.750010</td>
+      <td>0.250825</td>
+      <td>0.259186</td>
     </tr>
     <tr>
       <th>2000-11-01</th>
-      <td>4.374416</td>
-      <td>-0.510384</td>
-      <td>0.455099</td>
+      <td>5.044723</td>
+      <td>0.294713</td>
+      <td>0.250825</td>
     </tr>
     <tr>
       <th>2000-12-01</th>
-      <td>4.864873</td>
-      <td>0.490456</td>
-      <td>-0.510384</td>
+      <td>6.466476</td>
+      <td>1.421753</td>
+      <td>0.294713</td>
     </tr>
     <tr>
       <th>2001-01-01</th>
-      <td>4.708971</td>
-      <td>-0.155902</td>
-      <td>0.490456</td>
+      <td>7.093132</td>
+      <td>0.626656</td>
+      <td>1.421753</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Add a lead that is 3 months ahead of <code class="docutils literal notranslate"><span class="pre">values</span></code>.</p>
+</div>
 <p>Two other useful time series functions to be aware of are <code class="docutils literal notranslate"><span class="pre">resample</span></code> and <code class="docutils literal notranslate"><span class="pre">rolling</span></code>. <code class="docutils literal notranslate"><span class="pre">resample</span></code> can upsample or downsample time series. Downsampling is by aggregation, eg <code class="docutils literal notranslate"><span class="pre">df['values].resample('Q').mean()</span></code> to downsample to quarterly (‘Q’) frequency by taking the mean within each quarter. Upsampling involves a choice about how to fill in the missing values; examples of options are <code class="docutils literal notranslate"><span class="pre">bfill</span></code> (backfill) and <code class="docutils literal notranslate"><span class="pre">ffill</span></code> (forwards fill).</p>
+<p>There is much more on time series with <strong>pandas</strong> in the Chapter on <a class="reference internal" href="time-series.html#time-series"><span class="std std-ref">Time Series</span></a>.</p>
 <p>Rolling is for taking rolling aggregations, as you’d expect; for example, the 3-month rolling mean of our first difference time series:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3631,23 +4252,27 @@ dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01         NaN
 2000-03-01         NaN
 2000-04-01         NaN
-2000-05-01    1.111065
-2000-06-01    0.591002
-2000-07-01    0.415666
-2000-08-01    0.069128
-2000-09-01    0.320749
-2000-10-01    0.572270
-2000-11-01    0.138328
-2000-12-01    0.145057
-2001-01-01   -0.058610
+2000-05-01    0.711066
+2000-06-01    0.367558
+2000-07-01    0.239173
+2000-08-01    0.641687
+2000-09-01    0.651776
+2000-10-01    0.846791
+2000-11-01    0.268241
+2000-12-01    0.655763
+2001-01-01    0.781040
 Name: diff_values, dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="method-chaining">
-<h2>Method chaining<a class="headerlink" href="#method-chaining" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="advanced-method-chaining">
+<h2>Advanced: Method Chaining<a class="headerlink" href="#advanced-method-chaining" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Method Chaining is an advanced topic; feel free to skip it.</p>
+</div>
 <p>Sometimes, rather than splitting operations out into multiple lines, it can be more concise and clear to chain methods together. A typical time you might do this is when reading in a dataset and perfoming all of the initial cleaning. Tom Augsperger has a <a class="reference external" href="https://tomaugspurger.github.io/method-chaining">great tutorial</a> on this, which I’ve reproduced parts of here. For more info on the <code class="docutils literal notranslate"><span class="pre">pipe</span></code> function used below, check out these short <a class="reference external" href="https://calmcode.io/pandas-pipe/introduction.html">video tutorials</a>.</p>
 <p>To chain methods together, both the input and output must be a pandas dataframe. Many functions already do input and output these, for example the <code class="docutils literal notranslate"><span class="pre">df.rename(columns={'old_col':</span> <span class="pre">'new_col'})</span></code> takes in <code class="docutils literal notranslate"><span class="pre">df</span></code> and outputs a dataframe with one column name changed.</p>
 <p>But occassionally, we’ll want to use a function that we’ve defined (rather than an already existing one). For that, we need the <code class="docutils literal notranslate"><span class="pre">pipe</span></code> method; it ‘pipes’ the result of one operation to the next operation. When objects are being passed through multiple functions, this can be much clearer. Compare, for example,</p>
@@ -3861,7 +4486,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_45170/1424200124.py:22: FutureWarning: The default value of regex will change from True to False in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_35719/1424200124.py:22: FutureWarning: The default value of regex will change from True to False in a future version.
   col.astype(str)
 </pre></div>
 </div>
@@ -4009,12 +4634,13 @@ Name: diff_values, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
     <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">prng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;type1&quot;</span><span class="p">,</span> <span class="s2">&quot;type2&quot;</span><span class="p">,</span> <span class="s2">&quot;type3&quot;</span><span class="p">,</span> <span class="s2">&quot;type4&quot;</span><span class="p">],</span> <span class="mi">20</span><span class="p">),</span>
     <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="p">(</span>
         <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">))</span>
         <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">))</span>
     <span class="p">),</span>
 <span class="p">}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -4040,45 +4666,51 @@ Name: diff_values, dtype: float64
       <th></th>
       <th>date</th>
       <th>variable</th>
+      <th>category</th>
       <th>value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>14</th>
-      <td>2000-05-31</td>
-      <td>B</td>
-      <td>-0.333101</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2000-07-31</td>
-      <td>B</td>
-      <td>0.274173</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2000-03-31</td>
-      <td>B</td>
-      <td>-2.295103</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2000-08-31</td>
-      <td>B</td>
-      <td>-0.514910</td>
-    </tr>
-    <tr>
       <th>13</th>
       <td>2000-04-30</td>
       <td>B</td>
-      <td>-1.195929</td>
+      <td>type1</td>
+      <td>-0.799213</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2000-01-31</td>
+      <td>A</td>
+      <td>type4</td>
+      <td>0.175248</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000-02-29</td>
+      <td>A</td>
+      <td>type2</td>
+      <td>0.188158</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2000-06-30</td>
+      <td>B</td>
+      <td>type4</td>
+      <td>-0.892850</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2000-05-31</td>
+      <td>B</td>
+      <td>type2</td>
+      <td>-1.048948</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>If we just run <code class="docutils literal notranslate"><span class="pre">shift</span></code> on this, it’s going to shift variable B’s and A’s together. So we pivot to a wider format (and then we can shift safely).</p>
+<p>If we just run <code class="docutils literal notranslate"><span class="pre">shift</span></code> on this, it’s going to shift variable B’s and A’s together even though these overlap in time. So we pivot to a wider format (and then we can shift safely).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -4121,52 +4753,57 @@ Name: diff_values, dtype: float64
     </tr>
     <tr>
       <th>2000-02-29</th>
-      <td>1.344549</td>
-      <td>0.460888</td>
+      <td>0.175248</td>
+      <td>-1.500692</td>
     </tr>
     <tr>
       <th>2000-03-31</th>
-      <td>0.493515</td>
-      <td>0.662374</td>
+      <td>0.188158</td>
+      <td>0.672261</td>
     </tr>
     <tr>
       <th>2000-04-30</th>
-      <td>-0.237004</td>
-      <td>-2.295103</td>
+      <td>0.291161</td>
+      <td>0.943272</td>
     </tr>
     <tr>
       <th>2000-05-31</th>
-      <td>0.057285</td>
-      <td>-1.195929</td>
+      <td>0.860001</td>
+      <td>-0.799213</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>-0.707071</td>
-      <td>-0.333101</td>
+      <td>0.971136</td>
+      <td>-1.048948</td>
     </tr>
     <tr>
       <th>2000-07-31</th>
-      <td>0.546665</td>
-      <td>-0.791391</td>
+      <td>0.727127</td>
+      <td>-0.892850</td>
     </tr>
     <tr>
       <th>2000-08-31</th>
-      <td>0.942500</td>
-      <td>0.274173</td>
+      <td>0.314374</td>
+      <td>1.096324</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>-2.979597</td>
-      <td>-0.514910</td>
+      <td>-1.221186</td>
+      <td>-0.375727</td>
     </tr>
     <tr>
       <th>2000-10-31</th>
-      <td>1.218149</td>
-      <td>-1.711071</td>
+      <td>-0.123760</td>
+      <td>2.071302</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<p>To go back to the original structure, albeit without the <code class="docutils literal notranslate"><span class="pre">category</span></code> columns, apply <code class="docutils literal notranslate"><span class="pre">.unstack().reset_index()</span></code>.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Perform a pivot that applies to both the <code class="docutils literal notranslate"><span class="pre">variable</span></code> and <code class="docutils literal notranslate"><span class="pre">category</span></code> columns. (Hint: remember that you will need to pass multiple objects via a list.)</p>
 </div>
 </div>
 <div class="section" id="melt">
@@ -4180,6 +4817,7 @@ Name: diff_values, dtype: float64
     <span class="p">{</span>
         <span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Mary&quot;</span><span class="p">],</span>
         <span class="s2">&quot;last&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Bo&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Nurse&quot;</span><span class="p">,</span> <span class="s2">&quot;Economist&quot;</span><span class="p">],</span>
         <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
         <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
     <span class="p">}</span>
@@ -4187,15 +4825,15 @@ Name: diff_values, dtype: float64
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Unmelted: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Melted: &quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;last&quot;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;last&quot;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Unmelted: 
-  first last  height  weight
-0  John  Doe     5.5     130
-1  Mary   Bo     6.0     150
+  first last        job  height  weight
+0  John  Doe      Nurse     5.5     130
+1  Mary   Bo  Economist     6.0     150
 
  Melted: 
 </pre></div>
@@ -4257,6 +4895,10 @@ Name: diff_values, dtype: float64
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Perform a melt that uses <code class="docutils literal notranslate"><span class="pre">job</span></code> as the id instead of <code class="docutils literal notranslate"><span class="pre">first</span></code> and <code class="docutils literal notranslate"><span class="pre">last</span></code>.</p>
+</div>
 <p>If you don’t wan the headscratching of melt, there’s also <code class="docutils literal notranslate"><span class="pre">wide_to_long</span></code>, which is really useful for typical data cleaning cases where you have data like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4308,7 +4950,7 @@ Name: diff_values, dtype: float64
       <td>d</td>
       <td>2.5</td>
       <td>3.2</td>
-      <td>-1.598324</td>
+      <td>0.756198</td>
       <td>0</td>
     </tr>
     <tr>
@@ -4317,7 +4959,7 @@ Name: diff_values, dtype: float64
       <td>e</td>
       <td>1.2</td>
       <td>1.3</td>
-      <td>1.261497</td>
+      <td>-0.739134</td>
       <td>1</td>
     </tr>
     <tr>
@@ -4326,7 +4968,7 @@ Name: diff_values, dtype: float64
       <td>f</td>
       <td>0.7</td>
       <td>0.1</td>
-      <td>-0.580701</td>
+      <td>0.132107</td>
       <td>2</td>
     </tr>
   </tbody>
@@ -4336,7 +4978,7 @@ Name: diff_values, dtype: float64
 <p>i.e. data where there are different variables and time periods across the columns. Wide to long is going to let us give info on what the stubnames are (‘A’, ‘B’), the name of the variable that’s always across columns (here, a year), any values (X here), and an id column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">stubnames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4376,42 +5018,42 @@ Name: diff_values, dtype: float64
     <tr>
       <th>0</th>
       <th>1970</th>
-      <td>-1.598324</td>
+      <td>0.756198</td>
       <td>a</td>
       <td>2.5</td>
     </tr>
     <tr>
       <th>1</th>
       <th>1970</th>
-      <td>1.261497</td>
+      <td>-0.739134</td>
       <td>b</td>
       <td>1.2</td>
     </tr>
     <tr>
       <th>2</th>
       <th>1970</th>
-      <td>-0.580701</td>
+      <td>0.132107</td>
       <td>c</td>
       <td>0.7</td>
     </tr>
     <tr>
       <th>0</th>
       <th>1980</th>
-      <td>-1.598324</td>
+      <td>0.756198</td>
       <td>d</td>
       <td>3.2</td>
     </tr>
     <tr>
       <th>1</th>
       <th>1980</th>
-      <td>1.261497</td>
+      <td>-0.739134</td>
       <td>e</td>
       <td>1.3</td>
     </tr>
     <tr>
       <th>2</th>
       <th>1980</th>
-      <td>-0.580701</td>
+      <td>0.132107</td>
       <td>f</td>
       <td>0.1</td>
     </tr>
@@ -4477,46 +5119,46 @@ Name: diff_values, dtype: float64
     <tr>
       <th rowspan="2" valign="top">bar</th>
       <th>one</th>
-      <td>-0.069768</td>
-      <td>-0.224551</td>
+      <td>1.008345</td>
+      <td>-0.255800</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>-1.626197</td>
-      <td>-0.071688</td>
+      <td>2.031265</td>
+      <td>-1.136943</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">baz</th>
       <th>one</th>
-      <td>0.086031</td>
-      <td>-1.369931</td>
+      <td>-2.212599</td>
+      <td>-0.218647</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>-1.010371</td>
-      <td>-0.943652</td>
+      <td>-1.432520</td>
+      <td>-0.653393</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">foo</th>
       <th>one</th>
-      <td>0.920108</td>
-      <td>-1.268939</td>
+      <td>-1.376928</td>
+      <td>0.518169</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>-1.342901</td>
-      <td>0.303793</td>
+      <td>1.020912</td>
+      <td>-1.195418</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">qux</th>
       <th>one</th>
-      <td>-1.682761</td>
-      <td>-0.856373</td>
+      <td>0.864745</td>
+      <td>0.397200</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>-1.075533</td>
-      <td>-1.665213</td>
+      <td>1.974540</td>
+      <td>0.326099</td>
     </tr>
   </tbody>
 </table>
@@ -4532,27 +5174,28 @@ Name: diff_values, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first  second   
-bar    one     A   -0.069768
-               B   -0.224551
-       two     A   -1.626197
-               B   -0.071688
-baz    one     A    0.086031
-               B   -1.369931
-       two     A   -1.010371
-               B   -0.943652
-foo    one     A    0.920108
-               B   -1.268939
-       two     A   -1.342901
-               B    0.303793
-qux    one     A   -1.682761
-               B   -0.856373
-       two     A   -1.075533
-               B   -1.665213
+bar    one     A    1.008345
+               B   -0.255800
+       two     A    2.031265
+               B   -1.136943
+baz    one     A   -2.212599
+               B   -0.218647
+       two     A   -1.432520
+               B   -0.653393
+foo    one     A   -1.376928
+               B    0.518169
+       two     A    1.020912
+               B   -1.195418
+qux    one     A    0.864745
+               B    0.397200
+       two     A    1.974540
+               B    0.326099
 dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
+<p>This has automatically created a multi-layered index but that can be reverted to a numbered index using <code class="docutils literal notranslate"><span class="pre">df.reset_index()</span></code></p>
 <p>Now let’s see unstack but, instead of unstacking the ‘A’, ‘B’ variables we began with, let’s unstack the ‘first’ column by passing <code class="docutils literal notranslate"><span class="pre">level=0</span></code> (the default is to unstack the innermost index). This diagram shows what’s going on:</p>
 <p><img alt="" src="https://pandas.pydata.org/docs/_images/reshaping_unstack_0.png" /></p>
 <p>And here’s the code:</p>
@@ -4600,36 +5243,40 @@ dtype: float64
     <tr>
       <th rowspan="2" valign="top">one</th>
       <th>A</th>
-      <td>-0.069768</td>
-      <td>0.086031</td>
-      <td>0.920108</td>
-      <td>-1.682761</td>
+      <td>1.008345</td>
+      <td>-2.212599</td>
+      <td>-1.376928</td>
+      <td>0.864745</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>-0.224551</td>
-      <td>-1.369931</td>
-      <td>-1.268939</td>
-      <td>-0.856373</td>
+      <td>-0.255800</td>
+      <td>-0.218647</td>
+      <td>0.518169</td>
+      <td>0.397200</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">two</th>
       <th>A</th>
-      <td>-1.626197</td>
-      <td>-1.010371</td>
-      <td>-1.342901</td>
-      <td>-1.075533</td>
+      <td>2.031265</td>
+      <td>-1.432520</td>
+      <td>1.020912</td>
+      <td>1.974540</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>-0.071688</td>
-      <td>-0.943652</td>
-      <td>0.303793</td>
-      <td>-1.665213</td>
+      <td>-1.136943</td>
+      <td>-0.653393</td>
+      <td>-1.195418</td>
+      <td>0.326099</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>What happens if you unstack to <code class="docutils literal notranslate"><span class="pre">level=1</span></code> instead? What about applying <code class="docutils literal notranslate"><span class="pre">unstack()</span></code> twice?</p>
 </div>
 </div>
 <div class="section" id="get-dummies">
@@ -4728,6 +5375,8 @@ dtype: float64
 
 <span class="c1"># This grabs the two dataframes, one for each state</span>
 <span class="n">list_of_state_dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="n">end_url</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">state_codes</span><span class="p">]</span>
+<span class="c1"># Show example of first entry in list of dataframes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_of_state_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># Concatenate the list of dataframes</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">list_of_state_dfs</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="n">state_codes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -4736,6 +5385,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        county      pop
+0  Los Angeles  9878554
+1       Orange  2997033
+2      Ventura   798364
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4795,6 +5450,18 @@ dtype: float64
   </tbody>
 </table>
 </div></div></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">keys</span></code> argument is optional, but is useful for keeping track of origin dataframes within the merged dataframe.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Concatenate the follow two dataframes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
+                   <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;letter&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">])</span>
+
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span>
+                   <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;letter&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="merge">
@@ -5069,7 +5736,26 @@ dtype: float64
 </div></div></div>
 </div>
 <p>Now we can see that the products of all key combinations are here. The <code class="docutils literal notranslate"><span class="pre">indicator=True</span></code> option has caused an extra column to be added, called ‘_merge’, that tells us which dataframe the keys on that row came from.</p>
-<p>For more on the options, see the <strong>pandas</strong> <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/merging.html#database-style-dataframe-or-named-series-joining-merging">merging documentation</a>.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Merge the following two dataframes using the <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keyword arguments to specify a join on <code class="docutils literal notranslate"><span class="pre">lkey</span></code> and <code class="docutils literal notranslate"><span class="pre">rkey</span></code> respectively:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;lkey&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;rkey&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Merge the following two dataframes on <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> using <code class="docutils literal notranslate"><span class="pre">how=&quot;left&quot;</span></code> as a keyword argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">],</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+</pre></div>
+</div>
+<p>What do you notice about the position <code class="docutils literal notranslate"><span class="pre">.loc[1,</span> <span class="pre">&quot;c&quot;]</span></code> in the merged dataframe?</p>
+</div>
+<p>For more on the options for merging, see <strong>pandas</strong>’ comprehensive <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/merging.html#database-style-dataframe-or-named-series-joining-merging">merging documentation</a>.</p>
 </div>
 </div>
 <div class="section" id="advanced-alternatives-to-pandas">
@@ -5401,9 +6087,9 @@ dtype: float64
 <li><p>✅ how to create series and dataframes with different datatypes;</p></li>
 <li><p>✅ how to access values in series and dataframes;</p></li>
 <li><p>✅ how to perform operations on columns;</p></li>
-<li><p>✅ how to chain methods;</p></li>
+<li><p>✅ how to use the split-apply-combine pattern;</p></li>
 <li><p>✅ how to reshape data;</p></li>
-<li><p>✅ how to combine different dataframes; and</p></li>
+<li><p>✅ how to combine and merge different dataframes; and</p></li>
 <li><p>✅ what some alternatives to <strong>pandas</strong> are</p></li>
 </ul>
 <p>then you are well on your way to becoming a data analysis master!</p>

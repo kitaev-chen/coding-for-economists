@@ -630,11 +630,12 @@
 <p>As with Linux’s <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span></code> or Mac’s <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span></code> commands, Python’s package install commands are issued in a text-based window called the “terminal”.</p>
 <div class="section" id="the-terminal-in-brief">
 <h3>The terminal in brief<a class="headerlink" href="#the-terminal-in-brief" title="Permalink to this headline">¶</a></h3>
-<p>The <em>terminal</em> is also known as the <em>command line</em>. This is a text-based way to issue all kinds of commands to your computer (not just Python commands) and knowing a little bit about it is really useful for coding (and more) because managing packages, environments (which we haven’t yet discussed), and version control (ditto) can all be done via the terminal. We’ll come to these in due course, but for now, a little background on what the terminal is and what it does.</p>
+<p>The <em>terminal</em> is also known as the <em>command line</em> and sometimes the <em>command prompt</em>. This is a text-based way to issue all kinds of commands to your computer (not just Python commands) and knowing a little bit about it is really useful for coding (and more) because managing packages, environments (which we haven’t yet discussed), and version control (ditto) can all be done via the terminal. We’ll come to these in due course, but for now, a little background on what the terminal is and what it does.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To open up the command line within Visual Studio Code, use the <kbd>⌃</kbd> + <kbd>`</kbd> keyboard shortcut (Mac) or <kbd>ctrl</kbd> + <kbd>`</kbd> (Windows/Linux), or click “View &gt; Terminal”.</p>
 <p>Windows users may find it easiest to use the Anaconda Prompt as their terminal, at least for installing Python packages.</p>
+<p>If you want to open up the command line independently of Visual Studio Code, search for “Terminal” on Mac and Linux, and “Anaconda Prompt” on Windows.</p>
 </div>
 <p>Firstly, everything you can do by clicking on icons to launch programmes on your computer, you can also do via the terminal, also known as the command line. For many programmes, a lot of their functionality can be accessed using the command line, and other programmes <em>only</em> have a command line interface (CLI), including some that are used for data science.</p>
 <div class="admonition tip">
@@ -652,8 +653,7 @@
 <p>on Windows. If you don’t see the word <code class="docutils literal notranslate"><span class="pre">(base)</span></code> at the start of the line, you may need to type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> first.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">(base)</span></code> part is saying that your current Python environment is the base one (later, we’ll see how to add others for reproducibility and to isolate projects). Unfortunately, and confusingly, the commands that you can use in the terminal on Mac and Linux, on the one hand, and Windows, on the other, are different but many of the principles are the same.</p>
 <p>For now, to at least try out the command line, let’s use something that works across all three of the major operating systems. Type <code class="docutils literal notranslate"><span class="pre">python</span></code> on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>. This is a kind of interactive Python session, in the terminal. It’s much less rich than the one available in Visual Studio Code (it can’t run scripts line-by-line, for example) but you can try <code class="docutils literal notranslate"><span class="pre">print('Hello</span> <span class="pre">World!')</span></code> and it will run, printing your message. To exit the terminal-based Python session, type <code class="docutils literal notranslate"><span class="pre">exit()</span></code> to go back to the regular command line.</p>
-<p>If you’re using a bash or zsh terminal, there are a couple of commands that are so essential it would be remiss <em>not</em> to mention them. One is to list the contents of the current directory, for which the command is <code class="docutils literal notranslate"><span class="pre">ls</span></code>. The other is to move directory, for which the command is <code class="docutils literal notranslate"><span class="pre">cd</span></code>. If you find that you’ve opened a terminal you can always get a sense of where you are from <code class="docutils literal notranslate"><span class="pre">ls</span></code> and move to where you need to be using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">directory/</span></code>. One of the advantages of opening a folder in Visual Studio Code and then opening a terminal with Code using ‘New Terminal’ is that the terminal will open in the folder you’re working in (which is usually where you want to be).</p>
-<p>In Windows prompts, <code class="docutils literal notranslate"><span class="pre">dir</span></code> lists the contents of a directory and <code class="docutils literal notranslate"><span class="pre">cd</span></code> moves directory.</p>
+<p>You can find out more about the terminal in the Chapter <a class="reference internal" href="wrkflow-command-line.html#wrkflow-command-line"><span class="std std-ref">The Command Line</span></a>.</p>
 </div>
 <div class="section" id="installing-packages">
 <h3>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h3>
@@ -667,7 +667,7 @@
 </pre></div>
 </div>
 <p>and hitting return, where <code class="docutils literal notranslate"><span class="pre">package-name</span></code> might be <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. This will try to install a version of the package that is already optimised for your type of computer, and will automatically come with any dependencies (packages the package you want needs) you might also need. These pre-built packages that are provided by Anaconda are convenient for a host of reasons. Anaconda provide pre-built versions of around 7,500 the most popular packages (including the statistical programming language R).</p>
-<p>However, there are over 320,00 Python packages on PyPI (the Python Package Index) so you may sometimes find one that is not covered by <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>. When there isn’t a pre-built Anaconda version of a package available, the next thing to try is</p>
+<p>However, there are over 330,000 Python packages on PyPI (the Python Package Index) so you may sometimes find one that is not covered by <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>. When there isn’t a pre-built Anaconda version of a package available, the next thing to try is</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install packagename
 </pre></div>
 </div>
@@ -689,7 +689,10 @@
 </div>
 <div class="section" id="fine-tuning-your-integrated-development-environment">
 <h2>Fine-tuning your integrated development environment<a class="headerlink" href="#fine-tuning-your-integrated-development-environment" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>If you just want to get on with some coding, feel free to skip this section.</p>
+</div>
 <p>Once you’ve downloaded <em>Visual Studio Code</em> and installed the Python extension, you’ll have enough to get going but VS Code can do a whole lot more with some extra add-ons. You can install these using the extensions tab on the left hand side of VS Code. Here are the ones this book recommends and why:</p>
 <ul class="simple">
 <li><p>Markdown extensions - markdown is a simple text language that is often used to provide readmes for code repositories. It comes with the file extension .md</p>
@@ -754,9 +757,6 @@
 </pre></div>
 </div>
 <p>What do you notice about the different levels of indentation?</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="review">

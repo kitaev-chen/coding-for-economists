@@ -595,13 +595,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#export-results-and-descriptive-statistics-to-latex-with-to-latex">
-   Export results and descriptive statistics to latex with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     to_latex
-    </span>
-   </code>
+  <a class="reference internal nav-link" href="#export-results-and-descriptive-statistics">
+   Export results and descriptive statistics
   </a>
  </li>
 </ul>
@@ -620,7 +615,7 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Here we’ll do a whistlestop tour of data analysis on a <em>single</em> dataframe using the Star Wars’ characters dataset as an example. For a more thorough grounding in using data, see the next chapter.</p>
-<p>This chapter uses the <strong>pandas</strong>, <strong>pyarrow</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. (If you’re not sure what a command line or terminal is, take a quick look at the basics-of-coding chapter.)</p>
+<p>This chapter uses the <strong>pandas</strong>, <strong>pyarrow</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line. You can find a brief guide on installing packages on <span class="xref std std-ref">code-preliminaries</span>.</p>
 <p>This chapter is hugely indebted to the fantastic <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a>, and both the <strong>pandas</strong> <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">documentation</a> and amazing <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/index.html">introductory tutorials</a>.</p>
 </div>
 <div class="section" id="loading-data-and-checking-datatypes">
@@ -629,7 +624,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -643,10 +637,12 @@
     <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
 <span class="p">)</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
     <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/data/starwars.csv&quot;</span><span class="p">,</span>
     <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">])</span>
+    <span class="p">)</span>
 <span class="c1"># Check info about dataframe</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -654,20 +650,20 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-Int64Index: 87 entries, 0 to 86
+Int64Index: 82 entries, 0 to 86
 Data columns (total 8 columns):
  #   Column      Non-Null Count  Dtype  
 ---  ------      --------------  -----  
- 0   name        87 non-null     object 
- 1   height      81 non-null     float64
- 2   mass        59 non-null     float64
- 3   hair_color  81 non-null     object 
- 4   eye_color   84 non-null     object 
- 5   gender      84 non-null     object 
- 6   homeworld   77 non-null     object 
+ 0   name        82 non-null     object 
+ 1   height      77 non-null     float64
+ 2   mass        58 non-null     float64
+ 3   hair_color  77 non-null     object 
+ 4   eye_color   80 non-null     object 
+ 5   gender      79 non-null     object 
+ 6   homeworld   74 non-null     object 
  7   species     82 non-null     object 
 dtypes: float64(2), object(6)
-memory usage: 6.1+ KB
+memory usage: 5.8+ KB
 </pre></div>
 </div>
 </div>
@@ -769,6 +765,10 @@ memory usage: 6.1+ KB
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>What happens if you pass a number to <code class="docutils literal notranslate"><span class="pre">head()</span></code>, eg <code class="docutils literal notranslate"><span class="pre">head(10)</span></code>?</p>
+</div>
 </div>
 </div>
 <div class="section" id="filter-rows-and-columns-with-conditions-using-df-loc-condition-s-or-row-s-column-s">
@@ -823,14 +823,9 @@ memory usage: 6.1+ KB
       <td>Human</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Ric Olié</td>
-      <td>NaN</td>
+      <th>30</th>
+      <td>Qui-Gon Jinn</td>
+      <td>Human</td>
     </tr>
     <tr>
       <th>58</th>
@@ -844,8 +839,11 @@ memory usage: 6.1+ KB
     </tr>
   </tbody>
 </table>
-<p>7 rows × 2 columns</p>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">loc</span></code>, filter the dataframe to <code class="docutils literal notranslate"><span class="pre">mass</span></code> greater than 50 for the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">homeworld</span></code> columns</p>
 </div>
 </div>
 <div class="section" id="sort-rows-or-columns-with-sort-values">
@@ -932,6 +930,17 @@ memory usage: 6.1+ KB
       <td>...</td>
     </tr>
     <tr>
+      <th>82</th>
+      <td>Rey</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>brown</td>
+      <td>hazel</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>Human</td>
+    </tr>
+    <tr>
       <th>83</th>
       <td>Poe Dameron</td>
       <td>NaN</td>
@@ -953,21 +962,14 @@ memory usage: 6.1+ KB
       <td>NaN</td>
       <td>Droid</td>
     </tr>
-    <tr>
-      <th>85</th>
-      <td>Captain Phasma</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
   </tbody>
 </table>
-<p>87 rows × 8 columns</p>
+<p>82 rows × 8 columns</p>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">sort_values</span></code>, sort the dataframe by the <code class="docutils literal notranslate"><span class="pre">name</span></code> column.</p>
 </div>
 </div>
 <div class="section" id="choose-multiple-rows-or-columns-using-slices">
@@ -1045,35 +1047,35 @@ memory usage: 6.1+ KB
       <td>...</td>
     </tr>
     <tr>
-      <th>62</th>
-      <td>Dormé</td>
-      <td>165.0</td>
-      <td>NaN</td>
-      <td>brown</td>
-      <td>brown</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>R4-P17</td>
-      <td>96.0</td>
-      <td>NaN</td>
+      <th>54</th>
+      <td>Plo Koon</td>
+      <td>188.0</td>
+      <td>80.0</td>
       <td>none</td>
-      <td>red, blue</td>
-      <td>female</td>
+      <td>black</td>
+      <td>male</td>
     </tr>
     <tr>
-      <th>82</th>
-      <td>Rey</td>
+      <th>64</th>
+      <td>Bail Prestor Organa</td>
+      <td>191.0</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>black</td>
       <td>brown</td>
-      <td>hazel</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>Shaak Ti</td>
+      <td>178.0</td>
+      <td>57.0</td>
+      <td>none</td>
+      <td>black</td>
       <td>female</td>
     </tr>
   </tbody>
 </table>
-<p>9 rows × 6 columns</p>
+<p>8 rows × 6 columns</p>
 </div></div></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">loc</span></code> only works here with numbers for rows because it just so happens that the names of the rows <em>are</em> numbers. If the rows had names that were strings, and we wanted to subset rows by their index position, we would have to use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> instead.</p>
@@ -1137,6 +1139,10 @@ memory usage: 6.1+ KB
 </table>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">.iloc</span></code>, display the first 6 rows and last 6 columns.</p>
+</div>
 </div>
 <div class="section" id="randomly-selecting-a-sample-using-sample">
 <h2>Randomly selecting a sample using <code class="docutils literal notranslate"><span class="pre">.sample</span></code><a class="headerlink" href="#randomly-selecting-a-sample-using-sample" title="Permalink to this headline">¶</a></h2>
@@ -1179,28 +1185,6 @@ memory usage: 6.1+ KB
   </thead>
   <tbody>
     <tr>
-      <th>70</th>
-      <td>Jocasta Nu</td>
-      <td>167.0</td>
-      <td>NaN</td>
-      <td>white</td>
-      <td>blue</td>
-      <td>female</td>
-      <td>Coruscant</td>
-      <td>Human</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>Ayla Secura</td>
-      <td>178.0</td>
-      <td>55.0</td>
-      <td>none</td>
-      <td>hazel</td>
-      <td>female</td>
-      <td>Ryloth</td>
-      <td>Twi'lek</td>
-    </tr>
-    <tr>
       <th>3</th>
       <td>Darth Vader</td>
       <td>202.0</td>
@@ -1212,30 +1196,56 @@ memory usage: 6.1+ KB
       <td>Human</td>
     </tr>
     <tr>
-      <th>21</th>
-      <td>IG-88</td>
-      <td>200.0</td>
-      <td>140.0</td>
+      <th>44</th>
+      <td>Dud Bolt</td>
+      <td>94.0</td>
+      <td>45.0</td>
       <td>none</td>
-      <td>red</td>
-      <td>none</td>
-      <td>NaN</td>
-      <td>Droid</td>
+      <td>yellow</td>
+      <td>male</td>
+      <td>Vulpter</td>
+      <td>Vulptereen</td>
     </tr>
     <tr>
-      <th>52</th>
-      <td>Saesee Tiin</td>
-      <td>188.0</td>
-      <td>NaN</td>
+      <th>41</th>
+      <td>Darth Maul</td>
+      <td>175.0</td>
+      <td>80.0</td>
+      <td>none</td>
+      <td>yellow</td>
+      <td>male</td>
+      <td>Dathomir</td>
+      <td>Zabrak</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Sebulba</td>
+      <td>112.0</td>
+      <td>40.0</td>
       <td>none</td>
       <td>orange</td>
       <td>male</td>
-      <td>Iktotch</td>
-      <td>Iktotchi</td>
+      <td>Malastare</td>
+      <td>Dug</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Mon Mothma</td>
+      <td>150.0</td>
+      <td>NaN</td>
+      <td>auburn</td>
+      <td>blue</td>
+      <td>female</td>
+      <td>Chandrila</td>
+      <td>Human</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">.sample</span></code> to sample 5% of the dataframe.</p>
 </div>
 </div>
 <div class="section" id="rename-with-rename">
@@ -1322,6 +1332,17 @@ memory usage: 6.1+ KB
       <td>...</td>
     </tr>
     <tr>
+      <th>83</th>
+      <td>Poe Dameron</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>brown</td>
+      <td>brown</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>Human</td>
+    </tr>
+    <tr>
       <th>84</th>
       <td>BB8</td>
       <td>NaN</td>
@@ -1331,17 +1352,6 @@ memory usage: 6.1+ KB
       <td>none</td>
       <td>NaN</td>
       <td>Droid</td>
-    </tr>
-    <tr>
-      <th>85</th>
-      <td>Captain Phasma</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>86</th>
@@ -1356,7 +1366,7 @@ memory usage: 6.1+ KB
     </tr>
   </tbody>
 </table>
-<p>87 rows × 8 columns</p>
+<p>82 rows × 8 columns</p>
 </div></div></div>
 </div>
 </div>
@@ -1451,6 +1461,18 @@ memory usage: 6.1+ KB
       <td>...</td>
     </tr>
     <tr>
+      <th>83</th>
+      <td>Poe Dameron</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>brown</td>
+      <td>brown</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>Human</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>84</th>
       <td>BB8</td>
       <td>NaN</td>
@@ -1460,18 +1482,6 @@ memory usage: 6.1+ KB
       <td>none</td>
       <td>NaN</td>
       <td>Droid</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>85</th>
-      <td>Captain Phasma</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1488,7 +1498,7 @@ memory usage: 6.1+ KB
     </tr>
   </tbody>
 </table>
-<p>87 rows × 9 columns</p>
+<p>82 rows × 9 columns</p>
 </div></div></div>
 </div>
 <p>This was added to the end; ideally, we’d like it next to the height column:</p>
@@ -1578,6 +1588,18 @@ memory usage: 6.1+ KB
       <td>...</td>
     </tr>
     <tr>
+      <th>83</th>
+      <td>brown</td>
+      <td>male</td>
+      <td>brown</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Poe Dameron</td>
+      <td>Human</td>
+    </tr>
+    <tr>
       <th>84</th>
       <td>black</td>
       <td>none</td>
@@ -1588,18 +1610,6 @@ memory usage: 6.1+ KB
       <td>NaN</td>
       <td>BB8</td>
       <td>Droid</td>
-    </tr>
-    <tr>
-      <th>85</th>
-      <td>NaN</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Captain Phasma</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>86</th>
@@ -1615,13 +1625,17 @@ memory usage: 6.1+ KB
     </tr>
   </tbody>
 </table>
-<p>87 rows × 9 columns</p>
+<p>82 rows × 9 columns</p>
 </div></div></div>
 </div>
 <p>To overwrite existing columns just use <code class="docutils literal notranslate"><span class="pre">height</span> <span class="pre">=</span> <span class="pre">df['height']/100</span></code> in the assign function. We can also assign using a series of statements instead of chaining them together using</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;height_m&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Add a new column that gives the ratio of mass to height.</p>
 </div>
 </div>
 <div class="section" id="summarise-numerical-values-with-describe">
@@ -1658,18 +1672,18 @@ memory usage: 6.1+ KB
   <tbody>
     <tr>
       <th>count</th>
-      <td>81.000000</td>
-      <td>59.000000</td>
+      <td>77.000000</td>
+      <td>58.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>174.358025</td>
-      <td>97.311864</td>
+      <td>175.103896</td>
+      <td>98.162069</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>34.770429</td>
-      <td>169.457163</td>
+      <td>34.483629</td>
+      <td>170.810183</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1684,7 +1698,7 @@ memory usage: 6.1+ KB
     <tr>
       <th>75%</th>
       <td>191.000000</td>
-      <td>84.500000</td>
+      <td>84.750000</td>
     </tr>
     <tr>
       <th>max</th>
@@ -1774,6 +1788,10 @@ memory usage: 6.1+ KB
 <p>37 rows × 2 columns</p>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Find the standard deviation (using <code class="docutils literal notranslate"><span class="pre">std()</span></code>) of masses by <code class="docutils literal notranslate"><span class="pre">homeworld</span></code>.</p>
+</div>
 </div>
 <div class="section" id="add-transformed-columns-using-transform">
 <h2>Add transformed columns using <code class="docutils literal notranslate"><span class="pre">.transform()</span></code><a class="headerlink" href="#add-transformed-columns-using-transform" title="Permalink to this headline">¶</a></h2>
@@ -1781,16 +1799,11 @@ memory usage: 6.1+ KB
 <p>Below is an example of transform being used to demean a variable according to the mean by species. Note that we use <code class="docutils literal notranslate"><span class="pre">pd.notna</span></code> to filter out missing species values (otherwise this would result in an error, which is actually <em>helpful</em> behaviour) and we are using lambda functions. Lambda functions are a quick way of writing functions, e.g. <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x+1</span></code> defines a function that adds one to x.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First take a cut of the dataframe with no NA values in the species column:</span>
-<span class="n">df_cut</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">])]</span>
-<span class="c1"># Now create a demeaned mass col</span>
-<span class="p">(</span>
-    <span class="n">df_cut</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
-        <span class="n">mass_demean_species</span><span class="o">=</span><span class="n">df_cut</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)[</span><span class="s2">&quot;mass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">mass_demean_species</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)[</span><span class="s2">&quot;mass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
         <span class="p">)</span>
     <span class="p">)</span>
-<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1914,6 +1927,10 @@ memory usage: 6.1+ KB
 <p>82 rows × 9 columns</p>
 </div></div></div>
 </div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">height_demean_homeworld</span></code> column that gives the height column with the mean height by homeworld subtracted.</p>
+</div>
 </div>
 <div class="section" id="make-quick-charts-with-plot">
 <h2>Make quick charts with <code class="docutils literal notranslate"><span class="pre">.plot.*</span></code><a class="headerlink" href="#make-quick-charts-with-plot" title="Permalink to this headline">¶</a></h2>
@@ -1925,7 +1942,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/data-analysis-quickstart_29_0.png" src="_images/data-analysis-quickstart_29_0.png" />
+<img alt="_images/data-analysis-quickstart_37_0.png" src="_images/data-analysis-quickstart_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1935,7 +1952,7 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/data-analysis-quickstart_30_0.png" src="_images/data-analysis-quickstart_30_0.png" />
+<img alt="_images/data-analysis-quickstart_38_0.png" src="_images/data-analysis-quickstart_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1945,12 +1962,12 @@ memory usage: 6.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/data-analysis-quickstart_31_0.png" src="_images/data-analysis-quickstart_31_0.png" />
+<img alt="_images/data-analysis-quickstart_39_0.png" src="_images/data-analysis-quickstart_39_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="export-results-and-descriptive-statistics-to-latex-with-to-latex">
-<h2>Export results and descriptive statistics to latex with <code class="docutils literal notranslate"><span class="pre">to_latex</span></code><a class="headerlink" href="#export-results-and-descriptive-statistics-to-latex-with-to-latex" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="export-results-and-descriptive-statistics">
+<h2>Export results and descriptive statistics<a class="headerlink" href="#export-results-and-descriptive-statistics" title="Permalink to this headline">¶</a></h2>
 <p>You’ll often want to export your results to a latex file for inclusion in a paper, presentation, or poster. Let’s say we had some descriptive statistics on a dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1985,18 +2002,20 @@ memory usage: 6.1+ KB
   <tbody>
     <tr>
       <th>mean</th>
-      <td>97.311864</td>
-      <td>174.358025</td>
+      <td>98.162069</td>
+      <td>175.103896</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>169.457163</td>
-      <td>34.770429</td>
+      <td>170.810183</td>
+      <td>34.483629</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<p>You can export this to a range of formats, including string, html, xml, markdown, the <em>clipboard</em> (so you can paste it), Excel, and more. In your favourite IDE with a Python language server (eg Code, JupyterLab) start typing <code class="docutils literal notranslate"><span class="pre">table.to</span></code> and a list of possible methods beginning <code class="docutils literal notranslate"><span class="pre">to</span></code> should appear, including <code class="docutils literal notranslate"><span class="pre">to_string()</span></code>.</p>
+<p>Here is an example of exporting your <strong>pandas</strong> table to a LaTeX table:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">caption</span><span class="o">=</span><span class="s2">&quot;A Table&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;tab:descriptive&quot;</span><span class="p">))</span>
@@ -2012,8 +2031,8 @@ memory usage: 6.1+ KB
 \toprule
 {} &amp;        mass &amp;      height \\
 \midrule
-mean &amp;   97.311864 &amp;  174.358025 \\
-std  &amp;  169.457163 &amp;   34.770429 \\
+mean &amp;   98.162069 &amp;  175.103896 \\
+std  &amp;  170.810183 &amp;   34.483629 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2021,7 +2040,13 @@ std  &amp;  169.457163 &amp;   34.770429 \\
 </div>
 </div>
 </div>
-<p>Writing to the terminal isn’t that useful for getting your paper done! To export to a file, use <code class="docutils literal notranslate"><span class="pre">table.to_latex('file.tex',</span> <span class="pre">...)</span></code>.</p>
+<p>Writing to the terminal isn’t that useful for getting your paper or report done! To export to a file, use <code class="docutils literal notranslate"><span class="pre">table.to_latex('file.tex',</span> <span class="pre">...)</span></code>.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Try exporting the table above using the <code class="docutils literal notranslate"><span class="pre">to_string(&quot;table.txt&quot;)</span></code> method.</p>
+<p>If you are running this locally, the file should appear in the directory in which you are running this notebook.</p>
+<p>If you are using Google Colab to do these exercises, you can check that the file exported by running <code class="docutils literal notranslate"><span class="pre">!ls</span></code> in a new code cell to see all files in the current notebook directory. To get the contents of the file you created, run <code class="docutils literal notranslate"><span class="pre">!cat</span> <span class="pre">table.txt</span></code>.</p>
+</div>
 </div>
 </div>
 

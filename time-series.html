@@ -560,6 +560,65 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stationarity-and-unit-root-testing">
+   Stationarity and Unit Root Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#augmented-dickey-fuller-test">
+     Augmented Dickey-Fuller Test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kpss-testing">
+     KPSS Testing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-unit-root-tests">
+     Other Unit Root Tests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seasonality">
+   Seasonality
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classical-seasonal-decomposition">
+     Classical Seasonal Decomposition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-smoothing">
+     Exponential Smoothing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stl-or-seasonal-trend-decomposition-based-on-loess">
+     STL, or Seasonal-Trend Decomposition Based on Loess
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unobserved-components-model-aka-structural-time-series-model">
+     Unobserved Components Model, aka Structural Time Series Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-seasonal-adjustment-approaches">
+     Other Seasonal Adjustment Approaches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#holidays">
+   Holidays
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -573,10 +632,10 @@
                 
   <div class="section" id="time-series">
 <span id="id1"></span><h1>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on <strong>pandas</strong>, the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> chapters, it might be worth taking a quick spin through them first. You may also find it useful to be familiar with a few of the concepts from the previous <a class="reference internal" href="time-intro.html#time-intro"><span class="std std-ref">chapter on time</span></a>.</p>
+<p>In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on <strong>pandas</strong>, the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> chapters, it might be worth taking a quick spin through them first. You may also find it useful to be familiar with a few of the concepts from the previous Chapter, <a class="reference internal" href="time-intro.html#time-intro"><span class="std std-ref">Introduction to Time</span></a>.</p>
 <p>While we’ll cover the basics here, the full set of time series functionality of <strong>pandas</strong> can be <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">found here</a>.</p>
-<p>This chapter has benefitted from the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas, Tom Augspurger’s <a class="reference external" href="https://github.com/TomAugspurger/effective-pandas">Effective Pandas</a>, and <a class="reference external" href="https://nwfsc-timeseries.github.io/atsa-labs/">Applied Time Series for Fisheries and Environmental Sciences</a>.</p>
-<p>Let’s imports a few of the packages we’ll need first.</p>
+<p>This chapter has benefitted from the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas, Tom Augspurger’s <a class="reference external" href="https://github.com/TomAugspurger/effective-pandas">Effective Pandas</a>, <a class="reference external" href="https://nwfsc-timeseries.github.io/atsa-labs/">Applied Time Series for Fisheries and Environmental Sciences</a>, and the documentation of the <a class="reference external" href="https://arch.readthedocs.io/"><strong>arch</strong></a> package.</p>
+<p>Let’s imports a few of the packages we’ll need first. You may need to install some of these; the Chapter on <span class="xref std std-ref">code-preliminaries</span> covers how to install new packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -586,17 +645,21 @@
 <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="n">inspect</span>
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">PCG64</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="c1"># Plot settings</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
     <span class="s2">&quot;https://github.com/aeturrell/coding-for-economists/raw/main/plot_style.txt&quot;</span>
 <span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">})</span>
 <span class="c1"># Set max rows displayed for readability</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
 <span class="c1"># Set seed for random numbers</span>
 <span class="n">seed_for_prng</span> <span class="o">=</span> <span class="mi">78557</span>
 <span class="n">prng</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">PCG64</span><span class="p">(</span><span class="n">seed_for_prng</span><span class="p">))</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -612,12 +675,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/rich/_inspect.py:125: FutureWarning: Timestamp.freq is deprecated and will be removed in a future version
-  return (None, getattr(obj, attr_name))
-/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/rich/_inspect.py:125: FutureWarning: Timestamp.freqstr is deprecated and will be removed in a future version.
-  return (None, getattr(obj, attr_name))
-</pre></div>
-</div>
 <div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #000080; text-decoration-color: #000080">╭───────── </span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">class</span><span style="color: #000000; text-decoration-color: #000000"> </span><span style="color: #008000; text-decoration-color: #008000">'pandas._libs.tslibs.timestamps.Timestamp'</span><span style="color: #000080; text-decoration-color: #000080; font-weight: bold">&gt;</span><span style="color: #000080; text-decoration-color: #000080"> ─────────╮</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span> <span style="color: #008080; text-decoration-color: #008080">Pandas replacement for python datetime.datetime object.</span>              <span style="color: #000080; text-decoration-color: #000080">│</span>
 <span style="color: #000080; text-decoration-color: #000080">│</span>                                                                      <span style="color: #000080; text-decoration-color: #000080">│</span>
@@ -809,12 +866,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 243 entries, 0 to 242
+RangeIndex: 244 entries, 0 to 243
 Data columns (total 2 columns):
  #   Column                      Non-Null Count  Dtype 
 ---  ------                      --------------  ----- 
- 0   date                        243 non-null    object
- 1   Vacancies (ICT), thousands  243 non-null    int64 
+ 0   date                        244 non-null    object
+ 1   Vacancies (ICT), thousands  244 non-null    int64 
 dtypes: int64(1), object(1)
 memory usage: 3.9+ KB
 </pre></div>
@@ -1169,11 +1226,11 @@ Name: date, dtype: datetime64[ns]
     </tr>
     <tr>
       <th>2020-12-31</th>
-      <td>27.750000</td>
+      <td>27.666667</td>
     </tr>
     <tr>
       <th>2021-12-31</th>
-      <td>46.571429</td>
+      <td>48.750000</td>
     </tr>
   </tbody>
 </table>
@@ -1246,8 +1303,8 @@ Name: date, dtype: datetime64[ns]
     </tr>
     <tr>
       <th>2021-12-31</th>
-      <td>41.181818</td>
-      <td>9.261811</td>
+      <td>41.571429</td>
+      <td>9.726921</td>
     </tr>
   </tbody>
 </table>
@@ -1304,20 +1361,20 @@ Name: date, dtype: datetime64[ns]
       <td>...</td>
     </tr>
     <tr>
-      <th>2021-07-29</th>
+      <th>2021-08-29</th>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2021-07-30</th>
+      <th>2021-08-30</th>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2021-07-31</th>
-      <td>58.0</td>
+      <th>2021-08-31</th>
+      <td>64.0</td>
     </tr>
   </tbody>
 </table>
-<p>7367 rows × 1 columns</p>
+<p>7398 rows × 1 columns</p>
 </div></div></div>
 </div>
 <p>Options to fill in missing time series data include using <code class="docutils literal notranslate"><span class="pre">bfill</span></code> or <code class="docutils literal notranslate"><span class="pre">ffill</span></code> to fill in the blanks based on the next or last available value, respectively, or <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> (note how only the first 3 NaNs are replaced using the <code class="docutils literal notranslate"><span class="pre">limit</span></code> keyword argument):</p>
@@ -1476,20 +1533,20 @@ y_t = f(\{x_{t-i} \}_{i=0}^{i=R-1})
       <td>...</td>
     </tr>
     <tr>
-      <th>2021-05-31</th>
-      <td>47.0</td>
-    </tr>
-    <tr>
       <th>2021-06-30</th>
-      <td>51.5</td>
+      <td>51.0</td>
     </tr>
     <tr>
       <th>2021-07-31</th>
-      <td>56.5</td>
+      <td>57.0</td>
+    </tr>
+    <tr>
+      <th>2021-08-31</th>
+      <td>61.5</td>
     </tr>
   </tbody>
 </table>
-<p>243 rows × 1 columns</p>
+<p>244 rows × 1 columns</p>
 </div></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">ewm</span></code> includes the class of functions where data point <span class="math notranslate nohighlight">\(x_{t-i}\)</span> has a weight <span class="math notranslate nohighlight">\(w_i = (1-\alpha)^i\)</span>. As <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>, points further back in time are given less weight. For example, an exponentially moving average is given by</p>
@@ -1550,20 +1607,20 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
       <td>...</td>
     </tr>
     <tr>
-      <th>2021-05-31</th>
-      <td>39.107820</td>
-    </tr>
-    <tr>
       <th>2021-06-30</th>
-      <td>42.286256</td>
+      <td>42.104781</td>
     </tr>
     <tr>
       <th>2021-07-31</th>
-      <td>45.429005</td>
+      <td>45.483825</td>
+    </tr>
+    <tr>
+      <th>2021-08-31</th>
+      <td>49.187060</td>
     </tr>
   </tbody>
 </table>
-<p>243 rows × 1 columns</p>
+<p>244 rows × 1 columns</p>
 </div></div></div>
 </div>
 <p>Let’s see these methods together on the stock market data.</p>
@@ -1724,11 +1781,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/codeforecon/lib/python3.8/site-packages/statsmodels/graphics/tsaplots.py:348: FutureWarning: The default method &#39;yw&#39; can produce PACF values outside of the [-1,1] interval. After 0.13, the default will change tounadjusted Yule-Walker (&#39;ywm&#39;). You can use this method now by setting method=&#39;ywm&#39;.
-  warnings.warn(
-</pre></div>
-</div>
-<img alt="_images/time-series_60_1.png" src="_images/time-series_60_1.png" />
+<img alt="_images/time-series_60_0.png" src="_images/time-series_60_0.png" />
 </div>
 </div>
 <p>Remember that the partial autocorrelation function can tell you about likely terms to include in an autoregressive (AR) model.</p>
@@ -2513,6 +2566,484 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
 </div>
 <p>We can see from the chart that, once adjusted for inflation, cheese was not such a great bargain in the noughties as it appeared from the nominal cost per pound. But the big fall in cheese prices between 2013 and 2017 <em>was</em> a real effect and coincided with the United States’ <a class="reference external" href="https://www.vox.com/2016/10/13/13268980/cheese-glut-united-states">great cheese surplus</a>. Supply and demand work! Of course, the costs are the same in 2021 dollars.</p>
 </div>
+</div>
+<div class="section" id="stationarity-and-unit-root-testing">
+<h2>Stationarity and Unit Root Testing<a class="headerlink" href="#stationarity-and-unit-root-testing" title="Permalink to this headline">¶</a></h2>
+<p>This section is indebted to the excellent documentation of the <a class="reference external" href="https://arch.readthedocs.io/"><strong>arch</strong></a> (Autoregressive Conditional Heteroskedasticity) package. To install <strong>arch</strong> with conda, the conda comand is <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">arch-py</span></code>. Conda forge is a community-led effort to increase the number of packages that can be conda installed; <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> in the install command tells conda to do an install from the conda-forge repository of packages, while <code class="docutils literal notranslate"><span class="pre">arch-py</span></code> is the package name. If you’re not using conda, the command is <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">arch-py</span></code>. If you like the <strong>arch</strong> package, you can head over to <a class="reference external" href="https://github.com/bashtage/arch">the code repository</a> and give it a star on GitHub.</p>
+<p>Remember that a stationary process is a stochastic process whose unconditional joint probability distribution does not change when shifted in time and which, consequently, retains its parameters over time (in contrast to the case with a series with a trend in the mean). The transformations of the previous section give some good ideas as to how to transform stationary series, and we already saw some visual cues with auto- and partial auto-correlations, but here we’ll be looking at formal statistical tests of whether a series is stationary.</p>
+<p>As an example dataset to test, we will use the Default premium, the difference between the yields of BAA and AAA rated corporate bonds. Let’s import the <strong>arch</strong> package, <strong>statsmodels</strong> time series functions, and grab <strong>arch</strong>’s built-in default premium data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">arch.data.default</span>
+<span class="kn">from</span> <span class="nn">arch.unitroot</span> <span class="kn">import</span> <span class="n">ADF</span>
+<span class="kn">from</span> <span class="nn">arch.unitroot</span> <span class="kn">import</span> <span class="n">KPSS</span>
+<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+
+<span class="n">default_data</span> <span class="o">=</span> <span class="n">arch</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">default</span> <span class="o">=</span> <span class="n">default_data</span><span class="o">.</span><span class="n">BAA</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">default</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+<span class="n">default</span> <span class="o">=</span> <span class="n">default</span> <span class="o">-</span> <span class="n">default_data</span><span class="o">.</span><span class="n">AAA</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">default</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Default premium (difference in yields, BAA-AAA)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Date
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.77</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">02</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.85</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">03</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.76</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">04</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.79</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">05</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.70</span>
+Name: default, dtype: float64
+</pre>
+</div><img alt="_images/time-series_90_1.png" src="_images/time-series_90_1.png" />
+</div>
+</div>
+<p>Let’s now do some unit root testing.</p>
+<div class="section" id="augmented-dickey-fuller-test">
+<h3>Augmented Dickey-Fuller Test<a class="headerlink" href="#augmented-dickey-fuller-test" title="Permalink to this headline">¶</a></h3>
+<p>The Augmented Dickey-Fuller test is the most common unit root test. It is a regression of the first difference of the variable on its lagged level as well as additional lags of the first difference. The null is that the series contains a unit root, and the (one-sided) alternative is that the series is stationary.</p>
+<p>By default, the number of lags is selected by minimising the AIC (Akaike information criterion) across a range of lag lengths (which can be set using <code class="docutils literal notranslate"><span class="pre">max_lag</span></code> when initializing the model). Additionally, the basic test includes a constant in the regression.</p>
+<p>This is the regression equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta y_t = \alpha + \beta t + \gamma y_{t-1} + \delta_1 \Delta y_{t-1} + \cdots + \delta_{p-1} \Delta y_{t-p+1} + \varepsilon_t,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\({\displaystyle \alpha }\)</span> is the constant, <span class="math notranslate nohighlight">\({\displaystyle \beta }\)</span> is the coefficient on a time trend and <span class="math notranslate nohighlight">\({\displaystyle p}\)</span> the lag order of the autoregressive process. Imposing the constraints <span class="math notranslate nohighlight">\({\displaystyle \alpha}=0\)</span> and <span class="math notranslate nohighlight">\({\displaystyle \beta } =0\)</span> corresponds to modelling a random walk and using the constraint <span class="math notranslate nohighlight">\({\displaystyle \beta } =0\)</span> corresponds to modelling a random walk with a drift.</p>
+<p>These settings correspond to passing a keyword argument, <code class="docutils literal notranslate"><span class="pre">trend</span></code>, with the following options:</p>
+<ul class="simple">
+<li><p>‘nc’ : No deterministic terms</p></li>
+<li><p>‘c’ : Constant only</p></li>
+<li><p>‘ct’ : Constant and time trend</p></li>
+<li><p>‘ctt’ : Constant, time trend and time-trend squared</p></li>
+</ul>
+<p>Let’s see the result of the ADF test running on the default data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an ADF object with the default data</span>
+<span class="n">adf</span> <span class="o">=</span> <span class="n">ADF</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
+<span class="c1"># Check the results of the test with the standard settings</span>
+<span class="n">adf</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Augmented Dickey-Fuller Results</caption>
+<tr>
+  <td>Test Statistic</td>    <td>-3.356</td>
+</tr>
+<tr>
+  <td>P-value</td>            <td>0.013</td>
+</tr>
+<tr>
+  <td>Lags</td>                  <td>21</td>
+</tr>
+</table><br/><br/>Trend: Constant<br/>Critical Values: -3.44 (1%), -2.86 (5%), -2.57 (10%)<br/>Null Hypothesis: The process contains a unit root.<br/>Alternative Hypothesis: The process is weakly stationary.</div></div>
+</div>
+<p>To change the model specification, create a new object using the relevant keyword arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adf</span> <span class="o">=</span> <span class="n">ADF</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">adf</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Augmented Dickey-Fuller Results</caption>
+<tr>
+  <td>Test Statistic</td>    <td>-3.786</td>
+</tr>
+<tr>
+  <td>P-value</td>            <td>0.017</td>
+</tr>
+<tr>
+  <td>Lags</td>                   <td>5</td>
+</tr>
+</table><br/><br/>Trend: Constant and Linear Time Trend<br/>Critical Values: -3.97 (1%), -3.41 (5%), -3.13 (10%)<br/>Null Hypothesis: The process contains a unit root.<br/>Alternative Hypothesis: The process is weakly stationary.</div></div>
+</div>
+<p>As an ADF test is just a regression, you can get that out of the output too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">regression</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.095</span>
+Model:                            OLS   Adj. R-squared:                  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.090</span>
+Method:                 Least Squares   F-statistic:                     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.83</span>
+Date:                Tue, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span> Oct <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>   Prob <span style="font-weight: bold">(</span>F-statistic<span style="font-weight: bold">)</span>:           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.30e-22</span>
+Time:                        <span style="color: #00ff00; text-decoration-color: #00ff00; font-weight: bold">11:55:34</span>   Log-Likelihood:                 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">630.15</span>
+No. Observations:                <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1194</span>   AIC:                            <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1244</span>.
+Df Residuals:                    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1186</span>   BIC:                            <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1204</span>.
+Df Model:                           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      <span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.025</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.975</span><span style="font-weight: bold">]</span>
+------------------------------------------------------------------------------
+Level.L1      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.0248</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-3.786</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.038</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.012</span>
+Diff.L1        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.2229</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.029</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7.669</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.166</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.280</span>
+Diff.L2       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.0525</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.030</span>     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.769</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.077</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.111</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.006</span>
+Diff.L3       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.1363</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.029</span>     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-4.642</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.194</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.079</span>
+Diff.L4       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.0510</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.030</span>     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.727</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.084</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.109</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.007</span>
+Diff.L5        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0440</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.029</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.516</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.130</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-0.013</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.101</span>
+const          <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0383</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.013</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.858</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.004</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.012</span>       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.065</span>
+trend      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.586e-05</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.29e-05</span>     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.230</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.219</span>   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-4.11e-05</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9.43e-06</span>
+==============================================================================
+Omnibus:                      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">665.553</span>   Durbin-Watson:                   <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2.000</span>
+<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Prob</span><span style="font-weight: bold">(</span>Omnibus<span style="font-weight: bold">)</span>:                  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.000</span>   Jarque-Bera <span style="font-weight: bold">(</span>JB<span style="font-weight: bold">)</span>:           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">146083.295</span>
+Skew:                          <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1.425</span>   <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">Prob</span><span style="font-weight: bold">(</span>JB<span style="font-weight: bold">)</span>:                         <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.00</span>
+Kurtosis:                      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57.113</span>   Cond. No.                     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.70e+03</span>
+==============================================================================
+
+Notes:
+<span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">]</span> Standard Errors assume that the covariance matrix of the errors is correctly specified.
+<span style="font-weight: bold">[</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span><span style="font-weight: bold">]</span> The condition number is large, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5.7e+03</span>. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre>
+</div></div>
+</div>
+</div>
+<div class="section" id="kpss-testing">
+<h3>KPSS Testing<a class="headerlink" href="#kpss-testing" title="Permalink to this headline">¶</a></h3>
+<p>The KPSS test differs from ADF in that the <em>null</em> hypothesis is that the time series is a stationary process and the <em>alternative</em> is a unit root.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kpss</span> <span class="o">=</span> <span class="n">KPSS</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
+<span class="n">kpss</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>KPSS Stationarity Test Results</caption>
+<tr>
+  <td>Test Statistic</td>     <td>1.088</td>
+</tr>
+<tr>
+  <td>P-value</td>            <td>0.002</td>
+</tr>
+<tr>
+  <td>Lags</td>                  <td>20</td>
+</tr>
+</table><br/><br/>Trend: Constant<br/>Critical Values: 0.74 (1%), 0.46 (5%), 0.35 (10%)<br/>Null Hypothesis: The process is weakly stationary.<br/>Alternative Hypothesis: The process contains a unit root.</div></div>
+</div>
+</div>
+<div class="section" id="other-unit-root-tests">
+<h3>Other Unit Root Tests<a class="headerlink" href="#other-unit-root-tests" title="Permalink to this headline">¶</a></h3>
+<p><strong>arch</strong> also contains the Phillips-Perron, Zivot-Andrews, and Dickey-Fuller GLS tests; see <a class="reference external" href="https://arch.readthedocs.io/en/latest/unitroot/unitroot_examples.html">here</a> for more information.</p>
+</div>
+</div>
+<div class="section" id="seasonality">
+<h2>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h2>
+<p>This section is indebted to <a class="reference external" href="http://www.chadfulton.com/">Chad Fulton</a>’s <a class="reference external" href="https://github.com/ChadFulton/sm-notebooks-2021/blob/main/002-seasonal-adjustment.ipynb">notes</a>. Chad is an economist at the Federal Reserve Board of Governors.</p>
+<p>Seasonality is when you find recurring, highly predictable changes in time series based on known events. From the point of view of analysis, they’re often not all that interesting and what we <em>really</em> want to know is what’s happening with the underlying series. But to find out, we have to strip out all of that seasonal variation. This is typically done by describing a model that can decompose a series into seasonal and non-seasonal effects.</p>
+<p>Seasonal patterns repeat; every quarter, every month, every week, every day, and now—for tech firms—even intra-day seasonal frequencies are a problem econometricians need to worry about.</p>
+<p>We will look at some simple and not-as-simple approaches to seasonal adjustment.</p>
+<p>We’ll look at the New York Times COVID 19 data for this, with a bit of pre-processing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract: download the data (here, load the CSV directly from the URL)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s1">&#39;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv&#39;</span><span class="p">,</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Transform: add new columns with useful transformations</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_cases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020-04-01&#39;</span><span class="p">:</span><span class="s2">&quot;2021-02-01&quot;</span><span class="p">,</span> <span class="s1">&#39;new_cases&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
+2020-04-01    26930.0
+2020-04-02    29717.0
+2020-04-03    32318.0
+2020-04-04    35099.0
+2020-04-05    25616.0
+Freq: D, Name: new_cases, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the data (remember: always plot the data)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_covid_data</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;New COVID-19 cases, U.S.&quot;</span><span class="p">);</span>
+
+<span class="n">plot_covid_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_104_0.png" src="_images/time-series_104_0.png" />
+</div>
+</div>
+<p>Already we can see that there’s a lot of high-frequency variation in these data, with variation that gets stronger over time and some holiday-based outliers. Let’s hone in on a few months to make it easier to see what’s happening:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_covid_data</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2020-10-01&quot;</span><span class="p">:</span><span class="s2">&quot;2020-12-01&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_106_0.png" src="_images/time-series_106_0.png" />
+</div>
+</div>
+<p>Now it’s clear there’s a strong weekly pattern (or <em>every 7th entry</em> in our daily frequency data).</p>
+<p>In thinking about a series, an early choice we need to make is whether we think it is multiplicative, and so has a function form like</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \underbrace{\mu_t}_\text{trend} \times \underbrace{\gamma_t}_\text{seasonal} \times \underbrace{\varepsilon_t}_\text{residual}
+\]</div>
+<p>or like</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + \underbrace{\varepsilon_t}_\text{residual}
+\]</div>
+<p>As the increase in COVID-19 cases is the result of a multiplicative process, the former is more likely here. So the first thing we do is take the log of the series (we could also have used a Box-Cox transform). This will transform our data to the second case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plot_covid_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_108_0.png" src="_images/time-series_108_0.png" />
+</div>
+</div>
+<p>Now let’s try some methods of seasonal adjustment!</p>
+<div class="section" id="classical-seasonal-decomposition">
+<h3>Classical Seasonal Decomposition<a class="headerlink" href="#classical-seasonal-decomposition" title="Permalink to this headline">¶</a></h3>
+<p>This will proceed by estimating the trend component <span class="math notranslate nohighlight">\((\mu_t)\)</span> by applying a moving average (or double moving average, if the seasonal period is an even number), estimating the seasonal component <span class="math notranslate nohighlight">\((\gamma_t)\)</span> by computing the average value of the detrended series <span class="math notranslate nohighlight">\(w_t = y_t - \mu_t\)</span>, and then normalising the seasonal factors (if additive, ensure the means sum to zero, if multiplicative ensure their product is equal to one).</p>
+<p>We’ll use <strong>statsmodels</strong>’ <code class="docutils literal notranslate"><span class="pre">seasonal_decompose</span></code> model for this. It creates an object that retains the following components:</p>
+<ul class="simple">
+<li><p>trend, the estimated trend component, <span class="math notranslate nohighlight">\(\mu_t\)</span></p></li>
+<li><p>seasonal, the estimated seasonal component, <span class="math notranslate nohighlight">\(\gamma_t\)</span></p></li>
+<li><p>resid, the residual component, <span class="math notranslate nohighlight">\(\varepsilon_t\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform classical seasonal decomposition</span>
+<span class="n">classical_res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Extract the trend and seasonal components</span>
+<span class="n">classical_trend</span> <span class="o">=</span> <span class="n">classical_res</span><span class="o">.</span><span class="n">trend</span>
+<span class="n">classical_seasonal</span> <span class="o">=</span> <span class="n">classical_res</span><span class="o">.</span><span class="n">seasonal</span>
+<span class="n">classical_resid</span> <span class="o">=</span> <span class="n">classical_res</span><span class="o">.</span><span class="n">resid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the modified series:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_seasonal_decomp</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;log new cases&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="n">seasonal</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trend&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_off</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+
+<span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">classical_trend</span><span class="p">,</span> <span class="n">classical_seasonal</span><span class="p">,</span> <span class="n">classical_resid</span><span class="p">,</span> <span class="s2">&quot;Classical Decomposition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_112_0.png" src="_images/time-series_112_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="exponential-smoothing">
+<h3>Exponential Smoothing<a class="headerlink" href="#exponential-smoothing" title="Permalink to this headline">¶</a></h3>
+<p>Exponential smoothing models provide a relatively simple way of estimating both the trend and seasonal factors simultaneously, in a single model. In addition, while the seasonal factors were not able to vary over time in the previous approach, it can in exponential smoothing models.</p>
+<p>These models are sometimes referred to as ETS (Error, Trend, and Seasonal) because they can be seen as a generalisation of simple exponential smoothing to time series that contain trends and seasonalities. They have an underlying state space representation. An ETS model is specified by an error type (E; additive or multiplicative), a trend type (T; additive or multiplicative, both damped or undamped, or none), and a seasonality type (S; additive or multiplicative or none).</p>
+<p>Here, we will use a simple exponential smoothing method that is assumed to be additive and has a trend. We’ll use a <em>kwarg</em> of <code class="docutils literal notranslate"><span class="pre">initialization_method='concentrated'</span></code>, which estimates the initial values of the level, trend, and seasonal states by “concentrating” them out of the likelihood function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct the exponential smoothing model</span>
+<span class="n">ets_mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">statespace</span><span class="o">.</span><span class="n">ExponentialSmoothing</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">initialization_method</span><span class="o">=</span><span class="s1">&#39;concentrated&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fit the parameters of the model</span>
+<span class="n">ets_res</span> <span class="o">=</span> <span class="n">ets_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">ets_seasonal</span> <span class="o">=</span> <span class="n">ets_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;seasonal.0&#39;</span><span class="p">]</span>
+<span class="n">ets_trend</span> <span class="o">=</span> <span class="n">ets_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span>
+<span class="n">ets_resid</span> <span class="o">=</span> <span class="n">ets_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            3     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -4.12166D-01    |proj g|=  4.06544D-01
+
+At iterate    5    f= -6.87789D-01    |proj g|=  5.75225D-03
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -6.89516D-01    |proj g|=  6.66378D-03
+
+At iterate   15    f= -6.90517D-01    |proj g|=  1.78853D-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -6.90560D-01    |proj g|=  3.37554D-05
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    3     23     24      1     0     0   7.382D-06  -6.906D-01
+  F = -0.69056188805283225     
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL            
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">ets_trend</span><span class="p">,</span> <span class="n">ets_seasonal</span><span class="p">,</span> <span class="n">ets_resid</span><span class="p">,</span> <span class="s2">&quot;Exponential smoothing&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_115_0.png" src="_images/time-series_115_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="stl-or-seasonal-trend-decomposition-based-on-loess">
+<h3>STL, or Seasonal-Trend Decomposition Based on Loess<a class="headerlink" href="#stl-or-seasonal-trend-decomposition-based-on-loess" title="Permalink to this headline">¶</a></h3>
+<p>A longer description of this approach may be found in section 3.7 of <a class="reference external" href="https://otexts.com/fpp3/stl.html">Hyndman and Athanasopoulos (2021)</a>. Like exponential smoothing models, seasonal factors estimated by STL can vary over time—and indeed, in this case, they do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct and fit the STL model, using the robust to (some) outliers feature</span>
+<span class="n">stl_mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">STL</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">stl_res</span> <span class="o">=</span> <span class="n">stl_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">stl_res</span><span class="o">.</span><span class="n">trend</span><span class="p">,</span> <span class="n">stl_res</span><span class="o">.</span><span class="n">seasonal</span><span class="p">,</span> <span class="n">stl_res</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="s2">&quot;STL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_117_0.png" src="_images/time-series_117_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="unobserved-components-model-aka-structural-time-series-model">
+<h3>Unobserved Components Model, aka Structural Time Series Model<a class="headerlink" href="#unobserved-components-model-aka-structural-time-series-model" title="Permalink to this headline">¶</a></h3>
+<p>Unobserved components models are extremely flexible, being able to support a variety of trend specifications, dummy variables, seasonal effects that vary over time, support for missing variables, support for autoregressive components, and support for missing observations, and support for exogenous variables. Let’s build a model, albeit a simple one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc_mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">UnobservedComponents</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;smooth trend&#39;</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">uc_res</span> <span class="o">=</span> <span class="n">uc_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">uc_seasonal</span> <span class="o">=</span> <span class="n">uc_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;seasonal&#39;</span><span class="p">]</span>
+<span class="n">uc_trend</span> <span class="o">=</span> <span class="n">uc_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span>
+<span class="n">uc_resid</span> <span class="o">=</span> <span class="n">df</span> <span class="o">-</span> <span class="n">uc_trend</span> <span class="o">-</span> <span class="n">uc_seasonal</span>
+
+<span class="c1"># plot results</span>
+<span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">uc_trend</span><span class="p">,</span> <span class="n">uc_seasonal</span><span class="p">,</span> <span class="n">uc_resid</span><span class="p">,</span> <span class="s2">&quot;Unobserved Components (smooth trend)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            3     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  1.00275D+00    |proj g|=  1.55089D+00
+
+At iterate    5    f= -3.24586D-01    |proj g|=  4.02210D+00
+  ys=-2.432E-01  -gs= 2.182E-01 BFGS update SKIPPED
+
+At iterate   10    f= -6.23529D-01    |proj g|=  8.42168D-01
+
+At iterate   15    f= -6.23943D-01    |proj g|=  2.68248D-04
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    3     16     39      1     1     0   2.974D-05  -6.239D-01
+  F = -0.62394307890696077     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<img alt="_images/time-series_119_2.png" src="_images/time-series_119_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="other-seasonal-adjustment-approaches">
+<h3>Other Seasonal Adjustment Approaches<a class="headerlink" href="#other-seasonal-adjustment-approaches" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.census.gov/data/software/x13as.X-13ARIMA-SEATS.html"><strong>X-13ARIMA-SEATS</strong></a> is a commonly used programme produced by the U.S. Census Bureau. It supports monthly or quarterly, but not daily, data. If you have it installed on your computer, you can use it in <strong>statsmodels</strong> via <code class="docutils literal notranslate"><span class="pre">sm.tsa.x13_arima_analysis</span></code>.</p>
+<p><a class="reference external" href="https://github.com/intive-DataScience/tbats"><strong>TBATS</strong></a> is a relatively recent (circa 2011) econometric model that is particularly useful for data that exhibits multiple types of seasonality.</p>
+<p>We have only scratched the surface of seasonal adjustment here by looking at trends and simple seasonality. There’re a lot of extra features that can be exploited in the above models, for example adding dummies on dates for which there are events that cause known outliers, or controlling for known anomalies on some specific days. Which leads us neatly on to…</p>
+</div>
+</div>
+<div class="section" id="holidays">
+<h2>Holidays<a class="headerlink" href="#holidays" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
