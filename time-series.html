@@ -244,6 +244,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="text-regex.html">
+   Regular Expressions, aka regex
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    Natural Language Processing
   </a>
@@ -478,19 +483,32 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-time-series">
-   Creating Time Series
+  <a class="reference internal nav-link" href="#creating-and-using-time-series">
+   Creating and Using Time Series
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datetime-offsets">
-   Datetime Offsets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-datetime-index-and-setting-the-frequency">
-   Creating a datetime index and setting the frequency
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datetime-offsets">
+     Datetime Offsets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-dt-accessor">
+     The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dt
+      </span>
+     </code>
+     accessor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-datetime-index-and-setting-the-frequency">
+     Creating a datetime index and setting the frequency
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-quick-time-series-plots">
@@ -558,6 +576,11 @@
      Adjusting for Inflation
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-engineering">
+     Feature Engineering
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -618,6 +641,30 @@
   <a class="reference internal nav-link" href="#holidays">
    Holidays
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal-and-holiday-adjustment">
+     Seasonal and Holiday Adjustment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#granger-causality">
+   Granger Causality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#breaks-and-changepoint-detection">
+   Breaks and Changepoint Detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     See Also
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -635,7 +682,7 @@
 <p>In this chapter, we’ll look at time series. If you haven’t yet looked at the two sections on <strong>pandas</strong>, the <a class="reference internal" href="data-analysis-quickstart.html#data-quickstart"><span class="std std-ref">Data Quickstart</span></a> and <a class="reference internal" href="data-intro.html#working-with-data"><span class="std std-ref">Working with Data</span></a> chapters, it might be worth taking a quick spin through them first. You may also find it useful to be familiar with a few of the concepts from the previous Chapter, <a class="reference internal" href="time-intro.html#time-intro"><span class="std std-ref">Introduction to Time</span></a>.</p>
 <p>While we’ll cover the basics here, the full set of time series functionality of <strong>pandas</strong> can be <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">found here</a>.</p>
 <p>This chapter has benefitted from the <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas, Tom Augspurger’s <a class="reference external" href="https://github.com/TomAugspurger/effective-pandas">Effective Pandas</a>, <a class="reference external" href="https://nwfsc-timeseries.github.io/atsa-labs/">Applied Time Series for Fisheries and Environmental Sciences</a>, and the documentation of the <a class="reference external" href="https://arch.readthedocs.io/"><strong>arch</strong></a> package.</p>
-<p>Let’s imports a few of the packages we’ll need first. You may need to install some of these; the Chapter on <span class="xref std std-ref">code-preliminaries</span> covers how to install new packages.</p>
+<p>Let’s imports a few of the packages we’ll need first. You may need to install some of these; the Chapter on <a class="reference internal" href="code-preliminaries.html#code-preliminaries"><span class="std std-ref">Preliminaries</span></a> covers how to install new packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -654,7 +701,7 @@
 <span class="p">)</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">})</span>
 <span class="c1"># Set max rows displayed for readability</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 
 <span class="c1"># Set seed for random numbers</span>
 <span class="n">seed_for_prng</span> <span class="o">=</span> <span class="mi">78557</span>
@@ -722,8 +769,8 @@
 </div>
 <p>This is of type <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> and you can see that it has many of the same properties as the built-in Python <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> class from the previous chapter. As with that, the default setting for <code class="docutils literal notranslate"><span class="pre">tz</span></code> (timezone) and <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>. There are some extra properties, though, such as <code class="docutils literal notranslate"><span class="pre">freq</span></code> for frequency, which will be very useful when it comes to manipulating time <em>series</em> as opposed to just one or two datetimes.</p>
 </div>
-<div class="section" id="creating-time-series">
-<h2>Creating Time Series<a class="headerlink" href="#creating-time-series" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-and-using-time-series">
+<h2>Creating and Using Time Series<a class="headerlink" href="#creating-and-using-time-series" title="Permalink to this headline">¶</a></h2>
 <p>There are two main scenarios in which you might be creating time series using <strong>pandas</strong>: i) creating one from scratch or ii) reading in data from a file. Let’s look at a few ways to do i) first.</p>
 <p>You can create a time series with <strong>pandas</strong> by taking a date as created above and extending it using <strong>pandas</strong> timedelta function:</p>
 <div class="cell docutils container">
@@ -929,9 +976,8 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="datetime-offsets">
-<h2>Datetime Offsets<a class="headerlink" href="#datetime-offsets" title="Permalink to this headline">¶</a></h2>
+<h3>Datetime Offsets<a class="headerlink" href="#datetime-offsets" title="Permalink to this headline">¶</a></h3>
 <p>Our data, currently held in <code class="docutils literal notranslate"><span class="pre">df</span></code>, were read in as if they were from the <em>start</em> of the month but these data refer to the month that has passed and so should be for the <em>end</em> of the month. Fortunately, we can change this using a time offset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -995,8 +1041,55 @@ Name: date, dtype: datetime64[ns]
 </div>
 <p>While we used the <code class="docutils literal notranslate"><span class="pre">MonthEnd</span></code> offset here, there are many different offsets available. You can find a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects">full table of date offsets here</a>.</p>
 </div>
+<div class="section" id="the-dt-accessor">
+<h3>The <code class="docutils literal notranslate"><span class="pre">.dt</span></code> accessor<a class="headerlink" href="#the-dt-accessor" title="Permalink to this headline">¶</a></h3>
+<p>When you have a datetime column, you can use the <code class="docutils literal notranslate"><span class="pre">.dt</span></code> accessor to grab lots of useful information from it such as the <code class="docutils literal notranslate"><span class="pre">minute</span></code>, <code class="docutils literal notranslate"><span class="pre">month</span></code>, and so on. Some that are functions, rather than just accessors of underlying properties, are followed by brackets, <code class="docutils literal notranslate"><span class="pre">()</span></code>, because they are functions. Here are a few useful examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using `dt.day_name()`&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using `dt.isocalendar()`&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using `dt.month`&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Using `<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">dt.day_name</span><span style="font-weight: bold">()</span>`
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>    Thursday
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>    Saturday
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>     Tuesday
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>      Friday
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>      Sunday
+Name: date, dtype: object
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Using `<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">dt.isocalendar</span><span style="font-weight: bold">()</span>`
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">   year  week  day
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2001</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">22</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2001</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">26</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2001</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">31</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2001</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">35</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2001</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Using `dt.month`
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>
+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>
+Name: date, dtype: int64
+</pre>
+</div></div>
+</div>
+</div>
 <div class="section" id="creating-a-datetime-index-and-setting-the-frequency">
-<h2>Creating a datetime index and setting the frequency<a class="headerlink" href="#creating-a-datetime-index-and-setting-the-frequency" title="Permalink to this headline">¶</a></h2>
+<h3>Creating a datetime index and setting the frequency<a class="headerlink" href="#creating-a-datetime-index-and-setting-the-frequency" title="Permalink to this headline">¶</a></h3>
 <p>For the subsequent parts, we’ll set the datetime column to be the index of the dataframe. <em>This is the standard setup you will likely want to use when dealing with time series.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1151,6 +1244,7 @@ Name: date, dtype: datetime64[ns]
 </tbody>
 </table>
 </div>
+</div>
 <div class="section" id="making-quick-time-series-plots">
 <h2>Making Quick Time Series Plots<a class="headerlink" href="#making-quick-time-series-plots" title="Permalink to this headline">¶</a></h2>
 <p>Having managed to put your time series into a dataframe, perhaps converting a column of type string into a colume of type datetime in the process, you often just want to see the thing! We can achieve this using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command, as long as we have a datetime index.</p>
@@ -1161,7 +1255,7 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_34_0.png" src="_images/time-series_34_0.png" />
+<img alt="_images/time-series_36_0.png" src="_images/time-series_36_0.png" />
 </div>
 </div>
 </div>
@@ -1217,8 +1311,16 @@ Name: date, dtype: datetime64[ns]
       <td>39.833333</td>
     </tr>
     <tr>
+      <th>2004-12-31</th>
+      <td>44.750000</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
+    </tr>
+    <tr>
+      <th>2018-12-31</th>
+      <td>47.833333</td>
     </tr>
     <tr>
       <th>2019-12-31</th>
@@ -1357,8 +1459,16 @@ Name: date, dtype: datetime64[ns]
       <td>NaN</td>
     </tr>
     <tr>
+      <th>2001-06-03</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-08-28</th>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>2021-08-29</th>
@@ -1470,7 +1580,7 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_45_0.png" src="_images/time-series_45_0.png" />
+<img alt="_images/time-series_47_0.png" src="_images/time-series_47_0.png" />
 </div>
 </div>
 </div>
@@ -1529,8 +1639,16 @@ y_t = f(\{x_{t-i} \}_{i=0}^{i=R-1})
       <td>47.5</td>
     </tr>
     <tr>
+      <th>2001-08-31</th>
+      <td>46.5</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-05-31</th>
+      <td>46.5</td>
     </tr>
     <tr>
       <th>2021-06-30</th>
@@ -1603,8 +1721,16 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
       <td>48.114754</td>
     </tr>
     <tr>
+      <th>2001-08-31</th>
+      <td>47.398374</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-05-31</th>
+      <td>38.880976</td>
     </tr>
     <tr>
       <th>2021-06-30</th>
@@ -1641,7 +1767,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_51_0.png" src="_images/time-series_51_0.png" />
+<img alt="_images/time-series_53_0.png" src="_images/time-series_53_0.png" />
 </div>
 </div>
 <p>For more tools to analyse stocks, see the <a class="reference external" href="https://twopirllc.github.io/pandas-ta/"><strong>Pandas TA</strong></a> package.</p>
@@ -1659,7 +1785,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_53_0.png" src="_images/time-series_53_0.png" />
+<img alt="_images/time-series_55_0.png" src="_images/time-series_55_0.png" />
 </div>
 </div>
 </div>
@@ -1749,7 +1875,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_56_0.png" src="_images/time-series_56_0.png" />
+<img alt="_images/time-series_58_0.png" src="_images/time-series_58_0.png" />
 </div>
 </div>
 </div>
@@ -1768,7 +1894,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_58_0.png" src="_images/time-series_58_0.png" />
+<img alt="_images/time-series_60_0.png" src="_images/time-series_60_0.png" />
 </div>
 </div>
 <p>Rememebr that the autocorrelation can tell you about likely terms to include in a moving average (MA) model.</p>
@@ -1781,7 +1907,7 @@ y_t = \frac{x_t + (1 - \alpha)x_{t-1} + (1 - \alpha)^2 x_{t-2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_60_0.png" src="_images/time-series_60_0.png" />
+<img alt="_images/time-series_62_0.png" src="_images/time-series_62_0.png" />
 </div>
 </div>
 <p>Remember that the partial autocorrelation function can tell you about likely terms to include in an autoregressive (AR) model.</p>
@@ -1903,7 +2029,7 @@ g_k = \frac{1}{n}\sum_{t=1}^{n-k} \left(y_t-\bar{y}\right) \left(x_{t+k}-\bar{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_66_0.png" src="_images/time-series_66_0.png" />
+<img alt="_images/time-series_68_0.png" src="_images/time-series_68_0.png" />
 </div>
 </div>
 <p>Let’s use our defined function on the data. We’ll add in a rough confidence interval of <span class="math notranslate nohighlight">\(\pm \frac{2}{\sqrt{n}}\)</span>.</p>
@@ -1928,7 +2054,7 @@ g_k = \frac{1}{n}\sum_{t=1}^{n-k} \left(y_t-\bar{y}\right) \left(x_{t+k}-\bar{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_68_0.png" src="_images/time-series_68_0.png" />
+<img alt="_images/time-series_70_0.png" src="_images/time-series_70_0.png" />
 </div>
 </div>
 <p>The significant correlations at lags of -3 to -5 seem to suggest that lynx numbers fall in the 3 to 5 years after high sunspot activity.</p>
@@ -2134,15 +2260,6 @@ g_k = \frac{1}{n}\sum_{t=1}^{n-k} \left(y_t-\bar{y}\right) \left(x_{t+k}-\bar{x}
   </thead>
   <tbody>
     <tr>
-      <th>2020-04-01</th>
-      <td>4876877.0</td>
-      <td>15.400016</td>
-      <td>2.378393e+13</td>
-      <td>2208.365232</td>
-      <td>-6.653369</td>
-      <td>-8.756372</td>
-    </tr>
-    <tr>
       <th>2020-07-01</th>
       <td>5302337.0</td>
       <td>15.483658</td>
@@ -2177,6 +2294,15 @@ g_k = \frac{1}{n}\sum_{t=1}^{n-k} \left(y_t-\bar{y}\right) \left(x_{t+k}-\bar{x}
       <td>2389.946443</td>
       <td>6.410316</td>
       <td>17.120936</td>
+    </tr>
+    <tr>
+      <th>2021-07-01</th>
+      <td>5818939.0</td>
+      <td>15.576629</td>
+      <td>3.386005e+13</td>
+      <td>2412.247707</td>
+      <td>1.874964</td>
+      <td>9.742911</td>
     </tr>
   </tbody>
 </table>
@@ -2225,29 +2351,29 @@ y_t' = y_t - \langle y_t \rangle
   </thead>
   <tbody>
     <tr>
-      <th>2020-04-01</th>
-      <td>4876877.0</td>
-      <td>356307.62</td>
-    </tr>
-    <tr>
       <th>2020-07-01</th>
       <td>5302337.0</td>
-      <td>781767.62</td>
+      <td>7.563094e+05</td>
     </tr>
     <tr>
       <th>2020-10-01</th>
       <td>5490052.0</td>
-      <td>969482.62</td>
+      <td>9.440244e+05</td>
     </tr>
     <tr>
       <th>2021-01-01</th>
       <td>5367754.0</td>
-      <td>847184.62</td>
+      <td>8.217264e+05</td>
     </tr>
     <tr>
       <th>2021-04-01</th>
       <td>5711844.0</td>
-      <td>1191274.62</td>
+      <td>1.165816e+06</td>
+    </tr>
+    <tr>
+      <th>2021-07-01</th>
+      <td>5818939.0</td>
+      <td>1.272911e+06</td>
     </tr>
   </tbody>
 </table>
@@ -2444,7 +2570,7 @@ y_t'  =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_83_0.png" src="_images/time-series_83_0.png" />
+<img alt="_images/time-series_85_0.png" src="_images/time-series_85_0.png" />
 </div>
 </div>
 <p>You can reverse the Box Cox transform using <strong>scipy</strong>’s <code class="docutils literal notranslate"><span class="pre">scipy.special.inv_boxcox(y,</span> <span class="pre">lmbda)</span></code> function. This is useful if you have performed an operation on the transformed data, for example a forecast, and want to transform the outputs back into the original space.</p>
@@ -2561,10 +2687,17 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_87_0.png" src="_images/time-series_87_0.png" />
+<img alt="_images/time-series_89_0.png" src="_images/time-series_89_0.png" />
 </div>
 </div>
 <p>We can see from the chart that, once adjusted for inflation, cheese was not such a great bargain in the noughties as it appeared from the nominal cost per pound. But the big fall in cheese prices between 2013 and 2017 <em>was</em> a real effect and coincided with the United States’ <a class="reference external" href="https://www.vox.com/2016/10/13/13268980/cheese-glut-united-states">great cheese surplus</a>. Supply and demand work! Of course, the costs are the same in 2021 dollars.</p>
+</div>
+<div class="section" id="feature-engineering">
+<h3>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h3>
+<p>Feature engineering, or feature extraction, is just data science talk for transformations. And, just as with the transformations we’ve seen, you need to take care whether you’re running them as if in real time or not, and whether that matters.</p>
+<p>So, is there any real difference between time series econometrics transformations and those found in data science? There isn’t in principle, but in practice the transformations used in data science are a superset of those typically used in econometrics, often because data scientists are trying to squeeze every last drop of predictability out of a time series and don’t mind creating 100s of “features”, aka regressors, to do it.</p>
+<p>In the simplest and most naive case, time series feature engineering just involve throwing the kitchen sink at features, ie extracting every metric you can think of: mean, std, max, min, difference of maximum and minimum values, median, median absolute deviation, number of peaks, skewness, kurtosis, etc, etc.</p>
+<p>There are a wide range of time series feature extraction packages available in Python. Some examples are <a class="reference external" href="https://tsfresh.readthedocs.io/"><strong>tsfresh</strong></a>, <a class="reference external" href="https://featuretools.alteryx.com/en/stable/getting_started/handling_time.html#Handling-Time"><strong>featuretools</strong></a> (not just time series), <a class="reference external" href="https://tsfel.readthedocs.io/"><strong>tsfel</strong></a>, and Facebook’s <a class="reference external" href="https://facebookresearch.github.io/Kats/"><strong>kats</strong></a> which is very comprehensive but not as lightweight as it claims (it offers forecasting, detection, and time series feature extraction but because it depends on STAN and PyStan, you may have issues using it on Windows—especially on corporate IT systems that are locked down). You can get a sense of the typical features that you can extract from these packages from the default list of <a class="reference external" href="https://tsfel.readthedocs.io/en/latest/descriptions/feature_list.html">features extracted by <strong>tsfresh</strong></a>.</p>
 </div>
 </div>
 <div class="section" id="stationarity-and-unit-root-testing">
@@ -2577,7 +2710,6 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">arch.data.default</span>
 <span class="kn">from</span> <span class="nn">arch.unitroot</span> <span class="kn">import</span> <span class="n">ADF</span>
 <span class="kn">from</span> <span class="nn">arch.unitroot</span> <span class="kn">import</span> <span class="n">KPSS</span>
-<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 
 <span class="n">default_data</span> <span class="o">=</span> <span class="n">arch</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 <span class="n">default</span> <span class="o">=</span> <span class="n">default_data</span><span class="o">.</span><span class="n">BAA</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2597,7 +2729,7 @@ y_\omega = y_t \frac{\pi_{\omega}} {\pi_t}
 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1919</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">05</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">01</span>    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.70</span>
 Name: default, dtype: float64
 </pre>
-</div><img alt="_images/time-series_90_1.png" src="_images/time-series_90_1.png" />
+</div><img alt="_images/time-series_93_1.png" src="_images/time-series_93_1.png" />
 </div>
 </div>
 <p>Let’s now do some unit root testing.</p>
@@ -2677,8 +2809,8 @@ Name: default, dtype: float64
 Dep. Variable:                      y   R-squared:                       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.095</span>
 Model:                            OLS   Adj. R-squared:                  <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.090</span>
 Method:                 Least Squares   F-statistic:                     <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17.83</span>
-Date:                Tue, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span> Oct <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>   Prob <span style="font-weight: bold">(</span>F-statistic<span style="font-weight: bold">)</span>:           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.30e-22</span>
-Time:                        <span style="color: #00ff00; text-decoration-color: #00ff00; font-weight: bold">11:55:34</span>   Log-Likelihood:                 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">630.15</span>
+Date:                Tue, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">02</span> Nov <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>   Prob <span style="font-weight: bold">(</span>F-statistic<span style="font-weight: bold">)</span>:           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.30e-22</span>
+Time:                        <span style="color: #00ff00; text-decoration-color: #00ff00; font-weight: bold">17:42:46</span>   Log-Likelihood:                 <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">630.15</span>
 No. Observations:                <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1194</span>   AIC:                            <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1244</span>.
 Df Residuals:                    <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1186</span>   BIC:                            <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">-1204</span>.
 Df Model:                           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>                                         
@@ -2755,41 +2887,81 @@ strong multicollinearity or other numerical problems.
 
 <span class="c1"># Transform: add new columns with useful transformations</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_cases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020-04-01&#39;</span><span class="p">:</span><span class="s2">&quot;2021-02-01&quot;</span><span class="p">,</span> <span class="s1">&#39;new_cases&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020-04-01&#39;</span><span class="p">:</span><span class="s2">&quot;2021-02-01&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;new_cases&#39;</span><span class="p">]]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
-2020-04-01    26930.0
-2020-04-02    29717.0
-2020-04-03    32318.0
-2020-04-04    35099.0
-2020-04-05    25616.0
-Freq: D, Name: new_cases, dtype: float64
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>new_cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-04-01</th>
+      <td>26930.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-02</th>
+      <td>29717.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-03</th>
+      <td>32318.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-04</th>
+      <td>35099.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-05</th>
+      <td>25616.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Let’s plot the data (remember: always plot the data)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_covid_data</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
     <span class="n">dataframe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;New COVID-19 cases, U.S.&quot;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;New COVID-19 cases, U.S.&quot;</span><span class="p">)</span>
 
 <span class="n">plot_covid_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_104_0.png" src="_images/time-series_104_0.png" />
+<img alt="_images/time-series_107_0.png" src="_images/time-series_107_0.png" />
 </div>
 </div>
 <p>Already we can see that there’s a lot of high-frequency variation in these data, with variation that gets stronger over time and some holiday-based outliers. Let’s hone in on a few months to make it easier to see what’s happening:</p>
@@ -2800,7 +2972,7 @@ Freq: D, Name: new_cases, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_106_0.png" src="_images/time-series_106_0.png" />
+<img alt="_images/time-series_109_0.png" src="_images/time-series_109_0.png" />
 </div>
 </div>
 <p>Now it’s clear there’s a strong weekly pattern (or <em>every 7th entry</em> in our daily frequency data).</p>
@@ -2823,7 +2995,7 @@ y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_108_0.png" src="_images/time-series_108_0.png" />
+<img alt="_images/time-series_111_0.png" src="_images/time-series_111_0.png" />
 </div>
 </div>
 <p>Now let’s try some methods of seasonal adjustment!</p>
@@ -2852,13 +3024,16 @@ y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + 
 <p>Let’s take a look at the modified series:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_seasonal_decomp</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">AutoMinorLocator</span>
+
+<span class="k">def</span> <span class="nf">plot_seasonal_decomp</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;log new cases&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
     <span class="n">seasonal</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
     <span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trend&quot;</span><span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_cases&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
     <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
@@ -2866,6 +3041,9 @@ y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + 
         <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_off</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 
@@ -2874,7 +3052,7 @@ y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_112_0.png" src="_images/time-series_112_0.png" />
+<img alt="_images/time-series_115_0.png" src="_images/time-series_115_0.png" />
 </div>
 </div>
 </div>
@@ -2900,6 +3078,9 @@ y_t = \underbrace{\mu_t}_\text{trend} + \underbrace{\gamma_t}_\text{seasonal} + 
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2912,9 +3093,6 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f= -4.12166D-01    |proj g|=  4.06544D-01
 
 At iterate    5    f= -6.87789D-01    |proj g|=  5.75225D-03
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -6.89516D-01    |proj g|=  6.66378D-03
@@ -2952,7 +3130,7 @@ CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_115_0.png" src="_images/time-series_115_0.png" />
+<img alt="_images/time-series_118_0.png" src="_images/time-series_118_0.png" />
 </div>
 </div>
 </div>
@@ -2970,7 +3148,7 @@ CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/time-series_117_0.png" src="_images/time-series_117_0.png" />
+<img alt="_images/time-series_120_0.png" src="_images/time-series_120_0.png" />
 </div>
 </div>
 </div>
@@ -2983,7 +3161,7 @@ CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL
 <span class="n">uc_res</span> <span class="o">=</span> <span class="n">uc_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">uc_seasonal</span> <span class="o">=</span> <span class="n">uc_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;seasonal&#39;</span><span class="p">]</span>
 <span class="n">uc_trend</span> <span class="o">=</span> <span class="n">uc_res</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span>
-<span class="n">uc_resid</span> <span class="o">=</span> <span class="n">df</span> <span class="o">-</span> <span class="n">uc_trend</span> <span class="o">-</span> <span class="n">uc_seasonal</span>
+<span class="n">uc_resid</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_cases&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">uc_trend</span> <span class="o">-</span> <span class="n">uc_seasonal</span>
 
 <span class="c1"># plot results</span>
 <span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">uc_trend</span><span class="p">,</span> <span class="n">uc_seasonal</span><span class="p">,</span> <span class="n">uc_resid</span><span class="p">,</span> <span class="s2">&quot;Unobserved Components (smooth trend)&quot;</span><span class="p">)</span>
@@ -3031,7 +3209,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
-<img alt="_images/time-series_119_2.png" src="_images/time-series_119_2.png" />
+<img alt="_images/time-series_122_2.png" src="_images/time-series_122_2.png" />
 </div>
 </div>
 </div>
@@ -3044,6 +3222,769 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 <div class="section" id="holidays">
 <h2>Holidays<a class="headerlink" href="#holidays" title="Permalink to this headline">¶</a></h2>
+<p>Everyone enjoys a holiday, except time series econometricians. Holidays mess up those neat models of seasonality we saw in the previous section. Have no fear though, because we are now going to look at some ways to account for holidays.</p>
+<p>We’ll be using the <a class="reference external" href="https://workalendar.github.io/workalendar/"><strong>workalendar</strong></a> package which, as ever, you may need to install separately. Workalendar is a Python module that can provide lists of secular and religious holidays for a wide range of countries. (An alternative package is <a class="reference external" href="https://github.com/dr-prodigy/python-holidays"><strong>holidays</strong></a>).) Once we have the right holidays for the right country, we can proceed to control for them.</p>
+<p>Here’s an example of grabbing holidays for the United States of America for 2020</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">workalendar.usa</span> <span class="kn">import</span> <span class="n">UnitedStates</span>
+
+<span class="n">cal</span> <span class="o">=</span> <span class="n">UnitedStates</span><span class="p">()</span>
+<span class="n">usa_hols_21_22</span> <span class="o">=</span> <span class="n">cal</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span> <span class="o">+</span> <span class="n">cal</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usa_hols_21_22</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'New year'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Birthday of Martin Luther King, Jr.'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">"Washington's Birthday"</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Memorial Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Independence Day (Observed)'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Independence Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Labor Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Columbus Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Veterans Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">26</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Thanksgiving Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2020</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Christmas Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'New year'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">18</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Birthday of Martin Luther King, Jr.'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">"Washington's Birthday"</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">31</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Memorial Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Independence Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Independence Day (Observed)'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Labor Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Columbus Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Veterans Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Thanksgiving Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Christmas Day (Observed)'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">25</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'Christmas Day'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">datetime.date</span><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2021</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">31</span><span style="font-weight: bold">)</span>, <span style="color: #008000; text-decoration-color: #008000">'New Years Day (Observed)'</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">]</span>
+</pre>
+</div></div>
+</div>
+<p>If you got to grips with types in the <a class="reference internal" href="code-basics.html#code-basics"><span class="std std-ref">Basics of Coding</span></a> chapter, you’ll know that this is a list of tuples. The first entry in each tuple is a datetime, the second is the name of the holiday.</p>
+<p>As well as this national representation of the USA’s holidays, state level holiday lists are available. To see the available countries, check the github page or use Visual Studio Code’s autocomplete (type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">workalendar.</span></code> and the country and continent options should appear; type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">workalendar.europe.</span></code> to see the European countries).</p>
+<p>Let’s put these holidays into a dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_hols</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">usa_hols_21_22</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;holiday&quot;</span><span class="p">])</span>
+<span class="n">df_hols</span> <span class="o">=</span> <span class="n">df_hols</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]))</span>
+<span class="n">df_hols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>holiday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-01</td>
+      <td>New year</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-20</td>
+      <td>Birthday of Martin Luther King, Jr.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-02-17</td>
+      <td>Washington's Birthday</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-05-25</td>
+      <td>Memorial Day</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2021-11-25</td>
+      <td>Thanksgiving Day</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2021-12-24</td>
+      <td>Christmas Day (Observed)</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2021-12-25</td>
+      <td>Christmas Day</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2021-12-31</td>
+      <td>New Years Day (Observed)</td>
+    </tr>
+  </tbody>
+</table>
+<p>24 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>How might we be able to use this in analysis? Let’s merge it with our COVID-19 data. Note that we’re only interested in holidays that fall within the date range of our COVID data so when we do the merge, we use <code class="docutils literal notranslate"><span class="pre">how=&quot;right&quot;</span></code>. We’re also resetting the index so that <code class="docutils literal notranslate"><span class="pre">date</span></code> appears as column in <em>both</em> dataframes (and making the <code class="docutils literal notranslate"><span class="pre">date</span></code> the index again afterwards with <code class="docutils literal notranslate"><span class="pre">set_index</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_hols</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">19</span><span class="p">:</span><span class="o">-</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>holiday</th>
+      <th>new_cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-14</th>
+      <td>NaN</td>
+      <td>12.386401</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>NaN</td>
+      <td>12.387782</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>NaN</td>
+      <td>12.216978</td>
+    </tr>
+    <tr>
+      <th>2021-01-17</th>
+      <td>NaN</td>
+      <td>12.044107</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>Birthday of Martin Luther King, Jr.</td>
+      <td>11.857458</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>NaN</td>
+      <td>12.138564</td>
+    </tr>
+    <tr>
+      <th>2021-01-20</th>
+      <td>NaN</td>
+      <td>12.130745</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>NaN</td>
+      <td>12.157313</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s create a new column with a dummy for when a date is a holiday:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;holiday&quot;</span><span class="p">]),</span> <span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">19</span><span class="p">:</span><span class="o">-</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>holiday</th>
+      <th>new_cases</th>
+      <th>dummy</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-14</th>
+      <td>NaN</td>
+      <td>12.386401</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>NaN</td>
+      <td>12.387782</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>NaN</td>
+      <td>12.216978</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-17</th>
+      <td>NaN</td>
+      <td>12.044107</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>Birthday of Martin Luther King, Jr.</td>
+      <td>11.857458</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>NaN</td>
+      <td>12.138564</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-20</th>
+      <td>NaN</td>
+      <td>12.130745</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>NaN</td>
+      <td>12.157313</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we have a dataset with new cases by date and with a dummy indicator for whether a period is a holiday or not. A typical way of including the effect of holidays in a regression would be to use a model like the following:</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \mu_t + \gamma_t + \underbrace{\beta_1 x_{1t}}_\text{Thanksgiving} + \underbrace{\beta_2 x_{2t}}_\text{Christmas} + \underbrace{\beta_3 x_{3t}}_\text{New Year's Day} + \varepsilon_t
+\]</div>
+<p>This is very similar to the seasonal only model we saw in the previous section, it just has a small number of dedicated dummy variables to capture the effects of a holiday. To create the design matrix for a regression that directly made use of these dummy variables, we could use <strong>pandas</strong> get dummies function (use <code class="docutils literal notranslate"><span class="pre">drop_first=True</span></code> if you have a constant term and want to avoid the dummy variable trap):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;dummy&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">:</span><span class="o">-</span><span class="mi">35</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>new_cases</th>
+      <th>dummy</th>
+      <th>dummy_Birthday of Martin Luther King, Jr.</th>
+      <th>dummy_Christmas Day</th>
+      <th>dummy_Columbus Day</th>
+      <th>dummy_Independence Day</th>
+      <th>dummy_Independence Day (Observed)</th>
+      <th>dummy_Labor Day</th>
+      <th>dummy_Memorial Day</th>
+      <th>dummy_New year</th>
+      <th>dummy_Thanksgiving Day</th>
+      <th>dummy_Veterans Day</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-12-24</th>
+      <td>12.173090</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2020-12-25</th>
+      <td>11.522192</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2020-12-26</th>
+      <td>12.287012</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2020-12-27</th>
+      <td>11.932221</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2020-12-28</th>
+      <td>12.149555</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="seasonal-and-holiday-adjustment">
+<h3>Seasonal and Holiday Adjustment<a class="headerlink" href="#seasonal-and-holiday-adjustment" title="Permalink to this headline">¶</a></h3>
+<p>Although directly carrying out regressions with dummy variables is one way to control for holidays, some models offer an easier alternative and now we’re going to take an example from the previous section, on seasonal adjustment, to show how.</p>
+<p>We’ll use the unobserved components model because that allows us to pass in an <code class="docutils literal notranslate"><span class="pre">exog</span></code> series full of seasonal dummy variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc_hols_mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">UnobservedComponents</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_cases&quot;</span><span class="p">],</span> <span class="s1">&#39;smooth trend&#39;</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">])</span>
+<span class="n">uc_hols</span> <span class="o">=</span> <span class="n">uc_hols_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">uc_hols_seasonal</span> <span class="o">=</span> <span class="n">uc_hols</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;seasonal&#39;</span><span class="p">]</span>
+<span class="n">uc_hols_trend</span> <span class="o">=</span> <span class="n">uc_hols</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span>
+<span class="n">uc_hols_resid</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_cases&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">uc_hols_trend</span> <span class="o">-</span> <span class="n">uc_hols_seasonal</span>
+
+<span class="c1"># plot results</span>
+<span class="n">plot_seasonal_decomp</span><span class="p">(</span><span class="n">uc_hols_trend</span><span class="p">,</span> <span class="n">uc_hols_seasonal</span><span class="p">,</span> <span class="n">uc_hols_resid</span><span class="p">,</span> <span class="s2">&quot;Unobserved Components (smooth trend)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            4     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  9.81463D-01    |proj g|=  1.60210D+00
+
+At iterate    5    f= -3.25129D-01    |proj g|=  3.29155D+00
+
+At iterate   10    f= -6.85052D-01    |proj g|=  3.23266D+00
+
+At iterate   15    f= -7.71125D-01    |proj g|=  1.55939D-01
+
+At iterate   20    f= -7.73498D-01    |proj g|=  1.34792D+00
+
+At iterate   25    f= -7.74148D-01    |proj g|=  1.01328D-04
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    4     25     52      1     0     0   1.013D-04  -7.741D-01
+  F = -0.77414806699262395     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<img alt="_images/time-series_135_2.png" src="_images/time-series_135_2.png" />
+</div>
+</div>
+<p>Did this model do better than the same unobserved components model without the dummy indicators for holidays? We can test that directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The error was </span><span class="si">{</span><span class="p">(</span><span class="n">uc_hols_resid</span><span class="o">/</span><span class="n">uc_resid</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">% of the model without holidays.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">The error was <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">89</span>% of the model without holidays.
+</pre>
+</div></div>
+</div>
+<p>So, indeed, adding holidays as exogenous factors created a <em>reduction</em> in error in the model.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Explore how consistent the reduction in error is. You may want to plot some exploratory charts, including a <code class="docutils literal notranslate"><span class="pre">hist</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="granger-causality">
+<h2>Granger Causality<a class="headerlink" href="#granger-causality" title="Permalink to this headline">¶</a></h2>
+<p>Granger causality is not causality at all; you can find out more about that in the Chapter on <a class="reference internal" href="econmt-causal-inference.html#econmet-causal-inference"><span class="std std-ref">Causal Inference</span></a>! What this test really tells us is whether two series are temporally related, and if one series is useful for predicting another. More formally, a time series <span class="math notranslate nohighlight">\(x_t\)</span> Granger-causes another time series <span class="math notranslate nohighlight">\(y_t\)</span> if predictions of the value of <span class="math notranslate nohighlight">\(y_t\)</span> based on its own past values <em>and</em> on the past values of <span class="math notranslate nohighlight">\(x\)</span> are better than predictions of <span class="math notranslate nohighlight">\(y\)</span> based only on <span class="math notranslate nohighlight">\(y\)</span>’s own past values.</p>
+<p>The null for a Granger causality test is that <span class="math notranslate nohighlight">\(x\)</span> does not provide additional value for predicting <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><strong>statsmodels</strong> provides a convenient method for performing Granger causality tests within its <code class="docutils literal notranslate"><span class="pre">tsa.stattools</span></code> module. The test asks whether the time series in the second column Granger causes the time series in the first column, ie use it as <code class="docutils literal notranslate"><span class="pre">test(caused,</span> <span class="pre">causing)</span></code>.</p>
+<p>Let’s load some macroeconomic data to run the test on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">grangercausalitytests</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">macrodata</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s2">&quot;realgdp&quot;</span><span class="p">,</span> <span class="s2">&quot;realcons&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>realgdp</th>
+      <th>realcons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.025256</td>
+      <td>0.015404</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.001192</td>
+      <td>0.010440</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.003501</td>
+      <td>0.001085</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.022438</td>
+      <td>0.009580</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.004674</td>
+      <td>0.012652</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And now the test of whether (growth in) real consumption Granger causes (growth in) real GDP. We will use 1 lag. The Granger test actually produces a set of statistics and returns a dictionary that contains all of them (it’s first key is the lag).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">granger_results</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=28.7248 , p=0.0000  , df_denom=198, df_num=1
+ssr based chi2 test:   chi2=29.1600 , p=0.0000  , df=1
+likelihood ratio test: chi2=27.2295 , p=0.0000  , df=1
+parameter F test:         F=28.7248 , p=0.0000  , df_denom=198, df_num=1
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, there’s an emphatic relationship between the series. When choosing lags, note that there is a trade-off between bias and power. With too few lags the test may be biased because of residual auto-correlation. Too many, and you risk spurious rejections of the null because of random correlations. For more on how to properly choose lags and perform this test, look at the <a class="reference external" href="https://davegiles.blogspot.com/2011/04/testing-for-granger-causality.html">entry on Granger tests on Dave Giles’ blog</a>.</p>
+</div>
+<div class="section" id="breaks-and-changepoint-detection">
+<h2>Breaks and Changepoint Detection<a class="headerlink" href="#breaks-and-changepoint-detection" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Everything you say to me<br />
+Takes me one step closer to the edge<br />
+And I’m about to break</p>
+</div></blockquote>
+<p>—— Linkin Park, Hybrid Theory (2000); also, time series</p>
+<p>COVID-19 has brought a period of extreme structural change in the economy, and in time series related to the economy. It is useful to have tests for when time series have fundamentally changed due to a <em>break</em> or <em>changepoint</em>. What do we mean by fundamentally? The <em>moments</em> have changed; the mean, the variance, and so on.</p>
+<p>Note that this is different from an anomaly, which is an outlier. A break suggests a change that has occurred between the before times and the after times; an anomaly is an observation that seems not to fit an ongoing pattern.</p>
+<p>Perhaps the most widely used changepoint detection package is <a class="reference external" href="https://github.com/deepcharles/ruptures"><strong>ruptures</strong></a>. Let’s see if we can detect some distinct changes in the growth of the UK’s productivity (measured per hour).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">series_id</span> <span class="o">=</span> <span class="s2">&quot;PRDY&quot;</span>
+<span class="n">timeseries_id</span> <span class="o">=</span> <span class="s2">&quot;LZVC&quot;</span>
+
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.ons.gov.uk/timeseries/</span><span class="si">{</span><span class="n">timeseries_id</span><span class="si">}</span><span class="s2">/dataset/</span><span class="si">{</span><span class="n">series_id</span><span class="si">}</span><span class="s2">/data&quot;</span>
+
+<span class="c1"># Get the data from the ONS API:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;quarters&quot;</span><span class="p">]))</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Output per hour: growth&quot;</span><span class="p">})</span>
+<span class="c1"># Convert 1959 Q3 format to a proper datetime, eg 1959-09-30</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mi">3</span><span class="p">)),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">days</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Output per hour: growth</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1972-03-31</th>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>1972-06-30</th>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <th>1972-09-30</th>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <th>1972-12-31</th>
+      <td>2.4</td>
+    </tr>
+    <tr>
+      <th>1973-03-31</th>
+      <td>2.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>ruptures</strong> has many offline changepoint detection methods, some of which require the user to supply the number of breaks. Let’s look at a fully <em>unsupervised</em> algorithm, Pelt, which stands for Penalised change point detection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ruptures</span> <span class="k">as</span> <span class="nn">rpt</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+
+<span class="c1"># detection</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">rpt</span><span class="o">.</span><span class="n">Pelt</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Output per hour: growth&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">break_indices</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pen</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_break_points</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">brk_pts</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">color_cycle</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">])</span>
+    <span class="c1"># change brk_pts results to index positions:</span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">entry</span><span class="p">]</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">brk_pts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="c1"># change positions to pairs of positions</span>
+    <span class="n">pairs_pos</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+    <span class="c1"># iterate over pairs of positions:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pairs_pos</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">color_cycle</span><span class="p">))</span>
+        <span class="c1"># vertical lines to mark the break points</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+            <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot; (changepoint detection)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">plot_break_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Output per hour: growth&quot;</span><span class="p">,</span> <span class="n">break_indices</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_147_0.png" src="_images/time-series_147_0.png" />
+</div>
+</div>
+<p>This looks plausible, but you can get very different results depending on the value you use for the penalty (<code class="docutils literal notranslate"><span class="pre">pen=</span></code>)</p>
+<p>We can manufacture a clearer example by creating some fake data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate signal</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
+<span class="n">n_bkps</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># number of breakpoints</span>
+<span class="n">signal</span><span class="p">,</span> <span class="n">bkps</span> <span class="o">=</span> <span class="n">rpt</span><span class="o">.</span><span class="n">pw_constant</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">n_bkps</span><span class="p">,</span> <span class="n">noise_std</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;synthetic data&quot;</span><span class="p">])</span>
+
+<span class="c1"># detection</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">rpt</span><span class="o">.</span><span class="n">Pelt</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="s2">&quot;synthetic data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">break_indices</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pen</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">plot_break_points</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="s2">&quot;synthetic data&quot;</span><span class="p">,</span> <span class="n">break_indices</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/time-series_149_0.png" src="_images/time-series_149_0.png" />
+</div>
+</div>
+<div class="section" id="see-also">
+<h3>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h3>
+<p>Although <strong>ruptures</strong> contains a number of changepoint detection algorithms, it’s not the only package around. Facebook has developed both <a class="reference external" href="https://facebook.github.io/prophet/"><strong>prophet</strong></a>, which is a Bayesian auto-time series prediction package that comes with break point detection, and <a class="reference external" href="https://facebookresearch.github.io/Kats/"><strong>kats</strong></a>, which uses a cumulative sum-based changepoint detection algorithm. For the matrix profile approach, see <a class="reference external" href="https://github.com/target/matrixprofile-ts"><strong>matrixprofile-ts</strong></a> and <a class="reference external" href="https://stumpy.readthedocs.io/en/latest/"><strong>stumpy</strong></a>. The <a class="reference external" href="https://schuetzgroup.github.io/sdt-python/changepoint.html"><strong>sdt</strong></a> library, while ostensibly for fluorescence microscopy, provides online and offline Bayesian changepoint detection.</p>
+</div>
 </div>
 </div>
 

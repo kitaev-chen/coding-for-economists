@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -237,6 +239,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="text-intro.html">
    Introduction to Text
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text-regex.html">
+   Regular Expressions, aka regex
   </a>
  </li>
  <li class="toctree-l1">
@@ -625,7 +632,7 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, you’ll learn the basics of geospatial analysis with code.</p>
-<p>You should be aware when following this chapter that installing geographic analysis packages isn’t always the easiest and things can and do go wrong! (Some geospatial analysis courses recommend running everything in a Docker container.) If you’re not familiar with Docker and you’re installing everything locally, a strong recommendation is to use conda. There’s a brief guide on installing packages in the Chapter on <span class="xref std std-ref">code-preliminaries</span>.</p>
+<p>You should be aware when following this chapter that installing geographic analysis packages isn’t always the easiest and things can and do go wrong! (Some geospatial analysis courses recommend running everything in a Docker container.) If you’re not familiar with Docker and you’re installing everything locally, a strong recommendation is to use conda. There’s a brief guide on installing packages in the Chapter on <a class="reference internal" href="code-preliminaries.html#code-preliminaries"><span class="std std-ref">Preliminaries</span></a>.</p>
 <p>There are two types of spatial data geographic information systems (GIS): vector and raster. Vector spatial data are made up of vertices and paths. These are represented computationally by points (zero-dimensional objects, if you like), lines (1D objects), and polygons (2D objects, aka an area). Vector data are analogous to vector image formats, like .eps and .pdf, they are smooth and well-defined regardless of the level of zoom you look at them (on a map). Raster data are composed of pixels, also known as grid cells. Each cell has a different value and the raster map is overlaid on a map. Raster data are better for continuous variables such as temperature or rainfall, while vector data are better suited to political boundaries and features like roads. In this book, we’ll only cover vector geospatial data analysis (if you need to work with rasters, check out <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/">rasterio</a>).</p>
 <p>Common file formats for vector data include Shapefile (.shp…), GeoJSON/JSON, KML and GeoPackage.</p>
 <div class="section" id="coordinate-reference-systems">
@@ -932,7 +939,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_38062/4176831303.py:1: UserWarning: Geometry is in a geographic CRS. Results from &#39;centroid&#39; are likely incorrect. Use &#39;GeoSeries.to_crs()&#39; to re-project geometries to a projected CRS before this operation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_31382/4176831303.py:1: UserWarning: Geometry is in a geographic CRS. Results from &#39;centroid&#39; are likely incorrect. Use &#39;GeoSeries.to_crs()&#39; to re-project geometries to a projected CRS before this operation.
 
   df[&quot;centroid&quot;] = df.centroid
 </pre></div>
@@ -1852,7 +1859,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;British Library, 96, Euston Road, St Pancras, London Borough of Camden, London, Camden Town, Greater London, England, NW1 2DB, United Kingdom&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;British Library, 96, Euston Road, St Pancras, London Borough of Camden, London, Greater London, England, NW1 2DB, United Kingdom&#39;
 </pre></div>
 </div>
 </div>
@@ -2028,7 +2035,7 @@ Name: geometry, dtype: geometry
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Borough Market, Bedale Street, Borough, London Borough of Southwark, London, Greater London, England, SE1 9QG, United Kingdom&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Borough Market, Winchester Square, Bankside, Borough, London Borough of Southwark, London, Greater London, England, SE1 9BH, United Kingdom&#39;
 </pre></div>
 </div>
 </div>

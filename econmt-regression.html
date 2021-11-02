@@ -244,6 +244,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="text-regex.html">
+   Regular Expressions, aka regex
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    Natural Language Processing
   </a>
@@ -646,7 +651,7 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, you’ll learn how to run linear regressions with code.</p>
-<p>If you’re running this code (either by copying and pasting it, or by downloading it using the icons at the top of the page), you may need to install the packages it uses first. There’s a brief guide to installing packages in the Chapter on <span class="xref std std-ref">code-preliminaries</span>.</p>
+<p>If you’re running this code (either by copying and pasting it, or by downloading it using the icons at the top of the page), you may need to install the packages it uses first. There’s a brief guide to installing packages in the Chapter on <a class="reference internal" href="code-preliminaries.html#code-preliminaries"><span class="std std-ref">Preliminaries</span></a>.</p>
 <p>Most of this chapter will rely on <a class="reference external" href="https://www.statsmodels.org/stable/index.html">statsmodels</a> with some use of <a class="reference external" href="https://bashtage.github.io/linearmodels/"><strong>linearmodels</strong></a>. Some of the material in this chapter follows <a class="reference external" href="https://grantmcdermott.com/">Grant McDermott</a>’s excellent notes and the <a class="reference external" href="https://lost-stats.github.io/">Library of Statistical Translation</a>.</p>
 <div class="section" id="notation-and-basic-definitions">
 <h3>Notation and basic definitions<a class="headerlink" href="#notation-and-basic-definitions" title="Permalink to this headline">¶</a></h3>
@@ -851,8 +856,8 @@ y = x'\cdot \hat{\beta} + \epsilon
 Dep. Variable:                   mass   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.001
 Method:                 Least Squares   F-statistic:                     1.040
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):              0.312
-Time:                        11:54:28   Log-Likelihood:                -385.50
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):              0.312
+Time:                        17:37:41   Log-Likelihood:                -385.50
 No. Observations:                  59   AIC:                             775.0
 Df Residuals:                      57   BIC:                             779.2
 Df Model:                           1                                         
@@ -938,8 +943,8 @@ Notes:
 Dep. Variable:                   mass   R-squared:                       0.580
 Model:                            OLS   Adj. R-squared:                  0.572
 Method:                 Least Squares   F-statistic:                     77.18
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           4.02e-12
-Time:                        11:54:29   Log-Likelihood:                -252.48
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           4.02e-12
+Time:                        17:37:41   Log-Likelihood:                -252.48
 No. Observations:                  58   AIC:                             509.0
 Df Residuals:                      56   BIC:                             513.1
 Df Model:                           1                                         
@@ -984,8 +989,8 @@ Method:                          IRLS   Df Model:                            1
 Norm:                     TrimmedMean                                         
 Scale Est.:                       mad                                         
 Cov Type:                          H1                                         
-Date:                Tue, 19 Oct 2021                                         
-Time:                        11:54:29                                         
+Date:                Tue, 02 Nov 2021                                         
+Time:                        17:37:41                                         
 No. Iterations:                     7                                         
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
@@ -1056,8 +1061,8 @@ If the model instance has been used for another fit with different fit parameter
 Dep. Variable:                   mass   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.001
 Method:                 Least Squares   F-statistic:                     52.75
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           1.16e-09
-Time:                        11:54:29   Log-Likelihood:                -385.50
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           1.16e-09
+Time:                        17:37:42   Log-Likelihood:                -385.50
 No. Observations:                  59   AIC:                             775.0
 Df Residuals:                      57   BIC:                             779.2
 Df Model:                           1                                         
@@ -1112,8 +1117,8 @@ errors in panel data, again with keyword arguments; and</p></li>
 Dep. Variable:                   mass   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                     39.44
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           2.63e-07
-Time:                        11:54:29   Log-Likelihood:                -361.23
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           2.63e-07
+Time:                        17:37:42   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1154,8 +1159,8 @@ Notes:
 Dep. Variable:                   mass   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                     35.10
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           1.96e-06
-Time:                        11:54:29   Log-Likelihood:                -361.23
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           1.96e-06
+Time:                        17:37:42   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1325,8 +1330,8 @@ Notes:
 Dep. Variable:                    mpg   R-squared:                       0.754
 Model:                            OLS   Adj. R-squared:                  0.727
 Method:                 Least Squares   F-statistic:                     28.59
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           1.14e-08
-Time:                        11:54:30   Log-Likelihood:                -79.948
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           1.14e-08
+Time:                        17:37:42   Log-Likelihood:                -79.948
 No. Observations:                  32   AIC:                             167.9
 Df Residuals:                      28   BIC:                             173.8
 Df Model:                           3                                         
@@ -1464,43 +1469,43 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
   <tbody>
     <tr>
       <th>0</th>
-      <td>36</td>
-      <td>162021</td>
-      <td>0.535016</td>
-      <td>-1.654373</td>
-      <td>-7.114835</td>
+      <td>30</td>
+      <td>101987</td>
+      <td>-0.736873</td>
+      <td>0.551718</td>
+      <td>0.053607</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>18</td>
-      <td>101629</td>
-      <td>1.006278</td>
-      <td>0.744302</td>
-      <td>4.968069</td>
+      <td>19</td>
+      <td>54254</td>
+      <td>-0.319464</td>
+      <td>1.419650</td>
+      <td>3.456211</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>32</td>
-      <td>69792</td>
-      <td>0.715478</td>
-      <td>-0.158635</td>
-      <td>0.049909</td>
+      <td>5</td>
+      <td>33747</td>
+      <td>0.220442</td>
+      <td>-1.325266</td>
+      <td>-2.395340</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>33</td>
-      <td>180397</td>
-      <td>1.693769</td>
-      <td>-0.127705</td>
-      <td>0.521023</td>
+      <td>15</td>
+      <td>9778</td>
+      <td>0.867588</td>
+      <td>2.162585</td>
+      <td>9.164983</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>43</td>
-      <td>16861</td>
-      <td>-2.200274</td>
-      <td>0.436129</td>
-      <td>-4.528501</td>
+      <td>36</td>
+      <td>13070</td>
+      <td>0.118795</td>
+      <td>0.402456</td>
+      <td>2.327414</td>
     </tr>
   </tbody>
 </table>
@@ -1521,19 +1526,19 @@ y_i = x_i\cdot \beta + z_i\cdot \gamma +\epsilon_i
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         Absorbing LS Estimation Summary                          
 ==================================================================================
-Dep. Variable:                      y   R-squared:                          0.9399
-Estimator:               Absorbing LS   Adj. R-squared:                     0.9250
-No. Observations:             1000000   F-statistic:                     9.846e+06
-Date:                Tue, Oct 19 2021   P-value (F-stat):                   0.0000
-Time:                        11:54:35   Distribution:                      chi2(2)
-Cov. Estimator:                robust   R-squared (No Effects):             0.9090
+Dep. Variable:                      y   R-squared:                          0.9388
+Estimator:               Absorbing LS   Adj. R-squared:                     0.9236
+No. Observations:             1000000   F-statistic:                     9.855e+06
+Date:                Tue, Nov 02 2021   P-value (F-stat):                   0.0000
+Time:                        17:37:47   Distribution:                      chi2(2)
+Cov. Estimator:                robust   R-squared (No Effects):             0.9093
                                         Varaibles Absorbed:              1.987e+05
                              Parameter Estimates                              
 ==============================================================================
             Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
 ------------------------------------------------------------------------------
-exog_0         1.0006     0.0010     990.43     0.0000      0.9986      1.0026
-exog_1         2.9970     0.0010     2981.8     0.0000      2.9951      2.9990
+exog_0         1.0000     0.0010     989.72     0.0000      0.9980      1.0019
+exog_1         2.9998     0.0010     2977.4     0.0000      2.9978      3.0018
 ==============================================================================
 </pre></div>
 </div>
@@ -1771,8 +1776,8 @@ hp:disp       -0.0001   1.91e-05     -7.409      0.000      -0.000      -0.000
 Dep. Variable:                      y   R-squared:                       0.014
 Model:                            OLS   Adj. R-squared:                 -0.005
 Method:                 Least Squares   F-statistic:                    0.7446
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):              0.392
-Time:                        11:54:35   Log-Likelihood:                -361.23
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):              0.392
+Time:                        17:37:47   Log-Likelihood:                -361.23
 No. Observations:                  55   AIC:                             726.5
 Df Residuals:                      53   BIC:                             730.5
 Df Model:                           1                                         
@@ -1934,8 +1939,8 @@ Notes:
 Dep. Variable:                      y   R-squared:                       0.998
 Model:                            OLS   Adj. R-squared:                  0.998
 Method:                 Least Squares   F-statistic:                 4.302e+04
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):          6.90e-261
-Time:                        11:54:35   Log-Likelihood:                 165.45
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):          6.90e-261
+Time:                        17:37:48   Log-Likelihood:                 165.45
 No. Observations:                 200   AIC:                            -324.9
 Df Residuals:                     197   BIC:                            -315.0
 Df Model:                           2                                         
@@ -2133,8 +2138,8 @@ x_{2i} &amp; = z_{1i}\hat{\delta} + z_{2i}\hat{\gamma} + \nu_i\end{split}
 Dep. Variable:          np.log(packs)   R-squared:                      0.9659
 Estimator:                    IV-2SLS   Adj. R-squared:                 0.9279
 No. Observations:                  96   F-statistic:                 3.339e+16
-Date:                Tue, Oct 19 2021   P-value (F-stat)                0.0000
-Time:                        11:54:35   Distribution:                 chi2(50)
+Date:                Tue, Nov 02 2021   P-value (F-stat)                0.0000
+Time:                        17:37:48   Distribution:                 chi2(50)
 Cov. Estimator:             clustered                                         
                                                                               
                                 Parameter Estimates                                
@@ -2350,7 +2355,7 @@ H0: Endogenous variables are exogenous
 Statistic: -6922589949093357.0000
 P-value: 1.0000
 Distributed: chi2(1)
-WaldTestStatistic, id: 0x7fd652e56490
+WaldTestStatistic, id: 0x7feee865a430
 </pre></div>
 </div>
 </div>
@@ -2561,15 +2566,13 @@ T-stats reported in parentheses
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 0.402801
          Iterations 7
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Logit Regression Results                           
+                           Logit Regression Results                           
 ==============================================================================
 Dep. Variable:                  GRADE   No. Observations:                   32
 Model:                          Logit   Df Residuals:                       28
 Method:                           MLE   Df Model:                            3
-Date:                Tue, 19 Oct 2021   Pseudo R-squ.:                  0.3740
-Time:                        11:54:35   Log-Likelihood:                -12.890
+Date:                Tue, 02 Nov 2021   Pseudo R-squ.:                  0.3740
+Time:                        17:37:48   Log-Likelihood:                -12.890
 converged:                       True   LL-Null:                       -20.592
 Covariance Type:            nonrobust   LLR p-value:                  0.001502
 ==============================================================================
@@ -2653,8 +2656,8 @@ PSI            2.3787      1.065      2.234      0.025       0.292       4.465
 Dep. Variable:                  GRADE   No. Observations:                   32
 Model:                         Probit   Df Residuals:                       28
 Method:                           MLE   Df Model:                            3
-Date:                Tue, 19 Oct 2021   Pseudo R-squ.:                  0.3775
-Time:                        11:54:35   Log-Likelihood:                -12.819
+Date:                Tue, 02 Nov 2021   Pseudo R-squ.:                  0.3775
+Time:                        17:37:48   Log-Likelihood:                -12.819
 converged:                       True   LL-Null:                       -20.592
 Covariance Type:            nonrobust   LLR p-value:                  0.001405
 ==============================================================================
@@ -2721,7 +2724,7 @@ PSI            1.4263      0.595      2.397      0.017       0.260       2.593
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_35985/516205570.py:5: UserWarning: linestyle is redundantly defined by the &#39;linestyle&#39; keyword argument and the fmt string &quot;r-&quot; (-&gt; linestyle=&#39;-&#39;). The keyword argument will take precedence.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_31496/516205570.py:5: UserWarning: linestyle is redundantly defined by the &#39;linestyle&#39; keyword argument and the fmt string &quot;r-&quot; (-&gt; linestyle=&#39;-&#39;). The keyword argument will take precedence.
   ax.plot(support, st.logistic.cdf(support), &quot;r-&quot;, ls=&quot;--&quot;, label=&quot;Logistic&quot;)
 </pre></div>
 </div>
@@ -2738,6 +2741,7 @@ PSI            1.4263      0.595      2.397      0.017       0.260       2.593
 {\displaystyle \mu= \mathbb{E}(Y\mid X=x) =g^{-1}(X'\beta)= \frac{1}{1 + e^{-X'\beta}}.}
 \]</div>
 <p>But as well as the ones we’ve seen, there are many possible link functions one can use via the catch-all <code class="docutils literal notranslate"><span class="pre">glm</span></code> function. These come in different ‘families’ of distributions, with the default for the binomial family being logit. So, running <code class="docutils literal notranslate"><span class="pre">smf.glm('GRADE</span> <span class="pre">~</span> <span class="pre">GPA</span> <span class="pre">+</span> <span class="pre">TUCE</span> <span class="pre">+</span> <span class="pre">PSI',</span> <span class="pre">data=df,</span> <span class="pre">family=sm.families.Binomial()).fit()</span></code> will produce exactly the same as we got both using the <code class="docutils literal notranslate"><span class="pre">logit</span></code> function. For more on the families of distributions and possible link functions, see the <a class="reference external" href="https://www.statsmodels.org/stable/glm.html">relevant part</a> of the <strong>statsmodels</strong> documentation.</p>
+<p>If you need a library dedicated to GLMs that has all the bells and whistles you can dream of, you might want to check out <a class="reference external" href="https://glum.readthedocs.io/en/latest/">glum</a>. At the time of writing, it is <a class="reference external" href="https://glum.readthedocs.io/en/latest/benchmarks.html">faster</a> than either GLMnet or H2O (two other popular GLM libraries).</p>
 </div>
 </div>
 <div class="section" id="linear-probability-model">
@@ -2852,8 +2856,8 @@ y = x' \cdot \beta
 Dep. Variable:                foodexp   Pseudo R-squared:               0.6206
 Model:                       QuantReg   Bandwidth:                       64.51
 Method:                 Least Squares   Sparsity:                        209.3
-Date:                Tue, 19 Oct 2021   No. Observations:                  235
-Time:                        11:54:36   Df Residuals:                      233
+Date:                Tue, 02 Nov 2021   No. Observations:                  235
+Time:                        17:37:49   Df Residuals:                      233
                                         Df Model:                            1
 ==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
@@ -3087,8 +3091,8 @@ strong multicollinearity or other numerical problems.
 ==============================================================================
 Dep. Variable:                 target   No. Observations:                  200
 Model:                    RecursiveLS   Log Likelihood                -570.923
-Date:                Tue, 19 Oct 2021   R-squared:                       0.988
-Time:                        11:54:37   AIC                           1145.847
+Date:                Tue, 02 Nov 2021   R-squared:                       0.988
+Time:                        17:37:49   AIC                           1145.847
 Sample:                             0   BIC                           1152.444
                                 - 200   HQIC                          1148.516
 Covariance Type:            nonrobust   Scale                           17.413
@@ -3208,7 +3212,7 @@ Warnings:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/econmt-regression_130_0.png" src="_images/econmt-regression_130_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8784940900434)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8791505510846)&gt;
 </pre></div>
 </div>
 </div>
@@ -3251,8 +3255,8 @@ Warnings:
 Dep. Variable:                 murder   R-squared:                       0.813
 Model:                            OLS   Adj. R-squared:                  0.797
 Method:                 Least Squares   F-statistic:                     50.08
-Date:                Tue, 19 Oct 2021   Prob (F-statistic):           3.42e-16
-Time:                        11:54:39   Log-Likelihood:                -95.050
+Date:                Tue, 02 Nov 2021   Prob (F-statistic):           3.42e-16
+Time:                        17:37:52   Log-Likelihood:                -95.050
 No. Observations:                  51   AIC:                             200.1
 Df Residuals:                      46   BIC:                             209.8
 Df Model:                           4                                         
@@ -3331,7 +3335,7 @@ strong multicollinearity or other numerical problems.
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/econmt-regression_142_0.png" src="_images/econmt-regression_142_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8784907287098)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8791508368062)&gt;
 </pre></div>
 </div>
 </div>

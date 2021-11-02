@@ -242,6 +242,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="text-regex.html">
+   Regular Expressions, aka regex
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="text-nlp.html">
    Natural Language Processing
   </a>
@@ -685,7 +690,7 @@
 <p>The ability to extract, clean, and analyse data is one of the core skills any economist needs. Fortunately, the (open source) tools that are available for data analysis have improved enormously in recent years, and working with them can be a delight–even the most badly formatted data can be beaten into shape.</p>
 <p>In this chapter, you’ll get really good introduction to the <a class="reference external" href="https://pandas.pydata.org/"><strong>pandas</strong></a> package, the core data manipulation library in Python. The name is derived from ‘panel data’ but it’s suited to any tabular data, and can be used to work with more complex data structures too. We <em>won’t</em> cover reading in or writing data here; see the next chapter for that.</p>
 <p>This chapter is hugely indebted to the fantastic <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake Vanderplas. Remember, if you get stuck with pandas, there is brilliant <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">documentation</a> and a fantastic set of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/index.html">introductory tutorials</a> on their website. These notes are heavily indebted to those introductory tutorials.</p>
-<p>This chapter uses the <strong>pandas</strong>, <strong>seaborn</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line.  If you’re running this page in Google Colab, you can install new packages by running <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> in a new code cell but you will need to restart the Colab notebook for the change to take effect. There’s a brief guide on installing packages in the Chapter on <span class="xref std std-ref">code-preliminaries</span>.</p>
+<p>This chapter uses the <strong>pandas</strong>, <strong>seaborn</strong>, and <strong>numpy</strong> packages. If you’re running this code, you may need to install these packages, which you can do using either <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> on your computer’s command line.  If you’re running this page in Google Colab, you can install new packages by running <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> in a new code cell but you will need to restart the Colab notebook for the change to take effect. There’s a brief guide on installing packages in the Chapter on <a class="reference internal" href="code-preliminaries.html#code-preliminaries"><span class="std std-ref">Preliminaries</span></a>.</p>
 <div class="section" id="using-tidy-data">
 <h3>Using tidy data<a class="headerlink" href="#using-tidy-data" title="Permalink to this headline">¶</a></h3>
 <p>As an aside, if you’re working with tabular data, it’s good to try and use a so-called ‘tidy data’ format. This is data with one observation per row, and one variable per column, like so:</p>
@@ -2066,99 +2071,99 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>6</td>
-      <td>1</td>
-      <td>3</td>
       <td>2</td>
-      <td>5</td>
+      <td>8</td>
+      <td>1</td>
+      <td>4</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>8</td>
-      <td>8</td>
-      <td>4</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>6</td>
       <td>7</td>
-      <td>5</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
       <td>5</td>
-      <td>1</td>
-      <td>8</td>
-      <td>7</td>
-      <td>1</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>8</td>
+      <td>2</td>
+      <td>2</td>
       <td>6</td>
-      <td>5</td>
-      <td>0</td>
-      <td>1</td>
+      <td>3</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>8</td>
-      <td>9</td>
-      <td>8</td>
-      <td>5</td>
-      <td>0</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>2</td>
-      <td>2</td>
-      <td>5</td>
-      <td>5</td>
       <td>4</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>9</td>
-      <td>9</td>
-      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>6</td>
       <td>1</td>
-      <td>3</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
       <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>4</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>0</td>
+      <td>8</td>
       <td>0</td>
       <td>8</td>
-      <td>6</td>
-      <td>8</td>
+      <td>3</td>
+      <td>9</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>6</td>
-      <td>6</td>
-      <td>4</td>
-      <td>4</td>
-      <td>8</td>
+      <td>7</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>2002-09-30</th>
-      <td>4</td>
       <td>1</td>
-      <td>9</td>
       <td>4</td>
-      <td>1</td>
+      <td>7</td>
+      <td>2</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>2002-12-31</th>
-      <td>9</td>
-      <td>7</td>
-      <td>1</td>
-      <td>4</td>
       <td>6</td>
+      <td>5</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -2200,66 +2205,66 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>6</td>
-      <td>1</td>
-      <td>3</td>
       <td>2</td>
-      <td>5</td>
+      <td>8</td>
+      <td>1</td>
+      <td>4</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>8</td>
-      <td>8</td>
-      <td>4</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>6</td>
       <td>7</td>
-      <td>5</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
       <td>5</td>
-      <td>1</td>
-      <td>8</td>
-      <td>7</td>
-      <td>1</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>8</td>
+      <td>2</td>
+      <td>2</td>
       <td>6</td>
-      <td>5</td>
-      <td>0</td>
-      <td>1</td>
+      <td>3</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>8</td>
-      <td>9</td>
-      <td>8</td>
-      <td>5</td>
-      <td>0</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>2</td>
-      <td>2</td>
-      <td>5</td>
-      <td>5</td>
       <td>4</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>9</td>
-      <td>9</td>
-      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>6</td>
       <td>1</td>
-      <td>3</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
       <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>4</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -2310,111 +2315,111 @@ Name: col1, dtype: float64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>6</td>
-      <td>1</td>
-      <td>3</td>
       <td>2</td>
-      <td>5</td>
-      <td>7</td>
+      <td>8</td>
+      <td>1</td>
+      <td>4</td>
+      <td>6</td>
+      <td>129</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>8</td>
-      <td>8</td>
-      <td>4</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>6</td>
       <td>7</td>
-      <td>5</td>
-      <td>513</td>
+      <td>37</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
       <td>5</td>
-      <td>1</td>
-      <td>8</td>
-      <td>7</td>
-      <td>1</td>
       <td>6</td>
+      <td>9</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>8</td>
+      <td>2</td>
+      <td>2</td>
       <td>6</td>
-      <td>5</td>
-      <td>0</td>
-      <td>1</td>
-      <td>289</td>
+      <td>3</td>
+      <td>7</td>
+      <td>9</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>8</td>
-      <td>9</td>
-      <td>8</td>
-      <td>5</td>
-      <td>0</td>
-      <td>649</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
+      <td>6</td>
+      <td>73</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>2</td>
-      <td>2</td>
-      <td>5</td>
-      <td>5</td>
       <td>4</td>
-      <td>9</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2</td>
+      <td>2</td>
+      <td>101</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>9</td>
-      <td>9</td>
-      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>6</td>
       <td>1</td>
-      <td>3</td>
-      <td>730</td>
+      <td>6</td>
+      <td>181</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
       <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>4</td>
       <td>1</td>
-      <td>1</td>
+      <td>181</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>0</td>
+      <td>8</td>
       <td>0</td>
       <td>8</td>
-      <td>6</td>
-      <td>8</td>
+      <td>3</td>
+      <td>9</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>6</td>
-      <td>6</td>
-      <td>4</td>
-      <td>4</td>
-      <td>8</td>
-      <td>217</td>
+      <td>7</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2</td>
+      <td>29</td>
     </tr>
     <tr>
       <th>2002-09-30</th>
-      <td>4</td>
       <td>1</td>
-      <td>9</td>
       <td>4</td>
-      <td>1</td>
+      <td>7</td>
+      <td>2</td>
       <td>5</td>
+      <td>17</td>
     </tr>
     <tr>
       <th>2002-12-31</th>
-      <td>9</td>
-      <td>7</td>
-      <td>1</td>
-      <td>4</td>
       <td>6</td>
-      <td>442</td>
+      <td>5</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>151</td>
     </tr>
   </tbody>
 </table>
@@ -2473,23 +2478,23 @@ dtype: bool
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Dataframe:
    A  B  C  D  E
-0  0  1  2  0  3
-1  2  2  1  1  3
-2  4  4  2  0  1
+0  4  3  2  3  4
+1  4  3  4  0  4
+2  0  4  3  3  4
 
  Exponentiation:
-           A          B         C         D          E
-0   1.000000   2.718282  7.389056  1.000000  20.085537
-1   7.389056   7.389056  2.718282  2.718282  20.085537
-2  54.598150  54.598150  7.389056  1.000000   2.718282
+          A          B          C          D         E
+0  54.59815  20.085537   7.389056  20.085537  54.59815
+1  54.59815  20.085537  54.598150   1.000000  54.59815
+2   1.00000  54.598150  20.085537  20.085537  54.59815
 
  Transpose:
    0  1  2
-A  0  2  4
-B  1  2  4
-C  2  1  2
-D  0  1  0
-E  3  3  1
+A  4  4  0
+B  3  3  4
+C  2  4  3
+D  3  0  3
+E  4  4  4
 </pre></div>
 </div>
 </div>
@@ -2542,11 +2547,11 @@ E  3  3  1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A    6
-B    7
-C    5
-D    1
-E    7
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A     8
+B    10
+C     9
+D     6
+E    12
 dtype: int64
 </pre></div>
 </div>
@@ -3144,63 +3149,63 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>7</td>
       <td>3</td>
-      <td>8</td>
-      <td>group0</td>
+      <td>group2</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
       <td>4</td>
-      <td>0</td>
-      <td>group1</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>1</td>
-      <td>5</td>
-      <td>group2</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>9</td>
-      <td>7</td>
+      <td>4</td>
       <td>group0</td>
     </tr>
     <tr>
+      <th>2000-09-30</th>
+      <td>5</td>
+      <td>3</td>
+      <td>group1</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>6</td>
+      <td>2</td>
+      <td>group2</td>
+    </tr>
+    <tr>
       <th>2001-03-31</th>
-      <td>1</td>
-      <td>7</td>
+      <td>0</td>
+      <td>4</td>
       <td>group2</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>0</td>
+      <td>9</td>
       <td>6</td>
       <td>group2</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>5</td>
-      <td>4</td>
+      <td>7</td>
+      <td>7</td>
       <td>group0</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>6</td>
-      <td>8</td>
+      <td>1</td>
+      <td>4</td>
       <td>group1</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>group2</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group2</td>
+      <td>9</td>
+      <td>5</td>
+      <td>group1</td>
     </tr>
   </tbody>
 </table>
@@ -3244,72 +3249,72 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>7</td>
       <td>3</td>
-      <td>8</td>
-      <td>group0</td>
-      <td>-3.0</td>
-    </tr>
-    <tr>
-      <th>2000-06-30</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group1</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>1</td>
-      <td>5</td>
-      <td>group2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>9</td>
-      <td>7</td>
-      <td>group0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>1</td>
-      <td>7</td>
       <td>group2</td>
       <td>0.5</td>
     </tr>
     <tr>
-      <th>2001-06-30</th>
-      <td>0</td>
+      <th>2000-06-30</th>
+      <td>4</td>
+      <td>4</td>
+      <td>group0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-09-30</th>
+      <td>5</td>
+      <td>3</td>
+      <td>group1</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
       <td>6</td>
+      <td>2</td>
       <td>group2</td>
       <td>-0.5</td>
     </tr>
     <tr>
-      <th>2001-09-30</th>
-      <td>5</td>
+      <th>2001-03-31</th>
+      <td>0</td>
       <td>4</td>
+      <td>group2</td>
+      <td>-4.5</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>9</td>
+      <td>6</td>
+      <td>group2</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>2001-09-30</th>
+      <td>7</td>
+      <td>7</td>
       <td>group0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>6</td>
-      <td>8</td>
+      <td>1</td>
+      <td>4</td>
       <td>group1</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>group2</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group2</td>
+      <td>9</td>
+      <td>5</td>
+      <td>group1</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -3374,83 +3379,83 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-03-31</th>
+      <td>7</td>
       <td>3</td>
-      <td>8</td>
-      <td>group0</td>
-      <td>-3.0</td>
-      <td>24</td>
+      <td>group2</td>
+      <td>0.5</td>
+      <td>21</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
       <td>4</td>
-      <td>0</td>
-      <td>group1</td>
+      <td>4</td>
+      <td>group0</td>
       <td>0.0</td>
-      <td>0</td>
+      <td>16</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>1</td>
       <td>5</td>
-      <td>group2</td>
+      <td>3</td>
+      <td>group1</td>
       <td>0.0</td>
-      <td>5</td>
+      <td>15</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>9</td>
-      <td>7</td>
-      <td>group0</td>
-      <td>3.0</td>
-      <td>63</td>
+      <td>6</td>
+      <td>2</td>
+      <td>group2</td>
+      <td>-0.5</td>
+      <td>12</td>
     </tr>
     <tr>
       <th>2001-03-31</th>
-      <td>1</td>
-      <td>7</td>
+      <td>0</td>
+      <td>4</td>
       <td>group2</td>
-      <td>0.5</td>
-      <td>7</td>
+      <td>-4.5</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2001-06-30</th>
-      <td>0</td>
+      <td>9</td>
       <td>6</td>
       <td>group2</td>
-      <td>-0.5</td>
-      <td>0</td>
+      <td>4.5</td>
+      <td>54</td>
     </tr>
     <tr>
       <th>2001-09-30</th>
-      <td>5</td>
-      <td>4</td>
+      <td>7</td>
+      <td>7</td>
       <td>group0</td>
       <td>0.0</td>
-      <td>20</td>
+      <td>49</td>
     </tr>
     <tr>
       <th>2001-12-31</th>
-      <td>6</td>
-      <td>8</td>
+      <td>1</td>
+      <td>4</td>
       <td>group1</td>
       <td>0.0</td>
-      <td>48</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>2002-03-31</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>group2</td>
       <td>0.0</td>
-      <td>0</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
-      <td>4</td>
-      <td>0</td>
-      <td>group2</td>
+      <td>9</td>
+      <td>5</td>
+      <td>group1</td>
       <td>0.0</td>
-      <td>0</td>
+      <td>45</td>
     </tr>
   </tbody>
 </table>
@@ -3507,54 +3512,14 @@ dtype: int64
   <tbody>
     <tr>
       <th>2000-03-31</th>
-      <td>-3.0</td>
-      <td>8</td>
-      <td>group0</td>
-      <td>-3.0</td>
-      <td>-24.0</td>
+      <td>0.5</td>
+      <td>3</td>
+      <td>group2</td>
+      <td>0.5</td>
+      <td>1.5</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>0.0</td>
-      <td>0</td>
-      <td>group1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-09-30</th>
-      <td>0.0</td>
-      <td>5</td>
-      <td>group2</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-12-31</th>
-      <td>3.0</td>
-      <td>7</td>
-      <td>group0</td>
-      <td>3.0</td>
-      <td>21.0</td>
-    </tr>
-    <tr>
-      <th>2001-03-31</th>
-      <td>0.5</td>
-      <td>7</td>
-      <td>group2</td>
-      <td>0.5</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>2001-06-30</th>
-      <td>-0.5</td>
-      <td>6</td>
-      <td>group2</td>
-      <td>-0.5</td>
-      <td>-3.0</td>
-    </tr>
-    <tr>
-      <th>2001-09-30</th>
       <td>0.0</td>
       <td>4</td>
       <td>group0</td>
@@ -3562,9 +3527,49 @@ dtype: int64
       <td>0.0</td>
     </tr>
     <tr>
+      <th>2000-09-30</th>
+      <td>0.0</td>
+      <td>3</td>
+      <td>group1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-12-31</th>
+      <td>-0.5</td>
+      <td>2</td>
+      <td>group2</td>
+      <td>-0.5</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>2001-03-31</th>
+      <td>-4.5</td>
+      <td>4</td>
+      <td>group2</td>
+      <td>-4.5</td>
+      <td>-18.0</td>
+    </tr>
+    <tr>
+      <th>2001-06-30</th>
+      <td>4.5</td>
+      <td>6</td>
+      <td>group2</td>
+      <td>4.5</td>
+      <td>27.0</td>
+    </tr>
+    <tr>
+      <th>2001-09-30</th>
+      <td>0.0</td>
+      <td>7</td>
+      <td>group0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
       <th>2001-12-31</th>
       <td>0.0</td>
-      <td>8</td>
+      <td>4</td>
       <td>group1</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -3572,16 +3577,16 @@ dtype: int64
     <tr>
       <th>2002-03-31</th>
       <td>0.0</td>
-      <td>0</td>
-      <td>group0</td>
+      <td>2</td>
+      <td>group2</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2002-06-30</th>
       <td>0.0</td>
-      <td>0</td>
-      <td>group2</td>
+      <td>5</td>
+      <td>group1</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -4071,31 +4076,31 @@ dtype: float64
   <tbody>
     <tr>
       <th>2000-01-31</th>
-      <td>0.181742</td>
+      <td>0.360739</td>
     </tr>
     <tr>
       <th>2000-02-29</th>
-      <td>1.441183</td>
+      <td>-0.881001</td>
     </tr>
     <tr>
       <th>2000-03-31</th>
-      <td>1.492117</td>
+      <td>-0.405050</td>
     </tr>
     <tr>
       <th>2000-04-30</th>
-      <td>2.314940</td>
+      <td>-0.001629</td>
     </tr>
     <tr>
       <th>2000-05-31</th>
-      <td>2.543858</td>
+      <td>0.248790</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>2.209637</td>
+      <td>2.202612</td>
     </tr>
     <tr>
       <th>2000-07-31</th>
-      <td>4.239999</td>
+      <td>1.483997</td>
     </tr>
     <tr>
       <th>2000-08-31</th>
@@ -4103,19 +4108,19 @@ dtype: float64
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>4.750010</td>
+      <td>3.127303</td>
     </tr>
     <tr>
       <th>2000-10-31</th>
-      <td>5.044723</td>
+      <td>3.562381</td>
     </tr>
     <tr>
       <th>2000-11-30</th>
-      <td>6.466476</td>
+      <td>3.808060</td>
     </tr>
     <tr>
       <th>2000-12-31</th>
-      <td>7.093132</td>
+      <td>4.153181</td>
     </tr>
   </tbody>
 </table>
@@ -4161,75 +4166,75 @@ dtype: float64
   <tbody>
     <tr>
       <th>2000-02-01</th>
-      <td>0.181742</td>
+      <td>0.360739</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2000-03-01</th>
-      <td>1.441183</td>
-      <td>1.259440</td>
+      <td>-0.881001</td>
+      <td>-1.241739</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2000-04-01</th>
-      <td>1.492117</td>
-      <td>0.050934</td>
-      <td>1.259440</td>
+      <td>-0.405050</td>
+      <td>0.475950</td>
+      <td>-1.241739</td>
     </tr>
     <tr>
       <th>2000-05-01</th>
-      <td>2.314940</td>
-      <td>0.822823</td>
-      <td>0.050934</td>
+      <td>-0.001629</td>
+      <td>0.403422</td>
+      <td>0.475950</td>
     </tr>
     <tr>
       <th>2000-06-01</th>
-      <td>2.543858</td>
-      <td>0.228919</td>
-      <td>0.822823</td>
+      <td>0.248790</td>
+      <td>0.250418</td>
+      <td>0.403422</td>
     </tr>
     <tr>
       <th>2000-07-01</th>
-      <td>2.209637</td>
-      <td>-0.334222</td>
-      <td>0.228919</td>
+      <td>2.202612</td>
+      <td>1.953822</td>
+      <td>0.250418</td>
     </tr>
     <tr>
       <th>2000-08-01</th>
-      <td>4.239999</td>
-      <td>2.030363</td>
-      <td>-0.334222</td>
+      <td>1.483997</td>
+      <td>-0.718615</td>
+      <td>1.953822</td>
     </tr>
     <tr>
       <th>2000-09-01</th>
-      <td>4.499185</td>
-      <td>0.259186</td>
-      <td>2.030363</td>
+      <td>2.319120</td>
+      <td>0.835123</td>
+      <td>-0.718615</td>
     </tr>
     <tr>
       <th>2000-10-01</th>
-      <td>4.750010</td>
-      <td>0.250825</td>
-      <td>0.259186</td>
+      <td>3.127303</td>
+      <td>0.808184</td>
+      <td>0.835123</td>
     </tr>
     <tr>
       <th>2000-11-01</th>
-      <td>5.044723</td>
-      <td>0.294713</td>
-      <td>0.250825</td>
+      <td>3.562381</td>
+      <td>0.435077</td>
+      <td>0.808184</td>
     </tr>
     <tr>
       <th>2000-12-01</th>
-      <td>6.466476</td>
-      <td>1.421753</td>
-      <td>0.294713</td>
+      <td>3.808060</td>
+      <td>0.245680</td>
+      <td>0.435077</td>
     </tr>
     <tr>
       <th>2001-01-01</th>
-      <td>7.093132</td>
-      <td>0.626656</td>
-      <td>1.421753</td>
+      <td>4.153181</td>
+      <td>0.345120</td>
+      <td>0.245680</td>
     </tr>
   </tbody>
 </table>
@@ -4252,20 +4257,326 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01         NaN
 2000-03-01         NaN
 2000-04-01         NaN
-2000-05-01    0.711066
-2000-06-01    0.367558
-2000-07-01    0.239173
-2000-08-01    0.641687
-2000-09-01    0.651776
-2000-10-01    0.846791
-2000-11-01    0.268241
-2000-12-01    0.655763
-2001-01-01    0.781040
+2000-05-01   -0.120789
+2000-06-01    0.376597
+2000-07-01    0.869221
+2000-08-01    0.495208
+2000-09-01    0.690110
+2000-10-01    0.308231
+2000-11-01    0.692795
+2000-12-01    0.496313
+2001-01-01    0.341959
 Name: diff_values, dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Rolling Groupby</strong></p>
+<p>Often there are times when you’d like to compute the rolling mean at the group level, for example for each state. Here’s a typical example of this, and how to compute the grouped rolling mean. This example comes from the excellent <a class="reference external" href="https://calmcode.io">calmcode</a> website.</p>
+<p>First, let’s pick up some data that we might want to apply this to and ensure the <code class="docutils literal notranslate"><span class="pre">&quot;date&quot;</span></code> column has the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> datatype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://calmcode.io/datasets/birthdays.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>wday</th>
+      <th>births</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AK</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AL</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>174</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AR</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AZ</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>CA</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What we’ll do now is proceed in three steps:</p>
+<ol class="simple">
+<li><p>Add a date index with <code class="docutils literal notranslate"><span class="pre">.set_index()</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">.rolling</span></code> likes to have a datetime index to work on.</p></li>
+<li><p>Group the data with <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code>. Each grouped set will have an index attached and we’re getting a grouped-series object because we’re only selecting the births column.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.transform()</span></code> to perform an operation only within groups.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;rolling_births&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)[</span><span class="s1">&#39;births&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;30D&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>wday</th>
+      <th>births</th>
+      <th>rolling_births</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AK</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>14</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AL</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>174</td>
+      <td>174.0</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AR</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>78</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AZ</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>84</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>1969-01-01</th>
+      <td>CA</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>824</td>
+      <td>824.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To check that the result is something sensible, you can always sort the dataframe by date and group. Here, that lets us check that the rolling births are indeed following the births column in the way that we expect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>wday</th>
+      <th>births</th>
+      <th>rolling_births</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1969-01-01</th>
+      <td>AK</td>
+      <td>1969</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Wed</td>
+      <td>14</td>
+      <td>14.000000</td>
+    </tr>
+    <tr>
+      <th>1985-02-20</th>
+      <td>AK</td>
+      <td>1985</td>
+      <td>2</td>
+      <td>20</td>
+      <td>Wed</td>
+      <td>45</td>
+      <td>34.100000</td>
+    </tr>
+    <tr>
+      <th>1981-03-15</th>
+      <td>AK</td>
+      <td>1981</td>
+      <td>3</td>
+      <td>15</td>
+      <td>Sun</td>
+      <td>20</td>
+      <td>26.633333</td>
+    </tr>
+    <tr>
+      <th>1976-10-20</th>
+      <td>AK</td>
+      <td>1976</td>
+      <td>10</td>
+      <td>20</td>
+      <td>Wed</td>
+      <td>16</td>
+      <td>22.000000</td>
+    </tr>
+    <tr>
+      <th>1972-11-12</th>
+      <td>AK</td>
+      <td>1972</td>
+      <td>11</td>
+      <td>12</td>
+      <td>Sun</td>
+      <td>22</td>
+      <td>18.466667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For a more in-depth look at combining groups with rolling aggregations, take a look at the <a class="reference external" href="https://calmcode.io/pandas-datetime/rolling-groupby.html">tutorial on calmcode</a>.</p>
 </div>
 <div class="section" id="advanced-method-chaining">
 <h2>Advanced: Method Chaining<a class="headerlink" href="#advanced-method-chaining" title="Permalink to this headline">¶</a></h2>
@@ -4486,7 +4797,7 @@ Name: diff_values, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_35719/1424200124.py:22: FutureWarning: The default value of regex will change from True to False in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x6/ffnr59f116l96_y0q0bjfz7c0000gn/T/ipykernel_32015/1424200124.py:22: FutureWarning: The default value of regex will change from True to False in a future version.
   col.astype(str)
 </pre></div>
 </div>
@@ -4672,39 +4983,39 @@ Name: diff_values, dtype: float64
   </thead>
   <tbody>
     <tr>
+      <th>4</th>
+      <td>2000-05-31</td>
+      <td>A</td>
+      <td>type3</td>
+      <td>-0.876566</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2000-03-31</td>
+      <td>B</td>
+      <td>type4</td>
+      <td>0.875889</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2000-09-30</td>
+      <td>B</td>
+      <td>type1</td>
+      <td>1.157198</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2000-01-31</td>
+      <td>B</td>
+      <td>type3</td>
+      <td>0.515731</td>
+    </tr>
+    <tr>
       <th>13</th>
       <td>2000-04-30</td>
       <td>B</td>
       <td>type1</td>
-      <td>-0.799213</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>2000-01-31</td>
-      <td>A</td>
-      <td>type4</td>
-      <td>0.175248</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000-02-29</td>
-      <td>A</td>
-      <td>type2</td>
-      <td>0.188158</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2000-06-30</td>
-      <td>B</td>
-      <td>type4</td>
-      <td>-0.892850</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2000-05-31</td>
-      <td>B</td>
-      <td>type2</td>
-      <td>-1.048948</td>
+      <td>-0.127172</td>
     </tr>
   </tbody>
 </table>
@@ -4753,48 +5064,48 @@ Name: diff_values, dtype: float64
     </tr>
     <tr>
       <th>2000-02-29</th>
-      <td>0.175248</td>
-      <td>-1.500692</td>
+      <td>-0.777410</td>
+      <td>0.515731</td>
     </tr>
     <tr>
       <th>2000-03-31</th>
-      <td>0.188158</td>
-      <td>0.672261</td>
+      <td>-0.530698</td>
+      <td>0.098430</td>
     </tr>
     <tr>
       <th>2000-04-30</th>
-      <td>0.291161</td>
-      <td>0.943272</td>
+      <td>0.352288</td>
+      <td>0.875889</td>
     </tr>
     <tr>
       <th>2000-05-31</th>
-      <td>0.860001</td>
-      <td>-0.799213</td>
+      <td>-2.219487</td>
+      <td>-0.127172</td>
     </tr>
     <tr>
       <th>2000-06-30</th>
-      <td>0.971136</td>
-      <td>-1.048948</td>
+      <td>-0.876566</td>
+      <td>-0.486642</td>
     </tr>
     <tr>
       <th>2000-07-31</th>
-      <td>0.727127</td>
-      <td>-0.892850</td>
+      <td>-2.209528</td>
+      <td>-1.193658</td>
     </tr>
     <tr>
       <th>2000-08-31</th>
-      <td>0.314374</td>
-      <td>1.096324</td>
+      <td>1.470469</td>
+      <td>0.539450</td>
     </tr>
     <tr>
       <th>2000-09-30</th>
-      <td>-1.221186</td>
-      <td>-0.375727</td>
+      <td>0.540615</td>
+      <td>-1.189509</td>
     </tr>
     <tr>
       <th>2000-10-31</th>
-      <td>-0.123760</td>
-      <td>2.071302</td>
+      <td>-2.125918</td>
+      <td>1.157198</td>
     </tr>
   </tbody>
 </table>
@@ -4950,7 +5261,7 @@ Name: diff_values, dtype: float64
       <td>d</td>
       <td>2.5</td>
       <td>3.2</td>
-      <td>0.756198</td>
+      <td>-0.741526</td>
       <td>0</td>
     </tr>
     <tr>
@@ -4959,7 +5270,7 @@ Name: diff_values, dtype: float64
       <td>e</td>
       <td>1.2</td>
       <td>1.3</td>
-      <td>-0.739134</td>
+      <td>-1.201757</td>
       <td>1</td>
     </tr>
     <tr>
@@ -4968,7 +5279,7 @@ Name: diff_values, dtype: float64
       <td>f</td>
       <td>0.7</td>
       <td>0.1</td>
-      <td>0.132107</td>
+      <td>1.523690</td>
       <td>2</td>
     </tr>
   </tbody>
@@ -5018,42 +5329,42 @@ Name: diff_values, dtype: float64
     <tr>
       <th>0</th>
       <th>1970</th>
-      <td>0.756198</td>
+      <td>-0.741526</td>
       <td>a</td>
       <td>2.5</td>
     </tr>
     <tr>
       <th>1</th>
       <th>1970</th>
-      <td>-0.739134</td>
+      <td>-1.201757</td>
       <td>b</td>
       <td>1.2</td>
     </tr>
     <tr>
       <th>2</th>
       <th>1970</th>
-      <td>0.132107</td>
+      <td>1.523690</td>
       <td>c</td>
       <td>0.7</td>
     </tr>
     <tr>
       <th>0</th>
       <th>1980</th>
-      <td>0.756198</td>
+      <td>-0.741526</td>
       <td>d</td>
       <td>3.2</td>
     </tr>
     <tr>
       <th>1</th>
       <th>1980</th>
-      <td>-0.739134</td>
+      <td>-1.201757</td>
       <td>e</td>
       <td>1.3</td>
     </tr>
     <tr>
       <th>2</th>
       <th>1980</th>
-      <td>0.132107</td>
+      <td>1.523690</td>
       <td>f</td>
       <td>0.1</td>
     </tr>
@@ -5119,46 +5430,46 @@ Name: diff_values, dtype: float64
     <tr>
       <th rowspan="2" valign="top">bar</th>
       <th>one</th>
-      <td>1.008345</td>
-      <td>-0.255800</td>
+      <td>-0.046251</td>
+      <td>-0.180298</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>2.031265</td>
-      <td>-1.136943</td>
+      <td>2.081910</td>
+      <td>0.846520</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">baz</th>
       <th>one</th>
-      <td>-2.212599</td>
-      <td>-0.218647</td>
+      <td>1.313378</td>
+      <td>0.251507</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>-1.432520</td>
-      <td>-0.653393</td>
+      <td>0.830822</td>
+      <td>0.339911</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">foo</th>
       <th>one</th>
-      <td>-1.376928</td>
-      <td>0.518169</td>
+      <td>-1.117795</td>
+      <td>0.715364</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>1.020912</td>
-      <td>-1.195418</td>
+      <td>1.841748</td>
+      <td>-0.736528</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">qux</th>
       <th>one</th>
-      <td>0.864745</td>
-      <td>0.397200</td>
+      <td>-1.158760</td>
+      <td>-1.138809</td>
     </tr>
     <tr>
       <th>two</th>
-      <td>1.974540</td>
-      <td>0.326099</td>
+      <td>-0.549319</td>
+      <td>0.862525</td>
     </tr>
   </tbody>
 </table>
@@ -5174,22 +5485,22 @@ Name: diff_values, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first  second   
-bar    one     A    1.008345
-               B   -0.255800
-       two     A    2.031265
-               B   -1.136943
-baz    one     A   -2.212599
-               B   -0.218647
-       two     A   -1.432520
-               B   -0.653393
-foo    one     A   -1.376928
-               B    0.518169
-       two     A    1.020912
-               B   -1.195418
-qux    one     A    0.864745
-               B    0.397200
-       two     A    1.974540
-               B    0.326099
+bar    one     A   -0.046251
+               B   -0.180298
+       two     A    2.081910
+               B    0.846520
+baz    one     A    1.313378
+               B    0.251507
+       two     A    0.830822
+               B    0.339911
+foo    one     A   -1.117795
+               B    0.715364
+       two     A    1.841748
+               B   -0.736528
+qux    one     A   -1.158760
+               B   -1.138809
+       two     A   -0.549319
+               B    0.862525
 dtype: float64
 </pre></div>
 </div>
@@ -5243,32 +5554,32 @@ dtype: float64
     <tr>
       <th rowspan="2" valign="top">one</th>
       <th>A</th>
-      <td>1.008345</td>
-      <td>-2.212599</td>
-      <td>-1.376928</td>
-      <td>0.864745</td>
+      <td>-0.046251</td>
+      <td>1.313378</td>
+      <td>-1.117795</td>
+      <td>-1.158760</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>-0.255800</td>
-      <td>-0.218647</td>
-      <td>0.518169</td>
-      <td>0.397200</td>
+      <td>-0.180298</td>
+      <td>0.251507</td>
+      <td>0.715364</td>
+      <td>-1.138809</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">two</th>
       <th>A</th>
-      <td>2.031265</td>
-      <td>-1.432520</td>
-      <td>1.020912</td>
-      <td>1.974540</td>
+      <td>2.081910</td>
+      <td>0.830822</td>
+      <td>1.841748</td>
+      <td>-0.549319</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>-1.136943</td>
-      <td>-0.653393</td>
-      <td>-1.195418</td>
-      <td>0.326099</td>
+      <td>0.846520</td>
+      <td>0.339911</td>
+      <td>-0.736528</td>
+      <td>0.862525</td>
     </tr>
   </tbody>
 </table>
